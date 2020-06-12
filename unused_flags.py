@@ -1,8 +1,9 @@
 #!/usr/bin/python
 
+import os
 from config import pokeemerald_dir
 
-flag_file = "{0}\include\constants\\flags.h".format(pokeemerald_dir)
+flag_file = os.path.normpath("{0}\include\constants\\flags.h".format(pokeemerald_dir))
 
 with open(flag_file, "r") as f:
 	lines = f.read().splitlines()

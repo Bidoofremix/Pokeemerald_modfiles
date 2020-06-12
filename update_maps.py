@@ -1,8 +1,10 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
-import os,shutil,argparse,time
+import sys,os,shutil,argparse,time,filecmp,json,fileinput
 from pathlib import Path
 from config import pokeemerald_dir,vanilla_dir
+from misc import normalize_path
+from deepdiff import DeepDiff
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--mode", choices=["insert","backup"],\
@@ -10,8 +12,8 @@ parser.add_argument("--mode", choices=["insert","backup"],\
 
 args = vars(parser.parse_args())	
 
-map_dir = "{0}\data\maps".format(pokeemerald_dir)
-layout_dir = "{0}\data\layouts".format(pokeemerald_dir)
+map_dir = normalize_path("{0}\data\maps".format(pokeemerald_dir))
+layout_dir = normalize_path("{0}\data\layouts".format(pokeemerald_dir))
 
 backup_dir = os.getcwd() + "\\raw_maps"
 
@@ -20,6 +22,15 @@ backup_dir = os.getcwd() + "\\raw_maps"
 def mod_to_backup(mod_path):
 	return mod_path.replace(pokeemerald_dir,backup_dir)
 
+def countdown():
+	print("")
+	for remaining in range(5, 0, -1):
+		sys.stdout.write("\r")
+		sys.stdout.write("close script in {:2d} ...".format(remaining))
+		sys.stdout.flush()
+		time.sleep(1)
+	print("")
+
 ########## insert files before porymap
 
 file_meta = {}
@@ -27,18 +38,16 @@ file_meta = {}
 print(map_dir)
 
 for folder in [map_dir,layout_dir]:
+
 	for dir, subdirs, files in os.walk(folder):
+	
 			for fname in files:
 				
-				relative_path = "{0}\{1}".format(dir,fname).replace(pokeemerald_dir,"")
+				relative_path = normalize_path("{0}\{1}".format(dir,fname).replace(pokeemerald_dir,""))
 				
-				mod_path = "{0}{1}".format(pokeemerald_dir,relative_path)
-				vanilla_path = "{0}{1}".format(vanilla_dir,relative_path)
-				backup_path = "{0}{1}".format(backup_dir,relative_path)
-				
-				# bugfix?
-				if not os.path.isfile(vanilla_path):
-					continue
+				mod_path = normalize_path("{0}{1}".format(pokeemerald_dir,relative_path))
+				vanilla_path = normalize_path("{0}{1}".format(vanilla_dir,relative_path))
+				backup_path = normalize_path("{0}{1}".format(backup_dir,relative_path))
 				
 				file_meta[relative_path] = {}
 				file_meta[relative_path]["mod"] = {}
@@ -52,13 +61,12 @@ for folder in [map_dir,layout_dir]:
 				file_meta[relative_path]["vanilla"]["mod_time"] = os.path.getmtime(vanilla_path)
 				
 				file_meta[relative_path]["backup"] = {}
-				file_meta[relative_path]["backup"]["path"] = ""
-				
-				if os.path.exists(backup_path):
-					file_meta[relative_path]["backup"] = {}
+				if os.path.isfile(backup_path):
 					file_meta[relative_path]["backup"]["path"] = backup_path
-				
+				else:
+					file_meta[relative_path]["backup"]["path"] = ""
 			
+
 ########## insert files before porymap
 
 if args["mode"] == "insert":
@@ -66,8 +74,11 @@ if args["mode"] == "insert":
 	print("\ncopy files for porymap")
 
 	for file in file_meta:
-	
+
 		if file_meta[file]["backup"]["path"] != "":
+		
+			print(file)
+		
 			shutil.copyfile(file_meta[file]["backup"]["path"],\
 				file_meta[file]["mod"]["path"])
 				
@@ -75,14 +86,53 @@ if args["mode"] == "insert":
 	
 ########## back up files after porymap
 
+# clean up after porymap changes parameters
+map_parameters = {}
+map_parameters["allow_bike="] = "allow_cycling="
+map_parameters["allow_escape_rope="] = "allow_escaping="
+map_parameters["allow_run="] = "allow_running="
+
+
 if args["mode"] == "backup":
 
 	print("\nback up files")
-	
+
 	for file in file_meta:
+    
+		backup_this_file = 0
 	
-		if (file_meta[file]["mod"]["size"] != file_meta[file]["vanilla"]["size"]) \
-			or (file_meta[file]["mod"]["mod_time"] != file_meta[file]["vanilla"]["mod_time"]):
+		if (file_meta[file]["mod"]["size"] != file_meta[file]["vanilla"]["size"]):
+			backup_this_file = 1
+		
+		if file.endswith((".inc",".bin")):
+		
+			# if file.endswith(".inc"):
+				# with open(file_meta[file]["mod"]["path"], "r", encoding="utf-8") as f:
+					# content = f.read()
+			
+				# if any([i in content for i in map_parameters]):
+					# for p in map_parameters:
+						# content = content.replace(p, map_parameters[p])
+						
+					# with open(file_meta[file]["mod"]["path"], "w", encoding="utf-8") as f:
+						# f.write(content)
+			
+			if (filecmp.cmp(file_meta[file]["mod"]["path"],file_meta[file]["vanilla"]["path"], \
+			shallow=False) == False):
+				backup_this_file = 1
+		
+		if file.endswith(".json"):
+			f1 = open(file_meta[file]["mod"]["path"], "r")
+			f2 = open(file_meta[file]["mod"]["path"], "r")
+			ddiff = DeepDiff(json.load(f1),json.load(f2),ignore_order=True)
+			f1.close
+			f2.close
+			if ddiff != {}:
+				backup_this_file = 1
+		
+		if backup_this_file:
+			
+			print(file)
 			
 			if file_meta[file]["backup"]["path"] == "":
 				file_meta[file]["backup"]["path"] = mod_to_backup(file_meta[file]["mod"]["path"])
@@ -90,5 +140,5 @@ if args["mode"] == "backup":
 			os.makedirs(os.path.dirname(backup_path), exist_ok=True)
 			shutil.copy(file_meta[file]["mod"]["path"],backup_path)
 	print("done")
-	
-time.sleep(5)
+
+countdown()

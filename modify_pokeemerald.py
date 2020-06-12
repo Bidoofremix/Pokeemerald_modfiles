@@ -1,7 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os,re,xlrd,argparse
 from config import pokeemerald_dir
+from misc import normalize_path
 
 wrk_dir = os.getcwd()
 
@@ -11,6 +12,7 @@ parser.add_argument("--reset", action="store_true",\
 	help="only reset changes")
 
 args = vars(parser.parse_args())
+
 
 ########## reset all changes before working
 
@@ -30,7 +32,7 @@ os.chdir(wrk_dir)
 
 pokemon_data = {}
 
-pokemon_excel = "pokemon/pokemon.xlsx"
+pokemon_excel = normalize_path("pokemon/pokemon.xlsx")
 
 xl_workbook = xlrd.open_workbook(pokemon_excel)
 xl_sheet = xl_workbook.sheet_by_index(0)
@@ -56,7 +58,7 @@ for i in range(0,xl_sheet.nrows):
 
 ########## replace rows with new data
 
-base_stats_file = "{0}/src/data/pokemon/base_stats.h".format(pokeemerald_dir)
+base_stats_file = normalize_path("{0}/src/data/pokemon/base_stats.h".format(pokeemerald_dir))
 
 # follow which data was replaced
 data_replaced = {}
@@ -112,8 +114,9 @@ raw_folder = "raw"
 for dir, subdirs, files in os.walk(raw_folder):
 	for fname in files:
 	
-		mod_path = "{0}\{1}".format(dir,fname)
-		pokeemerald_path = pokeemerald_dir + mod_path[len(raw_folder):]
+		mod_path = normalize_path("{0}\{1}".format(dir,fname))
+
+		pokeemerald_path = normalize_path(pokeemerald_dir + mod_path[len(raw_folder):])
 		
 		print(pokeemerald_path)
 		
@@ -178,7 +181,9 @@ for dir, subdirs, files in os.walk(raw_folder):
 			
 			if first_index == "" or last_index == "":
 				print("\nerror: did not find matching lines for:")
-				print("\nmismatch:")
+				[print(c) for c in chunk]
+				
+				print("\nmismatch: ", end="")
 				if first_index == "":
 					print("first line")
 				if last_index == "":
@@ -220,7 +225,7 @@ trainer_data = {}
 # defined trainers and their party offsets
 defined_trainers = {}
 party = ""
-trainer_file = "{0}/src/data/trainers.h".format(pokeemerald_dir)
+trainer_file = normalize_path("{0}/src/data/trainers.h".format(pokeemerald_dir))
 trainer_file_lines = []
 with open(trainer_file, "r") as f:
 	for line in f:
@@ -235,7 +240,7 @@ with open(trainer_file, "r") as f:
 				
 # defined moves
 defined_moves = set([])
-move_file = "{0}/include/constants/moves.h".format(pokeemerald_dir)
+move_file = normalize_path("{0}/include/constants/moves.h".format(pokeemerald_dir))
 with open(move_file, "r") as f:
 	for line in f:
 		if line.startswith("#define MOVE_"):
@@ -243,7 +248,7 @@ with open(move_file, "r") as f:
 
 # defined species
 defined_species = set([])
-species_file = "{0}/include/constants/species.h".format(pokeemerald_dir)
+species_file = normalize_path("{0}/include/constants/species.h".format(pokeemerald_dir))
 with open(species_file, "r") as f:
 	for line in f:
 		if line.startswith("#define SPECIES_"):
@@ -251,13 +256,13 @@ with open(species_file, "r") as f:
 
 # defined items
 defined_items = set([])
-items_file = "{0}/include/constants/items.h".format(pokeemerald_dir)
+items_file = normalize_path( "{0}/include/constants/items.h".format(pokeemerald_dir))
 with open(items_file, "r") as f:
 	for line in f:
 		if line.startswith("#define ITEM_"):
 			defined_items.add(line.split(" ")[1])			
 			
-trainer_excel = "trainers/trainers.xlsx"
+trainer_excel = normalize_path("trainers/trainers.xlsx")
 
 xl_workbook = xlrd.open_workbook(trainer_excel)
 xl_sheet = xl_workbook.sheet_by_index(0)
@@ -366,7 +371,7 @@ print("done")
 
 # read trainer party file content
 trainer_party_file_lines = []
-trainer_party_file = "{0}/src/data/trainer_parties.h".format(pokeemerald_dir)
+trainer_party_file = normalize_path("{0}/src/data/trainer_parties.h".format(pokeemerald_dir))
 with open(trainer_party_file, "r") as f:
 	for line in f:
 		trainer_party_file_lines.append(line)
@@ -447,7 +452,7 @@ with open(trainer_file, "w") as f:
 
 print("\nupdating maps")
 
-os_cmd = "update_maps.py --mode insert"
+os_cmd = "./update_maps.py --mode insert"
 
 os.system(os_cmd)
 		

@@ -1,7 +1,7 @@
 // <
-	if_equal ABILITY_LEVITATE, CheckIfLevitateCancelsGroundMove
+	if_equal ABILITY_WONDER_GUARD, CheckIfWonderGuardCancelsMove
 	if_equal ABILITY_FLUTTER, CheckIfLevitateCancelsGroundMove
-	if_equal ABILITY_SOUNDPROOF, CheckIfSoundproofCancelsMove
+	if_equal ABILITY_LEVITATE, CheckIfLevitateCancelsGroundMove
 // >
 
 // <
