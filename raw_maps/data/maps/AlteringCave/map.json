@@ -1,7 +1,7 @@
 {
-    "allow_bike": false,
+    "allow_bike": true,
     "allow_cycling": "",
-    "allow_escape_rope": false,
+    "allow_escape_rope": true,
     "allow_escaping": "",
     "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
@@ -13,7 +13,7 @@
     "id": "MAP_ALTERING_CAVE",
     "layout": "LAYOUT_ALTERING_CAVE",
     "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_RG_NANADUNGEON",
+    "music": "MUS_M_DUNGON",
     "name": "AlteringCave",
     "object_events": [
     ],
@@ -25,16 +25,16 @@
             "dest_map": "MAP_ROUTE103",
             "dest_warp_id": 0,
             "elevation": 0,
-            "x": 14,
-            "y": 37
+            "x": 23,
+            "y": 38
         },
         {
             "dest_map": "MAP_VERDANTURF_TOWN",
-            "dest_warp_id": 0,
+            "dest_warp_id": 7,
             "elevation": 0,
             "x": 6,
-            "y": 36
+            "y": 5
         }
     ],
-    "weather": "WEATHER_NONE"
+    "weather": "WEATHER_FOG_HORIZONTAL"
 }

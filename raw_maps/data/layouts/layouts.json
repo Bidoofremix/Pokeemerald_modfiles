@@ -4198,7 +4198,7 @@
             "name": "AlteringCave_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Cave",
-            "width": 24
+            "width": 34
         },
         {
             "blockdata_filepath": "data/layouts/NavelRock_Exterior/map.bin",
