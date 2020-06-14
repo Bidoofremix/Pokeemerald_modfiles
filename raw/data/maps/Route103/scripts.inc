@@ -79,11 +79,22 @@ Route103_Text_ZigzagoonBoy_ZigzagoonLikesGrassBetter:
 	.string "{STR_VAR_1} likes running in the grass!$"
 	
 Route103_Text_ZigzagoonIsTraining:
-	.string "Oh, I'm training with my {STR_VAR_1}.\p"
-	.string "Could you please come back later?$"
+	.string "Oh, I'm training obedience with my\n"
+	.string "{STR_VAR_1}. It got loose on ROUTE 101.\p"
+	.string "Can you please come back later?$"
 	
 Route103_Text_ZigzagoonPshoo:
 	.string "{STR_VAR_1}: Pshoo!$"
 	
 Route103_Text_MayRoute103Pokemon: @ 81EC7A6
+// >
+
+< //
+Route103_Text_ShortcutToOldale: @ 81ECBB5
+	.string "The land has risen here and a shoal\n"
+	.string "has formed. It's a shortcut to\n"
+	.string "OLDALE TOWN.\p"
+	.string "Fufufu, that's useful, isn't it?$"
+
+Route103_Text_RouteSign: @ 81ECC1A
 // >

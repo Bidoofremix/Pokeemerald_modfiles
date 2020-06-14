@@ -14,8 +14,9 @@ args = vars(parser.parse_args())
 
 map_dir = normalize_path("{0}\data\maps".format(pokeemerald_dir))
 layout_dir = normalize_path("{0}\data\layouts".format(pokeemerald_dir))
+modfile_dir = normalize_path(os.getcwd() + "\\raw")
 
-backup_dir = os.getcwd() + "\\raw_maps"
+backup_dir = normalize_path(os.getcwd() + "\\raw_maps")
 
 ########## functions
 
@@ -29,42 +30,63 @@ def countdown():
 		sys.stdout.write("close script in {:2d} ...".format(remaining))
 		sys.stdout.flush()
 		time.sleep(1)
+	sys.stdout.write("\r")
+	sys.stdout.flush()
 	print("")
 
 ########## insert files before porymap
 
+# vanilla: base DizzyEgg's battle_engine_v2
+# mod: modifiable copy directory of battle_engine_v2
+# backup: whole files in raw_maps/ for porymap
+# mod_pieces: snippets of code in raw/
+
 file_meta = {}
 
 print(map_dir)
+
+# insert to pokeemerald_mod
+# all files that have been previously
+# modified by Porymap
 
 for folder in [map_dir,layout_dir]:
 
 	for dir, subdirs, files in os.walk(folder):
 	
 			for fname in files:
+			
+				if fname in ["map_groups.json","map.json","layouts.json","map.bin","border.bin"]:
 				
-				relative_path = normalize_path("{0}\{1}".format(dir,fname).replace(pokeemerald_dir,""))
-				
-				mod_path = normalize_path("{0}{1}".format(pokeemerald_dir,relative_path))
-				vanilla_path = normalize_path("{0}{1}".format(vanilla_dir,relative_path))
-				backup_path = normalize_path("{0}{1}".format(backup_dir,relative_path))
-				
-				file_meta[relative_path] = {}
-				file_meta[relative_path]["mod"] = {}
-				file_meta[relative_path]["mod"]["size"] = Path(mod_path).stat().st_size
-				file_meta[relative_path]["mod"]["path"] = mod_path
-				file_meta[relative_path]["mod"]["mod_time"] = os.path.getmtime(mod_path)
-				
-				file_meta[relative_path]["vanilla"] = {}
-				file_meta[relative_path]["vanilla"]["size"] = Path(vanilla_path).stat().st_size
-				file_meta[relative_path]["vanilla"]["path"] = vanilla_path
-				file_meta[relative_path]["vanilla"]["mod_time"] = os.path.getmtime(vanilla_path)
-				
-				file_meta[relative_path]["backup"] = {}
-				if os.path.isfile(backup_path):
-					file_meta[relative_path]["backup"]["path"] = backup_path
-				else:
-					file_meta[relative_path]["backup"]["path"] = ""
+					relative_path = normalize_path("{0}\{1}".format(dir,fname).replace(pokeemerald_dir,""))
+					
+					mod_path = normalize_path("{0}{1}".format(pokeemerald_dir,relative_path))
+					vanilla_path = normalize_path("{0}{1}".format(vanilla_dir,relative_path))
+					backup_path = normalize_path("{0}{1}".format(backup_dir,relative_path))
+					mod_pieces_path = normalize_path("{0}{1}".format(modfile_dir, relative_path))
+					
+					file_meta[relative_path] = {}
+					file_meta[relative_path]["mod"] = {}
+					file_meta[relative_path]["mod"]["size"] = Path(mod_path).stat().st_size
+					file_meta[relative_path]["mod"]["path"] = mod_path
+					file_meta[relative_path]["mod"]["mod_time"] = os.path.getmtime(mod_path)
+					
+					file_meta[relative_path]["vanilla"] = {}
+					file_meta[relative_path]["vanilla"]["size"] = Path(vanilla_path).stat().st_size
+					file_meta[relative_path]["vanilla"]["path"] = vanilla_path
+					file_meta[relative_path]["vanilla"]["mod_time"] = os.path.getmtime(vanilla_path)
+					
+					file_meta[relative_path]["backup"] = {}
+					file_meta[relative_path]["mod_pieces"] = {}
+					
+					if os.path.isfile(backup_path):
+						file_meta[relative_path]["backup"]["path"] = backup_path
+					else:
+						file_meta[relative_path]["backup"]["path"] = ""
+
+					if os.path.isfile(mod_pieces_path):
+						file_meta[relative_path]["mod_pieces"]["path"] = mod_pieces_path
+					else:
+						file_meta[relative_path]["mod_pieces"]["path"] = ""
 			
 
 ########## insert files before porymap
@@ -76,11 +98,20 @@ if args["mode"] == "insert":
 	for file in file_meta:
 
 		if file_meta[file]["backup"]["path"] != "":
-		
+
 			print(file)
 		
+			# disregard map-specific script files
+			# otherwise porymap and modify_pokeemerald will both
+			# modify them and updates will not be applied
+			if file.endswith("/scripts.inc"):
+				if file_meta[file]["mod_pieces"]["path"] != "":
+					continue
+			
 			shutil.copyfile(file_meta[file]["backup"]["path"],\
 				file_meta[file]["mod"]["path"])
+			if file.endswith(("map.json","scripts.inc")):
+				Path(file_meta[file]["mod"]["path"]).touch(exist_ok=True)
 				
 	print("done")
 	
@@ -92,7 +123,9 @@ map_parameters["allow_bike="] = "allow_cycling="
 map_parameters["allow_escape_rope="] = "allow_escaping="
 map_parameters["allow_run="] = "allow_running="
 
-
+# compare all files against base battle_engine_v2
+# and mod folder (pokeemerald_mod)
+# to see what has been changed by Porymap
 if args["mode"] == "backup":
 
 	print("\nback up files")
@@ -120,7 +153,7 @@ if args["mode"] == "backup":
 			if (filecmp.cmp(file_meta[file]["mod"]["path"],file_meta[file]["vanilla"]["path"], \
 			shallow=False) == False):
 				backup_this_file = 1
-		
+					
 		if file.endswith(".json"):
 			f1 = open(file_meta[file]["mod"]["path"], "r")
 			f2 = open(file_meta[file]["mod"]["path"], "r")
@@ -139,6 +172,8 @@ if args["mode"] == "backup":
 			backup_path = file_meta[file]["backup"]["path"]
 			os.makedirs(os.path.dirname(backup_path), exist_ok=True)
 			shutil.copy(file_meta[file]["mod"]["path"],backup_path)
+			if file.endswith(("map.json","scripts.inc")):
+				Path(file_meta[file]["mod"]["path"]).touch(exist_ok=True)
 	print("done")
 
 countdown()

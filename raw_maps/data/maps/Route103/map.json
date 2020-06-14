@@ -28,6 +28,24 @@
         }
     ],
     "coord_events": [
+        {
+            "elevation": 0,
+            "script": "Route103_EventScript_CantGoEastTrigger",
+            "type": "trigger",
+            "var": "VAR_ROUTE103_STATE",
+            "var_value": "0",
+            "x": 25,
+            "y": 9
+        },
+        {
+            "elevation": 0,
+            "script": "Route103_EventScript_CantGoEastTrigger",
+            "type": "trigger",
+            "var": "VAR_ROUTE103_STATE",
+            "var_value": "1",
+            "x": 24,
+            "y": 9
+        }
     ],
     "id": "MAP_ROUTE103",
     "layout": "LAYOUT_ROUTE103",
@@ -84,8 +102,8 @@
             "script": "Route103_EventScript_Liv",
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "x": 65,
-            "y": 12
+            "x": 78,
+            "y": 9
         },
         {
             "elevation": 3,
@@ -97,8 +115,8 @@
             "script": "Route103_EventScript_Amy",
             "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "x": 64,
-            "y": 12
+            "x": 79,
+            "y": 9
         },
         {
             "elevation": 3,
@@ -106,12 +124,12 @@
             "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
             "movement_range_x": 0,
             "movement_range_y": 1,
-            "movement_type": "MOVEMENT_TYPE_WALK_DOWN_AND_UP",
+            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
             "script": "Route103_EventScript_Andrew",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "x": 50,
-            "y": 8
+            "x": 39,
+            "y": 11
         },
         {
             "elevation": 3,
@@ -162,8 +180,8 @@
             "script": "Route103_EventScript_Boy",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "x": 20,
-            "y": 10
+            "x": 19,
+            "y": 11
         },
         {
             "elevation": 3,
@@ -201,8 +219,8 @@
             "script": "Route103_EventScript_ItemGuardSpec",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "x": 50,
-            "y": 5
+            "x": 62,
+            "y": 7
         },
         {
             "elevation": 3,
@@ -259,28 +277,28 @@
         {
             "elevation": 1,
             "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
-            "movement_range_x": 1,
-            "movement_range_y": 3,
-            "movement_type": "MOVEMENT_TYPE_WALK_DOWN_AND_UP",
+            "graphics_id": "OBJ_EVENT_GFX_TUBER_F",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "Route103_EventScript_Isabelle",
-            "trainer_sight_or_berry_tree_id": "5",
+            "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "x": 36,
-            "y": 6
+            "x": 31,
+            "y": 8
         },
         {
             "elevation": 1,
             "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
-            "movement_range_x": 1,
-            "movement_range_y": 3,
-            "movement_type": "MOVEMENT_TYPE_WALK_UP_AND_DOWN",
+            "graphics_id": "OBJ_EVENT_GFX_RUNNING_TRIATHLETE_M",
+            "movement_range_x": 4,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_WALK_LEFT_AND_RIGHT",
             "script": "Route103_EventScript_Pete",
-            "trainer_sight_or_berry_tree_id": "5",
+            "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "TRAINER_TYPE_NORMAL",
-            "x": 36,
-            "y": 13
+            "x": 49,
+            "y": 8
         },
         {
             "elevation": 0,
@@ -294,6 +312,58 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "x": 64,
             "y": 7
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_14",
+            "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "script": "EventScript_RockSmash",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 64,
+            "y": 12
+        },
+        {
+            "elevation": 3,
+            "flag": "FLAG_TEMP_15",
+            "graphics_id": "OBJ_EVENT_GFX_BREAKABLE_ROCK",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "script": "EventScript_RockSmash",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 63,
+            "y": 13
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "OBJ_EVENT_GFX_NINJA_BOY",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "Route103_EventScript_ZigzagoonBoy",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 23,
+            "y": 7
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "OBJ_EVENT_GFX_ZIGZAGOON_1",
+            "movement_range_x": 5,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_WALK_RIGHT_AND_LEFT",
+            "script": "Route103_EventScript_Zigzagoon",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 21,
+            "y": 9
         }
     ],
     "region_map_section": "MAPSEC_ROUTE_103",

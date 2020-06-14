@@ -27,87 +27,10 @@ if args["reset"]:
 	exit(0)
 
 os.chdir(wrk_dir)
-			
-########## pokemon data
-
-pokemon_data = {}
-
-pokemon_excel = normalize_path("pokemon/pokemon.xlsx")
-
-xl_workbook = xlrd.open_workbook(pokemon_excel)
-xl_sheet = xl_workbook.sheet_by_index(0)
-
-new_data = ""
-for i in range(0,xl_sheet.nrows):
-	row = [c.value for c in xl_sheet.row(i)]
-	
-	# new species found, save previous
-	if row[0].startswith("SPECIES_") or i == xl_sheet.nrows-1:
-		if new_data != "":
-			pokemon_data[species_name] = new_data
-		species_name = row[0]
-		new_data = {}
-			
-	# current species
-	if not row[0].startswith("SPECIES_") and row[0] != "":
-		new_data[row[0]] = row[1]
-
-# save last species
-#pokemon_data[species_name] = new_data
-
-
-########## replace rows with new data
-
-base_stats_file = normalize_path("{0}/src/data/pokemon/base_stats.h".format(pokeemerald_dir))
-
-# follow which data was replaced
-data_replaced = {}
-
-species_on = 0
-species_pattern = r'\[(SPECIES_\w+)\]'
-attribute_pattern = r'.(\w+)'
-replace_pattern = r'(\s+= )(.+)(,$)'
-
-# open file and modify lines
-lines = []
-with open(base_stats_file) as f:
-	for line in f:
-		if "SPECIES_" in line:
-			species_name = re.search(species_pattern,line).group(1)
-			if species_name in pokemon_data:
-				species_on = 1
-			else:
-				species_on = 0
-				
-		else:
-			if species_on:
-				re_match = re.search(attribute_pattern,line)
-				if re_match:
-					attrib = re_match.group(1)
-					if attrib in pokemon_data[species_name]:
-						if species_name not in data_replaced:
-							data_replaced[species_name] = {}
-						data_replaced[species_name][attrib] = pokemon_data[species_name][attrib]
-						line = re.sub(replace_pattern, r'\1{0}\3'.format(\
-							pokemon_data[species_name][attrib]),line)
-		
-		lines.append(line)
-
-if data_replaced == pokemon_data:
-	print("\nreplaced base stats data successfully")
-else:		
-	print("\nWARNING: not all modifications on base stats updated")
-	
-# write to file
-with open(base_stats_file, "w") as f:
-	for line in lines:
-		f.write(line)
-		
-print("wrote changes to file")
 
 ########## walk through other mods
 
-print("\nreading other files")
+print("\nreading files")
 
 raw_folder = "raw"
 
@@ -215,12 +138,91 @@ for dir, subdirs, files in os.walk(raw_folder):
 		with open(pokeemerald_path, "w", encoding="utf-8") as f:
 			for line in original_lines:
 				f.write(line + "\n")
+			
+########## pokemon data
+
+pokemon_data = {}
+
+pokemon_excel = normalize_path("pokemon/pokemon.xlsx")
+
+xl_workbook = xlrd.open_workbook(pokemon_excel)
+xl_sheet = xl_workbook.sheet_by_index(0)
+
+new_data = ""
+for i in range(0,xl_sheet.nrows):
+	row = [c.value for c in xl_sheet.row(i)]
+	
+	# new species found, save previous
+	if row[0].startswith("SPECIES_") or i == xl_sheet.nrows-1:
+		if new_data != "":
+			pokemon_data[species_name] = new_data
+		species_name = row[0]
+		new_data = {}
+			
+	# current species
+	if not row[0].startswith("SPECIES_") and row[0] != "":
+		new_data[row[0]] = row[1]
+
+# save last species
+#pokemon_data[species_name] = new_data
+
+
+########## replace rows with new data
+
+base_stats_file = normalize_path("{0}/src/data/pokemon/base_stats.h".format(pokeemerald_dir))
+
+# follow which data was replaced
+data_replaced = {}
+
+species_on = 0
+species_pattern = r'\[(SPECIES_\w+)\]'
+attribute_pattern = r'.(\w+)'
+replace_pattern = r'(\s+= )(.+)(,$)'
+
+# open file and modify lines
+lines = []
+with open(base_stats_file) as f:
+	for line in f:
+		if "SPECIES_" in line:
+			species_name = re.search(species_pattern,line).group(1)
+			if species_name in pokemon_data:
+				species_on = 1
+			else:
+				species_on = 0
+				
+		else:
+			if species_on:
+				re_match = re.search(attribute_pattern,line)
+				if re_match:
+					attrib = re_match.group(1)
+					if attrib in pokemon_data[species_name]:
+						if species_name not in data_replaced:
+							data_replaced[species_name] = {}
+						data_replaced[species_name][attrib] = pokemon_data[species_name][attrib]
+						line = re.sub(replace_pattern, r'\1{0}\3'.format(\
+							pokemon_data[species_name][attrib]),line)
 		
+		lines.append(line)
+
+if data_replaced == pokemon_data:
+	print("\nreplaced base stats data successfully")
+else:		
+	print("\nWARNING: not all modifications on base stats updated")
+	
+# write to file
+with open(base_stats_file, "w") as f:
+	for line in lines:
+		f.write(line)
+		
+print("wrote changes to file")
+
+
 ########## trainer data
 
 print("\nvalidate and modify trainers")
 
 trainer_data = {}
+trainer_metadata = {}
 
 # defined trainers and their party offsets
 defined_trainers = {}
@@ -360,9 +362,14 @@ for i in range(0,xl_sheet.nrows):
 	elif row[0] != "" and row[0] != "END":
 			if row[0] == "species":
 				columns = row
-			else:
+			elif not row[0].startswith("."):
 				mons.append({z[0]:z[1] for z in zip(columns,row)})
 				party = 1
+			else:
+				if trainer not in trainer_metadata:
+					trainer_metadata[trainer] = {}
+				trainer_metadata[trainer][row[0]] = row[1]
+				
 	# empty rows
 	else:
 		pass
@@ -437,6 +444,14 @@ for trainer in trainer_data:
 				line = "        .party = {{.{0} = {1}}},\n".format(\
 					trainer_data[trainer]["category"],defined_trainers[trainer])
 				trainer_file_lines[i] = line
+				
+			else:
+				if trainer in trainer_metadata:
+					for attrib in trainer_metadata[trainer]:
+						if attrib in line:
+							line = "        {0} = {1},\n".format(\
+								attrib,trainer_metadata[trainer][attrib])
+							trainer_file_lines[i] = line
 	
 # write to trainer party file
 with open(trainer_party_file, "w") as f:
@@ -447,8 +462,8 @@ with open(trainer_party_file, "w") as f:
 with open(trainer_file, "w") as f:
 	for line in trainer_file_lines:
 		f.write(line)
-		
-########## maps
+
+########### maps
 
 print("\nupdating maps")
 
