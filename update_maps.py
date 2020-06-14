@@ -71,10 +71,14 @@ for folder in [map_dir,layout_dir]:
 					file_meta[relative_path]["mod"]["mod_time"] = os.path.getmtime(mod_path)
 					
 					file_meta[relative_path]["vanilla"] = {}
-					file_meta[relative_path]["vanilla"]["size"] = Path(vanilla_path).stat().st_size
-					file_meta[relative_path]["vanilla"]["path"] = vanilla_path
-					file_meta[relative_path]["vanilla"]["mod_time"] = os.path.getmtime(vanilla_path)
-					
+					if not os.path.isfile(vanilla_path):
+						file_meta[relative_path]["vanilla"]["path"] = ""
+					else:
+						file_meta[relative_path]["vanilla"]["path"] = vanilla_path
+						file_meta[relative_path]["vanilla"]["size"] = Path(vanilla_path).stat().st_size
+						file_meta[relative_path]["vanilla"]["path"] = vanilla_path
+						file_meta[relative_path]["vanilla"]["mod_time"] = os.path.getmtime(vanilla_path)
+						
 					file_meta[relative_path]["backup"] = {}
 					file_meta[relative_path]["mod_pieces"] = {}
 					
@@ -131,37 +135,44 @@ if args["mode"] == "backup":
 	print("\nback up files")
 
 	for file in file_meta:
-    
+	
 		backup_this_file = 0
 	
-		if (file_meta[file]["mod"]["size"] != file_meta[file]["vanilla"]["size"]):
-			backup_this_file = 1
-		
-		if file.endswith((".inc",".bin")):
-		
-			# if file.endswith(".inc"):
-				# with open(file_meta[file]["mod"]["path"], "r", encoding="utf-8") as f:
-					# content = f.read()
+		# custom maps
+		if file in ["map.json","map.bin","border.bin"] and \
+			file_meta[file]["vanilla"]["path"] == "":
+				backup_this_file = 1
+	
+		# existing maps
+		else:
+			if (file_meta[file]["mod"]["size"] != file_meta[file]["vanilla"]["size"]):
+				backup_this_file = 1
 			
-				# if any([i in content for i in map_parameters]):
-					# for p in map_parameters:
-						# content = content.replace(p, map_parameters[p])
+			if file.endswith((".inc",".bin")):
+			
+				# if file.endswith(".inc"):
+					# with open(file_meta[file]["mod"]["path"], "r", encoding="utf-8") as f:
+						# content = f.read()
+				
+					# if any([i in content for i in map_parameters]):
+						# for p in map_parameters:
+							# content = content.replace(p, map_parameters[p])
+							
+						# with open(file_meta[file]["mod"]["path"], "w", encoding="utf-8") as f:
+							# f.write(content)
+				
+				if (filecmp.cmp(file_meta[file]["mod"]["path"],file_meta[file]["vanilla"]["path"], \
+				shallow=False) == False):
+					backup_this_file = 1
 						
-					# with open(file_meta[file]["mod"]["path"], "w", encoding="utf-8") as f:
-						# f.write(content)
-			
-			if (filecmp.cmp(file_meta[file]["mod"]["path"],file_meta[file]["vanilla"]["path"], \
-			shallow=False) == False):
-				backup_this_file = 1
-					
-		if file.endswith(".json"):
-			f1 = open(file_meta[file]["mod"]["path"], "r")
-			f2 = open(file_meta[file]["mod"]["path"], "r")
-			ddiff = DeepDiff(json.load(f1),json.load(f2),ignore_order=True)
-			f1.close
-			f2.close
-			if ddiff != {}:
-				backup_this_file = 1
+			if file.endswith(".json"):
+				f1 = open(file_meta[file]["mod"]["path"], "r")
+				f2 = open(file_meta[file]["mod"]["path"], "r")
+				ddiff = DeepDiff(json.load(f1),json.load(f2),ignore_order=True)
+				f1.close
+				f2.close
+				if ddiff != {}:
+					backup_this_file = 1
 		
 		if backup_this_file:
 			
@@ -172,7 +183,7 @@ if args["mode"] == "backup":
 			backup_path = file_meta[file]["backup"]["path"]
 			os.makedirs(os.path.dirname(backup_path), exist_ok=True)
 			shutil.copy(file_meta[file]["mod"]["path"],backup_path)
-			if file.endswith(("map.json","scripts.inc")):
+			if file.endswith(("layouts.json","map.json","scripts.inc")):
 				Path(file_meta[file]["mod"]["path"]).touch(exist_ok=True)
 	print("done")
 
