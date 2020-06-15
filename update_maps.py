@@ -2,7 +2,7 @@
 
 import sys,os,shutil,argparse,time,filecmp,json,fileinput
 from pathlib import Path
-from config import pokeemerald_dir,vanilla_dir
+from config import pokeemerald_dir,vanilla_dir,slash
 from misc import normalize_path
 from deepdiff import DeepDiff
 
@@ -14,6 +14,8 @@ args = vars(parser.parse_args())
 
 map_dir = normalize_path("{0}\data\maps".format(pokeemerald_dir))
 layout_dir = normalize_path("{0}\data\layouts".format(pokeemerald_dir))
+constants_dir = normalize_path("{0}\include\constants".format(pokeemerald_dir))
+
 modfile_dir = normalize_path(os.getcwd() + "\\raw")
 
 backup_dir = normalize_path(os.getcwd() + "\\raw_maps")
@@ -22,6 +24,9 @@ backup_dir = normalize_path(os.getcwd() + "\\raw_maps")
 
 def mod_to_backup(mod_path):
 	return mod_path.replace(pokeemerald_dir,backup_dir)
+
+def backup_to_mod(backup_path):
+	return backup_path.replace(backup_dir,pokeemerald_dir)
 
 def countdown():
 	print("")
@@ -49,7 +54,7 @@ print(map_dir)
 # all files that have been previously
 # modified by Porymap
 
-for folder in [map_dir,layout_dir]:
+for folder in [map_dir,layout_dir,constants_dir]:
 
 	for dir, subdirs, files in os.walk(folder):
 	
@@ -91,7 +96,19 @@ for folder in [map_dir,layout_dir]:
 						file_meta[relative_path]["mod_pieces"]["path"] = mod_pieces_path
 					else:
 						file_meta[relative_path]["mod_pieces"]["path"] = ""
-			
+
+########## custom maps
+
+custom_files = []
+
+for dir, subdirs, files in os.walk(backup_dir):
+
+		for fname in files:
+
+			absolute_path = normalize_path("{0}/{1}".format(dir,fname))
+			mod_path = backup_to_mod(absolute_path)
+			if not os.path.isfile(mod_path):
+				custom_files.append(absolute_path)
 
 ########## insert files before porymap
 
@@ -116,7 +133,16 @@ if args["mode"] == "insert":
 				file_meta[file]["mod"]["path"])
 			if file.endswith(("map.json","scripts.inc")):
 				Path(file_meta[file]["mod"]["path"]).touch(exist_ok=True)
-				
+	
+	for file in custom_files:
+	
+		print(backup_to_mod(file))
+	
+		folder = backup_to_mod(file).rsplit(slash,1)[0]
+		if not os.path.isdir(folder):
+			os.makedirs(folder)
+		shutil.copy(file, backup_to_mod(file))
+	
 	print("done")
 	
 ########## back up files after porymap
@@ -135,11 +161,11 @@ if args["mode"] == "backup":
 	print("\nback up files")
 
 	for file in file_meta:
-	
+
 		backup_this_file = 0
 	
 		# custom maps
-		if file in ["map.json","map.bin","border.bin"] and \
+		if file.rsplit(slash,1)[-1] in ["map.json","map.bin","border.bin"] and \
 			file_meta[file]["vanilla"]["path"] == "":
 				backup_this_file = 1
 	

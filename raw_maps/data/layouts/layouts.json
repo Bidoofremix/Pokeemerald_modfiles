@@ -11,6 +11,16 @@
             "width": 30
         },
         {
+            "blockdata_filepath": "data/layouts/VerdanturfTown_BreedersClub/map.bin",
+            "border_filepath": "data/layouts/VerdanturfTown_BreedersClub/border.bin",
+            "height": 9,
+            "id": "LAYOUT_VERDANTURF_TOWN_BREEDERS_CLUB",
+            "name": "VerdanturfTown_BreedersClub_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_Facility",
+            "width": 16
+        },
+        {
             "blockdata_filepath": "data/layouts/SlateportCity/map.bin",
             "border_filepath": "data/layouts/SlateportCity/border.bin",
             "height": 60,
@@ -143,7 +153,7 @@
         {
             "blockdata_filepath": "data/layouts/VerdanturfTown/map.bin",
             "border_filepath": "data/layouts/VerdanturfTown/border.bin",
-            "height": 26,
+            "height": 20,
             "id": "LAYOUT_VERDANTURF_TOWN",
             "name": "VerdanturfTown_Layout",
             "primary_tileset": "gTileset_General",
@@ -4193,12 +4203,12 @@
         {
             "blockdata_filepath": "data/layouts/AlteringCave/map.bin",
             "border_filepath": "data/layouts/AlteringCave/border.bin",
-            "height": 42,
+            "height": 24,
             "id": "LAYOUT_ALTERING_CAVE",
             "name": "AlteringCave_Layout",
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Cave",
-            "width": 34
+            "width": 32
         },
         {
             "blockdata_filepath": "data/layouts/NavelRock_Exterior/map.bin",

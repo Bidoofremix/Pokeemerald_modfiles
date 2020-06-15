@@ -1,0 +1,26 @@
+{
+    "allow_bike": false,
+    "allow_cycling": "",
+    "allow_escape_rope": false,
+    "allow_escaping": "",
+    "allow_running": false,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_VERDANTURF_TOWN_BREEDERS_CLUB",
+    "layout": "LAYOUT_VERDANTURF_TOWN_BREEDERS_CLUB",
+    "map_type": "MAP_TYPE_INDOOR",
+    "music": "MUS_HIGHTOWN",
+    "name": "VerdanturfTown_BreedersClub",
+    "object_events": [
+    ],
+    "region_map_section": "MAPSEC_VERDANTURF_TOWN",
+    "requires_flash": false,
+    "show_map_name": false,
+    "warp_events": [
+    ],
+    "weather": "WEATHER_NONE"
+}
