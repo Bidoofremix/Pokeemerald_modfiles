@@ -29,6 +29,7 @@ upper_underscore_name = "_".join([i.upper().strip("_") for i in upper_underscore
 
 layout_name = "LAYOUT_{0}".format(upper_underscore_name)
 
+
 ########## layouts.h
 
 layouts_file = normalize_path("{0}/include/constants/layouts.h".format(raw_map_folder))
@@ -57,6 +58,7 @@ with open(layouts_file, "w") as f:
 	for line in layouts_file_lines:
 		f.write(line)
 
+		
 ########## map groups file
 
 mapgroups_file = normalize_path("{0}/data/maps/map_groups.json".format(raw_map_folder))
@@ -143,7 +145,7 @@ if not os.path.isdir(new_map_dir):
 	os.mkdir(new_map_dir)
 new_map_json_file = normalize_path("{0}/map.json".format(new_map_dir,args["name"]))
 shutil.copy(normalize_path("default_map.json"), new_map_json_file)
-	
+
 ########## make new map.json file
 	
 new_map_json_lines = []
@@ -166,12 +168,37 @@ with open(new_map_json_file, "w") as f:
 		f.write(line)
 
 ########## make new scripts.inc file
+
 new_scripts_file = normalize_path("{0}/scripts.inc".format(new_map_dir))
 with open(new_scripts_file, "w") as f:
 	f.write("{0}_MapScripts::\n".format(args["name"]))
 	f.write("\tmap_script MAP_SCRIPT_ON_TRANSITION, {0}_OnTransition\n".format(args["name"]))
 	f.write("\t.byte 0\n")
 	f.write("\n")
-	f.write("{0}_OnTransition:\n".format(args["name"])
+	f.write("{0}_OnTransition:\n".format(args["name"]))
 	f.write("\nend")
 	f.write("\n")
+	
+########## event_scripts.s	
+
+event_scripts_file = normalize_path("{0}/data/event_scripts.s".format(raw_folder))
+if not os.path.isfile(event_scripts_file):
+	with open(event_scripts_file, "w") as f:
+		f.write("< //\n")
+		f.write('\t.include "data/maps/Route124_DivingTreasureHuntersHouse/scripts.inc"\n')
+		f.write("\n\n")
+		f.write('\t.include "data/scripts/std_msgbox.inc"\n')
+		f.write("// >\n")
+	print("did not find event_scripts.s in raw folder, created a new one")
+
+event_scripts_file_lines = []
+with open(event_scripts_file, "r") as f:
+	for line in f:
+		event_scripts_file_lines.append(line)
+
+event_scripts_file_lines.insert(-3,'\t.include "data/maps/{0}/scripts.inc\n'.format(\
+	args["name"]))
+
+with open(event_scripts_file, "w") as f:
+	for line in event_scripts_file_lines:
+		f.write(line)

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import os,re,xlrd,argparse
-from config import pokeemerald_dir
+from config import pokeemerald_dir,slash
 from misc import normalize_path
 
 wrk_dir = os.getcwd()
@@ -467,8 +467,16 @@ with open(trainer_file, "w") as f:
 
 print("\nupdating maps")
 
-os_cmd = "./update_maps.py --mode insert"
 
+#os_cmd = "./update_maps.py --mode insert"
+
+if slash == "/":
+	suffix = "./"
+elif slash == "\\":
+	suffix = ""
+	
+os_cmd = "{0}update_maps.py --mode insert".format(suffix)	
+	
 os.system(os_cmd)
 		
 print("done")		
