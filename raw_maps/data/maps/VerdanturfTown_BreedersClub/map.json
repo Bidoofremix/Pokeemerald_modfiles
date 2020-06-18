@@ -13,9 +13,22 @@
     "id": "MAP_VERDANTURF_TOWN_BREEDERS_CLUB",
     "layout": "LAYOUT_VERDANTURF_TOWN_BREEDERS_CLUB",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_HIGHTOWN",
+    "music": "MUS_FUNE_KAN",
     "name": "VerdanturfTown_BreedersClub",
     "object_events": [
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "VerdanturfTown_BreedersClub_OldLady",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 2,
+            "y": 5
+        }
     ],
     "region_map_section": "MAPSEC_VERDANTURF_TOWN",
     "requires_flash": false,
