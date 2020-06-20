@@ -12,3 +12,9 @@ def normalize_path(file_path):
 		exit(0)
 		
 	return file_path
+	
+def dec2hex(num):
+	return "0x" + hex(num)[2:].upper()
+	
+def hex2dec(hex_num):
+	return int(hex_num,16)
