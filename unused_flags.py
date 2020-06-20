@@ -10,7 +10,11 @@ parser = argparse.ArgumentParser()
 
 parser.add_argument("--force", action="store_true",\
 	help="force rearrangement of custom flag file")
-
+parser.add_argument("--trainers", type=int, required=True,\
+	help="how many new trainer flags")
+parser.add_argument("--daily", type=int, default=0,\
+	help="how many new daily flags")
+	
 args = vars(parser.parse_args())	
 	
 ########## get vanilla number of trainers
@@ -34,9 +38,13 @@ if os.path.isfile(modified_flag_file):
 		exit(0)
 	else:
 		flag_file = modified_flag_file
+		using_modded_file = 1
 else:
 	flag_file = normalize_path("{0}\include\constants\\flags.h".format(pokeemerald_dir))
-
+	using_modded_file = 0
+	
+output_flag_file = modified_flag_file
+	
 print("reads flags from: %s" % flag_file)
 
 with open(flag_file, "r") as f:
@@ -50,7 +58,7 @@ for line in lines:
 	if line.startswith("#define DAILY_FLAGS_START"):
 		special_flags_started = 1
 	else:
-		if line.startswith("#define FLAG_UNUSED"):
+		if line.startswith("#define FLAG_UNUSED") and not "MYSTERY_GIFT" in line:
 			if not special_flags_started:
 				unused_flags.append(line)
 		elif line.startswith("#define FLAG") and not line.startswith("#define FLAG_UNUSED"):
@@ -65,9 +73,17 @@ new_lines = [line for line in lines if line not in unused_flags]
 ########## print summary to screen
 
 # 134 to add total number of trainers to 1000
-new_trainer_flags = 136
+new_trainer_flags = args["trainers"]
 new_num_trainers = num_trainers + new_trainer_flags
 
+if args["trainers"] <= len(unused_flags):
+	pass
+else:
+	print("\nerror: cannot allocate {0} flags for trainers ({1} available)".format(\
+		args["trainers"],len(unused_flags)))
+	print("exited run")
+	exit(0)
+	
 print("\nof unused flags, allocate:")
 print(" {0} for trainers ({1} -> {2})".format(new_trainer_flags,num_trainers,\
 	new_num_trainers))
@@ -134,7 +150,8 @@ for n,line in enumerate(new_lines):
 					calculated_flag_no = hex2dec(flag_offset)
 
 				if calculated_flag_no != running_flag_no:
-					line = line.replace(flag_offset,dec2hex(running_flag_no))
+					line = line.replace(" %s" % flag_offset,\
+						" %s" % dec2hex(running_flag_no))
 					new_lines[n] = line
 				
 				flag_offsets[flag] = dec2hex(running_flag_no)
@@ -153,9 +170,48 @@ for n,line in enumerate(new_lines):
 		# no offset here so no need to modify this
 		elif line.startswith("#define NUM_BADGES"):
 			pass
+
+########## raw snippet for trainer count
+
+opponents_file = normalize_path("{0}/include/constants/opponents.h".format(raw_dir))
+
+if os.path.isfile(opponents_file):
+	print("\ndetected opponents.h, modify existing")
+	opponents_file_lines = []
+	with open(opponents_file, "r") as f:
+		for line in f:
+			opponents_file_lines.append(line)
+			
+	for n,line in enumerate(opponents_file_lines):
+		if line.startswith("#R#define MAX_TRAINERS_COUNT"):
+			tmp_count = line.split()[-1]
+			line = line.replace(tmp_count,str(new_num_trainers))
+			opponents_file_lines[n] = line
+
+else:
+	print("did not detect opponents.h, create new")
+	opponents_file_lines = []
+	opponents_file_lines.append("< //\n")
+	opponents_file_lines.append("#define MAX_TRAINERS_COUNT                  864\n")
+	opponents_file_lines.append("#R#define MAX_TRAINERS_COUNT                  {0}\n".format(\
+		new_num_trainers))
+	opponents_file_lines.append("\n")	
+	opponents_file_lines.append("#endif  // GUARD_CONSTANTS_OPPONENTS_H\n")
+	opponents_file_lines.append("// >\n")
+
+with open(opponents_file, "w") as f:
+	for line in opponents_file_lines:
+		f.write(line)
 			
 ########## write to file
 
-for line in new_lines:
-	print(line)
-	input(">>")
+with open(output_flag_file, "w") as f:
+	if not using_modded_file:
+		f.write("< //\n")
+	for line in new_lines:
+		f.write(line + "\n")
+	if not using_modded_file:
+		f.write("// >\n")
+		
+print("\nwrote rearranged flags to: %s" % output_flag_file)
+
