@@ -13,8 +13,11 @@ elif "\\" in dirname:
 	slash = "\\"
 
 base_dir = dirname.rsplit(slash,1)[0]
-pokeemerald_dir = "{0}{1}pokeemerald_mod".format(base_dir,slash)
-vanilla_dir = "{0}{1}pokeemerald".format(base_dir,slash)
+#pokeemerald_dir = "{0}{1}pokeemerald_mod".format(base_dir,slash)
+#vanilla_dir = "{0}{1}pokeemerald".format(base_dir,slash)
+
+pokeemerald_dir = "{0}{1}pokeemerald_expanded_mod".format(base_dir,slash)
+vanilla_dir = "{0}{1}pokeemerald_expanded".format(base_dir,slash)
 
 raw_dir = "{0}{1}raw".format(os.getcwd(),slash)
 

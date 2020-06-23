@@ -30,9 +30,11 @@ os.chdir(wrk_dir)
 
 ########## walk through other mods
 
-print("\nreading files")
+print("\nread files in raw folder")
 
 raw_folder = "raw"
+
+encoding = "ISO-8859-15"
 
 for dir, subdirs, files in os.walk(raw_folder):
 	for fname in files:
@@ -43,10 +45,10 @@ for dir, subdirs, files in os.walk(raw_folder):
 		
 		print(pokeemerald_path)
 		
-		with open(pokeemerald_path, "r", encoding="utf-8") as f:
+		with open(pokeemerald_path, "r", encoding=encoding) as f:
 			original_lines = f.read().splitlines()
 			
-		with open(mod_path, "r", encoding="utf-8") as f:
+		with open(mod_path, "r", encoding=encoding) as f:
 			mod_lines = f.read().splitlines()
 		
 		# split to chunks based on trailing // >
@@ -135,7 +137,7 @@ for dir, subdirs, files in os.walk(raw_folder):
 			
 			original_lines[first_index:last_index+1] = chunk
 		
-		with open(pokeemerald_path, "w", encoding="utf-8") as f:
+		with open(pokeemerald_path, "w", encoding=encoding) as f:
 			for line in original_lines:
 				f.write(line + "\n")
 			
