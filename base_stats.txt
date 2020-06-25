@@ -24,6 +24,5 @@
 .eggGroup2
 .abilities
 .hiddenAbility
-.safariZoneFleeRate
 .bodyColor
 .noFlip

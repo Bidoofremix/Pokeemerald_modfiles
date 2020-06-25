@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import os,xlrd
+import os,xlrd,shutil
 from config import vanilla_dir
 from misc import normalize_path
 from pokemon_tools import *
@@ -192,12 +192,13 @@ if not os.path.isfile(species_file):
 			elif not national_defines_on:
 				f.write(line)
 		f.write("// >\n")
-else:
-	defined_new_mons = set([])
-	species_file_lines = []
-	with open(species_file, "r") as f:
-		for line in f:
-			species_file_lines.append(line)
+
+defined_new_mons = set([])
+species_file_lines = []
+with open(species_file, "r") as f:
+	for line in f:
+		species_file_lines.append(line)
+
 for line in species_file_lines:
 	line = line.split(" ")
 	if len(line) > 1:
@@ -264,7 +265,7 @@ for mon in new_species:
 
 ### TODO: write species name file lines to file
 	
-########## collect weights for weight-based national dex order
+########## pokedex_entries.h
 
 pokedex_entries_file = normalize_path("{0}/src/data/pokemon/pokedex_entries.h".format(\
 	raw_folder))
@@ -294,9 +295,27 @@ if not os.path.isfile(pokedex_entries_file):
 			f.write("    },\n\n")
 		f.write("};\n")
 		f.write("// >\n")
-else:
-	print("found pokedex_entries.h")
-	
+
+pokedex_entries_file_lines = []
+with open(pokedex_entries_file, "r") as f:
+	for line in f:
+		pokedex_entries_file_lines.append(line)
+
+print("modify pokedex_entries.h")
+
+new_pokedex_entries  = []
+for mon in sorted(new_species):
+	if mon not in defined_new_mons:
+		new_pokedex_entries.append("    {\n")
+		for key in new_species[mon]["pokedex_entry"]:
+			new_pokedex_entries.append("        {0} = {1},\n".format(\
+				key,new_species[mon]["pokedex_entry"][key]))
+		new_pokedex_entries.append("    },\n")
+
+pokedex_entries_file_lines[-2:-2] = new_pokedex_entries
+
+### TODO: write pokedex entries file lines to file
+		
 weight_dict = {}
 height_dict = {}
 with open(pokedex_entries_file, "r") as f:
@@ -310,7 +329,7 @@ with open(pokedex_entries_file, "r") as f:
 			elif ".height" in line:
 				which_dict = height_dict
 			which_dict[mon] = int(line[2])
-			
+
 ########## pokedex orders
 
 pokedex_orders_file = normalize_path("{0}/src/data/pokemon/pokedex_orders.h".format(\
@@ -343,9 +362,34 @@ if not os.path.isfile(pokedex_orders_file):
 				f.write("    {0},\n".format(mon))
 		f.write("};\n")
 		f.write("// > END\n")
-		
+
 else:
-	print("found pokedex_orders.h")
+	pokedex_orders_file_lines = []
+	with open(pokedex_orders_file, "r") as f:
+		for line in f:
+			pokedex_orders_file_lines.append(line)
+
+	alphabetical_on = 0	
+			
+	for mon in new_species:
+		if mon not in defined_new_mons:
+			tmp_name = "    NATIONAL_DEX_{0},\n".format(mon)
+			
+		for n,line in enumerate(pokedex_orders_file_lines):
+			if "const u16 gPokedexOrder_Alphabetical" in line:
+				alphabetical_on = 1
+				continue
+				
+			elif "};" in line:
+				alphabetical_on = 1
+				
+			if alphabetical_on and not line.startswith("{"):
+				if line > tmp_name:
+					pokedex_orders_file_lines[n-1:n-1] = [pokedex_orders_file_lines[n-1],tmp_name]
+					break
+				
+
+### TODO: write pokedex_orders_file_lines to file
 
 ########## pokemon.c
 
@@ -381,8 +425,56 @@ if not found_pokedex_array:
 			
 else:
 	print("found gSpeciesToNationalPokedexNum in raw pokemon.c")
-	
 
+print("modify pokemon.c")	
+	
+pokemon_file_lines = []
+with open(pokemon_file, "r") as f:
+	for line in f:
+		pokemon_file_lines.append(line)
+
+for n,line in enumerate(pokemon_file_lines):
+	if "const u16 gSpeciesToNationalPokedexNum" in line:
+		start_index = n+2
+	elif "};" in line and n > start_index:
+		stop_index = n-1
+		break
+
+new_pokemon_lines = []
+for mon in family_order:
+	new_pokemon_lines.append("    SPECIES_TO_NATIONAL({0}),\n".format(mon))
+
+pokemon_file_lines[start_index:stop_index] = new_pokemon_lines
+
+### TODO: write pokemon file lines to file
+	
+########## base_stats.h
+
+base_stats_file = normalize_path("{0}/src/data/pokemon/base_stats.h".format(\
+	raw_folder))
+	
+base_stats_file_lines = []
+with open(base_stats_file, "r") as f:
+	for line in f:
+		base_stats_file_lines.append(line)
+		
+new_base_stats_lines = []
+for mon in new_species:
+	if mon not in defined_new_mons:
+		new_base_stats_lines.append("\n")
+		new_base_stats_lines.append("    [SPECIES_{0}] =\n".format(mon))
+		new_base_stats_lines.append("    {\n")
+		for stat in required_stats:
+			new_base_stats_lines.append("        {0} = {1},\n".format(\
+				stat.ljust(15),new_species[mon]["base_stats"][stat]))
+		new_base_stats_lines.append("    },\n")
+
+base_stats_file_lines[-2:-2] = new_base_stats_lines
+		
+### TODO: write base stats lines to file
+	
+########## TODO: movesets
+	
 ########## sprites
 
 sprite_files = ["front.png","front_anim.png","back.png",\
@@ -396,6 +488,41 @@ for mon in new_species:
 		print("\nerror: did not find sprite folder for %s" % mon)
 		exit(0)
 	for file in sprite_files:
-		if not os.path.isfile("{0}/{1}".format(sprite_folder,file)):
+		if not os.path.isfile(normalize_path("{0}/{1}".format(\
+			sprite_folder,file))):
 			print("\nerror: did not find {0} for {1}".format(file,mon))
 			exit(0)
+
+	dest_folder = normalize_path("raw_maps/graphics/pokemon/{0}".format(mon.lower()))
+	if not os.path.isdir(dest_folder):
+		os.makedirs(dest_folder)
+		
+	for file in sprite_files:
+		dest_file = normalize_path("{0}/{1}".format(dest_folder,file))
+		if not os.path.isfile(dest_file):
+			shutil.copy(normalize_path("{0}/{1}".format(sprite_folder,file)),\
+				dest_file)
+				
+########## graphics.h
+
+graphics_file = normalize_path("{0}/include/graphics.h".format(raw_folder))
+
+graphics_file_lines = []
+with open(graphics_file, "r") as f:
+	for line in f:
+		graphics_file_lines.append(line)
+		
+new_graphics_lines = []
+for mon in new_species:
+	if not mon in defined_new_mons:
+		for category in ["FrontPic","Palette","BackPic",\
+			"ShinyPalette","StillFrontPic"]:
+			new_graphics_lines.append("extern const u32 gMon{0}_{1}[];\n".format(\
+				category,mon.capitalize()))
+		for category in ["Icon","Footprint"]:
+			new_graphics_lines.append("extern const u8 gMon{0}_{1}[];\n".format(\
+				category,mon.capitalize()))
+				
+graphics_file_lines[-2:-2] = new_graphics_lines
+
+[print(c) for c in graphics_file_lines]				
