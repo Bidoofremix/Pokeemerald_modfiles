@@ -149,9 +149,10 @@ for mon in new_species:
 	elif insert_info[mon]["where"] == "before":
 		family_order.insert(who_index,mon)
 
-print(family_order)
+########## define species
 
-########## open files and create copy in raw
+national_dex_start = "#define NATIONAL_DEX_NONE"
+national_dex_end = "#define NATIONAL_DEX_COUNT"
 
 species_file = normalize_path("{0}/include/constants/species.h".format(raw_folder))
 if not os.path.isfile(species_file):
@@ -166,9 +167,9 @@ if not os.path.isfile(species_file):
 	with open(species_file, "w") as f:
 		f.write("< //\n")
 		for line in species_file_lines:
-			if line.startswith("#define NATIONAL_DEX_NONE"):
+			if line.startswith(national_dex_start):
 				national_defines_on = 1
-			elif line.startswith("#define NATIONAL_DEX_COUNT"):
+			elif line.startswith(national_dex_end):
 				national_defines_on = 0
 				# skip old national dex count definition
 				continue
@@ -192,8 +193,76 @@ if not os.path.isfile(species_file):
 				f.write(line)
 		f.write("// >\n")
 else:
-	print("found species.h")
+	defined_new_mons = set([])
+	species_file_lines = []
+	with open(species_file, "r") as f:
+		for line in f:
+			species_file_lines.append(line)
+for line in species_file_lines:
+	line = line.split(" ")
+	if len(line) > 1:
+		if any([mon in line[1] for mon in new_species]):
+			for mon in new_species:
+				if mon in line:
+					defined_new_mons.append(mon)
 
+print("\nof the {0} new mons:".format(len(new_species)))
+print(" {0} have been defined".format(len(defined_new_mons)))
+print(" {0} have not been defined".format(len(new_species)-len(defined_new_mons)))
+			
+###	define species
+
+print("\nmodify species.h")
+
+for n,line in enumerate(species_file_lines):
+	if line.startswith("#define SPECIES_EGG"):
+		egg_index = int(line.split(" ")[2])
+		insert_index = n
+		break
+
+new_species_defines = []
+for mon in sorted(new_species):
+	new_species_defines.append("#define SPECIES_{0} {1}\n".format(\
+		mon,egg_index))
+	egg_index += 1
+new_species_defines.append("#define SPECIES_EGG {0}\n".format(egg_index))
+
+species_file_lines[insert_index-1:insert_index+1] = new_species_defines
+
+### define national dex indexes
+for n,line in enumerate(species_file_lines):
+	if line.startswith(national_dex_start):
+		start_index = n
+	elif line.startswith(national_dex_end):
+		stop_index = n
+
+new_national_dex_defines = []
+for n,mon in enumerate(family_order):
+	new_national_dex_defines.append("#define NATIONAL_DEX_{0} {1}\n".format(\
+		mon,n+1))
+		
+species_file_lines[start_index:stop_index] = new_national_dex_defines
+
+### TODO: write species file lines to file
+
+########## species name
+
+print("modify species_names.h")
+
+species_name_file = normalize_path("{0}/src/data/text/species_names.h".format(\
+	raw_folder))
+	
+species_name_file_lines = []
+with open(species_name_file, "r") as f:
+	for line in f:
+		species_name_file_lines.append(line)
+
+for mon in new_species:
+	if mon not in defined_new_mons:
+		line = '    [SPECIES_{0}] = _("{1}"),\n'.format(mon,mon.capitalize())
+		species_name_file_lines.insert(-2,line)
+
+### TODO: write species name file lines to file
 	
 ########## collect weights for weight-based national dex order
 
@@ -241,7 +310,6 @@ with open(pokedex_entries_file, "r") as f:
 			elif ".height" in line:
 				which_dict = height_dict
 			which_dict[mon] = int(line[2])
-
 			
 ########## pokedex orders
 
