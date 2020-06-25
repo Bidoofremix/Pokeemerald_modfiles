@@ -169,6 +169,37 @@ if not os.path.isfile(pokedex_orders_file):
 else:
 	print("found pokedex_orders.h")
 
-# # find out where the new pokemon goes
-# for mon in sorted(weight_dict, key=lambda x: weight_dict[x]):
-	# print(mon,weight_dict[mon])
+########## pokemon.c
+
+pokemon_file = normalize_path("{0}/src/pokemon.c".format(raw_folder))
+
+pokemon_file_lines = []
+with open(pokemon_file, "r") as f:
+	for line in f:
+		pokemon_file_lines.append(line)
+		
+found_pokedex_array = 0
+for line in pokemon_file_lines:
+	if "const u16 gSpeciesToNationalPokedexNum" in line:
+		found_pokedex_array = 1
+		
+if not found_pokedex_array:
+	print("gSpeciesToNationalPokedexNum not present in raw pokemon.c, create it")
+
+	new_lines = []
+	new_lines.append("\n\n")
+	new_lines.append("< //\n")
+	new_lines.append("const u16 gSpeciesToNationalPokedexNum[NUM_SPECIES] = // Assigns all species to the National Dex Index (Summary No. for National Dex)\n")
+	new_lines.append("{\n")
+	for mon in family_order:
+		new_lines.append("    SPECIES_TO_NATIONAL({0}),\n".format(mon))
+	new_lines.append("};\n")
+	new_lines.append("// >\n")
+	
+	pokemon_file_lines += new_lines
+	with open(pokemon_file, "a") as f:
+		for line in new_lines:
+			f.write(line)
+			
+else:
+	print("found")
