@@ -3,9 +3,19 @@
 import os,xlrd
 from config import vanilla_dir
 from misc import normalize_path
+from pokemon_tools import *
 
 raw_folder = normalize_path(os.getcwd() + "\\raw")
 
+########## read mandatory base stats from base_stats.txt
+
+required_stats_file = "base_stats.txt"
+
+required_stats = []
+with open(required_stats_file, "r") as f:
+	for line in f:
+		required_stats.append(line.rstrip("\n").rstrip("\r"))
+		
 ########## read new family-based order
 
 family_order = []
@@ -19,29 +29,127 @@ with open(order_file, "r") as f:
 ########## read excel with new mon data
 
 new_species = {}
+insert_info = {}
 
 new_species_excel = "pokemon/new_species.xls"
 xl_workbook = xlrd.open_workbook(new_species_excel)
-xl_sheet = xl_workbook.sheet_by_index(0)
+sheet_names = xl_workbook.sheet_names()
 
-species_name = xl_sheet.cell(0,0).value
+# each mon
+for name in sheet_names:
+	xl_sheet = xl_workbook.sheet_by_name(name)
+	
+	for i in range(0,xl_sheet.nrows):
+		row = [c.value for c in xl_sheet.row(i)]
+		tmp_row = []
+		
+		# convert digits to ints and trim strings
+		for c in row:
+			if isinstance(c,float):
+				if c % 1 == 0.0:
+					tmp_row.append(int(c))
+				else:
+					tmp_row.append(c)
+			else:
+				if isinstance(c,int):
+					tmp_row.append(c)
+				else:
+					tmp_row.append(c.strip())
+		row = tmp_row
+		
+		if row[0] == "name":
+			mon = underscore_upper(row[1])
+			print(mon)
+			new_species[mon] = {"base_stats":{}, "pokedex_entry":{},\
+								"level_up_moves":[], "egg_moves":[],\
+								"tutor_moves":[], "tmhm_moves":[],\
+								"pokedex_description":[[] for _ in range(4)],\
+								"pokedex_entry":{}}
+								
+		if row[0].startswith("."):
+			if row[0] not in required_stats:
+				print("\nerror: unrecognized stat '%s'" % row[0])
+				exit(0)
+			new_species[mon]["base_stats"][row[0]] = row[1]
 
-for i in range(1,xl_sheet.nrows):
-	row = [c.value for c in xl_sheet.row(i)]
-	if not row[0].startswith("."):
-		if row[0] == "after":
-			new_species[species_name] = {"where":row[0], "who":row[1]}
+		else:
+			# level-up moves
+			if row[0] == "LEVEL_UP_MOVE":
+				check_level(row[1])
+				move = check_move(row[2])
+				new_species[mon]["level_up_moves"].append([row[1],move])
+			
+			# egg moves
+			if row[0] == "EGG_MOVE":
+				move = check_move(row[2])
+				new_species[mon]["egg_moves"].append(move)
+			
+			# tutor moves
+			if row[0] == "TUTOR_MOVE":
+				move = check_move(row[2])
+				new_species[mon]["tutor_moves"].append(move)
 
+			# TM/HM moves
+			if row[0] == "TM_MOVE":
+				move = check_tmmove(row[2])
+				new_species[mon]["tmhm_moves"].append(move)
+		
+			# where to insert
+			if row[0] == "where":
+				if row[1] not in ["before","after"]:
+					print("\nerror: unknown order preposition '%s'% " % row[1])
+					exit(0)
+				who = underscore_upper(row[2])
+				if who not in family_order:
+					print("\nerror: unknown index species '%s'" % who)
+					exit(0)
+				insert_info[mon] = {"where":row[1], "who":who}
+
+			# pokedex description
+			if row[0].startswith("pokedex_entry_line"):
+				which_line = int(row[0][-1])-1
+				new_species[mon]["pokedex_description"][which_line] = row[1]
+			
+			# category
+			if row[0] == "category":
+				new_species[mon]["pokedex_entry"][".categoryName"] = '_("{0}")'.format(row[1].upper())
+		
+			# height, weight
+			if row[0] in ["height (cm)", "weight (kg)"]:
+				if row[0] == "height (cm)":
+					if not row[1] % 10 == 0:
+						print("\nerror: height must be divisible by 10")
+						exit(0)
+					else:
+						new_species[mon]["pokedex_entry"][".height"] = row[1]//10
+				if row[0] == "weight (kg)":
+						new_species[mon]["pokedex_entry"][".weight"] = int(float(row[1])*10)
+			
+			# scales and offsets
+			if row[0] in ["pokemonScale","pokemonOffset","trainerScale","trainerOffset"]:
+				new_species[mon]["pokedex_entry"][".{0}".format(row[0])] = row[1]
+						
+	# check mandatory stats
+	if not all([s in new_species[mon]["base_stats"] for s in required_stats]):
+		print("\nerror: {0} missing the following stats:".format(mon))
+		for s in required_stats:
+			if s not in new_species[mon]["base_stats"]:
+				print(" %s" % s)
+		exit(0)
+	
+	new_species[mon]["pokedex_entry"][".description"] = "g{0}PokedexText".format(\
+		mon.capitalize())
+	
 ########## insert new species to list
 
-# for n in new_species:
-	# who_index = family_order.index(new_species[n]["who"])
-	# if new_species[n]["where"] == "after":
-		# family_order.insert(who_index+1,n)
-	# elif new_species[n]["where"] == "before":
-		# family_order.insert(who_index,n)
+for mon in new_species:
+	who_index = family_order.index(insert_info[mon]["who"])
+	if insert_info[mon]["where"] == "after":
+		family_order.insert(who_index+1,mon)
+	elif insert_info[mon]["where"] == "before":
+		family_order.insert(who_index,mon)
 
-# print(family_order)
+print(family_order)
 
 ########## open files and create copy in raw
 
@@ -85,8 +193,9 @@ if not os.path.isfile(species_file):
 		f.write("// >\n")
 else:
 	print("found species.h")
-		
-########## weight for weight-based national dex order
+
+	
+########## collect weights for weight-based national dex order
 
 pokedex_entries_file = normalize_path("{0}/src/data/pokemon/pokedex_entries.h".format(\
 	raw_folder))
@@ -132,6 +241,7 @@ with open(pokedex_entries_file, "r") as f:
 			elif ".height" in line:
 				which_dict = height_dict
 			which_dict[mon] = int(line[2])
+
 			
 ########## pokedex orders
 
@@ -202,4 +312,22 @@ if not found_pokedex_array:
 			f.write(line)
 			
 else:
-	print("found")
+	print("found gSpeciesToNationalPokedexNum in raw pokemon.c")
+	
+
+########## sprites
+
+sprite_files = ["front.png","front_anim.png","back.png",\
+	"footprint.png","normal.pal","shiny.pal"]
+
+for mon in new_species:
+
+	# check that sprites exist
+	sprite_folder = normalize_path("sprites/{0}".format(mon.lower()))
+	if not os.path.isdir(sprite_folder):
+		print("\nerror: did not find sprite folder for %s" % mon)
+		exit(0)
+	for file in sprite_files:
+		if not os.path.isfile("{0}/{1}".format(sprite_folder,file)):
+			print("\nerror: did not find {0} for {1}".format(file,mon))
+			exit(0)

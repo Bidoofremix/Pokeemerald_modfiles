@@ -164,7 +164,7 @@ new_data = ""
 for i in range(0,xl_sheet.nrows):
 	row = [c.value for c in xl_sheet.row(i)]
 	
-	# new species found, save previous
+	# next species found, save previous
 	if row[0].startswith("SPECIES_") or i == xl_sheet.nrows-1:
 		if new_data != "":
 			pokemon_data[species_name] = new_data
