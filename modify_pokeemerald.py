@@ -51,6 +51,8 @@ for dir, subdirs, files in os.walk(raw_folder):
 		with open(mod_path, "r", encoding=encoding) as f:
 			mod_lines = f.read().splitlines()
 		
+		end_codes = []
+		
 		# split to chunks based on trailing // >
 		mod_chunks = []
 		tmp = []
@@ -58,6 +60,11 @@ for dir, subdirs, files in os.walk(raw_folder):
 			if line.startswith("// >"):
 				# remove first empty line only
 				# keep later empty lines
+				if "// > END" in line:
+					end_codes.append(1)
+				else:
+					end_codes.append(0)
+
 				if tmp[0] == "":
 					tmp.pop(0)
 				mod_chunks.append(tmp)
@@ -68,7 +75,7 @@ for dir, subdirs, files in os.walk(raw_folder):
 		# remove leading comment line // <
 		mod_chunks = [m[1:] for m in mod_chunks]
 		
-		for chunk in mod_chunks:
+		for i,chunk in enumerate(mod_chunks):
 
 			define = 0
 			first_match = chunk[0]
@@ -134,7 +141,10 @@ for dir, subdirs, files in os.walk(raw_folder):
 
 			if need_new_chunk:
 				chunk = new_chunk
-			
+
+			if end_codes[i] == 1:
+				last_index = len(original_lines)
+				
 			original_lines[first_index:last_index+1] = chunk
 		
 		with open(pokeemerald_path, "w", encoding=encoding) as f:
