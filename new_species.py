@@ -763,7 +763,7 @@ for mon in new_species:
 		sanims_lines.append("};\n")
 		chunks[anims_chunk_indexes["sAnims"]][-1:-1] = sanims_lines
 
-		chunks[anims_chunk_indexes["ANIM_CMD"]].insert(-2,"\tANIM_CMD({0}),\n".format(mon))
+		chunks[anims_chunk_indexes["ANIM_CMD"]].insert(-2,"    ANIM_CMD({0}),\n".format(mon))
 
 anims_file_lines = []	
 for c in chunks:
