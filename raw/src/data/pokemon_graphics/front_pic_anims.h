@@ -14,6 +14,6 @@ static const union AnimCmd *const sAnims_LYCANROC_DUSK[] ={
 // >
 
 < //
-ANIM_CMD(LYCANROC_DUSK),
+	ANIM_CMD(LYCANROC_DUSK),
 };
 // >
