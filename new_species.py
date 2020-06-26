@@ -796,7 +796,7 @@ for c in chunks:
 		
 write_lines(anims_file,anims_file_lines)
 
-########## pokemon_anomation.c
+########## pokemon_animation.c
 
 pokemon_animation_file = normalize_path("{0}/src/pokemon_animation.c".format(\
 	raw_folder))
@@ -892,7 +892,7 @@ for n,line in enumerate(pokemon_icon_file_lines):
 new_lines = []
 for mon in new_species:
 	if mon not in defined_new_mons:
-		new_lines.append("    [SPECIES_{0}] = gMonIcon{1},\n".format(mon,mon.capitalize()))
+		new_lines.append("    [SPECIES_{0}] = gMonIcon_{1},\n".format(mon,mon.capitalize()))
 		
 pokemon_icon_file_lines[n+2:n+2] = new_lines
 
