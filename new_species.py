@@ -2,7 +2,7 @@
 
 import os,xlrd,shutil
 from config import vanilla_dir,slash
-from misc import normalize_path,lines_to_chunks
+from misc import normalize_path,lines_to_chunks,write_lines
 from pokemon_tools import *
 
 raw_folder = normalize_path(os.getcwd() + "\\raw")
