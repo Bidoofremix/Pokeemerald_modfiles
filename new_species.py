@@ -615,7 +615,7 @@ for mon in new_species:
 			
 			new_lines.append(tmp_text)
 			
-evolution_file_lines[-1:-1] = new_lines
+evolution_file_lines[-2:-2] = new_lines
 
 write_lines(evolution_file,evolution_file_lines)
 
