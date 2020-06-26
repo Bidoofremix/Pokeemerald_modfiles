@@ -685,7 +685,7 @@ new_graphics_lines = []
 for mon in new_species:
 	if not mon in defined_new_mons:
 		for category in ["FrontPic","Palette","BackPic",\
-			"ShinyPalette","StillFrontPic"]:
+			"ShinyPalette"]:
 			new_graphics_lines.append("extern const u32 gMon{0}_{1}[];\n".format(\
 				category,mon.capitalize()))
 		for category in ["Icon","Footprint"]:
