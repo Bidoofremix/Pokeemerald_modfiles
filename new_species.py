@@ -276,13 +276,15 @@ with open(pokedex_text_file, "r") as f:
 new_lines = []
 for mon in new_species:
 	if mon not in defined_new_mons:
-		new_lines.append("\n")
-		new_lines.append("const u8 g{0}PokedexText[] = _(\n".format(mon))
+		new_lines.append("const u8 g{0}PokedexText[] = _(\n".format(mon.capitalize()))
 		for line in new_species[mon]["pokedex_description"][:-1]:
 			new_lines.append('    "{0}\\n"\n'.format(line))
-		new_lines.append('    "{0}");\n'.format(\
-			new_species[mon]["pokedex_description"][-1]
-		
+		new_lines.append('    "{0}");\n\n'.format(\
+			new_species[mon]["pokedex_description"][-1]))
+
+pokedex_text_file_lines[-2:-2] = new_lines
+
+write_lines(pokedex_text_file,pokedex_text_file_lines)
 		
 ########## pokedex_entries.h
 
