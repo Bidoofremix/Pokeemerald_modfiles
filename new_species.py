@@ -266,6 +266,24 @@ for mon in new_species:
 
 write_lines(species_name_file,species_name_file_lines)		
 		
+########## pokedex_text.h
+
+pokedex_text_file = normalize_path("{0}/src/data/pokemon/pokedex_text.h".format(raw_folder))
+
+with open(pokedex_text_file, "r") as f:
+	pokedex_text_file_lines = f.readlines()
+	
+new_lines = []
+for mon in new_species:
+	if mon not in defined_new_mons:
+		new_lines.append("\n")
+		new_lines.append("const u8 g{0}PokedexText[] = _(\n".format(mon))
+		for line in new_species[mon]["pokedex_description"][:-1]:
+			new_lines.append('    "{0}\\n"\n'.format(line))
+		new_lines.append('    "{0}");\n'.format(\
+			new_species[mon]["pokedex_description"][-1]
+		
+		
 ########## pokedex_entries.h
 
 pokedex_entries_file = normalize_path("{0}/src/data/pokemon/pokedex_entries.h".format(\
