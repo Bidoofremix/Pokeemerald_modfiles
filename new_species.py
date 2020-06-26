@@ -129,6 +129,11 @@ for name in sheet_names:
 			if row[0] in ["pokemonScale","pokemonOffset","trainerScale","trainerOffset"]:
 				new_species[mon]["pokedex_entry"][".{0}".format(row[0])] = row[1]
 						
+			# evolution
+			if row[0] == "evolves":
+				new_species[mon]["evolution"] = {"target":row[1], \
+					"method": row[2], "parameter":row[3]}
+						
 	# check mandatory stats
 	if not all([s in new_species[mon]["base_stats"] for s in required_stats]):
 		print("\nerror: {0} missing the following stats:".format(mon))
@@ -473,8 +478,132 @@ base_stats_file_lines[-2:-2] = new_base_stats_lines
 		
 ### TODO: write base stats lines to file
 	
-########## TODO: movesets
+########## level-up moves
+
+levelup_file = normalize_path("{0}/src/data/pokemon/level_up_learnsets.h".format(\
+	raw_folder))
 	
+with open(levelup_file, "r") as f:
+	levelup_lines = f.readlines()
+
+new_lines = []
+for mon in new_species:
+	if mon not in defined_new_mons:
+		new_lines.append("static const struct LevelUpMpve s{0}LevelUpLearnset[] = {{".\
+			format(mon.capitalize()))
+		moves = new_species[mon]["level_up_moves"]
+		for move in sorted(moves, key = lambda x: x[0]):
+			new_lines.append("    LEVEL_UP_MOVE({0}, {1}),\n".format(\
+				str(str(move[0])).rjust(2),move[1]))
+		new_lines.append("    LEVEL_UP_END")
+		new_lines.append("};\n\n")
+		
+levelup_lines[-1:-1] = new_lines
+	
+### TODO: write to file
+
+learnset_pointer_file = normalize_path("{0}/src/data/pokemon/level_up_learnset_pointers.h".\
+	format(raw_folder))
+	
+with open(learnset_pointer_file, "r") as f:
+	learnset_pointer_file_lines = f.readlines()
+	
+new_lines = []
+for mon in new_species:
+	if not mon in defined_new_mons:
+		new_lines.append("    [SPECIES_{0}] = s{1}LevelUpLearnset,\n".format(\
+			mon,mon.capitalize()))
+		
+learnset_pointer_file_lines[-1:-1] = new_lines
+
+### TODO: write to file
+	
+########## TM/HM moves
+
+tm_file = normalize_path("{0}/src/data/pokemon/tmhm_learnsets.h".format(raw_folder))
+
+with open(tm_file, "r") as f:
+	tm_file_lines = f.readlines()
+	
+new_lines = []
+for mon in new_species:
+	if not mon in defined_new_mons:
+		moves = sorted(new_species[mon]["tmhm_moves"])
+		new_lines.append("    [SPECIES_{0}] = TMHM_LEARNSET(TMHM({1})\n".format(\
+			mon,moves[0]))
+		for move in moves[1:]:
+			new_lines.append("\t"*11 + "| TMHM({0})\n".format(move))
+		new_lines[-1] = new_lines[-1].replace("\n","),\n")
+
+tm_file_lines[-2:-2] = new_lines
+
+### TODO: write to file
+
+########## tutor moves
+
+tutor_file = normalize_path("{0}/src/data/pokemon/tutor_learnsets.h".format(raw_folder))
+
+with open(tutor_file, "r") as f:
+	tutor_file_lines = f.readlines()
+
+new_lines = []	
+for mon in new_species:
+	if mon not in defined_new_mons:
+		moves = sorted(new_species[mon]["tutor_moves"])
+		new_lines.append("    [SPECIES_{0}] = TUTOR_LEARNSET(TUTOR({1})\n".format(\
+			mon,moves[0]))
+		for move in moves[1:]:
+			new_lines.append("\t"*11 + "| TUTOR({0})\n".format(move))
+		new_lines[-1] = new_lines[-1].replace("\n","),\n")
+		
+tutor_file_lines[-2:-2] = new_lines
+
+### TODO: write to file
+
+########## egg moves
+
+egg_move_file = normalize_path("{0}/src/data/pokemon/egg_moves.h".format(raw_folder))
+
+with open(egg_move_file, "r") as f:
+	egg_move_file_lines = f.readlines()
+	
+new_lines = []
+for mon in new_species:
+	if mon not in defined_new_mons:
+		moves = sorted(new_species[mon]["egg_moves"])
+		new_lines.append("egg_moves({0},\n".format(mon))
+		for move in moves:
+			new_lines.append("\t\t{0},\n".format(move))
+		new_lines[-1] = new_lines[-1].replace(",\n","),\n\n")
+
+egg_move_file_lines[-2:-2] = new_lines		
+		
+### TODO: write to file		
+		
+########## evolution
+
+evolution_file = normalize_path("{0}/src/data/pokemon/evolution.h".format(raw_folder))
+
+with open(evolution_file, "r") as f:
+	evolution_file_lines = f.readlines()
+	
+new_lines = []
+for mon in new_species:
+	if not mon in defined_new_mons:
+		if "evolution" in new_species[mon]:
+			tmp_text = "    [SPECIES_{0}] = {{{{".format(mon)
+			tmp_text += "{0}, {1}, {2}".format(\
+				new_species[mon]["evolution"]["method"],\
+				new_species[mon]["evolution"]["parameter"],\
+				new_species[mon]["evolution"]["target"])
+			tmp_text += "}},\n"
+			
+			new_lines.append(tmp_text)
+			
+evolution_file_lines[-1:-1] = new_lines
+
+### TODO: write to file
+
 ########## sprites
 
 sprite_files = ["front.png","front_anim.png","back.png",\
