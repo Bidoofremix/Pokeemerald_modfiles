@@ -714,7 +714,7 @@ for mon in new_species:
 		tmp_text += 'INCIN_U32("graphics/pokemon/{0}.anim_front.4bpp.lz");\n'.format(mon.lower())
 		new_graphics_lines.append(tmp_text)
 	
-		for category in ["StillFrontPic","BackPic"]:
+		for category in ["BackPic"]:
 			tmp_text = "const u32 gMon{0}_{1}[] = ".format(category,mon.capitalize())
 			tmp_text += 'INCBIN_U32("graphics/pokemon/{0}/{1}.4bpp.lz");\n'.format(\
 				mon.lower(),category.replace("Pic","").lower())
