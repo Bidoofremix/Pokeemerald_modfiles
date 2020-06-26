@@ -490,7 +490,7 @@ new_pokemon_lines = []
 for mon in family_order:
 	new_pokemon_lines.append("    SPECIES_TO_NATIONAL({0}),\n".format(mon))
 
-pokemon_file_lines[start_index:stop_index] = new_pokemon_lines
+pokemon_file_lines[start_index:stop_index+1] = new_pokemon_lines
 
 write_lines(pokemon_file, pokemon_file_lines)
 
