@@ -767,10 +767,8 @@ for mon in new_species:
 
 anims_file_lines = []	
 for c in chunks:
-	anims_file_lines.append("< //\n")
 	for line in c:
 		anims_file_lines.append(line)
-	anims_file_lines.append("// >\n\n")	
 		
 write_lines(anims_file,anims_file_lines)
 
