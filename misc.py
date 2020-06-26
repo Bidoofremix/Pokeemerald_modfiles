@@ -34,7 +34,7 @@ def dec2hex(num):
 def hex2dec(hex_num):
 	return int(hex_num,16)
 	
-def clean_text(text)
+def clean_text(text):
 	text = text.replace("\\xe2\\x80\\x99","")
 	text = text.encode("utf-8").decode("utf-8")
 	return text
