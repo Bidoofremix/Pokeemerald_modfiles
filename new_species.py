@@ -504,14 +504,15 @@ with open(levelup_file, "r") as f:
 new_lines = []
 for mon in new_species:
 	if mon not in defined_new_mons:
+		new_lines.append("\n")
 		new_lines.append("static const struct LevelUpMpve s{0}LevelUpLearnset[] = {{".\
 			format(mon.capitalize()))
 		moves = new_species[mon]["level_up_moves"]
 		for move in sorted(moves, key = lambda x: x[0]):
-			new_lines.append("    LEVEL_UP_MOVE({0}, {1}),\n".format(\
+			new_lines.append("        LEVEL_UP_MOVE({0}, {1}),\n".format(\
 				str(str(move[0])).rjust(2),move[1]))
-		new_lines.append("    LEVEL_UP_END")
-		new_lines.append("};\n\n")
+		new_lines.append("    LEVEL_UP_END\n")
+		new_lines.append("};\n")
 		
 levelup_file_lines[-1:-1] = new_lines
 	
@@ -529,7 +530,7 @@ for mon in new_species:
 		new_lines.append("    [SPECIES_{0}] = s{1}LevelUpLearnset,\n".format(\
 			mon,mon.capitalize()))
 		
-learnset_pointer_file_lines[-1:-1] = new_lines
+learnset_pointer_file_lines[-2:-2] = new_lines
 
 write_lines(learnset_pointer_file,learnset_pointer_file_lines)
 	
