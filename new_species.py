@@ -162,10 +162,8 @@ national_dex_end = "#define NATIONAL_DEX_COUNT"
 species_file = normalize_path("{0}/include/constants/species.h".format(raw_folder))
 if not os.path.isfile(species_file):
 	print("species.h not detected, create new")
-	species_file_lines = []
 	with open("{0}/include/constants/species.h".format(vanilla_dir), "r") as f:
-		for line in f:
-			species_file_lines.append(line)
+		species_file_lines = f.readlines()
 
 	national_defines_on = 0
 	wrote_lines = 0
@@ -199,10 +197,8 @@ if not os.path.isfile(species_file):
 		f.write("// >\n")
 
 defined_new_mons = set([])
-species_file_lines = []
 with open(species_file, "r") as f:
-	for line in f:
-		species_file_lines.append(line)
+	species_file_lines = f.readlines()
 
 for line in species_file_lines:
 	line = line.split(" ")
@@ -258,10 +254,8 @@ print("modify species_names.h")
 species_name_file = normalize_path("{0}/src/data/text/species_names.h".format(\
 	raw_folder))
 	
-species_name_file_lines = []
 with open(species_name_file, "r") as f:
-	for line in f:
-		species_name_file_lines.append(line)
+	species_name_file_lines = f.readlines()
 
 for mon in new_species:
 	if mon not in defined_new_mons:
@@ -303,8 +297,7 @@ if not os.path.isfile(pokedex_entries_file):
 
 pokedex_entries_file_lines = []
 with open(pokedex_entries_file, "r") as f:
-	for line in f:
-		pokedex_entries_file_lines.append(line)
+	pokedex_entries_file_lines = f.readlines()
 
 print("modify pokedex_entries.h")
 
@@ -400,10 +393,8 @@ else:
 
 pokemon_file = normalize_path("{0}/src/pokemon.c".format(raw_folder))
 
-pokemon_file_lines = []
 with open(pokemon_file, "r") as f:
-	for line in f:
-		pokemon_file_lines.append(line)
+	pokemon_file_lines = f.readlines()
 		
 found_pokedex_array = 0
 for line in pokemon_file_lines:
@@ -433,10 +424,8 @@ else:
 
 print("modify pokemon.c")	
 	
-pokemon_file_lines = []
 with open(pokemon_file, "r") as f:
-	for line in f:
-		pokemon_file_lines.append(line)
+	pokemon_file_lines = f.readlines()
 
 for n,line in enumerate(pokemon_file_lines):
 	if "const u16 gSpeciesToNationalPokedexNum" in line:
@@ -458,10 +447,8 @@ pokemon_file_lines[start_index:stop_index] = new_pokemon_lines
 base_stats_file = normalize_path("{0}/src/data/pokemon/base_stats.h".format(\
 	raw_folder))
 	
-base_stats_file_lines = []
 with open(base_stats_file, "r") as f:
-	for line in f:
-		base_stats_file_lines.append(line)
+	base_stats_file_lines = f.readlines()
 		
 new_base_stats_lines = []
 for mon in new_species:
