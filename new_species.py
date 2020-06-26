@@ -2,7 +2,7 @@
 
 import os,xlrd,shutil
 from config import vanilla_dir,slash
-from misc import normalize_path,lines_to_chunks,write_lines
+from misc import normalize_path,lines_to_chunks,write_lines,clean_text
 from pokemon_tools import *
 
 raw_folder = normalize_path(os.getcwd() + "\\raw")
@@ -31,8 +31,8 @@ with open(order_file, "r") as f:
 new_species = {}
 insert_info = {}
 
-new_species_excel = "pokemon/new_species.xls"
-xl_workbook = xlrd.open_workbook(new_species_excel)
+new_species_excel = "pokemon/new_species.xlsx"
+xl_workbook = xlrd.open_workbook(new_species_excel, encoding_override="utf8")
 sheet_names = xl_workbook.sheet_names()
 
 # each mon
@@ -108,7 +108,7 @@ for name in sheet_names:
 			# pokedex description
 			if row[0].startswith("pokedex_entry_line"):
 				which_line = int(row[0][-1])-1
-				new_species[mon]["pokedex_description"][which_line] = row[1]
+				new_species[mon]["pokedex_description"][which_line] = clean_text(row[1])
 			
 			# category
 			if row[0] == "category":
@@ -278,9 +278,9 @@ for mon in new_species:
 	if mon not in defined_new_mons:
 		new_lines.append("const u8 g{0}PokedexText[] = _(\n".format(mon.capitalize()))
 		for line in new_species[mon]["pokedex_description"][:-1]:
-			new_lines.append('    "{0}\\n"\n'.format(line))
+			new_lines.append('    "{0}\\n"\n'.format(line.encode("utf-8").decode("utf-8")))
 		new_lines.append('    "{0}");\n\n'.format(\
-			new_species[mon]["pokedex_description"][-1]))
+			new_species[mon]["pokedex_description"][-1].encode("utf-8").decode("utf-8")))
 
 pokedex_text_file_lines[-2:-2] = new_lines
 
