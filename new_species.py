@@ -712,7 +712,7 @@ for mon in new_species:
 	
 		tmp_text = "const u32 gMonFrontPic_{0} = ".format(mon.capitalize())
 		tmp_text += 'INCBIN_U32("graphics/pokemon/{0}.anim_front.4bpp.lz");\n'.format(mon.lower())
-		new_graphics_lines.append(tmp_text)
+		new_pokemon_graphics_lines.append(tmp_text)
 	
 		for category in ["BackPic"]:
 			tmp_text = "const u32 gMon{0}_{1}[] = ".format(category,mon.capitalize())
