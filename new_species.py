@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 import os,xlrd,shutil
-from config import vanilla_dir
-from misc import normalize_path
+from config import vanilla_dir,slash
+from misc import normalize_path,lines_to_chunks
 from pokemon_tools import *
 
 raw_folder = normalize_path(os.getcwd() + "\\raw")
@@ -525,4 +525,221 @@ for mon in new_species:
 				
 graphics_file_lines[-2:-2] = new_graphics_lines
 
-[print(c) for c in graphics_file_lines]				
+### TODO: write graphics file lines to file	
+
+########## graphics/pokemon.h
+
+pokemon_graphics_file = normalize_path("{0}/src/data/graphics/pokemon.h".format(\
+	raw_folder))
+	
+pokemon_graphics_file_lines = []
+with open(pokemon_graphics_file, "r") as f:
+	for line in f:
+		pokemon_graphics_file_lines.append(line)
+		
+new_pokemon_graphics_lines = []
+for mon in new_species:
+	if mon not in defined_new_mons:
+	
+		tmp_text = "const u32 gMonFrontPic_{0} = ".format(mon.capitalize())
+		tmp_text += 'INCIN_U32("graphics/pokemon/{0}.anim_front.4bpp.lz");\n'.format(mon.lower())
+		new_graphics_lines.append(tmp_text)
+	
+		for category in ["StillFrontPic","BackPic"]:
+			tmp_text = "const u32 gMon{0}_{1}[] = ".format(category,mon.capitalize())
+			tmp_text += 'INCBIN_U32("graphics/pokemon/{0}/{1}.4bpp.lz");\n'.format(\
+				mon.lower(),category.replace("Pic","").lower())
+			new_pokemon_graphics_lines.append(tmp_text)
+			
+		for category in ["Palette","ShinyPalette"]:
+			if category == "Palette":
+				palette = "normal"
+			elif category == "ShinyPalette":
+				palette = "shiny"
+			tmp_text = "const u32 gMon{0}_{1}[] = ".format(category,mon.capitalize())
+			tmp_text += 'INCBIN_U32("graphics/pokemon/{0}/{1}.gbapal.lz");\n'.format(\
+				mon.lower(),palette)
+			new_pokemon_graphics_lines.append(tmp_text)
+			
+		for category in ["Icon","Footprint"]:
+			if category == "Icon":
+				format = "4bpp"
+			elif category == "Footprint":
+				format = "1bpp"
+			tmp_text = "const u8 gMon{0}_{1}[] = ".format(category,mon.capitalize())
+			tmp_text += 'INCBIN_U8("graphics/pokemon/{0}/{1}.{2}");\n'.format(\
+				mon.lower(),category,format)
+			new_pokemon_graphics_lines.append(tmp_text)
+			
+pokemon_graphics_file_lines[-2:-2] = new_pokemon_graphics_lines			
+
+### TODO: write pokemon graphics file lines to file
+
+########## front_pic_anims.h
+
+anims_file = normalize_path("{0}/src/data/pokemon_graphics/front_pic_anims.h".format(\
+	raw_folder))
+	
+anims_file_lines = []
+with open(anims_file, "r") as f:
+	for line in f:
+		anims_file_lines.append(line)
+		
+# split to chunks
+anims_chunk_indexes = {"sAnim": "", "sAnims":"","ANIM_CMD":""}
+chunks = lines_to_chunks(anims_file_lines)
+for n,c in enumerate(chunks):
+	for line in c:
+		if "AnimCmd sAnim" in line:
+			anims_chunk_indexes["sAnim"] = n
+		if "*const sAnims" in line:
+			anims_chunk_indexes["sAnims"] = n
+		if "ANIM_CMD" in line:
+			anims_chunk_indexes["ANIM_CMD"] = n
+
+for mon in new_species:
+	if mon not in defined_new_mons:
+
+		sanim_lines = []
+		sanim_lines.append("\n")
+		sanim_lines.append("static const union AnimCmd sAnim_{0}_1[] =\n".format(mon))
+		sanim_lines.append("{\n")
+		sanim_lines.append("    ANIMCMD_FRAME(1, 30),\n")
+		sanim_lines.append("    ANIMCMD_FRAME(0, 20),\n")
+		sanim_lines.append("    ANIMCMD_END,\n")
+		sanim_lines.append("};\n")
+		chunks[anims_chunk_indexes["sAnim"]][-1:-1] = sanim_lines
+
+		sanims_lines = []
+		sanims_lines.append("\n")
+		sanims_lines.append("static const union AnimCmd *const sAnims_{0}[] = {{\n".format(mon))
+		sanims_lines.append("    sAnim_GeneralFrame0,\n")
+		sanims_lines.append("    sAnim_{0}_1,\n".format(mon))
+		sanims_lines.append("};\n")
+		chunks[anims_chunk_indexes["sAnims"]][-1:-1] = sanims_lines
+
+		chunks[anims_chunk_indexes["ANIM_CMD"]].insert(-2,"ANIM_CMD({0}),\n".format(mon))
+
+anim_file_lines = []	
+for c in chunks:
+	anim_file_lines.append("< //\n")
+	for line in c:
+		anim_file_lines.append(line)
+	anim_file_lines.append("// >\n\n")	
+		
+### TODO: write anim chunks lines to file
+
+########## pokemon_anomation.c
+
+pokemon_animation_file = normalize_path("{0}/src/pokemon_animation.c".format(\
+	raw_folder))
+
+pokemon_animation_file_lines = []
+with open(pokemon_animation_file, "r") as f:
+	for line in f:
+		pokemon_animation_file_lines.append(line)
+
+for mon in new_species:
+	if mon not in defined_new_mons:
+		tmp_text = "    [SPECIES_{0}] = ".format(mon)
+		tmp_text += "BACK_ANIM_VERTICAL_SHAKE,\n"
+		pokemon_animation_file_lines.insert(-2, tmp_text)
+		
+### TODO: write lines to file
+
+########## graphics tables
+
+table_files = ["front_pic_table.h", "back_pic_table.h",\
+	"footprint_table.h","palette_table.h","shiny_palette_table.h"]
+	
+for t in table_files:
+
+	print("modify {0}".format(t))
+
+	file = normalize_path("{0}/src/data/pokemon_graphics/{1}".format(\
+		raw_folder,t))
+	
+	with open(file, "r") as f:
+		file_lines = f.readlines()
+		
+	category = file.split(slash)[-1].replace("_table.h","").replace("_"," ").title().replace(" ","")
+		
+	for mon in new_species:
+		if mon not in defined_new_mons:
+				
+			if t in ["front_pic_table.h","back_pic_table.h"]:
+				tmp_text = "    SPECIES_SPRITE({0}, gMon{1}_{2}),\n".format(mon,category,mon.capitalize())
+			elif t in ["palette_table.h","shiny_palette_table.h"]:
+				if t == "shiny_palette_table.h":
+					suffix = "SHINY_"
+				else:
+					suffix = ""
+				tmp_text = "    SPECIES_{0}PAL({1}, gMon{2}_{3}),\n".format(\
+					suffix,mon,category,mon.capitalize())
+			elif t == "footprint_table.h":
+				tmp_text = "    [SPECIES_{0}] = gMon{1}_{2},\n".format(mon,category,mon.capitalize())
+						
+			file_lines.insert(-2, tmp_text)
+			
+	### TODO: write to each file
+	
+########## coordinate tables
+
+for category in ["front","back"]:
+
+	print("modify {0}_pic_coordinates.h".format(category))
+
+	file = normalize_path("{0}/src/data/pokemon_graphics/{1}_pic_coordinates.h".format(\
+		raw_folder,category))
+		
+	with open(file, "r") as f:
+		file_lines = f.readlines()
+		
+	for mon in new_species:
+		if mon not in defined_new_mons:
+			new_lines = []
+			new_lines.append("\n")
+			new_lines.append("    [SPECIES_{0}] = \n".format(mon))
+			new_lines.append("    {\n")
+			new_lines.append("        .size = 0x40,\n")
+			new_lines.append("        .y_offset = 0x0,\n")
+			new_lines.append("    },\n")
+			
+			file_lines[-2:-2] = new_lines
+			
+	### TODO: write to file
+	
+########## pokemon_icon.c
+
+pokemon_icon_file = normalize_path("{0}/src/pokemon_icon.c".format(raw_folder))
+
+with open(pokemon_icon_file, "r") as f:
+	pokemon_icon_file_lines = f.readlines()
+	
+# icons
+for n,line in enumerate(pokemon_icon_file_lines):
+	if line.startswith("const u8 *const gMonIconTable"):
+		insert_index = n
+		break
+
+new_lines = []
+for mon in new_species:
+	if mon not in defined_new_mons:
+		new_lines.append("    [SPECIES_{0}] = gMonIcon{1},\n".format(mon,mon.capitalize()))
+		
+pokemon_icon_file_lines[n+2:n+2] = new_lines		
+
+# icon indexes
+for n,line in enumerate(pokemon_icon_file_lines):
+	if line.startswith("const u8 gMonIconPaletteIndices"):
+		insert_index = n
+		break
+		
+new_lines = []
+for mon in new_species:
+	if mon not in defined_new_mons:
+		new_lines.append("    [SPECIES_{0}] = 0,\n".format(mon))
+
+pokemon_icon_file_lines[n+2:n+2] = new_lines
+	
+### TODO: write to file

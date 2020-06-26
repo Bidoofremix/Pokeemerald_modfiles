@@ -2,6 +2,21 @@
 
 from config import pokeemerald_dir
 
+def write_lines(line_list,file):
+	with open(file, "w") as f:
+		for line in line_list:
+			f.write(line)
+	print("wrote to: %s" % file)
+
+def lines_to_chunks(lines):
+	chunks = []
+	for n,line in enumerate(lines):
+		if line.startswith("< //"):
+			start_index = n
+		elif line.startswith("// >"):
+			chunks.append(lines[start_index:n+1])
+	return chunks	
+
 def normalize_path(file_path):
 	if "/" in pokeemerald_dir:
 		file_path = file_path.replace("\\","/")
