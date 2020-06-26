@@ -411,7 +411,7 @@ for mon in new_species:
 			if lines_on and not line.startswith("{"):
 				compare_mon = line.strip().split(",")[0]
 				if compare_dict[compare_mon] > compare_stat:
-					pokedex_orders_file_lines[n-1:n-1] = [pokedex_orders_file_lines[n-1],tmp_name]
+					pokedex_orders_file_lines[n:n] = [tmp_name]
 					break
 				
 				
