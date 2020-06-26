@@ -647,7 +647,7 @@ write_lines(evolution_file,evolution_file_lines)
 ########## sprites
 
 sprite_files = ["front.png","front_anim.png","back.png",\
-	"footprint.png","normal.pal","shiny.pal"]
+	"footprint.png","normal.pal","shiny.pal","icon.png"]
 
 for mon in new_species:
 
@@ -737,7 +737,7 @@ for mon in new_species:
 				format = "1bpp"
 			tmp_text = "const u8 gMon{0}_{1}[] = ".format(category,mon.capitalize())
 			tmp_text += 'INCBIN_U8("graphics/pokemon/{0}/{1}.{2}");\n'.format(\
-				mon.lower(),category,format)
+				mon.lower(),category.lower(),format)
 			new_pokemon_graphics_lines.append(tmp_text)
 			
 pokemon_graphics_file_lines[-2:-2] = new_pokemon_graphics_lines			
