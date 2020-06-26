@@ -529,7 +529,7 @@ new_lines = []
 for mon in new_species:
 	if mon not in defined_new_mons:
 		new_lines.append("\n")
-		new_lines.append("static const struct LevelUpMpve s{0}LevelUpLearnset[] = {{".\
+		new_lines.append("static const struct LevelUpMove s{0}LevelUpLearnset[] = {{\n".\
 			format(mon.capitalize()))
 		moves = new_species[mon]["level_up_moves"]
 		for move in sorted(moves, key = lambda x: x[0]):
