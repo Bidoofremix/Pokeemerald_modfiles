@@ -1,5 +1,5 @@
 < //
-egg_moves(ALOLAN_GRIMER,
+	egg_moves(ALOLAN_GRIMER,
 		MOVE_ASSURANCE,
 		MOVE_CLEAR_SMOG,
 		MOVE_CURSE,
