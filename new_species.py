@@ -121,9 +121,11 @@ for name in sheet_names:
 						print("\nerror: height must be divisible by 10")
 						exit(0)
 					else:
-						new_species[mon]["pokedex_entry"][".height"] = row[1]//10
+						mon_height = row[1]//10
+						new_species[mon]["pokedex_entry"][".height"] = mon_height
 				if row[0] == "weight (kg)":
-						new_species[mon]["pokedex_entry"][".weight"] = int(float(row[1])*10)
+						mon_weight = int(float(row[1])*10)
+						new_species[mon]["pokedex_entry"][".weight"] = mon_weight
 			
 			# scales and offsets
 			if row[0] in ["pokemonScale","pokemonOffset","trainerScale","trainerOffset"]:
@@ -245,7 +247,7 @@ for n,mon in enumerate(family_order):
 		
 species_file_lines[start_index:stop_index] = new_national_dex_defines
 
-### TODO: write species file lines to file
+write_lines(species_file,species_file_lines)
 
 ########## species name
 
@@ -262,8 +264,8 @@ for mon in new_species:
 		line = '    [SPECIES_{0}] = _("{1}"),\n'.format(mon,mon.capitalize())
 		species_name_file_lines.insert(-2,line)
 
-### TODO: write species name file lines to file
-	
+write_lines(species_name_file,species_name_file_lines)		
+		
 ########## pokedex_entries.h
 
 pokedex_entries_file = normalize_path("{0}/src/data/pokemon/pokedex_entries.h".format(\
@@ -312,8 +314,10 @@ for mon in sorted(new_species):
 
 pokedex_entries_file_lines[-2:-2] = new_pokedex_entries
 
-### TODO: write pokedex entries file lines to file
-		
+write_lines(pokedex_entries_file,pokedex_entries_file_lines)
+
+########## pokedex orders
+
 weight_dict = {}
 height_dict = {}
 with open(pokedex_entries_file, "r") as f:
@@ -327,8 +331,6 @@ with open(pokedex_entries_file, "r") as f:
 			elif ".height" in line:
 				which_dict = height_dict
 			which_dict[mon] = int(line[2])
-
-########## pokedex orders
 
 pokedex_orders_file = normalize_path("{0}/src/data/pokemon/pokedex_orders.h".format(\
 	raw_folder))
@@ -367,28 +369,54 @@ else:
 		for line in f:
 			pokedex_orders_file_lines.append(line)
 
-	alphabetical_on = 0	
+alphabetical_on = 0
+weight_on = 0	
+		
+for mon in new_species:
+	if mon not in defined_new_mons:
+		tmp_name = "    NATIONAL_DEX_{0},\n".format(mon)
+
+	# alphabetical
+	for n,line in enumerate(pokedex_orders_file_lines):
+		if "const u16 gPokedexOrder_Alphabetical" in line:
+			alphabetical_on = 1
+			continue
 			
-	for mon in new_species:
-		if mon not in defined_new_mons:
-			tmp_name = "    NATIONAL_DEX_{0},\n".format(mon)
+		elif "};" in line:
+			alphabetical_on = 0
 			
+		if alphabetical_on and not line.startswith("{"):
+			if line > tmp_name:
+				pokedex_orders_file_lines[n-1:n-1] = [pokedex_orders_file_lines[n-1],tmp_name]
+				break
+	
+	# weight, height
+	for category in ["weight", "height"]:
+	
+		if category == "weight":
+			compare_dict = weight_dict
+			compare_stat = mon_weight
+		elif category == "height":
+			compare_dict = height_dict
+			compare_stat = mon_height
+	
+		lines_on = 0
 		for n,line in enumerate(pokedex_orders_file_lines):
-			if "const u16 gPokedexOrder_Alphabetical" in line:
-				alphabetical_on = 1
+			if "const u16 gPokedexOrder_{0}".format(category.capitalize()) in line:
+				lines_on = 1
 				continue
-				
 			elif "};" in line:
-				alphabetical_on = 1
-				
-			if alphabetical_on and not line.startswith("{"):
-				if line > tmp_name:
+				lines_on = 0
+			
+			if lines_on and not line.startswith("{"):
+				compare_mon = line.strip().split(",")[0]
+				if compare_dict[compare_mon] > compare_stat:
 					pokedex_orders_file_lines[n-1:n-1] = [pokedex_orders_file_lines[n-1],tmp_name]
 					break
 				
-
-### TODO: write pokedex_orders_file_lines to file
-
+				
+write_lines(pokedex_orders_file, pokedex_orders_file_lines)
+	
 ########## pokemon.c
 
 pokemon_file = normalize_path("{0}/src/pokemon.c".format(raw_folder))
@@ -440,8 +468,8 @@ for mon in family_order:
 
 pokemon_file_lines[start_index:stop_index] = new_pokemon_lines
 
-### TODO: write pokemon file lines to file
-	
+write_lines(pokemon_file, pokemon_file_lines)
+
 ########## base_stats.h
 
 base_stats_file = normalize_path("{0}/src/data/pokemon/base_stats.h".format(\
@@ -463,7 +491,7 @@ for mon in new_species:
 
 base_stats_file_lines[-2:-2] = new_base_stats_lines
 		
-### TODO: write base stats lines to file
+write_lines(base_stats_file, base_stats_file_lines)
 	
 ########## level-up moves
 
@@ -471,7 +499,7 @@ levelup_file = normalize_path("{0}/src/data/pokemon/level_up_learnsets.h".format
 	raw_folder))
 	
 with open(levelup_file, "r") as f:
-	levelup_lines = f.readlines()
+	levelup_file_lines = f.readlines()
 
 new_lines = []
 for mon in new_species:
@@ -485,9 +513,9 @@ for mon in new_species:
 		new_lines.append("    LEVEL_UP_END")
 		new_lines.append("};\n\n")
 		
-levelup_lines[-1:-1] = new_lines
+levelup_file_lines[-1:-1] = new_lines
 	
-### TODO: write to file
+write_lines(levelup_file, levelup_file_lines)
 
 learnset_pointer_file = normalize_path("{0}/src/data/pokemon/level_up_learnset_pointers.h".\
 	format(raw_folder))
@@ -503,7 +531,7 @@ for mon in new_species:
 		
 learnset_pointer_file_lines[-1:-1] = new_lines
 
-### TODO: write to file
+write_lines(learnset_pointer_file,learnset_pointer_file_lines)
 	
 ########## TM/HM moves
 
@@ -524,7 +552,7 @@ for mon in new_species:
 
 tm_file_lines[-2:-2] = new_lines
 
-### TODO: write to file
+write_lines(tm_file,tm_file_lines)
 
 ########## tutor moves
 
@@ -545,7 +573,7 @@ for mon in new_species:
 		
 tutor_file_lines[-2:-2] = new_lines
 
-### TODO: write to file
+write_lines(tutor_file,tutor_file_lines)
 
 ########## egg moves
 
@@ -565,7 +593,7 @@ for mon in new_species:
 
 egg_move_file_lines[-2:-2] = new_lines		
 		
-### TODO: write to file		
+write_lines(egg_move_file,egg_move_file_lines)
 		
 ########## evolution
 
@@ -589,7 +617,7 @@ for mon in new_species:
 			
 evolution_file_lines[-1:-1] = new_lines
 
-### TODO: write to file
+write_lines(evolution_file,evolution_file_lines)
 
 ########## sprites
 
@@ -641,7 +669,7 @@ for mon in new_species:
 				
 graphics_file_lines[-2:-2] = new_graphics_lines
 
-### TODO: write graphics file lines to file	
+write_lines(graphics_file, graphics_file_lines)	
 
 ########## graphics/pokemon.h
 
@@ -689,7 +717,7 @@ for mon in new_species:
 			
 pokemon_graphics_file_lines[-2:-2] = new_pokemon_graphics_lines			
 
-### TODO: write pokemon graphics file lines to file
+write_lines(pokemon_graphics_file,pokemon_graphics_file_lines)
 
 ########## front_pic_anims.h
 
@@ -736,14 +764,14 @@ for mon in new_species:
 
 		chunks[anims_chunk_indexes["ANIM_CMD"]].insert(-2,"ANIM_CMD({0}),\n".format(mon))
 
-anim_file_lines = []	
+anims_file_lines = []	
 for c in chunks:
-	anim_file_lines.append("< //\n")
+	anims_file_lines.append("< //\n")
 	for line in c:
-		anim_file_lines.append(line)
-	anim_file_lines.append("// >\n\n")	
+		anims_file_lines.append(line)
+	anims_file_lines.append("// >\n\n")	
 		
-### TODO: write anim chunks lines to file
+write_lines(anims_file,anims_file_lines)
 
 ########## pokemon_anomation.c
 
@@ -761,7 +789,7 @@ for mon in new_species:
 		tmp_text += "BACK_ANIM_VERTICAL_SHAKE,\n"
 		pokemon_animation_file_lines.insert(-2, tmp_text)
 		
-### TODO: write lines to file
+wrote_lines(pokemon_animation_file,pokemon_animation_file_lines)
 
 ########## graphics tables
 
@@ -797,7 +825,7 @@ for t in table_files:
 						
 			file_lines.insert(-2, tmp_text)
 			
-	### TODO: write to each file
+	write_lines(file,file_lines)		
 	
 ########## coordinate tables
 
@@ -822,8 +850,8 @@ for category in ["front","back"]:
 			new_lines.append("    },\n")
 			
 			file_lines[-2:-2] = new_lines
-			
-	### TODO: write to file
+	
+	write_lines(file,file_lines)
 	
 ########## pokemon_icon.c
 
@@ -843,7 +871,7 @@ for mon in new_species:
 	if mon not in defined_new_mons:
 		new_lines.append("    [SPECIES_{0}] = gMonIcon{1},\n".format(mon,mon.capitalize()))
 		
-pokemon_icon_file_lines[n+2:n+2] = new_lines		
+pokemon_icon_file_lines[n+2:n+2] = new_lines
 
 # icon indexes
 for n,line in enumerate(pokemon_icon_file_lines):
@@ -858,4 +886,4 @@ for mon in new_species:
 
 pokemon_icon_file_lines[n+2:n+2] = new_lines
 	
-### TODO: write to file
+write_lines(pokemon_icon_file,pokemon_icon_file_lines)

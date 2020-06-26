@@ -2,7 +2,7 @@
 
 from config import pokeemerald_dir
 
-def write_lines(line_list,file):
+def write_lines(file,line_list):
 	with open(file, "w") as f:
 		for line in line_list:
 			f.write(line)
