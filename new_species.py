@@ -197,7 +197,7 @@ if not os.path.isfile(species_file):
 			elif not national_defines_on:
 				f.write(line)
 		f.write("// >\n")
-
+		
 defined_new_mons = set([])
 with open(species_file, "r") as f:
 	species_file_lines = f.readlines()
@@ -244,6 +244,10 @@ new_national_dex_defines = []
 for n,mon in enumerate(family_order):
 	new_national_dex_defines.append("#define NATIONAL_DEX_{0} {1}\n".format(\
 		mon,n+1))
+	if mon == "MEW":
+		new_national_dex_defines.append("\n#define KANTO_DEX_COUNT NATIONAL_DEX_MEW\n\n")
+	elif mon == "CELEBI":
+		new_national_dex_defines.append("\n#define JOHTO_DEX_COUNT NATIONAL_DEX_CELEBI\n\n")
 		
 species_file_lines[start_index:stop_index] = new_national_dex_defines
 
