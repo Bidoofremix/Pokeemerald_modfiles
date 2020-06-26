@@ -632,7 +632,7 @@ for mon in new_species:
 	if not mon in defined_new_mons:
 		if "evolution" in new_species[mon]:
 			tmp_text = "    [SPECIES_{0}] = {{{{".format(mon)
-			tmp_text += "{0}, {1}, {2}".format(\
+			tmp_text += "{0}, {1}, SPECIES_{2}".format(\
 				new_species[mon]["evolution"]["method"],\
 				new_species[mon]["evolution"]["parameter"],\
 				new_species[mon]["evolution"]["target"])
