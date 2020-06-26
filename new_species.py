@@ -789,7 +789,7 @@ for mon in new_species:
 		tmp_text += "BACK_ANIM_VERTICAL_SHAKE,\n"
 		pokemon_animation_file_lines.insert(-2, tmp_text)
 		
-wrote_lines(pokemon_animation_file,pokemon_animation_file_lines)
+write_lines(pokemon_animation_file,pokemon_animation_file_lines)
 
 ########## graphics tables
 
