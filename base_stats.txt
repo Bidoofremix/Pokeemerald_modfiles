@@ -23,6 +23,6 @@
 .eggGroup1
 .eggGroup2
 .abilities
-.hiddenAbility
+.abilityHidden
 .bodyColor
 .noFlip
