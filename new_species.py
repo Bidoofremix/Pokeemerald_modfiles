@@ -710,7 +710,7 @@ new_pokemon_graphics_lines = []
 for mon in new_species:
 	if mon not in defined_new_mons:
 	
-		tmp_text = "const u32 gMonFrontPic_{0} = ".format(mon.capitalize())
+		tmp_text = "const u32 gMonFrontPic_{0}[] = ".format(mon.capitalize())
 		tmp_text += 'INCBIN_U32("graphics/pokemon/{0}/anim_front.4bpp.lz");\n'.format(mon.lower())
 		new_pokemon_graphics_lines.append(tmp_text)
 	
