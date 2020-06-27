@@ -656,7 +656,7 @@ write_lines(evolution_file,evolution_file_lines)
 
 ########## sprites
 
-sprite_files = ["front.png","front_anim.png","back.png",\
+sprite_files = ["front.png","anim_front.png","back.png",\
 	"footprint.png","normal.pal","shiny.pal","icon.png"]
 
 for mon in new_species:
