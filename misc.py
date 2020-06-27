@@ -3,7 +3,7 @@
 from config import pokeemerald_dir
 
 def write_lines(file,line_list):
-	with open(file, "w") as f:
+	with open(file, "w", encoding="utf-8") as f:
 		for line in line_list:
 			f.write(line)
 	print("wrote to: %s" % file)
@@ -36,5 +36,6 @@ def hex2dec(hex_num):
 	
 def clean_text(text):
 	text = text.replace("\\xe2\\x80\\x99","")
+	text = text.replace("\\xc3\\xa9","é")
 	text = text.encode("utf-8").decode("utf-8")
 	return text
