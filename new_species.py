@@ -16,6 +16,13 @@ with open(required_stats_file, "r") as f:
 	for line in f:
 		required_stats.append(line.rstrip("\n").rstrip("\r"))
 		
+pokedex_parameters_file = "pokedex_parameters.txt"
+
+pokedex_parameters = []
+with open(pokedex_parameters_file, "r") as f:
+	for line in f:
+		pokedex_parameters.append(line.rstrip("\n").rstrip("\r"))
+		
 ########## read new family-based order
 
 family_order = []
@@ -331,7 +338,7 @@ new_pokedex_entries  = []
 for mon in sorted(new_species):
 	if mon not in defined_new_mons:
 		new_pokedex_entries.append("    {\n")
-		for key in new_species[mon]["pokedex_entry"]:
+		for key in pokedex_parameters:
 			new_pokedex_entries.append("        {0} = {1},\n".format(\
 				key,new_species[mon]["pokedex_entry"][key]))
 		new_pokedex_entries.append("    },\n")
