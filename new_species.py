@@ -404,13 +404,14 @@ else:
 		for line in f:
 			pokedex_orders_file_lines.append(line)
 
-alphabetical_on = 0
-weight_on = 0	
-		
 for mon in new_species:
+
+	alphabetical_on = 0
+	lines_on = 0
+	
 	if mon not in defined_new_mons:
 		tmp_name = "    NATIONAL_DEX_{0},\n".format(mon)
-
+		
 		# alphabetical
 		for n,line in enumerate(pokedex_orders_file_lines):
 			if "const u16 gPokedexOrder_Alphabetical" in line:
@@ -422,7 +423,7 @@ for mon in new_species:
 				
 			if alphabetical_on and not line.startswith("{"):
 				if line > tmp_name:
-					pokedex_orders_file_lines[n-1:n-1] = [pokedex_orders_file_lines[n-1],tmp_name]
+					pokedex_orders_file_lines[n:n] = [tmp_name]
 					break
 		
 		# weight, height
@@ -430,10 +431,8 @@ for mon in new_species:
 		
 			if category == "weight":
 				compare_dict = weight_dict
-				compare_stat = mon_weight
 			elif category == "height":
 				compare_dict = height_dict
-				compare_stat = mon_height
 		
 			lines_on = 0
 			for n,line in enumerate(pokedex_orders_file_lines):
@@ -445,11 +444,11 @@ for mon in new_species:
 				
 				if lines_on and not line.startswith("{"):
 					compare_mon = line.strip().split(",")[0]
-					if compare_dict[compare_mon] > compare_stat:
+					if compare_dict[compare_mon] > new_species[mon]["pokedex_entry"]\
+						[".{0}".format(category)]:
 						pokedex_orders_file_lines[n:n] = [tmp_name]
 						break
-				
-				
+
 write_lines(pokedex_orders_file, pokedex_orders_file_lines)
 	
 ########## pokemon.c
