@@ -337,6 +337,7 @@ print("modify pokedex_entries.h")
 new_pokedex_entries  = []
 for mon in sorted(new_species):
 	if mon not in defined_new_mons:
+		new_pokedex_entries.append("    [NATIONAL_DEX_{0}] = \n".format(mon))
 		new_pokedex_entries.append("    {\n")
 		for key in pokedex_parameters:
 			new_pokedex_entries.append("        {0} = {1},\n".format(\
