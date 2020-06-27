@@ -205,17 +205,19 @@ if not os.path.isfile(species_file):
 				f.write(line)
 		f.write("// >\n")
 		
-defined_new_mons = set([])
+defined_new_mons = []
 with open(species_file, "r") as f:
 	species_file_lines = f.readlines()
 
 for line in species_file_lines:
-	line = line.split(" ")
-	if len(line) > 1:
-		if any([mon in line[1] for mon in new_species]):
-			for mon in new_species:
-				if mon in line:
-					defined_new_mons.append(mon)
+	if line.startswith("#define SPECIES"):
+		line = line.split(" ")
+		if len(line) > 1:
+			if any([mon in line[1] for mon in new_species]):
+				print(line)
+				for mon in new_species:
+					if mon in line[1]:
+						defined_new_mons.append(mon)
 
 print("\nof the {0} new mons:".format(len(new_species)))
 print(" {0} have been defined".format(len(defined_new_mons)))
@@ -248,6 +250,7 @@ for n,line in enumerate(species_file_lines):
 		stop_index = n
 
 new_national_dex_defines = []
+new_national_dex_defines.append("#define NATIONAL_DEX_NONE 0\n")
 for n,mon in enumerate(family_order):
 	new_national_dex_defines.append("#define NATIONAL_DEX_{0} {1}\n".format(\
 		mon,n+1))
@@ -408,43 +411,43 @@ for mon in new_species:
 	if mon not in defined_new_mons:
 		tmp_name = "    NATIONAL_DEX_{0},\n".format(mon)
 
-	# alphabetical
-	for n,line in enumerate(pokedex_orders_file_lines):
-		if "const u16 gPokedexOrder_Alphabetical" in line:
-			alphabetical_on = 1
-			continue
-			
-		elif "};" in line:
-			alphabetical_on = 0
-			
-		if alphabetical_on and not line.startswith("{"):
-			if line > tmp_name:
-				pokedex_orders_file_lines[n-1:n-1] = [pokedex_orders_file_lines[n-1],tmp_name]
-				break
-	
-	# weight, height
-	for category in ["weight", "height"]:
-	
-		if category == "weight":
-			compare_dict = weight_dict
-			compare_stat = mon_weight
-		elif category == "height":
-			compare_dict = height_dict
-			compare_stat = mon_height
-	
-		lines_on = 0
+		# alphabetical
 		for n,line in enumerate(pokedex_orders_file_lines):
-			if "const u16 gPokedexOrder_{0}".format(category.capitalize()) in line:
-				lines_on = 1
+			if "const u16 gPokedexOrder_Alphabetical" in line:
+				alphabetical_on = 1
 				continue
+				
 			elif "};" in line:
-				lines_on = 0
-			
-			if lines_on and not line.startswith("{"):
-				compare_mon = line.strip().split(",")[0]
-				if compare_dict[compare_mon] > compare_stat:
-					pokedex_orders_file_lines[n:n] = [tmp_name]
+				alphabetical_on = 0
+				
+			if alphabetical_on and not line.startswith("{"):
+				if line > tmp_name:
+					pokedex_orders_file_lines[n-1:n-1] = [pokedex_orders_file_lines[n-1],tmp_name]
 					break
+		
+		# weight, height
+		for category in ["weight", "height"]:
+		
+			if category == "weight":
+				compare_dict = weight_dict
+				compare_stat = mon_weight
+			elif category == "height":
+				compare_dict = height_dict
+				compare_stat = mon_height
+		
+			lines_on = 0
+			for n,line in enumerate(pokedex_orders_file_lines):
+				if "const u16 gPokedexOrder_{0}".format(category.capitalize()) in line:
+					lines_on = 1
+					continue
+				elif "};" in line:
+					lines_on = 0
+				
+				if lines_on and not line.startswith("{"):
+					compare_mon = line.strip().split(",")[0]
+					if compare_dict[compare_mon] > compare_stat:
+						pokedex_orders_file_lines[n:n] = [tmp_name]
+						break
 				
 				
 write_lines(pokedex_orders_file, pokedex_orders_file_lines)
