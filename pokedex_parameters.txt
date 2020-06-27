@@ -1,0 +1,8 @@
+.categoryName
+.description
+.height
+.pokemonOffset
+.pokemonScale
+.trainerOffset
+.trainerScale
+.weight
