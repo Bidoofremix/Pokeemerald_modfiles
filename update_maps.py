@@ -18,8 +18,8 @@ constants_dir = normalize_path("{0}\include\constants".format(pokeemerald_dir))
 
 modfile_dir = normalize_path(os.getcwd() + "\\raw")
 backup_dir = normalize_path(os.getcwd() + "\\raw_maps")
-graphics_dir = normalize_path(os.getcwd() + "\\graphics")
-sound_dir = normalize_path(os.getcwd() + "\\sound")
+graphics_dir = normalize_path("{0}/graphics".format(backup_dir))
+sound_dir = normalize_path("{0}/sound".format(backup_dir))
 
 ########## functions
 
@@ -55,7 +55,7 @@ print(map_dir)
 # all files that have been previously
 # modified by Porymap
 
-for folder in [map_dir,layout_dir,constants_dir,graphics_dir,sound_dir]:
+for folder in [map_dir,layout_dir,constants_dir]:
 
 	for dir, subdirs, files in os.walk(folder):
 	
@@ -102,13 +102,15 @@ for folder in [map_dir,layout_dir,constants_dir,graphics_dir,sound_dir]:
 
 custom_files = []
 
-for dir, subdirs, files in os.walk(backup_dir):
+for dir, subdirs, files in os.walk(backup_dir,sound_dir,graphics_dir):
 
 		for fname in files:
 
 			absolute_path = normalize_path("{0}/{1}".format(dir,fname))
 			mod_path = backup_to_mod(absolute_path)
-			if not os.path.isfile(mod_path):
+			if not fname.endswith((".aif",".png")) and not os.path.isfile(mod_path):
+				custom_files.append(absolute_path)
+			elif fname.endswith((".aif",".png")):
 				custom_files.append(absolute_path)
 
 ########## insert files before porymap
@@ -132,17 +134,18 @@ if args["mode"] == "insert":
 			
 			shutil.copyfile(file_meta[file]["backup"]["path"],\
 				file_meta[file]["mod"]["path"])
-			if file.endswith(("map.json","scripts.inc")):
+			if file.endswith(("map.json","scripts.inc",".aif",".png")):
 				Path(file_meta[file]["mod"]["path"]).touch(exist_ok=True)
 	
+	# insert custom files
 	for file in custom_files:
-	
-		print(backup_to_mod(file))
-	
-		folder = backup_to_mod(file).rsplit(slash,1)[0]
+		mod_filename = backup_to_mod(file)
+		folder = mod_filename.rsplit(slash,1)[0]
+		print(mod_filename)
 		if not os.path.isdir(folder):
 			os.makedirs(folder)
-		shutil.copy(file, backup_to_mod(file))
+		shutil.copy(file, mod_filename)
+		Path(mod_filename).touch(exist_ok=True)
 	
 	print("done")
 	
