@@ -279,7 +279,7 @@ with open(species_name_file, "r") as f:
 
 for mon in new_species:
 	if mon not in defined_new_mons:
-		line = '    [SPECIES_{0}] = _("{1}"),\n'.format(mon,new_species[mon]["display_name"])
+		line = '    [SPECIES_{0}] = {1},\n'.format(mon,new_species[mon]["display_name"])
 		species_name_file_lines.insert(-2,line)
 
 write_lines(species_name_file,species_name_file_lines)		
