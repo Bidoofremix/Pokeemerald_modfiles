@@ -936,8 +936,8 @@ for mon in new_species:
 		print("\nerror: did not find cry for %s" % mon)
 		exit(0)
 		
-	dest_file = normalize_path("raw_maps/sound/direct_sound_samples/{0}.aif".format(\
-		mon.lower()))
+	dest_file = normalize_path("raw_maps/sound/direct_sound_samples/cry_not_{0}.aif".\
+		format(mon.lower()))
 	
 	shutil.copy(cry_file,dest_file)
 	
