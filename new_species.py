@@ -924,6 +924,9 @@ write_lines(pokemon_icon_file,pokemon_icon_file_lines)
 
 ########## cry
 
+if not os.path.isdir("{0}/sound".format(raw_folder)):
+	os.makedir("{0}/sound".format(raw_folder))
+
 # order is important!
 cry_table_file = normalize_path("{0}/sound/cry_tables.inc".format(raw_folder))
 with open(cry_table_file, "w") as f:
