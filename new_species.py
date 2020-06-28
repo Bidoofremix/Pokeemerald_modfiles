@@ -72,6 +72,9 @@ for name in sheet_names:
 								"tutor_moves":[], "tmhm_moves":[],\
 								"pokedex_description":[[] for _ in range(4)],\
 								"pokedex_entry":{}}
+
+		if row[0] == "display_name":
+			new_species["mon"]["display_name"] = '_("{0}")'.format(row[1])
 								
 		if row[0].startswith("."):
 			if row[0] not in required_stats:
@@ -276,7 +279,7 @@ with open(species_name_file, "r") as f:
 
 for mon in new_species:
 	if mon not in defined_new_mons:
-		line = '    [SPECIES_{0}] = _("{1}"),\n'.format(mon,mon.capitalize())
+		line = '    [SPECIES_{0}] = _("{1}"),\n'.format(mon,new_species[mon]["display_name"])
 		species_name_file_lines.insert(-2,line)
 
 write_lines(species_name_file,species_name_file_lines)		
