@@ -74,7 +74,7 @@ for name in sheet_names:
 								"pokedex_entry":{}}
 
 		if row[0] == "display_name":
-			new_species["mon"]["display_name"] = '_("{0}")'.format(row[1])
+			new_species[mon]["display_name"] = '_("{0}")'.format(row[1])
 								
 		if row[0].startswith("."):
 			if row[0] not in required_stats:
