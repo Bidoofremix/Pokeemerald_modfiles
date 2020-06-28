@@ -95,10 +95,7 @@ for dir, subdirs, files in os.walk(raw_folder):
 
 			first_index = ""
 			last_index = ""
-
-			if end_codes[i] == 1:
-				last_index = len(original_lines)
-							
+		
 			for n,line in enumerate(original_lines):
 				tmp_line = line
 				
@@ -114,17 +111,20 @@ for dir, subdirs, files in os.walk(raw_folder):
 						last_index = n
 						break
 			
-			if first_index == "" or last_index == "":
+			if first_index == "" or (last_index == "" and not end_codes[i] == 1):
 				print("\nerror: did not find matching lines for:")
 				[print(c) for c in chunk]
 				
-				print("\nmismatch: ", end="")
+				print("\nmismatch:")
 				if first_index == "":
 					print("first line")
 				if last_index == "":
 					print("last line")
 				exit(0)
 			
+			if end_codes[i] == 1:
+				last_index = len(original_lines)
+					
 			# replacement lines
 			new_chunk = []
 			need_new_chunk = 0

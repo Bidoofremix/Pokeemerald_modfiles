@@ -949,13 +949,12 @@ with open(cry_table_file, "w") as f:
 direct_sound_file = normalize_path("{0}/sound/direct_sound_data.inc".format(raw_folder))
 with open(direct_sound_file, "w") as f:
 	f.write("< //\n")
-	f.write("\t.align 2\n")
 	f.write("Cry_Lycanroc_Dusk::\n")
 	f.write('\t.incbin "sound/direct_sound_samples/cry_not_lycanroc_dusk.bin"\n')
 	for mon in new_mon_national_order:
 		f.write("\t.align 2\n")
 		f.write("Cry_{0}::\n".format(mon.capitalize()))
-		f.write('\t.incbin "sound/direct_sound_samples/cry_not_{0}.bin"\n'.format(\
+		f.write('\t.incbin "sound/direct_sound_samples/cry_not_{0}.bin"\n\n'.format(\
 			mon.lower()))
 	f.write("DirectSoundWaveData_register_noise::\n")
 	f.write("// >\n")
