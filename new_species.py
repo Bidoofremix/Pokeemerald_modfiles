@@ -234,7 +234,8 @@ for n,line in enumerate(species_file_lines):
 		break
 
 new_species_defines = []
-for mon in sorted(new_species):
+new_mon_national_order = sorted(new_species, key=lambda x: family_order.index(x))
+for mon in new_mon_national_order:
 	new_species_defines.append("#define SPECIES_{0} {1}\n".format(\
 		mon,egg_index))
 	egg_index += 1
@@ -920,3 +921,39 @@ for mon in new_species:
 pokemon_icon_file_lines[n+2:n+2] = new_lines
 	
 write_lines(pokemon_icon_file,pokemon_icon_file_lines)
+
+########## cry
+
+# order is important!
+cry_table_file = normalize_path("{0}/sound/cry_tables.inc".format(raw_folder))
+with open(cry_table_file, "w") as f:
+	f.write("< //\n")
+	f.write("\tcry_not Cry_Lycanroc_Dusk\n")
+	for mon in new_mon_national_order:
+		f.write("\tcry_not Cry_{0}\n".format(mon.capitalize()))
+	f.write("\n")
+	f.write(".align 2\n")
+	f.write("gCryTable2:: @ 869EF24\n")
+	f.write("// >\n")
+	f.write("\n")
+	
+	f.write("< //\n")
+	f.write("\tcry2_not Cry_Lycanroc_Dusk\n")
+	for mon in new_mon_national_order:
+		f.write("\tcry2_not Cry_{0}\n".format(mon.capitalize()))
+	f.write("// > END\n")
+	
+direct_sound_file = normalize_path("{0}/sound/direct_sound_data.inc".format(raw_folder))
+with open(direct_sound_file, "w") as f:
+	f.write("< //\n")
+	f.write("\t.align 2\n")
+	f.write("Cry_Lycanroc_Dusk::\n")
+	f.write('\t.incbin "sound/direct_sound_samples/cry_not_lycanroc_dusk.bin"\n')
+	for mon in new_mon_national_order:
+		f.write("\t.align 2\n")
+		f.write("Cry_{0}::\n".format(mon.capitalize()))
+		f.write('\t.incbin "sound/direct_sound_samples/cry_not_{0}.bin"\n'.format(\
+			mon.lower()))
+	f.write("DirectSoundWaveData_register_noise::\n")
+	f.write("// >\n")
+
