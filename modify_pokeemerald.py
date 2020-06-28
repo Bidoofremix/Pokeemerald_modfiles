@@ -95,7 +95,10 @@ for dir, subdirs, files in os.walk(raw_folder):
 
 			first_index = ""
 			last_index = ""
-			
+
+			if end_codes[i] == 1:
+				last_index = len(original_lines)
+							
 			for n,line in enumerate(original_lines):
 				tmp_line = line
 				
@@ -142,9 +145,6 @@ for dir, subdirs, files in os.walk(raw_folder):
 			if need_new_chunk:
 				chunk = new_chunk
 
-			if end_codes[i] == 1:
-				last_index = len(original_lines)
-				
 			original_lines[first_index:last_index+1] = chunk
 		
 		with open(pokeemerald_path, "w", encoding=encoding) as f:
