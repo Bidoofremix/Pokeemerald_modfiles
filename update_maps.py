@@ -134,7 +134,7 @@ if args["mode"] == "insert":
 			
 			shutil.copyfile(file_meta[file]["backup"]["path"],\
 				file_meta[file]["mod"]["path"])
-			if file.endswith(("map.json","scripts.inc",".aif",".png")):
+			if file.endswith(("map.json","scripts.inc")):
 				Path(file_meta[file]["mod"]["path"]).touch(exist_ok=True)
 	
 	# insert custom files
