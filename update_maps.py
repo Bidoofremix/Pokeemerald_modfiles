@@ -17,8 +17,9 @@ layout_dir = normalize_path("{0}\data\layouts".format(pokeemerald_dir))
 constants_dir = normalize_path("{0}\include\constants".format(pokeemerald_dir))
 
 modfile_dir = normalize_path(os.getcwd() + "\\raw")
-
 backup_dir = normalize_path(os.getcwd() + "\\raw_maps")
+graphics_dir = normalize_path(os.getcwd() + "\\graphics")
+sound_dir = normalize_path(os.getcwd() + "\\sound")
 
 ########## functions
 
@@ -54,7 +55,7 @@ print(map_dir)
 # all files that have been previously
 # modified by Porymap
 
-for folder in [map_dir,layout_dir,constants_dir]:
+for folder in [map_dir,layout_dir,constants_dir,graphics_dir,sound_dir]:
 
 	for dir, subdirs, files in os.walk(folder):
 	

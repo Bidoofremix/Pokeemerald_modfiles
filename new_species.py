@@ -682,9 +682,8 @@ for mon in new_species:
 		
 	for file in sprite_files:
 		dest_file = normalize_path("{0}/{1}".format(dest_folder,file))
-		if not os.path.isfile(dest_file):
-			shutil.copy(normalize_path("{0}/{1}".format(sprite_folder,file)),\
-				dest_file)
+		shutil.copy(normalize_path("{0}/{1}".format(sprite_folder,file)),\
+			dest_file)
 				
 ########## graphics.h
 
