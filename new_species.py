@@ -932,7 +932,7 @@ if not os.path.isdir("{0}/sound".format(raw_folder)):
 # check that cries exist and copy them
 for mon in new_species:
 	cry_file = normalize_path("sound/cry_not_{0}.aif".format(mon.lower()))
-	if not os.path.isdir(cry_file):
+	if not os.path.isfile(cry_file):
 		print("\nerror: did not find cry for %s" % mon)
 		exit(0)
 		
