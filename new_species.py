@@ -929,6 +929,18 @@ write_lines(pokemon_icon_file,pokemon_icon_file_lines)
 if not os.path.isdir("{0}/sound".format(raw_folder)):
 	os.makedir("{0}/sound".format(raw_folder))
 
+# check that cries exist and copy them
+for mon in new_species:
+	cry_file = normalize_path("sound/cry_not_{0}.aif".format(mon.lower()))
+	if not os.path.isdir(sprite_folder):
+		print("\nerror: did not find cry for %s" % mon)
+		exit(0)
+		
+	dest_file = normalize_path("raw_maps/sound/direct_sound_samples/{0}.aif".format(\
+		mon.lower()))
+	
+	shutil.copy(cry_file,dest_file)
+	
 # order is important!
 cry_table_file = normalize_path("{0}/sound/cry_tables.inc".format(raw_folder))
 with open(cry_table_file, "w") as f:
