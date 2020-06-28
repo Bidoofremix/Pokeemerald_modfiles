@@ -262,8 +262,10 @@ for n,mon in enumerate(family_order):
 		new_national_dex_defines.append("\n#define KANTO_DEX_COUNT NATIONAL_DEX_MEW\n\n")
 	elif mon == "CELEBI":
 		new_national_dex_defines.append("\n#define JOHTO_DEX_COUNT NATIONAL_DEX_CELEBI\n\n")
+new_national_dex_defines.append("#define	NATIONAL_DEX_COUNT NATIONAL_DEX_{0}\n".\
+	format(family_order[-1]))
 		
-species_file_lines[start_index:stop_index] = new_national_dex_defines
+species_file_lines[start_index:stop_index+1] = new_national_dex_defines
 
 write_lines(species_file,species_file_lines)
 
