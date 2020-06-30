@@ -21,14 +21,17 @@ item_file = normalize_path("{0}/include/constants/items.h".format(\
 	pokeemerald_dir))
 
 #TM moves
-tm_pattern = r'#define ITEM_((T|H)M\d{2}_.+) '	
-	
-defined_tmmoves = []
+tm_pattern = r'#define ITEM_([T|H]M\d{2}_(.+)) '	
+attack2tm = {}
 with open(item_file, "r") as f:
 	for line in f:
 		re_match = re.match(tm_pattern,line)
 		if re_match:
-			defined_tmmoves.append(re_match.group(1))
+			tm_move = re_match.group(1)
+			move = re_match.group(2)
+			attack2tm[move] = tm_move
+			
+print(attack2tm)
 
 ########## functions
 
@@ -50,7 +53,7 @@ def check_move(move):
 	
 def check_tmmove(move):
 	tmp_move = underscore_upper(move)
-	if tmp_move not in defined_tmmoves:
+	if tmp_move not in attack2tm:
 		print("\nerror: did not recognize TM/HM move '%s'" % move)
 		exit(0)
-	return tmp_move
+	return attack2tm[tmp_move]
