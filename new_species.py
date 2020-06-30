@@ -587,7 +587,7 @@ for mon in new_species:
 		moves = sorted(new_species[mon]["tmhm_moves"])
 		new_lines.append("    [SPECIES_{0}] = TMHM_LEARNSET(TMHM({1})\n".format(\
 			mon,moves[0]))
-		for move in moves[1:]:
+		for move in sorted(moves[1:]):
 			new_lines.append("\t"*11 + "| TMHM({0})\n".format(move))
 		new_lines[-1] = new_lines[-1].replace("\n","),\n")
 
