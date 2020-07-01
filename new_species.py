@@ -157,14 +157,20 @@ for name in sheet_names:
 	new_species[mon]["pokedex_entry"][".description"] = "g{0}PokedexText".format(\
 		mon.capitalize())
 	
-########## insert new species to list
-
-for mon in new_species:
 	who_index = family_order.index(insert_info[mon]["who"])
 	if insert_info[mon]["where"] == "after":
 		family_order.insert(who_index+1,mon)
 	elif insert_info[mon]["where"] == "before":
 		family_order.insert(who_index,mon)
+	
+########## insert new species to list
+
+# for mon in new_species:
+	# who_index = family_order.index(insert_info[mon]["who"])
+	# if insert_info[mon]["where"] == "after":
+		# family_order.insert(who_index+1,mon)
+	# elif insert_info[mon]["where"] == "before":
+		# family_order.insert(who_index,mon)
 
 ########## define species
 

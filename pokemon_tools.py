@@ -30,8 +30,6 @@ with open(item_file, "r") as f:
 			tm_move = re_match.group(1)
 			move = re_match.group(2)
 			attack2tm[move] = tm_move
-			
-print(attack2tm)
 
 ########## functions
 
