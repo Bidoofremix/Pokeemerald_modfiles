@@ -29,8 +29,11 @@ with open(item_file, "r") as f:
 		if re_match:
 			tm_move = re_match.group(1)
 			move = re_match.group(2)
+			# adjust spacing of solarbeam
+			if move == "SOLARBEAM":
+				move = "SOLAR_BEAM"
 			attack2tm[move] = tm_move
-
+			
 ########## functions
 
 def underscore_upper(text):
