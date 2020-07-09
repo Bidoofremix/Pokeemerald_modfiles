@@ -181,9 +181,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                     break;
             }
             SetMonData(&party[i], MON_DATA_POKEBALL, &gTrainerBallTable[j].Ball);
-         }
-			
-			
         }
 
         gBattleTypeFlags |= gTrainers[trainerNum].doubleBattle;
