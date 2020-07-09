@@ -5,7 +5,7 @@ EventScript_RepelWoreOff:: @ 82A4B2A
 	goto_if_eq EventScript_RepelWoreOff_NoMoreRepels
 	msgbox Text_RepelWoreOff_UseAnother, MSGBOX_YESNO
 	compare VAR_RESULT, 0
-	goto_if_eq goto_if_eq EventScript_RepelWoreOff_ChooseNo
+	goto_if_eq EventScript_RepelWoreOff_ChooseNo
 	copyvar VAR_0x8004, VAR_REPEL_LAST_USED
 	callnative ItemId_GetHoldEffectParam_Script
 	copyvar VAR_REPEL_STEP_COUNT, VAR_RESULT
