@@ -12,5 +12,4 @@ void ItemId_GetHoldEffectParam_Script()
 }
 
 static void SetBagItemQuantity(u16 *quantity, u16 newValue)
-{
 // >
