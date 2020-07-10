@@ -45,9 +45,15 @@ for dir, subdirs, files in os.walk(raw_folder):
 		
 		print(pokeemerald_path)
 		
+		# fix japanese characters in strings.c
+		if fname in ["strings.c"]:
+			encoding = "utf-8"
+		else:
+			encoding = "ISO-8859-15"
+			
 		with open(pokeemerald_path, "r", encoding=encoding) as f:
 			original_lines = f.read().splitlines()
-			
+		
 		with open(mod_path, "r", encoding=encoding) as f:
 			mod_lines = f.read().splitlines()
 		
