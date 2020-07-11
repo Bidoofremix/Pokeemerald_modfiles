@@ -65,7 +65,7 @@ static void Task_BuyMenu(u8 taskId)
             BuyMenuRemoveScrollIndicatorArrows();
             BuyMenuPrintCursor(tListTaskId, 2);
 
-            if (gMartInfo.martType == MART_TYPE_NORMAL)
+            if (gMartInfo.martType == MART_TYPE_NORMAL || gMartInfo.martType == MART_TYPE_TM)
             {
                 gShopDataPtr->totalCost = (ItemId_GetPrice(itemId) >> GetPriceReduction(POKENEWS_SLATEPORT));
             }
@@ -77,10 +77,6 @@ static void Task_BuyMenu(u8 taskId)
             if (!IsEnoughMoney(&gSaveBlock1Ptr->money, gShopDataPtr->totalCost))
             {
                 BuyMenuDisplayMessage(taskId, gText_YouDontHaveMoney, BuyMenuReturnToItemList);
-			}	
-            else if (ItemId_GetPocket(itemId) == POCKET_TM_HM && CheckBagHasItem(itemId, 1))
-            {
-                BuyMenuDisplayMessage(taskId, gText_YouAlreadyHaveThis, BuyMenuReturnToItemList);
             }
             else
             {
@@ -95,6 +91,29 @@ static void Task_BuyMenu(u8 taskId)
                     else
                     {
                         BuyMenuDisplayMessage(taskId, gText_Var1CertainlyHowMany, Task_BuyHowManyDialogueInit);
+                    }
+                }
+                else if (gMartInfo.martType == MART_TYPE_TM)
+                {
+                    CopyItemName(itemId, gStringVar1);
+                    
+                    ConvertIntToDecimalStringN(gStringVar2, gShopDataPtr->totalCost, STR_CONV_MODE_LEFT_ALIGN, 6);
+
+                    if (ItemId_GetPocket(itemId) == POCKET_TM_HM)
+                    {
+                        StringCopy(gStringVar4, gMoveNames[ItemIdToBattleMoveId(itemId)]);
+                    }
+
+                    StringExpandPlaceholders(gStringVar4, gText_YouWantedVar1ThatllBeVar2);
+                    
+                    if (!GetSetItemBought(gMartInfo.shopId, gShopDataPtr->selectedRow + gShopDataPtr->scrollOffset, FLAG_GET_BOUGHT))
+                    {
+                        tItemCount = 1;
+                        BuyMenuDisplayMessage(taskId, gStringVar4, BuyMenuConfirmPurchase);
+                    }
+                    else
+                    {
+                        BuyMenuDisplayMessage(taskId, gText_SorryWereOutOfThis, BuyMenuReturnToItemList);
                     }
                 }
                 else
@@ -321,4 +340,119 @@ static void BuyMenuAddItemIcon(u16 item, u8 iconSlot)
 }
 
 static void BuyMenuRemoveItemIcon(u16 item, u8 iconSlot)
+// >
+
+< //
+static void BuyMenuConfirmPurchase(u8 taskId)
+{
+    CreateYesNoMenuWithCallbacks(taskId, &sShopBuyMenuYesNoWindowTemplates, 1, 0, 0, 1, 13, &sShopPurchaseYesNoFuncs);
+}
+
+static void BuyMenuTryMakePurchase(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    PutWindowTilemap(1);
+
+    if (gMartInfo.martType == MART_TYPE_NORMAL)
+    {
+        if (AddBagItem(tItemId, tItemCount) == TRUE)
+        {
+            BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYou, BuyMenuSubtractMoney);
+            RecordItemPurchase(taskId);
+        }
+        else
+        {
+            BuyMenuDisplayMessage(taskId, gText_NoMoreRoomForThis, BuyMenuReturnToItemList);
+        }
+    }
+    else if (gMartInfo.martType == MART_TYPE_TM)
+    {
+        if (AddBagItem(tItemId, tItemCount) == TRUE)
+        {
+            GetSetItemBought(gMartInfo.shopId, gShopDataPtr->selectedRow + gShopDataPtr->scrollOffset, FLAG_SET_BOUGHT);
+            BuyMenuDisplayMessage(taskId, gText_HereYouGoThankYou, BuyMenuSubtractMoney);
+            RecordItemPurchase(taskId);
+        }
+        else
+        {
+            BuyMenuDisplayMessage(taskId, gText_NoMoreRoomForThis, BuyMenuReturnToItemList);
+        }
+    }
+    else
+    {
+        if (DecorationAdd(tItemId))
+        {
+            if (gMartInfo.martType == MART_TYPE_DECOR)
+            {
+                BuyMenuDisplayMessage(taskId, gText_ThankYouIllSendItHome, BuyMenuSubtractMoney);
+            }
+            else
+            {
+                BuyMenuDisplayMessage(taskId, gText_ThanksIllSendItHome, BuyMenuSubtractMoney);
+            }
+        }
+        else
+        {
+            BuyMenuDisplayMessage(taskId, gText_SpaceForVar1Full, BuyMenuReturnToItemList);
+        }
+    }
+}
+
+static void BuyMenuSubtractMoney(u8 taskId)
+{
+    IncrementGameStat(GAME_STAT_SHOPPED);
+    RemoveMoney(&gSaveBlock1Ptr->money, gShopDataPtr->totalCost);
+    PlaySE(SE_REGI);
+    PrintMoneyAmountInMoneyBox(0, GetMoney(&gSaveBlock1Ptr->money), 0);
+
+    if (gMartInfo.martType == MART_TYPE_NORMAL)
+    {
+        gTasks[taskId].func = Task_ReturnToItemListAfterItemPurchase;
+    }
+    else if (gMartInfo.martType == MART_TYPE_TM)
+    {
+        gTasks[taskId].func = Task_ReturnToItemListAfterTMShopPurchase;
+    }
+    else
+    {
+        gTasks[taskId].func = Task_ReturnToItemListAfterDecorationPurchase;
+    }
+}
+
+static void Task_ReturnToItemListAfterTMShopPurchase(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+
+    if (gMain.newKeys & (A_BUTTON | B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        RedrawListMenu(tListTaskId);
+        BuyMenuReturnToItemList(taskId);
+    }
+}
+
+static void Task_ReturnToItemListAfterItemPurchase(u8 taskId)
+// >
+
+< //
+void CreatePokemartMenu(const u16 *itemsForSale)
+{
+    CreateShopMenu(MART_TYPE_NORMAL);
+    SetShopItemsForSale(itemsForSale);
+    SetShopId(0);
+    ClearItemPurchases();
+    SetShopMenuCallback(EnableBothScriptContexts);
+}
+
+void CreateTMShopMenu(const u16 *itemsForSale, u8 shopId)
+{
+    CreateShopMenu(MART_TYPE_TM);
+    SetTMShopItemsForSale(itemsForSale);
+    SetShopId(shopId);
+    ClearItemPurchases();
+    SetShopMenuCallback(EnableBothScriptContexts);
+}
+
+void CreateDecorationShop1Menu(const u16 *itemsForSale)
 // >
