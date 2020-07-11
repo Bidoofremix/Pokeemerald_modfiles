@@ -13,11 +13,12 @@
 					{
 						gPaydayMoney += (gBattleMons[gBattlerAttacker].level * 10);
 					}
+                    
 					if (PayDay > gPaydayMoney)
                         gPaydayMoney = 0xFFFF;
                 }
                 BattleScriptPush(gBattlescriptCurrInstr + 1);
-                gBattlescriptCurrInstr = sMoveEffectBS_Ptrs[gBattleCommunication[MOVE_EFFECT_BYTE]];
+                gBattlescriptCurrInstr = sMoveEffectBS_Ptrs[gBattleScripting.moveEffect];
                 break;
-            case MOVE_EFFECT_TRI_ATTACK:
+            case MOVE_EFFECT_HAPPY_HOUR:
 // >
