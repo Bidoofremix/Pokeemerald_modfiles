@@ -3,7 +3,7 @@
 	.macro pokemart products:req, tmshopid = 0
 	.byte 0x86
 	.4byte \products
-	.2byte \tmpshopid
+	.2byte \tmshopid
 	.endm
 
 	@ Opens the Pokemart system and treats the list of items as decorations.
