@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import os,re,xlrd,argparse
+import os,re,xlrd,argparse,copy
 from config import pokeemerald_dir,slash
 from misc import normalize_path
 
@@ -78,11 +78,22 @@ for dir, subdirs, files in os.walk(raw_folder):
 			else:
 				tmp.append(line)
 				
-		# remove leading comment line // <
-		mod_chunks = [m[1:] for m in mod_chunks]
+		# remove leading empty lines and comment line < //
+		tmp_chunks = []
+		for m in mod_chunks:
+			while m[0].replace(" ","") == "":
+				m = m[1:]
+			if m[0] == "< //":
+				m = m[1:]
+				tmp_chunks.append(m)
+			else:
+				print("\nerror: found chunk not starting with < //")
+				[print(c) for c in m]
+				exit(0)
+		mod_chunks = copy.deepcopy(tmp_chunks)
 		
 		for i,chunk in enumerate(mod_chunks):
-
+		
 			define = 0
 			first_match = chunk[0]
 			func_name = ""

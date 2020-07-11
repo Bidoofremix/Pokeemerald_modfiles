@@ -23,7 +23,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokenav::
 	return
 // >
 
-// < main function to give pokedex and pokenav
+< // main function to give pokedex and pokenav
 LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex:: @ 81FA2F8
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex, MSGBOX_DEFAULT
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex
@@ -35,7 +35,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex:: @ 81FA2F8
 	closemessage
 // >
 
-// < text for pokedex and pokenav
+< // text for pokedex and pokenav
 LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex: @ 81FAC32
 	.string "{PLAYER} received the POKéDEX!$"
 
