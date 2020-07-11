@@ -68,7 +68,7 @@ u8 sub_8013DBC(struct UnkStruct_Group *data, u32 id)
     return 0;
 }
 
-void sub_8013DF4(u8 arg0, s32 id, u8 arg2), u8 itemPos
+void sub_8013DF4(u8 arg0, s32 id, u8 arg2, u8 itemPos)
 {
     struct UnkStruct_Group *data = gUnknown_02022C30.group;
     u8 var = sub_8013DBC(data, id);
