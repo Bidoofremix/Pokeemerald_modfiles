@@ -7,11 +7,11 @@
 					// more payday money with ability bonanza
 					if (gBattleMons[gBattlerAttacker].ability != ABILITY_BONANZA)
 					{
-						gPaydayMoney += (gBattleMons[gBattlerAttacker].level * 10);
+						gPaydayMoney += (gBattleMons[gBattlerAttacker].level * 5);
                     }
 					else
 					{
-						gPaydayMoney += (gBattleMons[gBattlerAttacker].level * 5);
+						gPaydayMoney += (gBattleMons[gBattlerAttacker].level * 10);
 					}
 					if (PayDay > gPaydayMoney)
                         gPaydayMoney = 0xFFFF;
