@@ -69,7 +69,6 @@ void PrintItemQuantityPlusGFX(u8 rboxId, s32 item_index_in_pocket, u8 a, u8 list
 void BagMenu_PrintDescription(int a)
 // >
 
-
 < //
 void DisplaySellItemAskString(u8 taskId)
 {
