@@ -83,7 +83,7 @@ for dir, subdirs, files in os.walk(raw_folder):
 		for m in mod_chunks:
 			while m[0].replace(" ","") == "":
 				m = m[1:]
-			if m[0] == "< //":
+			if m[0].startswith("< //"):
 				m = m[1:]
 				tmp_chunks.append(m)
 			else:

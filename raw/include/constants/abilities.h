@@ -1,4 +1,4 @@
-// <
+< //
 #define ABILITY_NEUROFORCE 234
 #define ABILITY_FLUTTER 235
 #define ABILITY_BONANZA 236

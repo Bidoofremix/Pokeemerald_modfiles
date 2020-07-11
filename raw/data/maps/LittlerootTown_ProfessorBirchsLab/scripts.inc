@@ -1,4 +1,4 @@
-// < event scripts for pokedex and pokenav
+< // event scripts for pokedex and pokenav
 LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex:: @ 81FA3AC
 	playfanfare MUS_FANFA4
 	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex

@@ -1,4 +1,4 @@
-// <
+< //
 Route103_MapScripts:: @ 81EC38E
 	map_script MAP_SCRIPT_ON_TRANSITION, Route103_OnTransition
 	map_script MAP_SCRIPT_ON_LOAD, Route103_OnLoad
@@ -22,7 +22,7 @@ Route103_EventScript_CanGoEast:
 Route103_EventScript_Rival:: @ 81EC3C1
 // >
 
-// <
+< //
 Route103_EventScript_Isabelle:: @ 81EC78F
 	trainerbattle_single TRAINER_ISABELLE, Route103_Text_IsabelleIntro, Route103_Text_IsabelleDefeated
 	msgbox Route103_Text_IsabellePostBattle, MSGBOX_AUTOCLOSE

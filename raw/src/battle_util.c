@@ -1,16 +1,16 @@
-// <
+< //
     [ABILITY_LEVITATE] = 1,
 	[ABILITY_FLUTTER] = 1,
     [ABILITY_LIGHTNING_ROD] = 1,
 // >
 
-// <
+< //
     else if (GetBattlerAbility(battlerId) == ABILITY_LEVITATE)
 #R  else if (GetBattlerAbility(battlerId) == ABILITY_LEVITATE || GetBattlerAbility(battlerId) == ABILITY_FLUTTER)
         return FALSE;
 // >
 
-// <
+< //
     if (moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef))
     {
         modifier = UQ_4_12(0.0);
@@ -25,7 +25,7 @@
     }
 // >
 
-// <
+< //
         if (moveType == TYPE_GROUND && abilityDef == ABILITY_LEVITATE && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
 #R      if (moveType == TYPE_GROUND && (abilityDef == ABILITY_LEVITATE || abilityDef == ABILITY_FLUTTER) && !(gFieldStatuses & STATUS_FIELD_GRAVITY))
             modifier = UQ_4_12(0.0);

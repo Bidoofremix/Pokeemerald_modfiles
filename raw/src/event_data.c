@@ -1,10 +1,10 @@
-// <
+< //
 #include "event_data.h"
 #include "constants/species.h"
 #include "pokedex.h"
 // >
 
-// <
+< //
 void DisableNationalPokedex(void)
 {
     u16 *nationalDexVar = GetVarPointer(VAR_NATIONAL_DEX);
