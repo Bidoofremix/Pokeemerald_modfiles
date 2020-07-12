@@ -222,10 +222,9 @@ for line in species_file_lines:
 	if line.startswith("#define SPECIES"):
 		line = line.split(" ")
 		if len(line) > 1:
-			if any([mon in line[1] for mon in new_species]):
-				print(line)
+			if any(["SPECIES_%s" % mon == line[1] for mon in new_species]):
 				for mon in new_species:
-					if mon in line[1]:
+					if "SPECIES_%s" % mon in line[1]:
 						defined_new_mons.append(mon)
 
 print("\nof the {0} new mons:".format(len(new_species)))
