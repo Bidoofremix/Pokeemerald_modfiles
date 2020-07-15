@@ -13,7 +13,8 @@ const struct CompressedSpriteSheet gTrainerFrontPicTable[] =
     TRAINER_SPRITE(MEWTWO, gTrainerFrontPic_Mewtwo, 0x800),
     TRAINER_SPRITE(AQUA_GRUNT_M, gTrainerFrontPic_AquaGruntM, 0x800),
 // >	
-	
+
+< //
 const struct CompressedSpritePalette gTrainerFrontPicPaletteTable[] =
 {
     TRAINER_PAL(HIKER, gTrainerPalette_Hiker),

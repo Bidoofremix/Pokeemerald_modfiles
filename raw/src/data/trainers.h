@@ -18,7 +18,7 @@
 		.partyFlags = 0,
 		.trainerClass = TRAINER_CLASS_MEWTWO,
 		.encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
-	    .trainerPic = TRAINER_PIC_HIKER,
+	    .trainerPic = TRAINER_PIC_MEWTWO,
         .trainerName = _(""),
         .items = {},
         .doubleBattle = FALSE,
