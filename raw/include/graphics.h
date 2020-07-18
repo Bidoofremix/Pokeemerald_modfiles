@@ -1,7 +1,8 @@
 < //
-extern const u32 gMonShinyPalette_LycanrocDusk[];
+extern const u32 gMonFrontPic_Bulbasaur[];
 
-extern const u8 gMonIcon_QuestionMark[];
+// trainer sprites
+extern const u32 gTrainerFrontPic_Hiker[];
 // >
 
 < //
