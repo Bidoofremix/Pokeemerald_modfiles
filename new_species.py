@@ -231,34 +231,6 @@ with open(species_file, "w") as f:
 		f.write("\n")
 		f.write("// > END")
 		
-			
-		for line in species_file_lines:
-			if line.startswith(national_dex_start):
-				national_defines_on = 1
-			elif line.startswith(national_dex_end):
-				national_defines_on = 0
-				# skip old national dex count definition
-				continue
-			
-			if national_defines_on and not wrote_lines:
-				f.write("#define NATIONAL_DEX_NONE 0\n")
-				iter_round = 1
-				for mon in family_order:
-					f.write("#define NATIONAL_DEX_{0} {1}\n".format(\
-						mon,iter_round))
-					iter_round += 1
-					if mon == "MEW":
-						f.write("\n#define KANTO_DEX_COUNT NATIONAL_DEX_MEW\n\n")
-					elif mon == "CELEBI":
-						f.write("\n#define JOHTO_DEX_COUNT NATIONAL_DEX_CELEBI\n\n")
-				f.write("\n#define NATIONAL_DEX_COUNT NATIONAL_DEX_{0}\n".format(\
-					family_order[-1]))
-				wrote_lines = 1
-			
-			elif not national_defines_on:
-				f.write(line)
-		f.write("// >\n")
-		
 print("\nimplementing {0} new mons".format(len(new_species)))
 
 ########## species name
