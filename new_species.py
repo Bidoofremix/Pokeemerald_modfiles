@@ -768,28 +768,6 @@ with open(evolution_file, "w") as f:
 					evo_data[mon][-1][1],evo_data[mon][-1][2]))
 	f.write("};\n")
 	f.write("// > END")
-	
-exit(0)
-
-with open(evolution_file, "r") as f:
-	evolution_file_lines = f.readlines()
-	
-new_lines = []
-for mon in new_species:
-	if not mon in defined_new_mons:
-		if "evolution" in new_species[mon]:
-			tmp_text = "    [SPECIES_{0}] = {{{{".format(mon)
-			tmp_text += "{0}, {1}, SPECIES_{2}".format(\
-				new_species[mon]["evolution"]["method"],\
-				new_species[mon]["evolution"]["parameter"],\
-				new_species[mon]["evolution"]["target"])
-			tmp_text += "}},\n"
-			
-			new_lines.append(tmp_text)
-			
-evolution_file_lines[-2:-2] = new_lines
-
-write_lines(evolution_file,evolution_file_lines)
 
 ########## sprites
 
@@ -821,6 +799,40 @@ for mon in new_species:
 ########## graphics.h
 
 graphics_file = normalize_path("{0}/include/graphics.h".format(raw_folder))
+
+print("modify %s" % graphics_file)
+
+with open(graphics_file, "r") as f:
+	graphics_file_lines = f.readlines()
+		
+start_index = None
+for n,line in enumerate(graphics_file_lines):
+	if "extern const u32 gMonFrontPic_Bulbasaur[];" in line:
+		start_index = n
+		break
+if not start_index:
+	print("\nerror: did not find anchor for graphics list")
+	exit(0)
+		
+new_graphics_lines = []
+for mon in family_order:
+	for category in ["FrontPic","BackPic","Palette",\
+		"ShinyPalette","Icon","Footprint"]:
+			if category in ["Icon","Footprint"]:
+				g_type = "u8"
+			else:
+				g_type = "u32"
+			new_graphics_lines.append("extern const {0} gMon{1}_{2}[];\n".format(\
+				g_type,caps2joined[mon],category))
+	new_graphics_lines.append("\n")
+
+graphics_file_lines[start_index:start_index+1] = new_graphics_lines
+
+write_lines(graphics_file, graphics_file_lines)
+
+#################
+
+exit(0)
 
 graphics_file_lines = []
 with open(graphics_file, "r") as f:
