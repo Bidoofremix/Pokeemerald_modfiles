@@ -178,15 +178,60 @@ national_dex_start = "#define NATIONAL_DEX_NONE"
 national_dex_end = "#define NATIONAL_DEX_COUNT"
 
 species_file = normalize_path("{0}/include/constants/species.h".format(raw_folder))
-if not os.path.isfile(species_file):
-	print("species.h not detected, create new")
-	with open("{0}/include/constants/species.h".format(vanilla_dir), "r") as f:
-		species_file_lines = f.readlines()
-
-	national_defines_on = 0
-	wrote_lines = 0
-	with open(species_file, "w") as f:
+print("create %s" % species_file)
+with open(species_file, "w") as f:
 		f.write("< //\n")
+		f.write("#ifndef GUARD_CONSTANTS_SPECIES_H\n")
+		f.write("#define GUARD_CONSTANTS_SPECIES_H\n")
+		f.write("\n")
+		f.write("#define SPECIES_NONE 0\n")
+		iter_round = 1
+		for mon in family_order:
+			f.write("#define SPECIES_{0} {1}\n".format(mon,iter_round))
+			iter_round += 1
+		f.write("#define SPECIES_EGG {0}\n".format(iter_round)
+		f.write("#define NUM_SPECIES SPECIES_EGG\n")
+		f.write("\n")
+		
+		# unown forms
+		f.write("// Unown forms, not actual species\n")
+		for i in range(1,27):
+			f.write("#define SPECIES_UNOWN_{0} {1}".format(chr(i+64),i))
+		f.write("#define SPECIES_UNOWN_EMARK NUM_SPECIES + 27\n")
+		f.write("#define SPECIES_UNOWN_QMARK NUM_SPECIES + 28\n")	
+			
+		f.write("\n")
+		f.write("// National Dex Index Defines\n")
+		f.write("\n")
+			
+		# national dex defines
+		f.write("#define SPECIES_NONE 0\n")
+		iter_round = 1
+		for mon in family_order:
+			f.write("#define NATIONAL_DEX_{0} {1}\n".format(mon,iter_round))
+			iter_round += 1
+			if mon == "MEW":
+						f.write("\n#define KANTO_DEX_COUNT NATIONAL_DEX_MEW\n\n")
+					elif mon == "CELEBI":
+						f.write("\n#define JOHTO_DEX_COUNT NATIONAL_DEX_CELEBI\n\n")
+		f.write("\n#define NATIONAL_DEX_COUNT NATIONAL_DEX_{0}\n".format(\
+					family_order[-1]))
+		
+		# hoenn dex defines
+		f.write("\n")
+		f.write("// Hoenn Dex Index Defines\n")
+		iter_round = 1
+		for mon in family_order:
+			f.write("#define HOENN_DEX_{0} {1}\n".format(mon,iter_round))
+			iter_round += 1
+		f.write("\n#define HOENN_DEX_COUNT {0}\n".format(iter_round + 1)
+
+		f.write("\n")
+		f.write("#endif  // GUARD_CONSTANTS_SPECIES_H\n")
+		f.write("\n")
+		f.write("// > END")
+		
+			
 		for line in species_file_lines:
 			if line.startswith(national_dex_start):
 				national_defines_on = 1
@@ -214,65 +259,7 @@ if not os.path.isfile(species_file):
 				f.write(line)
 		f.write("// >\n")
 		
-defined_new_mons = []
-with open(species_file, "r") as f:
-	species_file_lines = f.readlines()
-
-for line in species_file_lines:
-	if line.startswith("#define SPECIES"):
-		line = line.split(" ")
-		if len(line) > 1:
-			if any(["SPECIES_%s" % mon == line[1] for mon in new_species]):
-				for mon in new_species:
-					if "SPECIES_%s" % mon in line[1]:
-						defined_new_mons.append(mon)
-
-print("\nof the {0} new mons:".format(len(new_species)))
-print(" {0} have been defined".format(len(defined_new_mons)))
-print(" {0} have not been defined".format(len(new_species)-len(defined_new_mons)))
-			
-###	define species
-
-print("\nmodify species.h")
-
-for n,line in enumerate(species_file_lines):
-	if line.startswith("#define SPECIES_EGG"):
-		egg_index = int(line.split(" ")[2])
-		insert_index = n
-		break
-
-new_species_defines = []
-new_mon_national_order = sorted(new_species, key=lambda x: family_order.index(x))
-for mon in new_mon_national_order:
-	new_species_defines.append("#define SPECIES_{0} {1}\n".format(\
-		mon,egg_index))
-	egg_index += 1
-new_species_defines.append("#define SPECIES_EGG {0}\n".format(egg_index))
-
-species_file_lines[insert_index-1:insert_index+1] = new_species_defines
-
-### define national dex indexes
-for n,line in enumerate(species_file_lines):
-	if line.startswith(national_dex_start):
-		start_index = n
-	elif line.startswith(national_dex_end):
-		stop_index = n
-
-new_national_dex_defines = []
-new_national_dex_defines.append("#define NATIONAL_DEX_NONE 0\n")
-for n,mon in enumerate(family_order):
-	new_national_dex_defines.append("#define NATIONAL_DEX_{0} {1}\n".format(\
-		mon,n+1))
-	if mon == "MEW":
-		new_national_dex_defines.append("\n#define KANTO_DEX_COUNT NATIONAL_DEX_MEW\n\n")
-	elif mon == "CELEBI":
-		new_national_dex_defines.append("\n#define JOHTO_DEX_COUNT NATIONAL_DEX_CELEBI\n\n")
-new_national_dex_defines.append("#define	NATIONAL_DEX_COUNT NATIONAL_DEX_{0}\n".\
-	format(family_order[-1]))
-		
-species_file_lines[start_index:stop_index+1] = new_national_dex_defines
-
-write_lines(species_file,species_file_lines)
+print("\nimplementing {0} new mons".format(len(new_species)))
 
 ########## species name
 
