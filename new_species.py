@@ -164,15 +164,8 @@ for name in sheet_names:
 	elif insert_info[mon]["where"] == "before":
 		family_order.insert(who_index,mon)
 	
-########## insert new species to list
-
-# for mon in new_species:
-	# who_index = family_order.index(insert_info[mon]["who"])
-	# if insert_info[mon]["where"] == "after":
-		# family_order.insert(who_index+1,mon)
-	# elif insert_info[mon]["where"] == "before":
-		# family_order.insert(who_index,mon)
-
+print("\nimplementing {0} new mons".format(len(new_species)))	
+	
 ########## define species
 
 national_dex_start = "#define NATIONAL_DEX_NONE"
@@ -225,14 +218,12 @@ with open(species_file, "w") as f:
 		for mon in family_order:
 			f.write("#define HOENN_DEX_{0} {1}\n".format(mon,iter_round))
 			iter_round += 1
-		f.write("\n#define HOENN_DEX_COUNT {0}\n".format(iter_round + 1))
+		f.write("\n#define HOENN_DEX_COUNT {0}\n".format(iter_round - 1))
 
 		f.write("\n")
 		f.write("#endif  // GUARD_CONSTANTS_SPECIES_H\n")
 		f.write("\n")
 		f.write("// > END")
-		
-print("\nimplementing {0} new mons".format(len(new_species)))
 
 ########## species name
 
