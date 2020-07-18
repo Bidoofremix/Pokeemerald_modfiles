@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 #-*- encoding: utf-8 -*-
 
-import os,xlrd,shutil
+import os,xlrd,shutil,math
 from config import vanilla_dir,slash
-from misc import normalize_path,lines_to_chunks,write_lines,clean_text
+from misc import *
 from pokemon_tools import *
 
 raw_folder = normalize_path(os.getcwd() + "\\raw")
@@ -260,6 +260,98 @@ with open(species_name_file, "w", encoding="utf-8") as f:
 		f.write('    [SPECIES_{0}] = _("{1}"),\n'.format(mon,species_name))
 	f.write("};\n")
 	f.write("// > END")
+		
+########## pokedex_entries.h		
+		
+pokemon_scales = {}
+pokemon_scales[2] = 650
+pokemon_scales[3] = 550
+pokemon_scales[4] = 490		
+pokemon_scales[5] = 440
+pokemon_scales[6] = 390
+pokemon_scales[7] = 340
+pokemon_scales[8] = 320
+pokemon_scales[9] = 300
+pokemon_scales[10] = 290
+pokemon_scales[11] = 280
+pokemon_scales[12] = 270
+pokemon_scales[13] = 260
+		
+pokedex_entries_file = normalize_path("{0}/src/data/pokemon/pokedex_entries.h".format(\
+	raw_folder))
+
+pokedex_entry_data = {}	
+pokedex_entry_parameters = []	
+	
+# copy existing species from vanilla
+with open(normalize_path("{0}/src/data/pokemon/pokedex_entries.h".format(\
+		vanilla_dir)), "r") as f:
+		species_on = 0
+		for line in f:
+			if "[NATIONAL_DEX" in line:
+				species_name = line.lstrip().split("]")[0][1:].replace("NATIONAL_DEX_","")
+				if species_name in family_order:
+					species_on = 1
+					pokedex_entry_data[species_name] = {}
+			if "}," in line:
+					species_on = 0
+
+			if species_on:
+				if not "{" in line and not "[" in line:
+					print(line)
+					line = line.rstrip("\n").lstrip().rstrip(",").split(" = ")
+					if not line[0] in pokedex_entry_parameters:
+						pokedex_entry_parameters.append(line[0])
+					pokedex_entry_data[species_name][line[0]] = line[1].strip()
+
+# use excel data for new species
+for mon in new_species:
+	pokedex_entry_data[mon] = new_species[mon]["pokedex_entry"]
+		
+with open(pokedex_entries_file, "w") as f:
+	f.write("< //\n")
+	f.write("const struct PokedexEntry gPokedexEntries[] =\n")
+	f.write("{\n")
+	for mon in family_order:
+		f.write("    [NATIONAL_DEX_{0}] = \n".format(mon))
+		f.write("    {\n")
+		if "ALOLAN_" in mon:
+			lookup_mon = mon.replace("ALOLAN_","")
+		else:
+			lookup_mon = mon
+		for p in pokedex_entry_parameters:
+
+			# pokemon and trainer scale
+			if p in [".pokemonScale",".trainerScale"] and \
+				mon in new_species:
+				mon_height = pokedex_entry_data[lookup_mon][".height"]
+				if mon_height == 14:
+					trainer_scale = 256
+					pokemon_scale = 256
+				elif mon_height > 14:
+					pokemon_scale = 256
+					trainer_scale = math.ceil(256 / (mon_height / 14))
+				elif mon_height < 14:
+					trainer_scale = 256
+					pokemon_scale = pokemon_scales[mon_height]
+
+				if p == ".pokemonScale":
+					value = pokemon_scale
+				elif p == ".trainerScale":
+					value = trainer_scale
+				f.write("        {0} = {1},\n".format(p,value))
+			
+			# everything else
+			else:
+				f.write("        {0} = {1},\n".format(p, \
+					pokedex_entry_data[lookup_mon][p]))
+				
+		f.write("    },\n")
+		f.write("\n")
+	f.write("};\n")
+	f.write("// > END")
+	
+exit(0)
 		
 ########## pokedex_text.h
 
