@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+#-*- encoding: utf-8 -*-
 
 import os,xlrd,shutil
 from config import vanilla_dir,slash
@@ -240,11 +241,12 @@ print("modify species_names.h")
 species_name_file = normalize_path("{0}/src/data/text/species_names.h".format(\
 	raw_folder))
 	
-with open(species_name_file, "w") as f:
+with open(species_name_file, "w", encoding="utf-8") as f:
 	f.write("< //\n")
 	f.write("const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {\n")
-	f.write("    [SPECIES_NONE] = _("??????????"),\n")
+	f.write('    [SPECIES_NONE] = _("??????????"),\n')
 	for mon in family_order:
+		print(mon)
 		if mon not in ["MR_MIME","PORYGON_Z","NIDORAN_F","NIDORAN_M",\
 			"HO_OH","MIMEJR"] and not "ALOLAN_" in mon:
 			species_name = mon.capitalize()
