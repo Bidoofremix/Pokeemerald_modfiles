@@ -614,16 +614,39 @@ with open(learnset_pointer_file, "w") as f:
 			mon,caps2joined[mon]))
 	f.write("};\n")
 	f.write("// > END")
-	
-exit(0)
 
 ########## TM/HM moves
 
 tm_file = normalize_path("{0}/src/data/pokemon/tmhm_learnsets.h".format(raw_folder))
 
-with open(tm_file, "r") as f:
-	tm_file_lines = f.readlines()
-	
+with open(tm_file, "w") as f:
+	f.write("< //\n")
+	f.write("#define TMHM_LEARNSET(moves) {(u32)(moves), ((u64)(moves) >> 32)}}\n")
+	f.write("#define TMHM(tmhm) ((u64)1 << (ITEM_##tmhm - ITEM_TM01_FOCUS_PUNCH))\n")
+	f.write("\n")
+	f.write("// This table determines which TMs and HMs a species is capable of learning.\n")
+	f.write("// Each entry is a 64-bit bit array spread across two 32-bit values, with\n")
+	f.write("// each bit corresponding to a .\n")
+	f.write("const u32 gTMHMLearnsets[][2] =\n")
+	f.write("{\n")
+	f.write("    [SPECIES_NONE]    = TMHM_LEARNSET(0),\n")
+	f.write("\n")
+	for mon in family_order:
+		f.write("    [SPECIES_{0}] = TMHM_LEARNSET".format(mon))
+		moves = sorted(move_data[mon]["tm_move"])
+		if len(moves) > 0:
+			f.write("(TMHM({0})\n".format(moves[0]))
+			for move in moves[1:-1]:
+				f.write("\t"*11 + "| TMHM({0})\n".format(move))
+			f.write("\t"*11 + "| TMHM({0})),\n".format(moves[-1]))
+		else:
+			f.write("(0),\n")
+		f.write("\n")
+	f.write("};\n")
+	f.write("// > END")
+		
+exit(0)		
+		
 new_lines = []
 for mon in new_species:
 	if not mon in defined_new_mons:
