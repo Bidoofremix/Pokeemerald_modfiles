@@ -115,11 +115,31 @@ with open(eggmove_file, "r") as f:
 
 tutormove_file = normalize_path("{0}/src/data/pokemon/tutor_learnsets.h".format(\
 	vanilla_dir))
+	
+name_pattern = r'\[SPECIES_(.+)\]'
+move_pattern = r'TUTOR\((MOVE_.+)\)'
 
 with open(tutormove_file, "r") as f:
 	for line in f:
-		print(line)
-		
+		if "TUTOR_LEARNSET" in line and not line.startswith("#define"):
+			re_match = re.search(name_pattern,line)
+			species_name = re_match.group(1)
+			if species_name in family_order:
+				move_data[species_name]["tutor_moves"] = []
+				species_on = 1
+		if ")," in line:
+			species_on = 0
+			
+		if species_on:
+			if "TUTOR(MOVE" in line:
+				re_match = re.search(move_pattern,line)
+				move = re_match.group(1)
+				move_data[species_name]["tutor_moves"].append(move)
+			
+for mon in family_order:
+	print(mon)
+	print(move_data[mon])
+			
 ########## excel files
 
 for i,file in zip(excel_splits,pokemon_excels):
