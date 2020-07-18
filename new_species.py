@@ -662,6 +662,7 @@ tutor_moves = [check_move(m) for m in tutor_moves]
 print("create %s" % tutor_file)
 
 with open(tutor_file, "w") as f:
+	f.write("< //\n")
 	f.write("const u16 gTutorMoves[] =\n")
 	f.write("{\n")
 	for move in tutor_moves:
@@ -690,42 +691,32 @@ with open(tutor_file, "w") as f:
 		f.write("\n")
 	f.write("};\n")
 	f.write("// > END")
-	
-exit(0)
-new_lines = []	
-for mon in new_species:
-	if mon not in defined_new_mons:
-		moves = sorted(new_species[mon]["tutor_moves"])
-		new_lines.append("    [SPECIES_{0}] = TUTOR_LEARNSET(TUTOR({1})\n".format(\
-			mon,moves[0]))
-		for move in moves[1:]:
-			new_lines.append("\t"*11 + "| TUTOR({0})\n".format(move))
-		new_lines[-1] = new_lines[-1].replace("\n","),\n")
-		
-tutor_file_lines[-2:-2] = new_lines
-
-write_lines(tutor_file,tutor_file_lines)
 
 ########## egg moves
 
 egg_move_file = normalize_path("{0}/src/data/pokemon/egg_moves.h".format(raw_folder))
 
-with open(egg_move_file, "r") as f:
-	egg_move_file_lines = f.readlines()
-	
-new_lines = []
-for mon in new_species:
-	if mon not in defined_new_mons:
-		moves = sorted(new_species[mon]["egg_moves"])
-		new_lines.append("egg_moves({0},\n".format(mon))
-		for move in moves:
-			new_lines.append("\t\t{0},\n".format(move))
-		new_lines[-1] = new_lines[-1].replace(",\n","),\n\n")
+print("create %s" % egg_move_file)
 
-egg_move_file_lines[-2:-2] = new_lines		
-		
-write_lines(egg_move_file,egg_move_file_lines)
-		
+with open(egg_move_file, "w") as f:
+	f.write("< //\n")
+	f.write("#define EGG_MOVES_SPECIES_OFFSET 20000\n")
+	f.write("#define EGG_MOVES_TERMINATOR 0xFFFF\n")
+	f.write("#define egg_moves(species, moves...) (SPECIES_##species + EGG_MOVES_SPECIES_OFFSET), moves\n")
+	f.write("\n")
+	f.write("const u16 gEggMoves[] = {\n")
+	for mon in family_order:
+		moves = move_data[mon]["egg_move"]
+		if len(moves) > 0:
+			f.write("    egg_moves({0},\n".format(mon))
+			for move in moves[:-1]:
+				f.write("        {0},\n".format(move))
+			f.write("        {0}),\n".format(moves[-1]))
+			f.write("\n")
+	f.write("    EGG_MOVES_TERMINATOR\n")
+	f.write("};\n")
+	f.write("// > END")
+
 ########## evolution
 
 evolution_file = normalize_path("{0}/src/data/pokemon/evolution.h".format(raw_folder))

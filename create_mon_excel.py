@@ -104,11 +104,11 @@ with open(eggmove_file, "r") as f:
 			if species_name in family_order:
 				move_data[species_name]["egg_move"] = []
 				species_on = 1
-		if ")," in line:
-			species_on = 0
 		
 		if species_on and not "(" in line:
-			move = clean_move(line.lstrip().rstrip("\n").rstrip(","))
+			if ")," in line:
+				species_on = 0
+			move = clean_move(line.lstrip().rstrip("\n").rstrip(",").rstrip(")"))
 			move_data[species_name]["egg_move"].append(move)
 			
 ########## tutor moves
@@ -185,6 +185,7 @@ for i,file in zip(excel_splits,pokemon_excels):
 					write = True
 				
 			if write:
+			
 				worksheet = workbook.add_worksheet(mon)
 				
 				worksheet.set_column(0,0,20,cell_format)
@@ -218,7 +219,7 @@ for i,file in zip(excel_splits,pokemon_excels):
 
 				row += n+1
 				
-				# level-up moves
+				# moves
 				for category in move_categories:
 					if category in move_data[mon]:
 						for move in move_data[mon][category]:
