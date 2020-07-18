@@ -644,30 +644,54 @@ with open(tm_file, "w") as f:
 		f.write("\n")
 	f.write("};\n")
 	f.write("// > END")
-		
-exit(0)		
-		
-new_lines = []
-for mon in new_species:
-	if not mon in defined_new_mons:
-		moves = sorted(new_species[mon]["tmhm_moves"])
-		new_lines.append("    [SPECIES_{0}] = TMHM_LEARNSET(TMHM({1})\n".format(\
-			mon,moves[0]))
-		for move in sorted(moves[1:]):
-			new_lines.append("\t"*11 + "| TMHM({0})\n".format(move))
-		new_lines[-1] = new_lines[-1].replace("\n","),\n")
-
-tm_file_lines[-2:-2] = new_lines
-
-write_lines(tm_file,tm_file_lines)
 
 ########## tutor moves
 
 tutor_file = normalize_path("{0}/src/data/pokemon/tutor_learnsets.h".format(raw_folder))
 
-with open(tutor_file, "r") as f:
-	tutor_file_lines = f.readlines()
+tutor_moves = ["Mega Punch", "Swords Dance", "Mega Kick", "Body Slam",\
+	"Double Edge", "Counter", "Seismic Toss", "Mimic", "Metronome",\
+	"Soft Boiled", "Dream Eater", "Thunder Wave", "Explosion",\
+	"Rock Slide", "Substitute", "Dynamic Punch", "Rollout", "Psych Up",\
+	"Snore", "Icy Wind", "Endure", "Mud Slap","Ice Punch", "Swagger",\
+	"Sleep Talk", "Swift", "Defense Curl", "Thunder Punch", "Fire Punch",\
+	"Fury Cutter"]
+	
+tutor_moves = [check_move(m) for m in tutor_moves]
 
+print("create %s" % tutor_file)
+
+with open(tutor_file, "w") as f:
+	f.write("const u16 gTutorMoves[] =\n")
+	f.write("{\n")
+	for move in tutor_moves:
+		f.write("    [TUTOR_MOVE{0}] = {0},\n".format(move))
+	f.write("};\n")
+	f.write("\n")
+	f.write("#define TUTOR_LEARNSET(moves) ((u32)(moves))\n")
+	f.write("#define TUTOR(move) ((u64)1 << (TUTOR_##move))}n")
+	f.write("\n")
+	f.write("static const u32 sTutorLearnsets[] =\n")
+	f.write("{\n")
+	f.write("    [SPECIES_NONE]       = TUTOR_LEARNSET(0),\n")
+	f.write("\n")
+	for mon in family_order:
+		f.write("    [SPECIES_{0}] = TUTOR_LEARNSET".format(mon))
+		moves = move_data[mon]["tutor_move"]
+		if len(moves) == 0:
+			f.write("(0),\n")
+		elif len(moves) == 1:
+			f.write("(TUTOR({0})),\n".format(moves[0]))
+		else:
+			f.write("(TUTOR({0})\n".format(moves[0]))
+			for move in moves[1:-1]:
+				f.write("\t"*11 + "|TUTOR({0})\n".format(move))
+			f.write("\t"*11 + "|TUTOR({0})),\n".format(moves[-1]))
+		f.write("\n")
+	f.write("};\n")
+	f.write("// > END")
+	
+exit(0)
 new_lines = []	
 for mon in new_species:
 	if mon not in defined_new_mons:
