@@ -34,6 +34,7 @@ with open(order_file, "r") as f:
 		if line != "":
 			family_order.append(line)
 
+							
 ########## read excel with new mon data
 
 new_species = {}
@@ -165,7 +166,48 @@ for name in sheet_names:
 		family_order.insert(who_index,mon)
 	
 print("\nimplementing {0} new mons".format(len(new_species)))	
+
+########## stats and data of existing mons
+
+base_stats = {mon:{} for mon in family_order}
+move_data = {mon:{"level_up":[], "egg_move":[], "tutor_move":[],\
+	"tm_move":[]} for mon in family_order}
+
+for file in pokemon_excels:
+
+	workbook = xlrd.open_workbook(file)    
+    # get the first worksheet
+	for i in range(0,workbook.nsheets):
+		worksheet = workbook.sheet_by_index(i)
+		for n in range(0,worksheet.nrows):
+			row = worksheet.row_values(n)
+			row = [int(i) if isinstance(i,float) else i \
+				for i in row]
+			if row[0] == "NAME":
+				mon = row[1]
+			elif row[0] == "LEVEL_UP":
+				move_data[mon]["level_up"].append([check_move(row[1]),check_level(row[2])])
+			elif row[0] in ["EGG_MOVE","TUTOR_MOVE"]:
+				move_data[mon][row[0].lower()].append(check_move(row[1]))
+			elif row[0] == "TM_MOVE":
+				move_data[mon][row[0].lower()].append(check_tmmove(row[1]))
+			else:
+				if row[0] == ".noFlip":
+					base_stats[mon][".noFlip"] = 0
+				else:
+					base_stats[mon][row[0]] = row[1]
 	
+########## add data of new species to base stats dict
+
+for mon in new_species:
+	for stat in required_stats:
+		base_stats[mon][stat] = new_species[mon]["base_stats"][stat]
+	for move in new_species[mon]["level_up_moves"]:
+		move_data[mon]["level_up"].append([move[1],move[0]])
+	move_data[mon]["egg_move"] = new_species[mon]["egg_moves"]
+	move_data[mon]["tutor_move"] = new_species[mon]["tutor_moves"]
+	move_data[mon]["tm_move"] = new_species[mon]["tmhm_moves"]
+
 ########## define species
 
 national_dex_start = "#define NATIONAL_DEX_NONE"
@@ -504,31 +546,6 @@ pokemon_file_lines[start_index:stop_index+1] = new_pokemon_lines
 
 write_lines(pokemon_file, pokemon_file_lines)
 
-########## read base stats and move data
-
-base_stats = {mon:{} for mon in family_order}
-move_data = {mon:{"level_up":[], "egg_move":[], "tutor_move":[],\
-	"tm_move":[]} for mon in family_order}
-
-for file in pokemon_excels:
-
-	workbook = xlrd.open_workbook(file)    
-    # get the first worksheet
-	for i in range(0,workbook.nsheets):
-		worksheet = workbook.sheet_by_index(i)
-		for n in range(0,worksheet.nrows):
-			row = worksheet.row_values(n)
-			row = [int(i) if isinstance(i,float) else i \
-				for i in row]
-			if row[0] == "NAME":
-				mon = row[1]
-			elif row[0] == "LEVEL_UP":
-				move_data[mon]["level_up"].append([row[1],row[2]])
-			elif row[0] in ["EGG_MOVE","TUTOR_MOVE","TM_MOVE"]:
-				move_data[mon][row[0].lower()].append(row[1])
-			else:
-				base_stats[mon][row[0]] = row[1]
-	
 ########## base_stats.h
 
 base_stats_file = normalize_path("{0}/src/data/pokemon/base_stats.h".format(\
@@ -547,8 +564,7 @@ with open(base_stats_file, "w") as f:
 	f.write("    [SPECIES_NONE] = {0},\n")
 	f.write("\n")
 	for mon in family_order:
-		print(mon)
-		f.write("    [SPECIES_{0}] = \n")
+		f.write("    [SPECIES_{0}] = \n".format(mon))
 		f.write("    {\n")
 		for stat in required_stats:
 			f.write("        {0} = {1},\n".format(stat,base_stats[mon][stat]))
@@ -558,7 +574,7 @@ with open(base_stats_file, "w") as f:
 	f.write("};\n")
 	f.write("// > END")
 
-
+exit(0)
 
 new_base_stats_lines = []
 for mon in new_species:

@@ -40,7 +40,13 @@ def underscore_upper(text):
 	return text.strip().replace(" ","_").replace("-","_").upper()
 
 def check_level(level):
-	if not 0 < level <= 100:
+	error = False
+	if not str(level).isdigit():
+		error = True
+	level = int(level)
+	if not 0 <= level <= 100:
+		error = True
+	if error:
 		print("\nerror: invalid level '%s'" % level)
 		exit(0)
 	return level
@@ -53,6 +59,8 @@ def check_move(move):
 	return tmp_move
 	
 def check_tmmove(move):
+	if move.lower() == "solarbeam":
+		move = "Solar Beam"
 	tmp_move = underscore_upper(move)
 	if tmp_move not in attack2tm:
 		print("\nerror: did not recognize TM/HM move '%s'" % move)
