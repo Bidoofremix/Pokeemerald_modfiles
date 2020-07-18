@@ -6,7 +6,11 @@ from misc import normalize_path
 
 wrk_dir = os.getcwd()
 
+raw_folder = normalize_path(wrk_dir + "/raw")
+
 ########## hard-coded stuff
+
+from misc import pokemon_excels,excel_splits
 
 family_order = []
 order_file = "family_dex_order.txt"
@@ -22,7 +26,6 @@ required_stats = []
 with open(required_stats_file, "r") as f:
 	for line in f:
 		required_stats.append(line.rstrip("\n").rstrip("\r"))
-			
 			
 ########## base stats 
 
@@ -50,33 +53,91 @@ with open(base_stats_file) as f:
 				line = line.split(" = ")
 				base_stats[species][line[0].rstrip()] = line[1]
 
-excel_splits = ["E","L","R","Z"]
+########## level-up moves
 
-########## excel files
+caps2joined = {mon:"".join([i.capitalize() for i in mon.split("_")]) \
+	for mon in family_order}
 	
-for i,s in enumerate(excel_splits):
+caps2joined["MR_MIME"] = "Mrmime"
+caps2joined["MIMEJR"] = "Mimejr"
+caps2joined["HO_OH"] = "HoOh"
 
-	if i == 0:
-		suffix = "A-{0}".format(s)
-	else:
-		suffix = "{0}-{1}".format(chr(ord(excel_splits[i-1])+1),s)
+joined2caps = {caps2joined[i]:i for i in caps2joined}
 
-	print("... %s" % suffix)
+move_data = {mon:{} for mon in family_order}
+
+levelup_file = normalize_path("{0}/src/data/pokemon/level_up_learnsets.h".format(\
+	vanilla_dir))
+	
+levelup_pattern = r'LevelUpMove s(.+)LevelUpLearnset'	
+level_move_pattern = r'LEVEL_UP_MOVE\( ?(\d{1,3}), (.+)\)'	
+	
+with open(levelup_file, "r") as f:
+	for line in f:
+		if "LevelUpLearnset" in line:
+			re_match = re.search(levelup_pattern,line)
+			species_name = re_match.group(1)
+			if species_name in joined2caps:
+				mon = joined2caps[species_name]
+				if mon in family_order:
+					move_data[mon]["level_up"] = []
+					species_on = 1
+				
+		if species_on and not "[]" in line \
+			and not "LEVEL_UP_END" in line:
+			re_match = re.search(level_move_pattern,line)
+			level = re_match.group(1)
+			move = re_match.group(2)
+			move_data[mon]["level_up"].append([level,move])
+		elif "LEVEL_UP_END" in line:
+			species_on = 0
+
+########## egg moves
+
+eggmove_file = normalize_path("{0}/src/data/pokemon/egg_moves.h".format(\
+	vanilla_dir))
+
+with open(eggmove_file, "r") as f:
+	for line in f:
+		if "egg_moves" in line:
+			species_name = line.split("(")[1].rstrip("\n").rstrip(",r")
+			if species_name in family_order:
+				move_data[species_name]["egg_moves"] = []
+				species_on = 1
+		if ")," in line:
+			species_on = 0
 		
-	pokemon_excel = normalize_path("pokemon/pokemon_{0}.xlsx".format(suffix))
+		if species_on and not "(" in line:
+			move = line.lstrip().rstrip("\n").rstrip(",")
+			move_data[species_name]["egg_moves"].append(move)
+			
+########## tutor moves
 
-	if os.path.isfile(pokemon_excel):
-		print("\nerror: pokemon table {0} already exists".format(s))
+tutormove_file = normalize_path("{0}/src/data/pokemon/tutor_learnsets.h".format(\
+	vanilla_dir))
+
+with open(tutormove_file, "r") as f:
+	for line in f:
+		print(line)
+		
+########## excel files
+
+for i,file in zip(excel_splits,pokemon_excels):
+
+	if os.path.isfile(file):
+		print("\nerror: file already exists: {0}".format(file))
 		#exit(0)
+		
 	if True:
-		workbook = xlsxwriter.Workbook(pokemon_excel)
+		workbook = xlsxwriter.Workbook(file)
 		for mon in sorted(family_order):
 			write = False
-			if i == 0:
-				if mon[0] <= s:
+			if excel_splits.index(i) == 0:
+				if mon[0] <= i:
 					write = True
 			else:
-				if excel_splits[i-1] < mon[0] <= s:
+				if excel_splits[excel_splits.index(i)-1] < mon[0] <= \
+					excel_splits[excel_splits.index(i)]:
 					write = True
 				
 			if write:

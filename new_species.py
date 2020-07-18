@@ -253,7 +253,7 @@ for mon in family_order:
 			elif mon == "HO_OH":
 				species_name_dict[mon] = "Ho-Oh"
 			elif mon == "PORYGON_Z":
-				species_name_dict[mon] = "Porygon-z"
+				species_name_dict[mon] = "Porygon-Z"
 	
 with open(species_name_file, "w", encoding="utf-8") as f:
 	f.write("< //\n")

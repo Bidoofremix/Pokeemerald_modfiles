@@ -39,3 +39,16 @@ def clean_text(text):
 	text = text.replace("\\xc3\\xa9","é")
 	text = text.encode("utf-8").decode("utf-8")
 	return text
+	
+########## 
+
+pokemon_excels = []
+excel_splits = ["E","L","R","Z"]
+for i,s in enumerate(excel_splits):
+
+	if i == 0:
+		suffix = "A-{0}".format(s)
+	else:
+		suffix = "{0}-{1}".format(chr(ord(excel_splits[i-1])+1),s)
+
+	pokemon_excels.append(normalize_path("pokemon/pokemon_{0}.xlsx".format(suffix)))
