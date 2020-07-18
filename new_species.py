@@ -227,17 +227,15 @@ with open(species_file, "w") as f:
 
 ########## species name
 
-print("modify species_names.h")
-
 species_name_file = normalize_path("{0}/src/data/text/species_names.h".format(\
 	raw_folder))
+print("create %s" % species_name_file)
 	
 with open(species_name_file, "w", encoding="utf-8") as f:
 	f.write("< //\n")
 	f.write("const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {\n")
 	f.write('    [SPECIES_NONE] = _("??????????"),\n')
 	for mon in family_order:
-		print(mon)
 		if mon not in ["MR_MIME","PORYGON_Z","NIDORAN_F","NIDORAN_M",\
 			"HO_OH","MIMEJR"] and not "ALOLAN_" in mon:
 			species_name = mon.capitalize()
@@ -264,6 +262,7 @@ with open(species_name_file, "w", encoding="utf-8") as f:
 ########## pokedex_entries.h		
 		
 pokemon_scales = {}
+pokemon_scales[1] = 800
 pokemon_scales[2] = 650
 pokemon_scales[3] = 550
 pokemon_scales[4] = 490		
@@ -280,6 +279,8 @@ pokemon_scales[13] = 260
 pokedex_entries_file = normalize_path("{0}/src/data/pokemon/pokedex_entries.h".format(\
 	raw_folder))
 
+print("create %s" % pokedex_entries_file)
+	
 pokedex_entry_data = {}	
 pokedex_entry_parameters = []	
 	
@@ -298,7 +299,6 @@ with open(normalize_path("{0}/src/data/pokemon/pokedex_entries.h".format(\
 
 			if species_on:
 				if not "{" in line and not "[" in line:
-					print(line)
 					line = line.rstrip("\n").lstrip().rstrip(",").split(" = ")
 					if not line[0] in pokedex_entry_parameters:
 						pokedex_entry_parameters.append(line[0])
@@ -350,15 +350,65 @@ with open(pokedex_entries_file, "w") as f:
 		f.write("\n")
 	f.write("};\n")
 	f.write("// > END")
-	
-exit(0)
 		
 ########## pokedex_text.h
 
 pokedex_text_file = normalize_path("{0}/src/data/pokemon/pokedex_text.h".format(raw_folder))
 
-with open(pokedex_text_file, "r") as f:
-	pokedex_text_file_lines = f.readlines()
+print("create %s" % pokedex_text_file)
+
+textid_to_species = {}
+for mon in pokedex_entry_data:
+	textid_to_species[pokedex_entry_data[mon][".description"]] = mon
+
+pokedex_text_data = {}
+	
+# copy existing species from vanilla
+with open(normalize_path("{0}/src/data/pokemon/pokedex_text.h".format(\
+		vanilla_dir)), "r", encoding="utf-8") as f:
+		text_on = 0
+		for line in f:
+			if line.startswith("const u8"):
+				text_id = line.split(" ")[2].replace("[]","")
+				if text_id in textid_to_species:
+					text_on = 1
+					iter_round = 0
+					pokedex_text_data[text_id] = [[],[],[],[]]
+					
+			if text_on and not "[]" in line:
+					line = line.rstrip("\n").replace(");","").replace("\\n","")
+					line = line.lstrip().strip('"')
+					pokedex_text_data[text_id][iter_round] = line
+					iter_round += 1
+					if iter_round == 4:
+						text_on = 0
+
+# use excel data for new species
+for mon in new_species:
+	pokedex_text_data[pokedex_entry_data[mon][".description"]] = \
+		new_species[mon]["pokedex_description"]
+		
+with open(pokedex_text_file, "w", encoding="utf-8") as f:
+	f.write("< //\n")
+	f.write("const u8 gDummyPokedexText[] = _(\n")
+	f.write('    "This is a newly discovered POKéMON.\\n"\n')
+	f.write('    "It is currently under investigation.\\n"\n')
+	f.write('    "No detailed information is available\\n"\n')
+	f.write('    "at this time.");\n')
+	f.write("\n")
+	for mon in family_order:
+		if "ALOLAN_" in mon:
+			continue
+			
+		text_id = pokedex_entry_data[mon][".description"]
+		f.write("const u8 {0}[] = _(\n".format(text_id))		
+		for line in pokedex_text_data[text_id][:-1]:
+			f.write('    "{0}\\n"\n'.format(line))
+		f.write('    "{0}");\n'.format(pokedex_text_data[text_id][-1]))
+		f.write("\n")
+		
+	f.write("// > END")
+exit(0)
 	
 new_lines = []
 for mon in new_species:
