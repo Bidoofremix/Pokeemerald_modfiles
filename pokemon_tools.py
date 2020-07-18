@@ -66,3 +66,15 @@ def check_tmmove(move):
 		print("\nerror: did not recognize TM/HM move '%s'" % move)
 		exit(0)
 	return attack2tm[tmp_move]
+	
+def generate_capsjoined(mons):
+	caps2joined = {mon:"".join([i.capitalize() for i in mon.split("_")]) \
+		for mon in mons}
+		
+	caps2joined["MR_MIME"] = "Mrmime"
+	caps2joined["MIMEJR"] = "Mimejr"
+	caps2joined["HO_OH"] = "HoOh"
+
+	joined2caps = {caps2joined[i]:i for i in caps2joined}
+	
+	return caps2joined,joined2caps

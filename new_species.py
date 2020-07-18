@@ -208,6 +208,9 @@ for mon in new_species:
 	move_data[mon]["tutor_move"] = new_species[mon]["tutor_moves"]
 	move_data[mon]["tm_move"] = new_species[mon]["tmhm_moves"]
 
+	
+caps2joined, joined2caps = generate_capsjoined(family_order)	
+	
 ########## define species
 
 national_dex_start = "#define NATIONAL_DEX_NONE"
@@ -573,65 +576,47 @@ with open(base_stats_file, "w") as f:
 	f.write("\n")
 	f.write("};\n")
 	f.write("// > END")
-
-exit(0)
-
-new_base_stats_lines = []
-for mon in new_species:
-	if mon not in defined_new_mons:
-		new_base_stats_lines.append("\n")
-		new_base_stats_lines.append("    [SPECIES_{0}] =\n".format(mon))
-		new_base_stats_lines.append("    {\n")
-		for stat in required_stats:
-			new_base_stats_lines.append("        {0} = {1},\n".format(\
-				stat.ljust(15),new_species[mon]["base_stats"][stat]))
-		new_base_stats_lines.append("    },\n")
-
-base_stats_file_lines[-2:-2] = new_base_stats_lines
-		
-write_lines(base_stats_file, base_stats_file_lines)
 	
 ########## level-up moves
 
+# learnsets
 levelup_file = normalize_path("{0}/src/data/pokemon/level_up_learnsets.h".format(\
 	raw_folder))
-	
-with open(levelup_file, "r") as f:
-	levelup_file_lines = f.readlines()
 
-new_lines = []
-for mon in new_species:
-	if mon not in defined_new_mons:
-		new_lines.append("\n")
-		new_lines.append("static const struct LevelUpMove s{0}LevelUpLearnset[] = {{\n".\
-			format(mon.capitalize()))
-		moves = new_species[mon]["level_up_moves"]
-		for move in sorted(moves, key = lambda x: x[0]):
-			new_lines.append("        LEVEL_UP_MOVE({0}, {1}),\n".format(\
-				str(str(move[0])).rjust(2),move[1]))
-		new_lines.append("    LEVEL_UP_END\n")
-		new_lines.append("};\n")
-		
-levelup_file_lines[-1:-1] = new_lines
+print("create %s" % levelup_file)
 	
-write_lines(levelup_file, levelup_file_lines)
+with open(levelup_file, "w") as f:
+	f.write("< //\n")
+	f.write("#define LEVEL_UP_MOVE(lvl, moveLearned) {.move = moveLearned, .level = lvl}\n")
+	f.write("#define LEVEL_UP_END (0xffff)\n")
+	f.write("\n")
+	for mon in family_order:
+		f.write("static const struct LevelUpMove s{0}LevelUpLearnset[] = {{\n".format(
+			caps2joined[mon]))
+		for move in move_data[mon]["level_up"]:
+			f.write("    LEVEL_UP_MOVE({0}, {1}),\n".format(move[1],move[0]))
+		f.write("    LEVEL_UP_END\n")
+		f.write("};\n")
+		f.write("\n")
+	f.write("// > END")
 
+# learnset pointers
 learnset_pointer_file = normalize_path("{0}/src/data/pokemon/level_up_learnset_pointers.h".\
 	format(raw_folder))
 	
-with open(learnset_pointer_file, "r") as f:
-	learnset_pointer_file_lines = f.readlines()
+with open(learnset_pointer_file, "w") as f:
+	f.write("< //\n")
+	f.write("const struct LevelUpMove *const gLevelUpLearnsets[NUM_SPECIES] =\n")
+	f.write("{\n")
+	f.write("    [SPECIES_NONE] = sBulbasaurLevelUpLearnset,\n")
+	for mon in family_order:
+		f.write("    [SPECIES_{0}] = s{1}LevelUpLearnset,\n".format(\
+			mon,caps2joined[mon]))
+	f.write("};\n")
+	f.write("// > END")
 	
-new_lines = []
-for mon in new_species:
-	if not mon in defined_new_mons:
-		new_lines.append("    [SPECIES_{0}] = s{1}LevelUpLearnset,\n".format(\
-			mon,mon.capitalize()))
-		
-learnset_pointer_file_lines[-2:-2] = new_lines
+exit(0)
 
-write_lines(learnset_pointer_file,learnset_pointer_file_lines)
-	
 ########## TM/HM moves
 
 tm_file = normalize_path("{0}/src/data/pokemon/tmhm_learnsets.h".format(raw_folder))
