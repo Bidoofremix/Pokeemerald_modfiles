@@ -504,16 +504,62 @@ pokemon_file_lines[start_index:stop_index+1] = new_pokemon_lines
 
 write_lines(pokemon_file, pokemon_file_lines)
 
-exit(0)
+########## read base stats and move data
 
+base_stats = {mon:{} for mon in family_order}
+move_data = {mon:{"level_up":[], "egg_move":[], "tutor_move":[],\
+	"tm_move":[]} for mon in family_order}
+
+for file in pokemon_excels:
+
+	workbook = xlrd.open_workbook(file)    
+    # get the first worksheet
+	for i in range(0,workbook.nsheets):
+		worksheet = workbook.sheet_by_index(i)
+		for n in range(0,worksheet.nrows):
+			row = worksheet.row_values(n)
+			row = [int(i) if isinstance(i,float) else i \
+				for i in row]
+			if row[0] == "NAME":
+				mon = row[1]
+			elif row[0] == "LEVEL_UP":
+				move_data[mon]["level_up"].append([row[1],row[2]])
+			elif row[0] in ["EGG_MOVE","TUTOR_MOVE","TM_MOVE"]:
+				move_data[mon][row[0].lower()].append(row[1])
+			else:
+				base_stats[mon][row[0]] = row[1]
+	
 ########## base_stats.h
 
 base_stats_file = normalize_path("{0}/src/data/pokemon/base_stats.h".format(\
 	raw_folder))
 	
-with open(base_stats_file, "r") as f:
-	base_stats_file_lines = f.readlines()
-		
+print("create %s" % base_stats_file)	
+	
+with open(base_stats_file, "w") as f:
+	f.write("< //\n")
+	f.write("// Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.\n")
+	f.write("// 255 (MON_GENDERLESS) is reserved for genderless Pokémon.\n")
+	f.write("#define PERCENT_FEMALE(percent) min(254, ((percent * 255) / 100))\n")
+	f.write("\n")
+	f.write("const struct BaseStats gBaseStats[] =\n")
+	f.write("{\n")
+	f.write("    [SPECIES_NONE] = {0},\n")
+	f.write("\n")
+	for mon in family_order:
+		print(mon)
+		f.write("    [SPECIES_{0}] = \n")
+		f.write("    {\n")
+		for stat in required_stats:
+			f.write("        {0} = {1},\n".format(stat,base_stats[mon][stat]))
+		f.write("    },\n")
+		f.write("\n")
+	f.write("\n")
+	f.write("};\n")
+	f.write("// > END")
+
+
+
 new_base_stats_lines = []
 for mon in new_species:
 	if mon not in defined_new_mons:
