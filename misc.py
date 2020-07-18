@@ -40,6 +40,10 @@ def clean_text(text):
 	text = text.encode("utf-8").decode("utf-8")
 	return text
 	
+def clean_move(move):
+	return " ".join([i.capitalize() for i in \
+		move.replace("MOVE_","").split("_")])
+	
 ########## 
 
 pokemon_excels = []

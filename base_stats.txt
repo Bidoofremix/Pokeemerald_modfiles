@@ -1,9 +1,9 @@
 .baseHP
 .baseAttack
 .baseDefense
-.baseSpeed
 .baseSpAttack
 .baseSpDefense
+.baseSpeed
 .type1
 .type2
 .catchRate

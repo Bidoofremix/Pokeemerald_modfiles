@@ -2,7 +2,7 @@
 
 import os,re,xlrd,argparse,copy,xlsxwriter
 from config import vanilla_dir,slash
-from misc import normalize_path
+from misc import normalize_path, clean_move
 
 wrk_dir = os.getcwd()
 
@@ -87,7 +87,7 @@ with open(levelup_file, "r") as f:
 			and not "LEVEL_UP_END" in line:
 			re_match = re.search(level_move_pattern,line)
 			level = re_match.group(1)
-			move = re_match.group(2)
+			move = clean_move(re_match.group(2))
 			move_data[mon]["level_up"].append([level,move])
 		elif "LEVEL_UP_END" in line:
 			species_on = 0
@@ -102,14 +102,14 @@ with open(eggmove_file, "r") as f:
 		if "egg_moves" in line:
 			species_name = line.split("(")[1].rstrip("\n").rstrip(",r")
 			if species_name in family_order:
-				move_data[species_name]["egg_moves"] = []
+				move_data[species_name]["egg_move"] = []
 				species_on = 1
 		if ")," in line:
 			species_on = 0
 		
 		if species_on and not "(" in line:
-			move = line.lstrip().rstrip("\n").rstrip(",")
-			move_data[species_name]["egg_moves"].append(move)
+			move = clean_move(line.lstrip().rstrip("\n").rstrip(","))
+			move_data[species_name]["egg_move"].append(move)
 			
 ########## tutor moves
 
@@ -125,7 +125,7 @@ with open(tutormove_file, "r") as f:
 			re_match = re.search(name_pattern,line)
 			species_name = re_match.group(1)
 			if species_name in family_order:
-				move_data[species_name]["tutor_moves"] = []
+				move_data[species_name]["tutor_move"] = []
 				species_on = 1
 		if ")," in line:
 			species_on = 0
@@ -133,14 +133,36 @@ with open(tutormove_file, "r") as f:
 		if species_on:
 			if "TUTOR(MOVE" in line:
 				re_match = re.search(move_pattern,line)
-				move = re_match.group(1)
-				move_data[species_name]["tutor_moves"].append(move)
+				move = clean_move(re_match.group(1))
+				move_data[species_name]["tutor_move"].append(move)
 			
-for mon in family_order:
-	print(mon)
-	print(move_data[mon])
+########## tm moves
+
+tmhm_file = normalize_path("{0}/src/data/pokemon/tmhm_learnsets.h".format(\
+	vanilla_dir))
+
+tmhm_pattern = r'TMHM\(((T|H)M\d{2}_(.+))\)'			
+			
+with open(tmhm_file, "r") as f:
+	for line in f:
+		if "[SPECIES" in line:
+			re_match = re.search(name_pattern,line)
+			species_name = re_match.group(1)
+			if species_name in family_order:
+				move_data[species_name]["tm_move"] = []
+				species_on = 1
+		if ")," in line:
+			species_on = 0
+				
+		if species_on:
+			if "TMHM(" in line:
+				re_match = re.search(tmhm_pattern,line)
+				move = clean_move(re_match.group(3))
+				move_data[species_name]["tm_move"].append(move)
 			
 ########## excel files
+
+move_categories = ["level_up","egg_move","tutor_move","tm_move"]
 
 for i,file in zip(excel_splits,pokemon_excels):
 
@@ -150,6 +172,8 @@ for i,file in zip(excel_splits,pokemon_excels):
 		
 	if True:
 		workbook = xlsxwriter.Workbook(file)
+		cell_format = workbook.add_format({'align': "left"})
+		
 		for mon in sorted(family_order):
 			write = False
 			if excel_splits.index(i) == 0:
@@ -162,12 +186,20 @@ for i,file in zip(excel_splits,pokemon_excels):
 				
 			if write:
 				worksheet = workbook.add_worksheet(mon)
+				
+				worksheet.set_column(0,0,20,cell_format)
+				worksheet.set_column(1,1,35,cell_format)
+				worksheet.set_column(2,2,None,cell_format)
+				
 				worksheet.write(0,0,"NAME")
 				worksheet.write(0,1,mon)
-				mon = "SPECIES_%s" % mon
+		
+				# stats
+				
+				row = 1
 				for n,stat in enumerate(required_stats):
 					value = ""
-					if not stat in base_stats[mon]:
+					if not stat in base_stats["SPECIES_%s" % mon]:
 						if stat.startswith(".evYield"):
 							value = 0
 						elif stat.startswith(".item"):
@@ -175,14 +207,34 @@ for i,file in zip(excel_splits,pokemon_excels):
 						elif stat == ".abilityHidden":
 							value = "ABILITY_NONE"
 					else:
-						value = base_stats[mon][stat].lstrip()
+						value = base_stats["SPECIES_%s" % mon][stat].lstrip()
 					if str(value) == str(""):
 						print("ERROR", mon, stat, value)
 						exit(0)
-					worksheet.write(n+1,0,stat)
-					worksheet.write(n+1,1,value)
+					if str(value).isdigit():
+						value = int(value)
+					worksheet.write(n+row,0,stat)
+					worksheet.write(n+row,1,value)
+
+				row += n
 				
+				# level-up moves
+				for category in move_categories:
+					if category in move_data[mon]:
+						for move in move_data[mon][category]:
+							worksheet.write(row,0,category.upper())
+							worksheet.write(row,0,category.upper())
+							if category == "level_up":
+								worksheet.write(row,1,move[1])
+								worksheet.write(row,2,move[0])
+							else:	
+								worksheet.write(row,1,move)
+							row += 1
 				
+				# BST
+				bst = sum([int(base_stats["SPECIES_%s" % mon][".base%s" % stat]) for \
+					stat in ["HP","Attack","Defense","SpAttack","SpDefense","Speed"]])
+				worksheet.write_formula("C2","=SUM(B2:B7", value=bst)
 		workbook.close()
 		
 		
