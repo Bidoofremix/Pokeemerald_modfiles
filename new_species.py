@@ -178,7 +178,7 @@ national_dex_start = "#define NATIONAL_DEX_NONE"
 national_dex_end = "#define NATIONAL_DEX_COUNT"
 
 species_file = normalize_path("{0}/include/constants/species.h".format(raw_folder))
-print("create %s" % species_file)
+print("\ncreate %s" % species_file)
 with open(species_file, "w") as f:
 		f.write("< //\n")
 		f.write("#ifndef GUARD_CONSTANTS_SPECIES_H\n")
@@ -240,15 +240,33 @@ print("modify species_names.h")
 species_name_file = normalize_path("{0}/src/data/text/species_names.h".format(\
 	raw_folder))
 	
-with open(species_name_file, "r") as f:
-	species_name_file_lines = f.readlines()
-
-for mon in new_species:
-	if mon not in defined_new_mons:
-		line = '    [SPECIES_{0}] = {1},\n'.format(mon,new_species[mon]["display_name"])
-		species_name_file_lines.insert(-2,line)
-
-write_lines(species_name_file,species_name_file_lines)		
+with open(species_name_file, "w") as f:
+	f.write("< //\n")
+	f.write("const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {\n")
+	f.write("    [SPECIES_NONE] = _("??????????"),\n")
+	for mon in family_order:
+		if mon not in ["MR_MIME","PORYGON_Z","NIDORAN_F","NIDORAN_M",\
+			"HO_OH","MIMEJR"] and not "ALOLAN_" in mon:
+			species_name = mon.capitalize()
+		else:
+			if "ALOLAN_" in mon:
+				species_name = mon.replace("ALOLAN_","").capitalize()
+			else:
+				if mon == "MR_MIME":
+					species_name = "Mr. Mime"
+				elif mon == "MIMEJR":
+					species_name = "Mime jr."
+				elif mon == "NIDORAN_F":
+					species_name = "Nidoran♀"
+				elif mon == "NIDORAN_M":
+					species_name = "Nidoran♂"
+				elif mon == "HO_OH":
+					species_name = "Ho-Oh"
+				elif mon == "PORYGON_Z":
+					species_name = "Porygon-z"
+		f.write('    [SPECIES_{0}] = _("{1}"),\n'.format(mon,species_name))
+	f.write("};\n")
+	f.write("// > END")
 		
 ########## pokedex_text.h
 
