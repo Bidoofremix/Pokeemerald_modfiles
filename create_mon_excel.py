@@ -168,7 +168,7 @@ for i,file in zip(excel_splits,pokemon_excels):
 
 	if os.path.isfile(file):
 		print("\nerror: file already exists: {0}".format(file))
-		#exit(0)
+		exit(0)
 		
 	if True:
 		workbook = xlsxwriter.Workbook(file)
