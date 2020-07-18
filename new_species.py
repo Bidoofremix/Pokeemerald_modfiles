@@ -156,7 +156,7 @@ for name in sheet_names:
 		exit(0)
 	
 	new_species[mon]["pokedex_entry"][".description"] = "g{0}PokedexText".format(\
-		mon.capitalize())
+		"".join(i.capitalize() for i in mon.split("_")))
 	
 	who_index = family_order.index(insert_info[mon]["who"])
 	if insert_info[mon]["where"] == "after":
@@ -231,31 +231,36 @@ species_name_file = normalize_path("{0}/src/data/text/species_names.h".format(\
 	raw_folder))
 print("create %s" % species_name_file)
 	
+species_name_dict = {}
+for mon in family_order:
+	if mon not in ["MR_MIME","PORYGON_Z","NIDORAN_F","NIDORAN_M",\
+		"HO_OH","MIMEJR"] and not "ALOLAN_" in mon and not "CLONE_" in mon:
+		species_name_dict[mon] = mon.capitalize()
+	else:
+		if "ALOLAN_" in mon:
+			species_name_dict[mon] = mon.replace("ALOLAN_","").capitalize()
+		elif "CLONE_" in mon:
+			species_name_dict[mon] = mon.replace("CLONE_","").capitalize()
+		else:
+			if mon == "MR_MIME":
+				species_name_dict[mon] = "Mr. Mime"
+			elif mon == "MIMEJR":
+				species_name_dict[mon] = "Mime jr."
+			elif mon == "NIDORAN_F":
+				species_name_dict[mon] = "Nidoran♀"
+			elif mon == "NIDORAN_M":
+				species_name_dict[mon] = "Nidoran♂"
+			elif mon == "HO_OH":
+				species_name_dict[mon] = "Ho-Oh"
+			elif mon == "PORYGON_Z":
+				species_name_dict[mon] = "Porygon-z"
+	
 with open(species_name_file, "w", encoding="utf-8") as f:
 	f.write("< //\n")
 	f.write("const u8 gSpeciesNames[][POKEMON_NAME_LENGTH + 1] = {\n")
 	f.write('    [SPECIES_NONE] = _("??????????"),\n')
-	for mon in family_order:
-		if mon not in ["MR_MIME","PORYGON_Z","NIDORAN_F","NIDORAN_M",\
-			"HO_OH","MIMEJR"] and not "ALOLAN_" in mon:
-			species_name = mon.capitalize()
-		else:
-			if "ALOLAN_" in mon:
-				species_name = mon.replace("ALOLAN_","").capitalize()
-			else:
-				if mon == "MR_MIME":
-					species_name = "Mr. Mime"
-				elif mon == "MIMEJR":
-					species_name = "Mime jr."
-				elif mon == "NIDORAN_F":
-					species_name = "Nidoran♀"
-				elif mon == "NIDORAN_M":
-					species_name = "Nidoran♂"
-				elif mon == "HO_OH":
-					species_name = "Ho-Oh"
-				elif mon == "PORYGON_Z":
-					species_name = "Porygon-z"
-		f.write('    [SPECIES_{0}] = _("{1}"),\n'.format(mon,species_name))
+	for mon in family_order:	
+		f.write('    [SPECIES_{0}] = _("{1}"),\n'.format(mon,species_name_dict[mon]))
 	f.write("};\n")
 	f.write("// > END")
 		
@@ -306,7 +311,7 @@ with open(normalize_path("{0}/src/data/pokemon/pokedex_entries.h".format(\
 
 # use excel data for new species
 for mon in new_species:
-	pokedex_entry_data[mon] = new_species[mon]["pokedex_entry"]
+	pokedex_entry_data[mon] = new_species[mon]["pokedex_entry"]	
 		
 with open(pokedex_entries_file, "w") as f:
 	f.write("< //\n")
@@ -408,73 +413,45 @@ with open(pokedex_text_file, "w", encoding="utf-8") as f:
 		f.write("\n")
 		
 	f.write("// > END")
-exit(0)
-	
-new_lines = []
-for mon in new_species:
-	if mon not in defined_new_mons:
-		new_lines.append("const u8 g{0}PokedexText[] = _(\n".format(mon.capitalize()))
-		for line in new_species[mon]["pokedex_description"][:-1]:
-			new_lines.append('    "{0}\\n"\n'.format(line.encode("utf-8").decode("utf-8")))
-		new_lines.append('    "{0}");\n\n'.format(\
-			new_species[mon]["pokedex_description"][-1].encode("utf-8").decode("utf-8")))
-
-pokedex_text_file_lines[-2:-2] = new_lines
-
-write_lines(pokedex_text_file,pokedex_text_file_lines)
-		
-########## pokedex_entries.h
-
-pokedex_entries_file = normalize_path("{0}/src/data/pokemon/pokedex_entries.h".format(\
-	raw_folder))
-if not os.path.isfile(pokedex_entries_file):
-	print("pokedex_entries.h not detected, create new")
-	pokedex_entry_dict = {}
-	with open(normalize_path("{0}/src/data/pokemon/pokedex_entries.h".format(\
-		vanilla_dir)), "r") as f:
-		for line in f:
-			if "[NATIONAL_DEX" in line:
-				mon = line.lstrip().split("]")[0][1:]
-				pokedex_entry_dict[mon] = {}
-			elif line.startswith("        ."):
-				line = line.strip().rstrip("\n").rstrip(",").split(" = ")
-				pokedex_entry_dict[mon][line[0]] = line[1]
-	
-	with open(pokedex_entries_file, "w") as f:
-		f.write("< //\n")
-		f.write("const struct PokedexEntry gPokedexEntries[] =\n")
-		f.write("{\n")
-		for mon in family_order:
-			mon = "NATIONAL_DEX_{0}".format(mon)
-			f.write("    [{0}] = \n".format(mon))
-			f.write("    {\n")
-			for key in sorted(pokedex_entry_dict[mon]):
-				f.write("        {0} = {1},\n".format(key,pokedex_entry_dict[mon][key]))
-			f.write("    },\n\n")
-		f.write("};\n")
-		f.write("// >\n")
-
-pokedex_entries_file_lines = []
-with open(pokedex_entries_file, "r") as f:
-	pokedex_entries_file_lines = f.readlines()
-
-print("modify pokedex_entries.h")
-
-new_pokedex_entries  = []
-for mon in sorted(new_species):
-	if mon not in defined_new_mons:
-		new_pokedex_entries.append("    [NATIONAL_DEX_{0}] = \n".format(mon))
-		new_pokedex_entries.append("    {\n")
-		for key in pokedex_parameters:
-			new_pokedex_entries.append("        {0} = {1},\n".format(\
-				key,new_species[mon]["pokedex_entry"][key]))
-		new_pokedex_entries.append("    },\n")
-
-pokedex_entries_file_lines[-2:-2] = new_pokedex_entries
-
-write_lines(pokedex_entries_file,pokedex_entries_file_lines)
 
 ########## pokedex orders
+
+pokedex_orders_file = normalize_path("{0}/src/data/pokemon/pokedex_orders.h".format(\
+	raw_folder))
+
+print("create %s" % pokedex_orders_file)	
+
+with open(pokedex_orders_file, "w") as f:
+	f.write("< //\n")
+	
+	# alphabetical
+	f.write("const u16 gPokedexOrder_Alphabetical[] =\n")
+	f.write("{\n")
+	tmp_dict = {}
+	for mon in sorted(family_order, key=lambda x: species_name_dict[x]):
+		f.write("    NATIONAL_DEX_{0},\n".format(mon))
+	f.write("};\n")
+	f.write("\n")
+	
+	# weight, height
+	for p in ["weight", "height"]:
+		tmp_dict = {}
+		for mon in family_order:
+			if "ALOLAN_" in mon:
+				lookup_mon = mon.replace("ALOLAN_","")
+			else:
+				lookup_mon = mon
+			tmp_dict[mon] = pokedex_entry_data[lookup_mon][".%s" % p]
+
+		f.write("const u16 gPokedexOrder_{0}[] =\n".format(p.capitalize()))
+		f.write("{\n")
+		for mon in sorted(tmp_dict, key=lambda x:int(tmp_dict[x])):
+			f.write("    NATIONAL_DEX_{0},\n".format(mon))
+		f.write("};\n")
+		f.write("\n")
+	f.write("// > END")
+		
+exit(0)
 
 weight_dict = {}
 height_dict = {}
