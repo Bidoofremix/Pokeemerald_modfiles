@@ -721,6 +721,56 @@ with open(egg_move_file, "w") as f:
 
 evolution_file = normalize_path("{0}/src/data/pokemon/evolution.h".format(raw_folder))
 
+evo_pattern = r'(EVO_.+),[ \t]+(.+),[ \t]+(.+)}{1,2}'
+evo_data = {}
+
+with open(normalize_path("{0}/src/data/pokemon/evolution.h".format(\
+	vanilla_dir)), "r") as f:
+	for line in f:
+		line = line.replace("\t"," ")
+		if "[SPECIES" in line:
+			species_name = line.split("]")[0].split("[")[1].replace("SPECIES_","")
+		if species_name in family_order:
+			re_match = re.search(evo_pattern, line)
+			if re_match:
+				evo_method = re_match.group(1).strip()
+				evo_parameter = re_match.group(2).strip()
+				evo_target = re_match.group(3).replace("}","").strip()
+				if evo_method != "EVO_MEGA_EVOLUTION":
+					if species_name not in evo_data:
+						evo_data[species_name] = []
+					evo_data[species_name].append([evo_method,evo_parameter,evo_target])
+					
+for mon in new_species:
+	if "evolution" in new_species[mon]:
+		tmp_data = new_species[mon]["evolution"]
+		if mon not in evo_data:
+			evo_data[mon] = []
+		evo_data[mon].append([tmp_data["method"],\
+			tmp_data["parameter"],tmp_data["target"]])
+			
+with open(evolution_file, "w") as f:
+	f.write("< //\n")
+	f.write("const struct Evolution gEvolutionTable[NUM_SPECIES][EVOS_PER_MON] =\n")
+	f.write("{\n")
+	for mon in family_order:
+		if mon in evo_data:
+			f.write("    [SPECIES_{0}] = ".format(mon))
+			if len(evo_data[mon]) == 1:
+				f.write("{{%s,%s,%s}},\n" % (evo_data[mon][0][0],\
+					evo_data[mon][0][1],evo_data[mon][0][2]))
+			else:
+				f.write("{{%s,%s,%s},\n" % (evo_data[mon][0][0],\
+					evo_data[mon][0][1],evo_data[mon][0][2]))
+				for e in evo_data[mon][1:-1]:
+					f.write(" "*28 + "{%s,%s,%s},\n" % (e[0],e[1],e[2]))
+				f.write(" "*28 + "{%s,%s,%s}},\n" % (evo_data[mon][-1][0],\
+					evo_data[mon][-1][1],evo_data[mon][-1][2]))
+	f.write("};\n")
+	f.write("// > END")
+	
+exit(0)
+
 with open(evolution_file, "r") as f:
 	evolution_file_lines = f.readlines()
 	
