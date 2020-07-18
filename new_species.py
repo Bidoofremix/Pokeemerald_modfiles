@@ -450,110 +450,12 @@ with open(pokedex_orders_file, "w") as f:
 		f.write("};\n")
 		f.write("\n")
 	f.write("// > END")
-		
-exit(0)
 
-weight_dict = {}
-height_dict = {}
-with open(pokedex_entries_file, "r") as f:
-	for line in f:
-		if "[NATIONAL_DEX" in line:
-			mon = line.strip().split("]")[0][1:]
-		elif ".weight" in line or ".height" in line:
-			line = line.strip().rstrip("\n").rstrip(",").split(" ")
-			if ".weight" in line:
-				which_dict = weight_dict
-			elif ".height" in line:
-				which_dict = height_dict
-			which_dict[mon] = int(line[2])
-
-pokedex_orders_file = normalize_path("{0}/src/data/pokemon/pokedex_orders.h".format(\
-	raw_folder))
-if not os.path.isfile(pokedex_orders_file):
-	print("pokedex_orders.h not detected, create new")
-	with open(pokedex_orders_file, "w") as f:
-		f.write("< //\n")
-		
-		# alphabetical
-		f.write("const u16 gPokedexOrder_Alphabetical[] =\n")
-		f.write("{\n")
-		for mon in sorted(family_order):
-			f.write("    NATIONAL_DEX_{0},\n".format(mon))
-		f.write("};\n\n")
-
-		# weight
-		f.write("const u16 gPokedexOrder_Weight[] =\n")
-		f.write("{\n")
-		for mon in sorted(weight_dict, key= lambda x: weight_dict[x]):
-			if mon.replace("NATIONAL_DEX_","") in family_order:
-				f.write("    {0},\n".format(mon))
-		f.write("};\n\n")
-		
-		# height
-		f.write("const u16 gPokedexOrder_Height[] =\n")
-		f.write("{\n")
-		for mon in sorted(height_dict, key= lambda x: height_dict[x]):
-			if mon.replace("NATIONAL_DEX_","") in family_order:
-				f.write("    {0},\n".format(mon))
-		f.write("};\n")
-		f.write("// > END\n")
-
-else:
-	pokedex_orders_file_lines = []
-	with open(pokedex_orders_file, "r") as f:
-		for line in f:
-			pokedex_orders_file_lines.append(line)
-
-for mon in new_species:
-
-	alphabetical_on = 0
-	lines_on = 0
-	
-	if mon not in defined_new_mons:
-		tmp_name = "    NATIONAL_DEX_{0},\n".format(mon)
-		
-		# alphabetical
-		for n,line in enumerate(pokedex_orders_file_lines):
-			if "const u16 gPokedexOrder_Alphabetical" in line:
-				alphabetical_on = 1
-				continue
-				
-			elif "};" in line:
-				alphabetical_on = 0
-				
-			if alphabetical_on and not line.startswith("{"):
-				if line > tmp_name:
-					pokedex_orders_file_lines[n:n] = [tmp_name]
-					break
-		
-		# weight, height
-		for category in ["weight", "height"]:
-		
-			if category == "weight":
-				compare_dict = weight_dict
-			elif category == "height":
-				compare_dict = height_dict
-		
-			lines_on = 0
-			for n,line in enumerate(pokedex_orders_file_lines):
-				if "const u16 gPokedexOrder_{0}".format(category.capitalize()) in line:
-					lines_on = 1
-					continue
-				elif "};" in line:
-					lines_on = 0
-				
-				if lines_on and not line.startswith("{"):
-					compare_mon = line.strip().split(",")[0]
-					if compare_dict[compare_mon] > new_species[mon]["pokedex_entry"]\
-						[".{0}".format(category)]:
-						pokedex_orders_file_lines[n:n] = [tmp_name]
-						break
-
-write_lines(pokedex_orders_file, pokedex_orders_file_lines)
-	
 ########## pokemon.c
 
 pokemon_file = normalize_path("{0}/src/pokemon.c".format(raw_folder))
+
+print("modify %s" % pokemon_file)
 
 with open(pokemon_file, "r") as f:
 	pokemon_file_lines = f.readlines()
@@ -583,8 +485,6 @@ if not found_pokedex_array:
 			
 else:
 	print("found gSpeciesToNationalPokedexNum in raw pokemon.c")
-
-print("modify pokemon.c")	
 	
 with open(pokemon_file, "r") as f:
 	pokemon_file_lines = f.readlines()
@@ -603,6 +503,8 @@ for mon in family_order:
 pokemon_file_lines[start_index:stop_index+1] = new_pokemon_lines
 
 write_lines(pokemon_file, pokemon_file_lines)
+
+exit(0)
 
 ########## base_stats.h
 
