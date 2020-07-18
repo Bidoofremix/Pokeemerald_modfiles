@@ -189,7 +189,7 @@ with open(species_file, "w") as f:
 		for mon in family_order:
 			f.write("#define SPECIES_{0} {1}\n".format(mon,iter_round))
 			iter_round += 1
-		f.write("#define SPECIES_EGG {0}\n".format(iter_round)
+		f.write("#define SPECIES_EGG {0}\n".format(iter_round))
 		f.write("#define NUM_SPECIES SPECIES_EGG\n")
 		f.write("\n")
 		
@@ -211,9 +211,9 @@ with open(species_file, "w") as f:
 			f.write("#define NATIONAL_DEX_{0} {1}\n".format(mon,iter_round))
 			iter_round += 1
 			if mon == "MEW":
-						f.write("\n#define KANTO_DEX_COUNT NATIONAL_DEX_MEW\n\n")
-					elif mon == "CELEBI":
-						f.write("\n#define JOHTO_DEX_COUNT NATIONAL_DEX_CELEBI\n\n")
+				f.write("\n#define KANTO_DEX_COUNT NATIONAL_DEX_MEW\n\n")
+			elif mon == "CELEBI":
+				f.write("\n#define JOHTO_DEX_COUNT NATIONAL_DEX_CELEBI\n\n")
 		f.write("\n#define NATIONAL_DEX_COUNT NATIONAL_DEX_{0}\n".format(\
 					family_order[-1]))
 		
@@ -224,7 +224,7 @@ with open(species_file, "w") as f:
 		for mon in family_order:
 			f.write("#define HOENN_DEX_{0} {1}\n".format(mon,iter_round))
 			iter_round += 1
-		f.write("\n#define HOENN_DEX_COUNT {0}\n".format(iter_round + 1)
+		f.write("\n#define HOENN_DEX_COUNT {0}\n".format(iter_round + 1))
 
 		f.write("\n")
 		f.write("#endif  // GUARD_CONSTANTS_SPECIES_H\n")
