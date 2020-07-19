@@ -799,9 +799,12 @@ for mon in new_species:
 ########## graphics.h
 
 graphics_file = normalize_path("{0}/include/graphics.h".format(raw_folder))
-
 print("modify %s" % graphics_file)
 
+pokemon_graphics_file = normalize_path("{0}/src/data/graphics/pokemon.h".format(\
+	raw_folder))
+print("create %s" % pokemon_graphics_file)
+	
 with open(graphics_file, "r") as f:
 	graphics_file_lines = f.readlines()
 		
@@ -815,6 +818,7 @@ if not start_index:
 	exit(0)
 		
 new_graphics_lines = []
+new_graphics_lines2 = []
 for mon in family_order:
 	for category in ["FrontPic","BackPic","Palette",\
 		"ShinyPalette","Icon","Footprint"]:
@@ -822,37 +826,48 @@ for mon in family_order:
 				g_type = "u8"
 			else:
 				g_type = "u32"
-			new_graphics_lines.append("extern const {0} gMon{1}_{2}[];\n".format(\
-				g_type,caps2joined[mon],category))
+				
+			if category == "FrontPic":
+				sprite = "anim_front.4bpp"
+			elif category == "BackPic":
+				sprite = "back.4bpp"
+			elif category == "Palette":
+				sprite = "normal.gbapal"
+			elif category == "ShinyPalette":
+				sprite = "shiny.gbapal"
+			elif category == "Footprint":
+				sprite = "footprint.1bpp"
+			elif category == "Icon":
+				sprite = "icon.4bpp"
+				
+			if category in ["Footprint","Icon"]:
+				suffix = ""
+			else:
+				suffix = ".lz"
+				
+			definition = "extern const {0} gMon{1}_{2}[];\n".format(\
+				g_type,category,caps2joined[mon])
+			declaration = '{0} = INCBIN_{1}("graphics/pokemon/{2}/{3}{4}");\n'.format(\
+				definition.replace(";\n","").replace("extern ",""),g_type.upper(),\
+					mon.lower(),sprite,suffix)
+			new_graphics_lines.append(definition)
+			new_graphics_lines2.append(declaration)
 	new_graphics_lines.append("\n")
+	new_graphics_lines2.append("\n")
 
 graphics_file_lines[start_index:start_index+1] = new_graphics_lines
 
-write_lines(graphics_file, graphics_file_lines)
+species_none = "const u32 gMonFrontPic_CircledQuestionMark[] = "
+species_none += 'INCBIN_U32("graphics/pokemon/question_mark/circled/anim_front.4bpp.lz");\n'
 
-#################
+new_graphics_lines2.insert(0,species_none)
+new_graphics_lines2.insert(0,"< //\n")
+new_graphics_lines2.append("// > END")
+
+write_lines(graphics_file, graphics_file_lines)
+write_lines(pokemon_graphics_file, new_graphics_lines2)
 
 exit(0)
-
-graphics_file_lines = []
-with open(graphics_file, "r") as f:
-	for line in f:
-		graphics_file_lines.append(line)
-		
-new_graphics_lines = []
-for mon in new_species:
-	if not mon in defined_new_mons:
-		for category in ["FrontPic","Palette","BackPic",\
-			"ShinyPalette"]:
-			new_graphics_lines.append("extern const u32 gMon{0}_{1}[];\n".format(\
-				category,mon.capitalize()))
-		for category in ["Icon","Footprint"]:
-			new_graphics_lines.append("extern const u8 gMon{0}_{1}[];\n".format(\
-				category,mon.capitalize()))
-				
-graphics_file_lines[-2:-2] = new_graphics_lines
-
-write_lines(graphics_file, graphics_file_lines)	
 
 ########## graphics/pokemon.h
 
