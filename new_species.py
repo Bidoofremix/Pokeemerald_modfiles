@@ -867,108 +867,121 @@ new_graphics_lines2.append("// > END")
 write_lines(graphics_file, graphics_file_lines)
 write_lines(pokemon_graphics_file, new_graphics_lines2)
 
-exit(0)
-
-########## graphics/pokemon.h
-
-pokemon_graphics_file = normalize_path("{0}/src/data/graphics/pokemon.h".format(\
-	raw_folder))
-	
-pokemon_graphics_file_lines = []
-with open(pokemon_graphics_file, "r") as f:
-	for line in f:
-		pokemon_graphics_file_lines.append(line)
-		
-new_pokemon_graphics_lines = []
-for mon in new_species:
-	if mon not in defined_new_mons:
-	
-		tmp_text = "const u32 gMonFrontPic_{0}[] = ".format(mon.capitalize())
-		tmp_text += 'INCBIN_U32("graphics/pokemon/{0}/anim_front.4bpp.lz");\n'.format(mon.lower())
-		new_pokemon_graphics_lines.append(tmp_text)
-	
-		for category in ["BackPic"]:
-			tmp_text = "const u32 gMon{0}_{1}[] = ".format(category,mon.capitalize())
-			tmp_text += 'INCBIN_U32("graphics/pokemon/{0}/{1}.4bpp.lz");\n'.format(\
-				mon.lower(),category.replace("Pic","").lower())
-			new_pokemon_graphics_lines.append(tmp_text)
-			
-		for category in ["Palette","ShinyPalette"]:
-			if category == "Palette":
-				palette = "normal"
-			elif category == "ShinyPalette":
-				palette = "shiny"
-			tmp_text = "const u32 gMon{0}_{1}[] = ".format(category,mon.capitalize())
-			tmp_text += 'INCBIN_U32("graphics/pokemon/{0}/{1}.gbapal.lz");\n'.format(\
-				mon.lower(),palette)
-			new_pokemon_graphics_lines.append(tmp_text)
-			
-		for category in ["Icon","Footprint"]:
-			if category == "Icon":
-				format = "4bpp"
-			elif category == "Footprint":
-				format = "1bpp"
-			tmp_text = "const u8 gMon{0}_{1}[] = ".format(category,mon.capitalize())
-			tmp_text += 'INCBIN_U8("graphics/pokemon/{0}/{1}.{2}");\n'.format(\
-				mon.lower(),category.lower(),format)
-			new_pokemon_graphics_lines.append(tmp_text)
-			
-pokemon_graphics_file_lines[-2:-2] = new_pokemon_graphics_lines			
-
-write_lines(pokemon_graphics_file,pokemon_graphics_file_lines)
-
 ########## front_pic_anims.h
 
 anims_file = normalize_path("{0}/src/data/pokemon_graphics/front_pic_anims.h".format(\
 	raw_folder))
 	
-anims_file_lines = []
-with open(anims_file, "r") as f:
+print("create %s" % anims_file)
+
+species_pattern = r'(sAnim_(.+)_.+?)\['
+species_pattern2 = r'sAnims_(.+)\['
+
+anim_data = {}
+
+# get existing animations
+with open(normalize_path("{0}/src/data/pokemon_graphics/front_pic_anims.h".format(\
+	vanilla_dir)), "r") as f:
+	species_on = 0
 	for line in f:
-		anims_file_lines.append(line)
+		if line.startswith("static const union AnimCmd sAnim_"):
+			re_match = re.search(species_pattern,line)
+			anim_name = re_match.group(1)
+			species_name = re_match.group(2)
+			if species_name in family_order or "UNOWN" in species_name:
+				if species_name not in anim_data:
+					anim_data[species_name]= {"AnimCmd":{}, "sAnims":[]}
+				species_on = 1
+				tmp = []
 		
-# split to chunks
-anims_chunk_indexes = {"sAnim": "", "sAnims":"","ANIM_CMD":""}
-chunks = lines_to_chunks(anims_file_lines)
-for n,c in enumerate(chunks):
-	for line in c:
-		if "AnimCmd sAnim" in line:
-			anims_chunk_indexes["sAnim"] = n
-		if "*const sAnims" in line:
-			anims_chunk_indexes["sAnims"] = n
-		if "ANIM_CMD" in line:
-			anims_chunk_indexes["ANIM_CMD"] = n
+		if species_on and "ANIMCMD_END" in line:
+			anim_data[species_name]["AnimCmd"][anim_name] = tmp
+			tmp = []
+			species_on = 0
+		
+		if species_on and not "[" in line and not "{" in line:
+			tmp.append(line.rstrip("\n").rstrip(",").lstrip())
+		
+	f.seek(0)
+	for line in f:
+		if line.startswith("static const union AnimCmd *const sAnims_"):
+			re_match = re.search(species_pattern2,line)
+			species_name = re_match.group(1)
+			if species_name in family_order or "UNOWN" in species_name:
+				species_on = 1
+				
+		if "};" in line:
+			species_on = 0
+				
+		if species_on and not "[" in line:
+			# fix for Spinda
+			if species_name not in anim_data:
+				anim_data[species_name] = {"AnimCmd":{}, "sAnims":[]}				
+			anim_data[species_name]["sAnims"].append(line.lstrip().rstrip("\n").rstrip(","))
 
 for mon in new_species:
-	if mon not in defined_new_mons:
 
-		sanim_lines = []
-		sanim_lines.append("\n")
-		sanim_lines.append("static const union AnimCmd sAnim_{0}_1[] =\n".format(mon))
-		sanim_lines.append("{\n")
-		sanim_lines.append("    ANIMCMD_FRAME(1, 30),\n")
-		sanim_lines.append("    ANIMCMD_FRAME(0, 20),\n")
-		sanim_lines.append("    ANIMCMD_END,\n")
-		sanim_lines.append("};\n")
-		chunks[anims_chunk_indexes["sAnim"]][-1:-1] = sanim_lines
+		anim_name = "sAnim_{0}_1".format(mon)
 
-		sanims_lines = []
-		sanims_lines.append("\n")
-		sanims_lines.append("static const union AnimCmd *const sAnims_{0}[] = {{\n".format(mon))
-		sanims_lines.append("    sAnim_GeneralFrame0,\n")
-		sanims_lines.append("    sAnim_{0}_1,\n".format(mon))
-		sanims_lines.append("};\n")
-		chunks[anims_chunk_indexes["sAnims"]][-1:-1] = sanims_lines
+		tmp = []
+		tmp.append("ANIMCMD_FRAME(0, 20)")
+		tmp.append("ANIMCMD_FRAME(1, 20)")
+		tmp.append("ANIMCMD_FRAME(0, 20)")
+		tmp.append("ANIMCMD_FRAME(1, 20)")
+		anim_data[mon] = {"AnimCmd": {}}
+		anim_data[mon]["AnimCmd"][anim_name] = tmp
 
-		chunks[anims_chunk_indexes["ANIM_CMD"]].insert(-2,"    ANIM_CMD({0}),\n".format(mon))
+		anim_data[mon]["sAnims"] = ["sAnim_GeneralFrame0",anim_name]
 
-anims_file_lines = []	
-for c in chunks:
-	for line in c:
-		anims_file_lines.append(line)
 		
-write_lines(anims_file,anims_file_lines)
+with open(anims_file, "w") as f:
+	f.write("< //\n")
+	f.write("static const union AnimCmd sAnim_NONE_1[] =\n")
+	f.write("{\n")
+	f.write("    ANIMCMD_FRAME(0, 30),\n")
+	f.write("    ANIMCMD_FRAME(1, 30),\n")
+	f.write("    ANIMCMD_FRAME(0, 1),\n")
+	f.write("    ANIMCMD_END,\n")
+	f.write("};\n")
+	f.write("\n")
+	f.write("static const union AnimCmd *const sAnims_NONE[] ={\n")
+	f.write("    sAnim_GeneralFrame0,\n")
+	f.write("    sAnim_NONE_1,\n")
+	f.write("};\n")
+	f.write("\n")
+	
+	for mon in family_order:
+		for anim in sorted(anim_data[mon]["AnimCmd"]):
+			f.write("static const union AnimCmd {0}[] =\n".format(anim))
+			f.write("{\n")
+			for line in anim_data[mon]["AnimCmd"][anim]:
+				f.write("    {0},\n".format(line))
+			f.write("    ANIMCMD_END,\n")
+			f.write("};\n")
 
+		f.write("static const union AnimCmd *const sAnims_{0}[] =\n".format(mon))
+		f.write("{\n")
+		for line in anim_data[mon]["sAnims"]:
+			f.write("    {0},\n".format(line))
+		f.write("};\n")
+		f.write("\n")
+	
+	f.write("#define ANIM_CMD(name)             [SPECIES_##name] = sAnims_##name\n")
+	f.write("#define ANIM_CMD_FULL(name, anims) [SPECIES_##name] = anims\n")
+	f.write("\n")
+	f.write("const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =\n")
+	f.write("{\n")
+	f.write("    ANIM_CMD(NONE),\n")
+	for mon in family_order:
+		f.write("    ANIM_CMD({0}),\n".format(mon))
+	f.write("};\n")
+	
+	f.write("\n")
+	f.write("#undef ANIM_CMD\n")
+	f.write("#undef ANIM_CMD_FULL\n")
+
+	f.write("// > END")
+	
 ########## pokemon_animation.c
 
 pokemon_animation_file = normalize_path("{0}/src/pokemon_animation.c".format(\
