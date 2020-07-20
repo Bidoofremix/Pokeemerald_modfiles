@@ -1032,10 +1032,8 @@ with open(pokemon_animation_file, "w") as f:
 
 ########## graphics tables
 
-table_files = ["front_pic_table.h", "back_pic_table.h",\
-	"footprint_table.h","palette_table.h","shiny_palette_table.h"]
-	
-for t in table_files:
+for t in ["front_pic_table.h", "back_pic_table.h",\
+		"palette_table.h","shiny_palette_table.h"]:
 
 	file = normalize_path("{0}/src/data/pokemon_graphics/{1}".format(\
 		raw_folder,t))
@@ -1043,58 +1041,64 @@ for t in table_files:
 	print("create %s" % file)
 		
 	with open(file, "w") as f:
-		# front pic table
-		if t in ["front_pic_table.h","back_pic_table.h"]:
 		
-			if t == "front_pic_table.h":
-				category = "FrontPic"
-			elif t == "back_pic_table.h":
-				category = "BackPic"
-			print(t,category)
-		
-			f.write("const struct CompressedSpriteSheet gMon{0}Table[] =\n".format(category))
-			f.write("{\n")
-			f.write("    SPECIES_SPRITE(NONE = gMon{0}_CircledQuestionMark),\n".format(category))
-			for mon in family_order:
-				f.write("    SPECIES_SPRITE({0} = gMon{1}_{2}),\n".format(\
-					mon,category,caps2joined[mon]))
-			f.write("\n")
-			for u in unowns:
-				if u == "EMARK":
-					letter = "ExclamationMark"
-				elif u == "QMARK":
-					letter = "QuestionMark"
-				else:
-					letter = u
-				f.write("    SPECIES_SPRITE(UNOWN_{0}, gMon{1}_Unown{2}),\n".\
-					format(u,category,letter))
-			f.write("};\n")
-			f.write("\n")
-			f.write("// > END")
+		if t == "front_pic_table.h":
+			category = "FrontPic"
+			sprite_type = "SPRITE"
+			struct_type = "Sheet"
+		elif t == "back_pic_table.h":
+			category = "BackPic"
+			sprite_type = "SPRITE"
+			struct_type = "Sheet"
+		elif t == "palette_table.h":
+			category = "Palette"
+			sprite_type = "PAL"
+			struct_type = "Palette"
+		elif t == "shiny_palette_table.h":
+			category = "ShinyPalette"
+			sprite_type = "PAL"
+			struct_type = "ShinyPalette"
+		print(t,category, struct_type)
 	
-	continue
-	
-	category = file.split(slash)[-1].replace("_table.h","").replace("_"," ").title().replace(" ","")
-		
-	for mon in new_species:
-		if mon not in defined_new_mons:
-				
-			if t in ["front_pic_table.h","back_pic_table.h"]:
-				tmp_text = "    SPECIES_SPRITE({0}, gMon{1}_{2}),\n".format(mon,category,mon.capitalize())
-			elif t in ["palette_table.h","shiny_palette_table.h"]:
-				if t == "shiny_palette_table.h":
-					suffix = "SHINY_"
-				else:
-					suffix = ""
-				tmp_text = "    SPECIES_{0}PAL({1}, gMon{2}_{3}),\n".format(\
-					suffix,mon,category,mon.capitalize())
-			elif t == "footprint_table.h":
-				tmp_text = "    [SPECIES_{0}] = gMon{1}_{2},\n".format(mon,category,mon.capitalize())
-						
-			file_lines.insert(-2, tmp_text)
-			
-	write_lines(file,file_lines)		
+		f.write("const struct CompressedSprite{0} gMon{1}Table[] =\n".format(\
+			struct_type,category))
+		f.write("{\n")
+		f.write("    SPECIES_{0}(NONE = gMon{1}_CircledQuestionMark),\n".format(\
+			sprite_type,category))
+		for mon in family_order:
+			f.write("    SPECIES_{0}({1} = gMon{2}_{3}),\n".format(\
+				sprite_type,mon,category,caps2joined[mon]))
+		f.write("\n")
+		for u in unowns:
+			if u == "EMARK":
+				letter = "ExclamationMark"
+			elif u == "QMARK":
+				letter = "QuestionMark"
+			else:
+				letter = u
+			f.write("    SPECIES_{0}(UNOWN_{1}, gMon{2}_Unown{3}),\n".\
+				format(sprite_type,u,category,letter))
+		f.write("};\n")
+		f.write("\n")
+		f.write("// > END")
 
+footprint_table_file = normalize_path("{0}/src/data/pokemon_graphics/footprint_table.h".\
+	format(raw_folder,t))
+
+print("create %s" % footprint_table_file)
+
+with open(footprint_table_file, "w") as f:
+	f.write("< //\n")
+	f.write("const u8 *const gMonFootprintTable[] =\n")
+	f.write("{\n")
+	f.write("    [SPECIES_NONE] = gMonFootprint_Bulbasaur,\n")
+	for mon in family_order:
+		f.write("    [SPECIES_{0}] = gMonFootPrint_{1},\n".format(\
+			mon,caps2joined[mon]))
+	f.write("    [SPECIES_EGG] = gMonFootprint_Bulbasaur,\n")
+	f.write("};\n")
+	f.write("// > END")
+		
 exit(0)
 	
 ########## coordinate tables
@@ -1198,7 +1202,7 @@ direct_sound_file = normalize_path("{0}/sound/direct_sound_data.inc".format(raw_
 with open(direct_sound_file, "w") as f:
 	f.write("< //\n")
 	f.write("Cry_Lycanroc_Dusk::\n")
-	f.write('\t.incbin "sound/direct_sound_samples/cry_not_lycanroc_dusk.bin"\n')
+	f.write('\t.incbin "sound/direct_sound_samples/cry_not_'lycanroc_dusk.bin"\n')
 	for mon in new_mon_national_order:
 		f.write("\t.align 2\n")
 		f.write("Cry_{0}::\n".format(mon.capitalize()))
