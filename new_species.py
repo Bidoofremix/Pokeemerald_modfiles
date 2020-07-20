@@ -939,7 +939,7 @@ for mon in new_species:
 
 		
 with open(anims_file, "w") as f:
-	f.write("< //\n")
+	f.write("< // START\n")
 	f.write("static const union AnimCmd sAnim_NONE_1[] =\n")
 	f.write("{\n")
 	f.write("    ANIMCMD_FRAME(0, 30),\n")
