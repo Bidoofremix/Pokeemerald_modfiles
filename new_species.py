@@ -1058,7 +1058,6 @@ for t in ["front_pic_table.h", "back_pic_table.h",\
 			category = "ShinyPalette"
 			sprite_type = "PAL"
 			struct_type = "ShinyPalette"
-		print(t,category, struct_type)
 
 		f.write("< // START\n")
 		f.write("const struct CompressedSprite{0} gMon{1}Table[] =\n".format(\
@@ -1099,34 +1098,79 @@ with open(footprint_table_file, "w") as f:
 	f.write("    [SPECIES_EGG] = gMonFootprint_Bulbasaur,\n")
 	f.write("};\n")
 	f.write("// > END")
-		
-exit(0)
 	
 ########## coordinate tables
 
 for category in ["front","back"]:
 
-	print("modify {0}_pic_coordinates.h".format(category))
-
 	file = normalize_path("{0}/src/data/pokemon_graphics/{1}_pic_coordinates.h".format(\
-		raw_folder,category))
+		raw_folder,category))	
 		
-	with open(file, "r") as f:
-		file_lines = f.readlines()
+	print("create %s" % file)	
 		
-	for mon in new_species:
-		if mon not in defined_new_mons:
-			new_lines = []
-			new_lines.append("\n")
-			new_lines.append("    [SPECIES_{0}] = \n".format(mon))
-			new_lines.append("    {\n")
-			new_lines.append("        .size = 0x40,\n")
-			new_lines.append("        .y_offset = 0x0,\n")
-			new_lines.append("    },\n")
+	coordinate_data = {}	
+		
+	with open("{0}/src/data/pokemon_graphics/{1}_pic_coordinates.h".\
+		format(vanilla_dir,category), "r") as f:
+		species_on = 0
+		for line in f:
+			if "SPECIES" in line and not "NONE" in line:
+				species_name = line.split("]")[0].split("[")[1].replace(\
+					"SPECIES_","")
+				if species_name in family_order or species_name == "EGG" \
+					or "UNOWN" in species_name:
+					coordinate_data[species_name] = {}
+					species_on = 1
+					
+			if "}" in line:
+				species_on = 0
 			
-			file_lines[-2:-2] = new_lines
+			if species_on and not "[" in line and not "{" in line:
+				line = line.split()
+				coordinate_data[species_name][line[0]] = line[2].replace(",","")
+
+	for mon in new_species:
+		coordinate_data[mon] = {".size":"0x7", ".y_offset":"0x7"}
 	
-	write_lines(file,file_lines)
+	with open(file, "w") as f:
+		f.write("< // START\n")
+		f.write("const struct MonCoords gMon{0}PicCoords[] =\n".format(\
+			category.capitalize()))
+		f.write("{\n")
+		f.write("    [SPECIES_NONE] =\n")
+		f.write("    {\n")
+		f.write("        .size = 0x88,\n")
+		f.write("        .y_offset = 0x0,\n")
+		f.write("    },\n")
+		
+		for mon in family_order:
+			if mon != "UNOWN":
+				f.write("    [SPECIES_{0}] =\n".format(mon))
+				f.write("    {\n")
+				f.write("        .size = {0},\n".format(\
+					coordinate_data[mon][".size"]))
+				f.write("        .y_offset = {0},\n".format(\
+					coordinate_data[mon][".y_offset"]))
+				f.write("    },\n")
+		
+		f.write("    [SPECIES_EGG] = \n")
+		f.write("    {\n")
+		f.write("        .size = {0},\n".format(coordinate_data["EGG"][".size"]))
+		f.write("        .y_offset = {0},\n".format(coordinate_data["EGG"][".y_offset"]))
+		f.write("    },\n")
+		
+		for u in unowns:
+			f.write("    [SPECIES_UNOWN_{0}] =\n".format(u))
+			f.write("    {\n")
+			f.write("        .size = {0},\n".format(\
+				coordinate_data["UNOWN_{0}".format(u)][".size"]))
+			f.write("        .y_offset = {0},\n".format(\
+				coordinate_data["UNOWN_{0}".format(u)][".y_offset"]))
+			f.write("    },\n")
+			
+		f.write("};\n")
+		f.write("// > END")
+exit(0)	
 	
 ########## pokemon_icon.c
 
