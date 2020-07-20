@@ -57,6 +57,7 @@ for dir, subdirs, files in os.walk(raw_folder):
 		with open(mod_path, "r", encoding=encoding) as f:
 			mod_lines = f.read().splitlines()
 		
+		start_codes = []
 		end_codes = []
 		
 		# split to chunks based on trailing // >
@@ -84,6 +85,10 @@ for dir, subdirs, files in os.walk(raw_folder):
 			while m[0].replace(" ","") == "":
 				m = m[1:]
 			if m[0].startswith("< //"):
+				if m[0].startswith("< // START"):
+					start_codes.append(1)
+				else:
+					start_codes.append(0)
 				m = m[1:]
 				tmp_chunks.append(m)
 			else:
@@ -128,7 +133,8 @@ for dir, subdirs, files in os.walk(raw_folder):
 						last_index = n
 						break
 			
-			if first_index == "" or (last_index == "" and not end_codes[i] == 1):
+			if (first_index == "" and not start_codes[i] == 1) \
+				or (last_index == "" and not end_codes[i] == 1):
 				print("\nerror: did not find matching lines for:")
 				[print(c) for c in chunk]
 				
