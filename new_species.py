@@ -5,6 +5,7 @@ import os,xlrd,shutil,math
 from config import vanilla_dir,slash
 from misc import *
 from pokemon_tools import *
+from PIL import Image
 
 raw_folder = normalize_path(os.getcwd() + "\\raw")
 
@@ -1169,44 +1170,106 @@ for category in ["front","back"]:
 			f.write("    },\n")
 			
 		f.write("};\n")
-		f.write("// > END")
-exit(0)	
+		f.write("// > END")	
 	
 ########## pokemon_icon.c
 
 pokemon_icon_file = normalize_path("{0}/src/pokemon_icon.c".format(raw_folder))
 
-with open(pokemon_icon_file, "r") as f:
-	pokemon_icon_file_lines = f.readlines()
+print("create %s" % pokemon_icon_file)
+palette_indices = {}
 	
-# icons
-for n,line in enumerate(pokemon_icon_file_lines):
-	if line.startswith("const u8 *const gMonIconTable"):
-		insert_index = n
-		break
+# existing palettes
+with open(normalize_path("{0}/src/pokemon_icon.c".format(\
+	vanilla_dir)), "r") as f:
+	species_on = 0
+	for line in f:
+		if "const u8 gMonIconPaletteIndices" in line:
+			species_on = 1
+			
+		if "};" in line:
+			species_on = 0
+			
+		if species_on and not "const" in line and not "{" in line:
+			species_name = line.split("]")[0].split("[")[1].replace(\
+				"SPECIES_","")
+			if species_name in family_order:
+				tmp_index = line.split()[2].replace("\n","").replace(",","")
+				palette_indices[species_name] = tmp_index
 
-new_lines = []
-for mon in new_species:
-	if mon not in defined_new_mons:
-		new_lines.append("    [SPECIES_{0}] = gMonIcon_{1},\n".format(mon,mon.capitalize()))
+# palettes				
+palette_folder = normalize_path("{0}/graphics/pokemon/icon_palettes".format(\
+	vanilla_dir))
+palette_files = [i for i in os.listdir(palette_folder) \
+	if i.endswith(".pal")]
+
+palettes = {}
+for file in palette_files:
+	num = file.split(".")[0][-1]
+	with open("{0}/{1}".format(palette_folder,file), "r") as f:
+		f.readline()
+		f.readline()
+		f.readline()
+		colors = set([])
+		for line in f:
+			line = line.rstrip("\n").rstrip("\r").replace(" ",", ")
+			colors.add(line)
+		palettes[num] = colors
 		
-pokemon_icon_file_lines[n+2:n+2] = new_lines
-
-# icon indexes
-for n,line in enumerate(pokemon_icon_file_lines):
-	if line.startswith("const u8 gMonIconPaletteIndices"):
-		insert_index = n
-		break
-		
-new_lines = []
+# determine icon palette index automatically		
 for mon in new_species:
-	if mon not in defined_new_mons:
-		new_lines.append("    [SPECIES_{0}] = 0,\n".format(mon))
-
-pokemon_icon_file_lines[n+2:n+2] = new_lines
+	icon_file = "sprites/{0}/icon.png".format(mon.lower())
+	im = Image.open(icon_file).convert("RGB")
+	pix = im.load()
+	width,height = im.size
+	icon_colors = set([])
+	for x in range(0,width):
+		for y in range(0,height):
+			rgb = str(pix[x,y]).replace("(","").replace(")","")
+			icon_colors.add(rgb)
 	
-write_lines(pokemon_icon_file,pokemon_icon_file_lines)
+	for num in palettes:
+		if icon_colors.issubset(palettes[num]):
+			correct_palette = num
+			break
+	
+	palette_indices[mon] = str(num)
+	
 
+with open(pokemon_icon_file, "w") as f:
+	f.write("< //\n")
+	f.write("const u8 *const gMonIconTable[] =\n")
+	f.write("{\n")
+	f.write("    [SPECIES_NONE] = gMonIcon_Bulbasaur,\n")
+	for mon in family_order:
+		f.write("    [SPECIES_{0}] = gMonIcon_{1},\n".format(\
+			mon,caps2joined[mon]))
+	for u in unowns:
+		if u == "EMARK":
+			letter = "ExlamationMark"
+		elif u == "QMARK":
+			letter = "QuestionMark"
+		else:
+			letter = u
+		f.write("    [SPECIES_UNOWN_{0}] = gMonIcon_Unown{1},\n".format(\
+			u,letter))
+	f.write("};\n")
+	f.write("\n")
+	
+	f.write("const u8 gMonIconPaletteIndices[] =\n")
+	f.write("{\n")
+	for mon in family_order:
+		f.write("    [SPECIES_{0}] = {1},\n".format(mon,palette_indices[mon]))
+	f.write("    [SPECIES_UNOWN_A ... SPECIES_UNOWN_QMARK] = 0,\n")
+	f.write("    [SPECIES_EGG] = 1,\n")
+	f.write("};\n")
+	f.write("\n")
+	
+	f.write("const struct SpritePalette gMonIconPaletteTable[] =\n")
+	f.write("// >")
+	
+exit(0)	
+	
 ########## cry
 
 if not os.path.isdir("{0}/sound".format(raw_folder)):
