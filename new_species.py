@@ -1094,7 +1094,7 @@ with open(footprint_table_file, "w") as f:
 	f.write("{\n")
 	f.write("    [SPECIES_NONE] = gMonFootprint_Bulbasaur,\n")
 	for mon in family_order:
-		f.write("    [SPECIES_{0}] = gMonFootPrint_{1},\n".format(\
+		f.write("    [SPECIES_{0}] = gMonFootprint_{1},\n".format(\
 			mon,caps2joined[mon]))
 	f.write("    [SPECIES_EGG] = gMonFootprint_Bulbasaur,\n")
 	f.write("};\n")
