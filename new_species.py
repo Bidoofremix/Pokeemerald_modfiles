@@ -987,6 +987,52 @@ with open(anims_file, "w") as f:
 pokemon_animation_file = normalize_path("{0}/src/pokemon_animation.c".format(\
 	raw_folder))
 
+print("create %s" % pokemon_animation_file)	
+	
+anim_pattern = r'\[SPECIES_(.+)\] = (.+),'	
+anim_data = {}
+	
+with open(normalize_path("{0}/src/pokemon_animation.c".format(\
+	vanilla_dir)),"r") as f:
+	species_on = 0
+	for line in f:
+		if "static const u8 sSpeciesToBackAnimSet" in line:
+			species_on = 1
+			
+		if "}" in line:
+			species_on = 0
+			
+		if species_on and not "static" in line and not "{" in line:
+			re_match = re.search(anim_pattern,line)
+			species_name = re_match.group(1)
+			anim = re_match.group(2)
+			anim_data[species_name] = anim
+
+for mon in new_species:
+	anim_data[mon] = "BACK_ANIM_VERTICAL_SHAKE"
+			
+for mon in family_order:
+	if mon not in anim_data:
+		anim_data[mon] = "BACK_ANIM_VERTICAL_SHAKE"
+			
+with open(pokemon_animation_file, "w") as f:
+	f.write("< //\n")
+	f.write("static const u8 sSpeciesToBackAnimSet[NUM_SPECIES] = \n")
+	f.write("{\n")
+	for mon in family_order:
+		f.write("    [SPECIES_{0}] = {1},\n".format(mon,anim_data[lookup_mon]))
+	f.write("};\n")
+	f.write("\n")
+	f.write("static const u8 sUnknown_0860AA64[][2] =\n")
+	f.write("// >")
+			
+print(anim_data)			
+			
+exit(0)
+	
+	
+print("create %s" % pokemon_animation_file)	
+	
 pokemon_animation_file_lines = []
 with open(pokemon_animation_file, "r") as f:
 	for line in f:
