@@ -1287,24 +1287,32 @@ for mon in new_species:
 	
 	shutil.copy(cry_file,dest_file)
 	
+cry_data = {}	
+	
+for mon in family_order:
+		tmp_file = normalize("sound/direct_sound/samples/cry_{0}.aif".format(mon.lower())
+		if os.path.isfile(tmp_file)
+			cry_data[mon] = "cry"
+		else:
+			cry_data[mon] = "cry_not"
+	
 # order is important!
 cry_table_file = normalize_path("{0}/sound/cry_tables.inc".format(raw_folder))
 with open(cry_table_file, "w") as f:
-	f.write("< //\n")
-	f.write("\tcry_not Cry_Lycanroc_Dusk\n")
-	for mon in new_mon_national_order:
-		f.write("\tcry_not Cry_{0}\n".format(mon.capitalize()))
+	f.write("< // START\n")
 	f.write("\n")
-	f.write(".align 2\n")
-	f.write("gCryTable2:: @ 869EF24\n")
-	f.write("// >\n")
+	f.write("    .align 2\n")
+	f.write("gCryTable:: @ 869DCF4\n")
+	for mon in family_order:
+		f.write("    {0} Cry_{1}\n".format(cry_data[mon],caps2joined[mon]))
 	f.write("\n")
-	
-	f.write("< //\n")
-	f.write("\tcry2_not Cry_Lycanroc_Dusk\n")
-	for mon in new_mon_national_order:
-		f.write("\tcry2_not Cry_{0}\n".format(mon.capitalize()))
-	f.write("// > END\n")
+
+	f.write("    .align 2\n")
+	for mon in family_order:
+		f.write("    {0} Cry_{1}\n".format(cry_data[mon].replace("cry","cry2"),\
+			caps2joined[mon]))
+			
+	f.write("// > END")
 	
 direct_sound_file = normalize_path("{0}/sound/direct_sound_data.inc".format(raw_folder))
 with open(direct_sound_file, "w") as f:
