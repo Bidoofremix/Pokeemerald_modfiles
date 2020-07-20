@@ -1014,7 +1014,7 @@ with open(normalize_path("{0}/src/pokemon_animation.c".format(\
 
 for mon in new_species:
 	anim_data[mon] = "BACK_ANIM_VERTICAL_SHAKE"
-			
+
 for mon in family_order:
 	if mon not in anim_data:
 		anim_data[mon] = "BACK_ANIM_VERTICAL_SHAKE"
@@ -1024,7 +1024,7 @@ with open(pokemon_animation_file, "w") as f:
 	f.write("static const u8 sSpeciesToBackAnimSet[NUM_SPECIES] = \n")
 	f.write("{\n")
 	for mon in family_order:
-		f.write("    [SPECIES_{0}] = {1},\n".format(mon,anim_data[lookup_mon]))
+		f.write("    [SPECIES_{0}] = {1},\n".format(mon,anim_data[mon]))
 	f.write("};\n")
 	f.write("\n")
 	f.write("static const u8 sUnknown_0860AA64[][2] =\n")
