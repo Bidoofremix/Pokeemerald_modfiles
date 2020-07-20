@@ -1021,7 +1021,7 @@ for mon in family_order:
 			
 with open(pokemon_animation_file, "w") as f:
 	f.write("< //\n")
-	f.write("static const u8 sSpeciesToBackAnimSet[NUM_SPECIES] = \n")
+	f.write("static const u8 sSpeciesToBackAnimSet[NUM_SPECIES] =\n")
 	f.write("{\n")
 	for mon in family_order:
 		f.write("    [SPECIES_{0}] = {1},\n".format(mon,anim_data[mon]))
