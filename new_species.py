@@ -216,6 +216,9 @@ caps2joined, joined2caps = generate_capsjoined(family_order)
 national_dex_start = "#define NATIONAL_DEX_NONE"
 national_dex_end = "#define NATIONAL_DEX_COUNT"
 
+unowns = [chr(i+64) for i in range(1,27)]
+unowns += ["EMARK","QMARK"]
+
 species_file = normalize_path("{0}/include/constants/species.h".format(raw_folder))
 print("\ncreate %s" % species_file)
 with open(species_file, "w") as f:
@@ -234,10 +237,11 @@ with open(species_file, "w") as f:
 		
 		# unown forms
 		f.write("// Unown forms, not actual species\n")
-		for i in range(1,27):
-			f.write("#define SPECIES_UNOWN_{0} {1}".format(chr(i+64),i))
-		f.write("#define SPECIES_UNOWN_EMARK NUM_SPECIES + 27\n")
-		f.write("#define SPECIES_UNOWN_QMARK NUM_SPECIES + 28\n")	
+		iter_round = 1
+
+		for u in unowns:
+			f.write("#define SPECIES_UNOWN_{0} {1}\n".format(u,iter_round))
+			iter_round += 1
 			
 		f.write("\n")
 		f.write("// National Dex Index Defines\n")
@@ -1025,26 +1029,6 @@ with open(pokemon_animation_file, "w") as f:
 	f.write("\n")
 	f.write("static const u8 sUnknown_0860AA64[][2] =\n")
 	f.write("// >")
-			
-print(anim_data)			
-			
-exit(0)
-	
-	
-print("create %s" % pokemon_animation_file)	
-	
-pokemon_animation_file_lines = []
-with open(pokemon_animation_file, "r") as f:
-	for line in f:
-		pokemon_animation_file_lines.append(line)
-
-for mon in new_species:
-	if mon not in defined_new_mons:
-		tmp_text = "    [SPECIES_{0}] = ".format(mon)
-		tmp_text += "BACK_ANIM_VERTICAL_SHAKE,\n"
-		pokemon_animation_file_lines.insert(-2, tmp_text)
-		
-write_lines(pokemon_animation_file,pokemon_animation_file_lines)
 
 ########## graphics tables
 
@@ -1053,14 +1037,43 @@ table_files = ["front_pic_table.h", "back_pic_table.h",\
 	
 for t in table_files:
 
-	print("modify {0}".format(t))
-
 	file = normalize_path("{0}/src/data/pokemon_graphics/{1}".format(\
 		raw_folder,t))
-	
-	with open(file, "r") as f:
-		file_lines = f.readlines()
+
+	print("create %s" % file)
 		
+	with open(file, "w") as f:
+		# front pic table
+		if t in ["front_pic_table.h","back_pic_table.h"]:
+		
+			if t == "front_pic_table.h":
+				category = "FrontPic"
+			elif t == "back_pic_table.h":
+				category = "BackPic"
+			print(t,category)
+		
+			f.write("const struct CompressedSpriteSheet gMon{0}Table[] =\n".format(category))
+			f.write("{\n")
+			f.write("    SPECIES_SPRITE(NONE = gMon{0}_CircledQuestionMark),\n".format(category))
+			for mon in family_order:
+				f.write("    SPECIES_SPRITE({0} = gMon{1}_{2}),\n".format(\
+					mon,category,caps2joined[mon]))
+			f.write("\n")
+			for u in unowns:
+				if u == "EMARK":
+					letter = "ExclamationMark"
+				elif u == "QMARK":
+					letter = "QuestionMark"
+				else:
+					letter = u
+				f.write("    SPECIES_SPRITE(UNOWN_{0}, gMon{1}_Unown{2}),\n".\
+					format(u,category,letter))
+			f.write("};\n")
+			f.write("\n")
+			f.write("// > END")
+	
+	continue
+	
 	category = file.split(slash)[-1].replace("_table.h","").replace("_"," ").title().replace(" ","")
 		
 	for mon in new_species:
@@ -1081,6 +1094,8 @@ for t in table_files:
 			file_lines.insert(-2, tmp_text)
 			
 	write_lines(file,file_lines)		
+
+exit(0)
 	
 ########## coordinate tables
 
