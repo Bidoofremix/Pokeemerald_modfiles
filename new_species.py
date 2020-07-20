@@ -1268,8 +1268,6 @@ with open(pokemon_icon_file, "w") as f:
 	f.write("const struct SpritePalette gMonIconPaletteTable[] =\n")
 	f.write("// >")
 	
-exit(0)	
-	
 ########## cry
 
 if not os.path.isdir("{0}/sound".format(raw_folder)):
@@ -1290,8 +1288,9 @@ for mon in new_species:
 cry_data = {}	
 	
 for mon in family_order:
-		tmp_file = normalize("sound/direct_sound/samples/cry_{0}.aif".format(mon.lower())
-		if os.path.isfile(tmp_file)
+		tmp_file = normalize_path("{0}/sound/direct_sound_samples/cry_{1}.aif".\
+			format(vanilla_dir,mon.lower()))
+		if os.path.isfile(tmp_file):
 			cry_data[mon] = "cry"
 		else:
 			cry_data[mon] = "cry_not"
@@ -1317,13 +1316,17 @@ with open(cry_table_file, "w") as f:
 direct_sound_file = normalize_path("{0}/sound/direct_sound_data.inc".format(raw_folder))
 with open(direct_sound_file, "w") as f:
 	f.write("< //\n")
-	f.write("Cry_Lycanroc_Dusk::\n")
-	f.write('\t.incbin "sound/direct_sound_samples/cry_not_lycanroc_dusk.bin"\n')
-	for mon in new_mon_national_order:
-		f.write("\t.align 2\n")
-		f.write("Cry_{0}::\n".format(mon.capitalize()))
-		f.write('\t.incbin "sound/direct_sound_samples/cry_not_{0}.bin"\n\n'.format(\
-			mon.lower()))
+	f.write("DirectSoundWaveData_8745A7C::\n")
+	f.write('	.incbin "sound/direct_sound_samples/8745A7C.bin"\n')
+	f.write("\n")
+	
+	for mon in family_order:
+		f.write("    .align 2\n")
+		f.write("Cry_{0}::\n".format(caps2joined[mon]))
+		f.write('    incbin "sound/direct_sound_samples/{0}_{1}.bin"\n'.format(\
+			cry_data[mon],mon.lower()))
+		f.write("\n")
+	
+	f.write("    .align 2\n")
 	f.write("DirectSoundWaveData_register_noise::\n")
 	f.write("// >\n")
-
