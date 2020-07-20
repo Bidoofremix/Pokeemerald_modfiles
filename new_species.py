@@ -561,7 +561,7 @@ base_stats_file = normalize_path("{0}/src/data/pokemon/base_stats.h".format(\
 print("create %s" % base_stats_file)	
 	
 with open(base_stats_file, "w") as f:
-	f.write("< //\n")
+	f.write("< // START\n")
 	f.write("// Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.\n")
 	f.write("// 255 (MON_GENDERLESS) is reserved for genderless Pokémon.\n")
 	f.write("#define PERCENT_FEMALE(percent) min(254, ((percent * 255) / 100))\n")
