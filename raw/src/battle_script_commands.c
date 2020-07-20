@@ -132,4 +132,20 @@ static void Cmd_datahpupdate(void)
         if (gBattleMons[gBattlerTarget].type1 == TYPE_MYSTERY && gBattleMons[gBattlerTarget].type2 != TYPE_MYSTERY)
 			{
             gBattleMons[gBattlerAttacker].type1 = gBattleMons[gBattlerTarget].type2;
-			// >
+// >
+
+< //
+bool32 DoesDisguiseBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
+{
+    // if (GetBattlerAbility(battlerDef) != ABILITY_DISGUISE
+        // || gBattleMons[battlerDef].species != SPECIES_MIMIKYU
+        // || gBattleMons[battlerDef].status2 & STATUS2_TRANSFORMED
+        // || gBattleMoves[move].power == 0)
+        // return FALSE;
+    // else
+        // return TRUE;
+	return FALSE;
+}
+
+static void Cmd_jumpifsubstituteblocks(void)
+// >
