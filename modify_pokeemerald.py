@@ -144,7 +144,10 @@ for dir, subdirs, files in os.walk(raw_folder):
 				if last_index == "":
 					print("last line")
 				exit(0)
-			
+		
+			if start_codes[i] == 1:
+				first_index = 0	
+	
 			if end_codes[i] == 1:
 				last_index = len(original_lines)
 					
