@@ -1059,7 +1059,8 @@ for t in ["front_pic_table.h", "back_pic_table.h",\
 			sprite_type = "PAL"
 			struct_type = "ShinyPalette"
 		print(t,category, struct_type)
-	
+
+		f.write("< // START\n")
 		f.write("const struct CompressedSprite{0} gMon{1}Table[] =\n".format(\
 			struct_type,category))
 		f.write("{\n")
