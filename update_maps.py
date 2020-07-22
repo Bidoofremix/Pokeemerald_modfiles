@@ -105,7 +105,7 @@ custom_files = []
 for dir, subdirs, files in os.walk(backup_dir,sound_dir,graphics_dir):
 
 		for fname in files:
-
+		
 			absolute_path = normalize_path("{0}/{1}".format(dir,fname))
 			mod_path = backup_to_mod(absolute_path)
 			if not fname.endswith((".aif",".png")) and not os.path.isfile(mod_path):

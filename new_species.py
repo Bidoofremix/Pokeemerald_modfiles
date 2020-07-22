@@ -779,7 +779,14 @@ with open(evolution_file, "w") as f:
 sprite_files = ["front.png","anim_front.png","back.png",\
 	"footprint.png","normal.pal","shiny.pal","icon.png"]
 
-for mon in new_species:
+# copy all new sprites (incl. alolan anim and footprint)
+
+sprite_folders = normalize_path("sprites/")
+
+sprite_mons = [i for i in os.listdir(sprite_folders) \
+	if os.path.isdir("{0}/{1}".format(sprite_folders,i))]
+
+for mon in sprite_mons:
 
 	# check that sprites exist
 	sprite_folder = normalize_path("sprites/{0}".format(mon.lower()))
