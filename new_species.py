@@ -1374,7 +1374,7 @@ with open(direct_sound_file, "w") as f:
 	for mon in family_order:
 		f.write("    .align 2\n")
 		f.write("Cry_{0}::\n".format(caps2joined[mon]))
-		f.write('    incbin "sound/direct_sound_samples/{0}_{1}.bin"\n'.format(\
+		f.write('    .incbin "sound/direct_sound_samples/{0}_{1}.bin"\n'.format(\
 			cry_data[mon],mon.lower()))
 		f.write("\n")
 	
