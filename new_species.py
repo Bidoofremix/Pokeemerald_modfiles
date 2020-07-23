@@ -1297,7 +1297,7 @@ with open(pokemon_icon_file, "w") as f:
 				mon,caps2joined[mon]))
 	for u in unowns:
 		if u == "EMARK":
-			letter = "ExlamationMark"
+			letter = "ExclamationMark"
 		elif u == "QMARK":
 			letter = "QuestionMark"
 		else:
