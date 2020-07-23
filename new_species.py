@@ -2,7 +2,7 @@
 #-*- encoding: utf-8 -*-
 
 import os,xlrd,shutil,math
-from config import vanilla_dir,slash
+from config import vanilla_dir,slash,pokeemerald_dir
 from misc import *
 from pokemon_tools import *
 from PIL import Image
@@ -146,7 +146,7 @@ for name in sheet_names:
 						
 			# evolution
 			if row[0] == "evolves":
-				new_species[mon]["evolution"] = {"target":row[1], \
+				new_species[mon]["evolution"] = {"target":"SPECIES_%s" % row[1], \
 					"method": row[2], "parameter":row[3]}
 						
 	# check mandatory stats
@@ -668,11 +668,11 @@ with open(tutor_file, "w") as f:
 	f.write("const u16 gTutorMoves[] =\n")
 	f.write("{\n")
 	for move in tutor_moves:
-		f.write("    [TUTOR_MOVE{0}] = {0},\n".format(move))
+		f.write("    [TUTOR_{0}] = {0},\n".format(move))
 	f.write("};\n")
 	f.write("\n")
 	f.write("#define TUTOR_LEARNSET(moves) ((u32)(moves))\n")
-	f.write("#define TUTOR(move) ((u64)1 << (TUTOR_##move))}n")
+	f.write("#define TUTOR(move) ((u64)1 << (TUTOR_##move))\n")
 	f.write("\n")
 	f.write("static const u32 sTutorLearnsets[] =\n")
 	f.write("{\n")
@@ -1325,23 +1325,24 @@ if not os.path.isdir("{0}/sound".format(raw_folder)):
 	os.makedir("{0}/sound".format(raw_folder))
 
 # check that cries exist and copy them
-for mon in new_species:
-	cry_file = normalize_path("sound/cry_not_{0}.aif".format(mon.lower()))
-	if not os.path.isfile(cry_file):
-		print("\nerror: did not find cry for %s" % mon)
-		exit(0)
-		
-	dest_file = normalize_path("raw_maps/sound/direct_sound_samples/cry_not_{0}.aif".\
-		format(mon.lower()))
+# copy all cries, not just new ones
+for file in os.listdir("sound"):
+
+	dest_file = normalize_path("raw_maps/sound/direct_sound_samples/{0}".\
+		format(file))
+	file = normalize_path("sound/{0}".format(file))
 	
-	shutil.copy(cry_file,dest_file)
+		
+	shutil.copy(file,dest_file)
 	
 cry_data = {}	
 	
 for mon in family_order:
-		tmp_file = normalize_path("{0}/sound/direct_sound_samples/cry_{1}.aif".\
+		vanilla_cry = normalize_path("{0}/sound/direct_sound_samples/cry_{1}.aif".\
 			format(vanilla_dir,mon.lower()))
-		if os.path.isfile(tmp_file):
+		mod_cry = normalize_path("raw_maps/sound/direct_sound_samples/cry_{0}.aif".\
+			format(mon.lower()))
+		if os.path.isfile(vanilla_cry) or os.path.isfile(mod_cry):
 			cry_data[mon] = "cry"
 		else:
 			cry_data[mon] = "cry_not"
@@ -1358,6 +1359,7 @@ with open(cry_table_file, "w") as f:
 	f.write("\n")
 
 	f.write("    .align 2\n")
+	f.write("gCryTable2:: @ 869EF24\n")
 	for mon in family_order:
 		f.write("    {0} Cry_{1}\n".format(cry_data[mon].replace("cry","cry2"),\
 			caps2joined[mon]))
@@ -1374,8 +1376,12 @@ with open(direct_sound_file, "w") as f:
 	for mon in family_order:
 		f.write("    .align 2\n")
 		f.write("Cry_{0}::\n".format(caps2joined[mon]))
+		if mon != "PORYGON_Z":
+			mon_name = mon.lower()
+		else:
+			mon_name = "porygonZ"
 		f.write('    .incbin "sound/direct_sound_samples/{0}_{1}.bin"\n'.format(\
-			cry_data[mon],mon.lower()))
+			cry_data[mon],mon_name))
 		f.write("\n")
 	
 	f.write("    .align 2\n")
