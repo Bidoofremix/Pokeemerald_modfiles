@@ -828,6 +828,9 @@ if not start_index:
 		
 new_graphics_lines = []
 new_graphics_lines2 = []
+
+unown_declarations_done = set([])
+
 for mon in ["NONE"] + [mon for mon in family_order if mon != "UNOWN"] + \
 	["UNOWN_{0}".format(u) for u in unowns]:
 	for category in ["FrontPic","BackPic","Palette",\
@@ -878,12 +881,24 @@ for mon in ["NONE"] + [mon for mon in family_order if mon != "UNOWN"] + \
 						letter = letter.lower()
 					folder = "unown/{0}".format(letter)
 			
-			definition = "extern const {0} gMon{1}_{2}[];\n".format(\
-				g_type,category,caps2joined[mon])
-						
-			declaration = '{0} = INCBIN_{1}("graphics/pokemon/{2}/{3}{4}");\n'.format(\
-				definition.replace(";\n","").replace("extern ",""),g_type.upper(),\
-					folder,sprite,suffix)
+			if "UNOWN" in mon and category in ["Footprint","Palette","ShinyPalette"]:
+				if not category in unown_declarations_done:
+					definition = "\n\nextern const u8 gMonFootprint_Unown[];\n"
+					declaration = '\n\nconst {0} gMon{1}_Unown[] = INCBIN_{2}("graphics/pokemon/unown/{3}{4}");\n'.format(\
+						g_type,category,g_type.upper(),sprite,suffix)
+					unown_declarations_done.add(category)
+				else:
+					definition = ""
+					declaration = ""
+			else:
+				
+				definition = "extern const {0} gMon{1}_{2}[];\n".format(\
+					g_type,category,caps2joined[mon])
+								
+				declaration = '{0} = INCBIN_{1}("graphics/pokemon/{2}/{3}{4}");\n'.format(\
+					definition.replace(";\n","").replace("extern ",""),g_type.upper(),\
+						folder,sprite,suffix)
+			
 			new_graphics_lines.append(definition)
 			new_graphics_lines2.append(declaration)
 	new_graphics_lines.append("\n")
@@ -1087,7 +1102,7 @@ for t in ["front_pic_table.h", "back_pic_table.h",\
 		elif t == "shiny_palette_table.h":
 			category = "ShinyPalette"
 			sprite_type = "PAL"
-			struct_type = "ShinyPalette"
+			struct_type = "Palette"
 
 		f.write("< // START\n")
 		f.write("const struct CompressedSprite{0} gMon{1}Table[] =\n".format(\
