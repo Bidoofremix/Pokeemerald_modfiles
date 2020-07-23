@@ -623,7 +623,7 @@ tm_file = normalize_path("{0}/src/data/pokemon/tmhm_learnsets.h".format(raw_fold
 
 with open(tm_file, "w") as f:
 	f.write("< //\n")
-	f.write("#define TMHM_LEARNSET(moves) {(u32)(moves), ((u64)(moves) >> 32)}}\n")
+	f.write("#define TMHM_LEARNSET(moves) {(u32)(moves), ((u64)(moves) >> 32)}\n")
 	f.write("#define TMHM(tmhm) ((u64)1 << (ITEM_##tmhm - ITEM_TM01_FOCUS_PUNCH))\n")
 	f.write("\n")
 	f.write("// This table determines which TMs and HMs a species is capable of learning.\n")
@@ -883,8 +883,9 @@ for mon in ["NONE"] + [mon for mon in family_order if mon != "UNOWN"] + \
 			
 			if "UNOWN" in mon and category in ["Footprint","Palette","ShinyPalette"]:
 				if not category in unown_declarations_done:
-					definition = "\n\nextern const u8 gMonFootprint_Unown[];\n"
-					declaration = '\n\nconst {0} gMon{1}_Unown[] = INCBIN_{2}("graphics/pokemon/unown/{3}{4}");\n'.format(\
+					definition = "\nextern const {0} gMon{1}_Unown[];\n".format(\
+						g_type,category)
+					declaration = '\nconst {0} gMon{1}_Unown[] = INCBIN_{2}("graphics/pokemon/unown/{3}{4}");\n'.format(\
 						g_type,category,g_type.upper(),sprite,suffix)
 					unown_declarations_done.add(category)
 				else:
