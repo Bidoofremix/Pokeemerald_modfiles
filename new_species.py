@@ -1292,8 +1292,9 @@ with open(pokemon_icon_file, "w") as f:
 	f.write("{\n")
 	f.write("    [SPECIES_NONE] = gMonIcon_Bulbasaur,\n")
 	for mon in family_order:
-		f.write("    [SPECIES_{0}] = gMonIcon_{1},\n".format(\
-			mon,caps2joined[mon]))
+		if "UNOWN" not in mon:
+			f.write("    [SPECIES_{0}] = gMonIcon_{1},\n".format(\
+				mon,caps2joined[mon]))
 	for u in unowns:
 		if u == "EMARK":
 			letter = "ExlamationMark"
