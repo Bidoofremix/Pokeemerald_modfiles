@@ -34,6 +34,9 @@ with open(item_file, "r") as f:
 				move = "SOLAR_BEAM"
 			attack2tm[move] = tm_move
 			
+unowns = [chr(i+64) for i in range(1,27)]
+unowns += ["EMARK","QMARK"]			
+			
 ########## functions
 
 def underscore_upper(text):
@@ -70,6 +73,17 @@ def check_tmmove(move):
 def generate_capsjoined(mons):
 	caps2joined = {mon:"".join([i.capitalize() for i in mon.split("_")]) \
 		for mon in mons}
+		
+	for u in unowns:
+		if u == "EMARK":
+			letter = "ExclamationMark"
+		elif u == "QMARK":
+			letter = "QuestionMark"
+		else:
+			letter = u
+		caps2joined["UNOWN_{0}".format(u)] = "Unown{0}".format(letter)
+		
+	caps2joined["NONE"] = "CircledQuestionMark"	
 		
 	caps2joined["MR_MIME"] = "Mrmime"
 	caps2joined["MIMEJR"] = "Mimejr"

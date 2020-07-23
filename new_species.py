@@ -217,9 +217,6 @@ caps2joined, joined2caps = generate_capsjoined(family_order)
 national_dex_start = "#define NATIONAL_DEX_NONE"
 national_dex_end = "#define NATIONAL_DEX_COUNT"
 
-unowns = [chr(i+64) for i in range(1,27)]
-unowns += ["EMARK","QMARK"]
-
 species_file = normalize_path("{0}/include/constants/species.h".format(raw_folder))
 print("\ncreate %s" % species_file)
 with open(species_file, "w") as f:
@@ -241,7 +238,7 @@ with open(species_file, "w") as f:
 		iter_round = 1
 
 		for u in unowns:
-			f.write("#define SPECIES_UNOWN_{0} {1}\n".format(u,iter_round))
+			f.write("#define SPECIES_UNOWN_{0} NUM_SPECIES + {1}\n".format(u,iter_round))
 			iter_round += 1
 			
 		f.write("\n")
@@ -831,9 +828,15 @@ if not start_index:
 		
 new_graphics_lines = []
 new_graphics_lines2 = []
-for mon in family_order:
+for mon in ["NONE"] + [mon for mon in family_order if mon != "UNOWN"] + \
+	["UNOWN_{0}".format(u) for u in unowns]:
 	for category in ["FrontPic","BackPic","Palette",\
 		"ShinyPalette","Icon","Footprint"]:
+			
+			if mon == "NONE" and category in ["FrontPic","Icon","Footprint"]:
+				continue
+			
+			
 			if category in ["Icon","Footprint"]:
 				g_type = "u8"
 			else:
@@ -857,11 +860,30 @@ for mon in family_order:
 			else:
 				suffix = ".lz"
 				
+			if not "UNOWN" in mon and mon != "NONE":
+				folder = mon.lower()
+			elif mon == "NONE":
+				folder = "question_mark/circled"
+			else:
+			
+				if category not in ["FrontPic","BackPic","Icon"]:
+					folder = "unown"
+				else:
+					letter = mon.replace("UNOWN_","")
+					if letter == "EMARK":
+						letter = "exclamation_mark"
+					elif letter == "QMARK":
+						letter = "question_mark"
+					else:
+						letter = letter.lower()
+					folder = "unown/{0}".format(letter)
+			
 			definition = "extern const {0} gMon{1}_{2}[];\n".format(\
 				g_type,category,caps2joined[mon])
+						
 			declaration = '{0} = INCBIN_{1}("graphics/pokemon/{2}/{3}{4}");\n'.format(\
 				definition.replace(";\n","").replace("extern ",""),g_type.upper(),\
-					mon.lower(),sprite,suffix)
+					folder,sprite,suffix)
 			new_graphics_lines.append(definition)
 			new_graphics_lines2.append(declaration)
 	new_graphics_lines.append("\n")
@@ -1071,11 +1093,12 @@ for t in ["front_pic_table.h", "back_pic_table.h",\
 		f.write("const struct CompressedSprite{0} gMon{1}Table[] =\n".format(\
 			struct_type,category))
 		f.write("{\n")
-		f.write("    SPECIES_{0}(NONE = gMon{1}_CircledQuestionMark),\n".format(\
+		f.write("    SPECIES_{0}(NONE, gMon{1}_CircledQuestionMark),\n".format(\
 			sprite_type,category))
 		for mon in family_order:
-			f.write("    SPECIES_{0}({1} = gMon{2}_{3}),\n".format(\
-				sprite_type,mon,category,caps2joined[mon]))
+			if not "UNOWN" in mon:
+				f.write("    SPECIES_{0}({1}, gMon{2}_{3}),\n".format(\
+					sprite_type,mon,category,caps2joined[mon]))
 		f.write("\n")
 		for u in unowns:
 			if u == "EMARK":
@@ -1084,6 +1107,10 @@ for t in ["front_pic_table.h", "back_pic_table.h",\
 				letter = "QuestionMark"
 			else:
 				letter = u
+				
+			if category in ["Palette","ShinyPalette"]:
+				letter = ""
+				
 			f.write("    SPECIES_{0}(UNOWN_{1}, gMon{2}_Unown{3}),\n".\
 				format(sprite_type,u,category,letter))
 		f.write("};\n")
