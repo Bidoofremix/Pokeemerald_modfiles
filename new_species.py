@@ -281,11 +281,14 @@ print("create %s" % species_name_file)
 species_name_dict = {}
 for mon in family_order:
 	if mon not in ["MR_MIME","PORYGON_Z","NIDORAN_F","NIDORAN_M",\
-		"HO_OH","MIMEJR"] and not "ALOLAN_" in mon and not "CLONE_" in mon:
+		"HO_OH","MIMEJR"] and not "ALOLAN_" in mon and not "CLONE_" in mon \
+		and not "GALARIAN_" in mon:
 		species_name_dict[mon] = mon.capitalize()
 	else:
 		if "ALOLAN_" in mon:
 			species_name_dict[mon] = mon.replace("ALOLAN_","").capitalize()
+		elif "GALARIAN_" in mon:
+			species_name_dict[mon] = mon.replace("GALARIAN_","").capitalize()
 		elif "CLONE_" in mon:
 			species_name_dict[mon] = mon.replace("CLONE_","").capitalize()
 		else:
