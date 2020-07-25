@@ -76,3 +76,69 @@ void BufferSpASpDSpe(void)
 
 bool8 UsedPokemonCenterWarp(void)
 // >
+
+< //
+u8 GetLeadMonFriendshipScore(void)
+{
+    struct Pokemon *pokemon = &gPlayerParty[GetLeadMonIndex()];
+    if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) == MAX_FRIENDSHIP)
+    {
+        return 6;
+    }
+    if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) >= 200)
+    {
+        return 5;
+    }
+    if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) >= 150)
+    {
+        return 4;
+    }
+    if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) >= 100)
+    {
+        return 3;
+    }
+    if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) >= 50)
+    {
+        return 2;
+    }
+    if (GetMonData(pokemon, MON_DATA_FRIENDSHIP) >= 1)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+void GetLeadMonPotentialAbility(void)
+{
+	u32 species = GetMonData(&gPlayerParty[0], MON_DATA_SPECIES, NULL);
+	u8 oldAbilityNum = GetMonData(&gPlayerParty[0], MON_DATA_ABILITY_NUM, NULL);
+	u8 oldAbility = GetAbilityBySpecies(species, oldAbilityNum);
+	u8 newAbility = GetAbilityBySpecies(species, gSpecialVar_0x8005);
+	
+	StringCopy(gStringVar2, gAbilityNames[newAbility]);
+	StringCopy(gStringVar3, gAbilityNames[oldAbility]);
+	
+	// 0 = ability is ABILITY_NONE
+	if (newAbility == 0)
+	{
+		gSpecialVar_Result = 0;
+	}
+	// 1 = current ability is the same as new potential ability
+	else if (oldAbilityNum == gSpecialVar_0x8005)
+	{
+		gSpecialVar_Result = 1;
+	}
+	// 2 = new potential ability is new and not none
+	else
+	{
+		gSpecialVar_Result = 2;
+	}
+}
+	
+void SetLeadMonAbility(void)
+{
+	SetMonData(&gPlayerParty[0], MON_DATA_ABILITY_NUM, &gSpecialVar_0x8005);
+}
+	
+static void CB2_FieldShowRegionMap(void)
+// >

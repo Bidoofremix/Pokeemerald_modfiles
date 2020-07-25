@@ -3,5 +3,7 @@
 	def_special SetAllSpeciesSeen
 	def_special BufferHPAtkDef
 	def_special BufferSpASpDSpe
+	def_special GetLeadMonPotentialAbility
+	def_special SetLeadMonAbility
 	def_special TrySetBattleTowerLinkType
 // >
