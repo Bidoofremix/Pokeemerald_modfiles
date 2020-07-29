@@ -129,7 +129,7 @@ LittlerootTown_EventScript_SetReceivedRunningShoes:: @ 81E8686
 	end
 
 LittlerootTown_EventScript_GiveRunningShoes:: @ 81E8693
-	msgbox LittlerootTown_Text_WearTheseRunningShoes, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_GiveThisSootheBell, MSGBOX_DEFAULT
 	giveitem ITEM_SOOTHE_BELL
 	//playfanfare MUS_FANFA4
 	//message LittlerootTown_Text_SwitchShoesWithRunningShoes
@@ -141,7 +141,7 @@ LittlerootTown_EventScript_GiveRunningShoes:: @ 81E8693
 	delay 30
 	return
 
-LittlerootTown_Text_WearTheseRunningShoes: @ 81E87F0
+LittlerootTown_Text_GiveThisSootheBell: @ 81E87F0
 	.string "MOM: {PLAYER}! {PLAYER}! Did you\n"
 	.string "introduce yourself to PROF. BIRCH?\p"
 	.string "Oh! What an adorable POKéMON!\n"
