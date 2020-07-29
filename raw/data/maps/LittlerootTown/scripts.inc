@@ -98,3 +98,59 @@ Text_ComeBackToMeIfYouChangeYourMind:
 	
 LittlerootTown_EventScript_PlayersHouseSignFemale:: @ 81E81B2
 // >
+
+< //
+LittlerootTown_EventScript_Mom:: @ 81E863D
+	lock
+	faceplayer
+	checkplayergender
+	compare VAR_RESULT, MALE
+	call_if_eq LittlerootTown_EventScript_SetHomeDoorCoordsMale
+	compare VAR_RESULT, FEMALE
+	call_if_eq LittlerootTown_EventScript_SetHomeDoorCoordsFemale
+	call LittlerootTown_EventScript_GiveRunningShoes
+	applymovement 4, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	opendoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	applymovement 4, LittlerootTown_Movement_MomExitThroughDoor
+	waitmovement 0
+	hideobjectat 4, MAP_LITTLEROOT_TOWN
+	closedoor VAR_0x8009, VAR_0x800A
+	waitdooranim
+	goto LittlerootTown_EventScript_SetReceivedRunningShoes
+	end
+
+LittlerootTown_EventScript_SetReceivedRunningShoes:: @ 81E8686
+	removeobject 4
+	// setflag FLAG_SYS_B_DASH
+	setvar VAR_LITTLEROOT_TOWN_STATE, 4
+	release
+	end
+
+LittlerootTown_EventScript_GiveRunningShoes:: @ 81E8693
+	msgbox LittlerootTown_Text_WearTheseRunningShoes, MSGBOX_DEFAULT
+	giveitem ITEM_SOOTHE_BELL
+	//playfanfare MUS_FANFA4
+	//message LittlerootTown_Text_SwitchShoesWithRunningShoes
+	//waitfanfare
+	//setflag FLAG_RECEIVED_RUNNING_SHOES
+	//msgbox LittlerootTown_Text_ExplainRunningShoes, MSGBOX_DEFAULT
+	msgbox LittlerootTown_Text_ComeHomeIfAnythingHappens, MSGBOX_DEFAULT
+	closemessage
+	delay 30
+	return
+
+LittlerootTown_Text_WearTheseRunningShoes: @ 81E87F0
+	.string "MOM: {PLAYER}! {PLAYER}! Did you\n"
+	.string "introduce yourself to PROF. BIRCH?\p"
+	.string "Oh! What an adorable POKéMON!\n"
+	.string "You got it from PROF. BIRCH. How nice!\p"
+	.string "You're your father's child, all right.\n"
+	.string "You look good together with POKéMON!\p"
+	.string "Here, honey! If you're going out on an\n"
+	.string "adventure, give this SOOTHE BELL to.\p"
+	.string "your POKéMON. It'll look so cute!$"	
+	
+LittlerootTown_Text_OurNewHomeLetsGoInside: @ 81E86BC
+// >
