@@ -539,6 +539,24 @@ const u8 gRapidashPokedexText[] = _(
     "serious, its fiery manes flare and blaze\n"
     "as it gallops its way up to 150 mph.");
 
+const u8 gGalarianMinicornPokedexText[] = _(
+    "After learning to walk, Minicorn is a quick\n"
+    "and energetic POKéMON. It loves running,\n"
+    "and trainers must watch it carefully to\n"
+    "prevent it from gleefully galloping away.");
+
+const u8 gGalarianPonytaPokedexText[] = _(
+    "This POKéMON will look into your eyes and\n"
+    "read the contents of your heart. If it finds\n"
+    "evil there, it promptly hides away. Its horn\n"
+    "hides a healing power.");
+
+const u8 gGalarianRapidashPokedexText[] = _(
+    "Very little can stand up to its Psycho Cut.\n"
+    "Unleashed from this POKéMON's horn, the move\n"
+    "will punch a hole through metal. It dashes\n"
+    "airily through forests and fields.");
+
 const u8 gSlowpokePokedexText[] = _(
     "It catches prey by dipping its tail in\n"
     "water at the side of a river. But it often\n"
@@ -580,6 +598,18 @@ const u8 gFarfetchdPokedexText[] = _(
     "Apparently, there are good sticks and bad\n"
     "sticks. This POKéMON occasionally fights\n"
     "with others over choice sticks.");
+
+const u8 gSirfetchdPokedexText[] = _(
+    "Only Farfetch'd that have survived many\n"
+    "battles can attain this evolution. The leek\n"
+    "stalk is both weapon and food. When it\n"
+    "withers, Sirfetch'd will retire from combat.");
+
+const u8 gMadamePokedexText[] = _(
+    "It moves in a dance-like flurry, using its\n"
+    "feathers as a shielding fan and slashing\n"
+    "weapon in turn. It wields its leek in broad\n"
+    "arcs, mesmerising the opponent.");
 
 const u8 gChicksPokedexText[] = _(
     "It is wary of dangers and will camouflage\n"
@@ -640,6 +670,12 @@ const u8 gCloysterPokedexText[] = _(
     "then jetting it out toward the rear.\n"
     "The CLOYSTER shoots spikes from its\n"
     "shell using the same system.");
+
+const u8 gTurbanPokedexText[] = _(
+    "Previously thought as a variety of Shellder,\n"
+    "recent studies have shown that Turban is a\n"
+    "new POKéMON species. It catches prey by\n"
+    "biting and injecting poison from its fangs.");
 
 const u8 gGastlyPokedexText[] = _(
     "When exposed to a strong wind, a GASTLY's\n"
@@ -1511,6 +1547,12 @@ const u8 gQwilfishPokedexText[] = _(
     "once from all over its body. It finds\n"
     "swimming to be somewhat challenging.");
 
+const u8 gNumpuffPokedexText[] = _(
+    "Usually friendly in nature, this POKéMON can\n"
+    "attack rapidly and explosively if startled.\n"
+    "Ships and submarines navigate around\n"
+    "schools of Numpuff to avoid being sunken.");
+
 const u8 gShucklePokedexText[] = _(
     "A Shuckle hides under rocks, keeping its\n"
     "body concealed inside its shell while\n"
@@ -1792,6 +1834,30 @@ const u8 gLinoonePokedexText[] = _(
     "in a straight line. When it spots pond-\n"
     "dwelling prey underwater, it quickly leaps\n"
     "in and catches it with its sharp claws.");
+
+const u8 gObstagoonPokedexText[] = _(
+    "Calmer than its Galarian counterpart, this\n"
+    "POKéMON has a strong and steady presence.\n"
+    "It guards those weaker than itself, using\n"
+    "its strength to break fights and conflicts.");
+
+const u8 gGalarianZigzagoonPokedexText[] = _(
+    "Its restlessness has it constantly running\n"
+    "around. If it sees another POKéMON, it will\n"
+    "run into them in order to start a fight. It\n"
+    "thought to be the oldest form of Zigzagoon.");
+
+const u8 gGalarianLinoonePokedexText[] = _(
+    "It uses its long tongue to taunt opponents.\n"
+    "Once the foe is enraged, this POKéMON hurls\n"
+    "itself at them with a forceful tackle. It is\n"
+    "very aggressive and reckless.");
+
+const u8 gGalarianObstagoonPokedexText[] = _(
+    "Its voice is staggering in volume. While\n"
+    "crossing its arms, it lets out a shout that\n"
+    "would make any opponent flinch. It has a\n"
+    "tendency to take on a threatening posture.");
 
 const u8 gWurmplePokedexText[] = _(
     "It sticks to tree branches and eats\n"
@@ -2563,7 +2629,7 @@ const u8 gCloneBulbasaurPokedexText[] = _(
 
 const u8 gCloneIvysaurPokedexText[] = _(
     "It has a devious and cunning nature. It can\n"
-    "easily predict its opponents tactic and\n"
+    "easily predict its opponent's tactic and\n"
     "react pre-emptively. The most insightful\n"
     "intividuals surpass humans in intelligence.");
 

@@ -71,6 +71,7 @@ def check_tmmove(move):
 	return attack2tm[tmp_move]
 	
 def generate_capsjoined(mons):
+	mons = [i.replace("SPECIES_","") for i in mons]
 	caps2joined = {mon:"".join([i.capitalize() for i in mon.split("_")]) \
 		for mon in mons}
 		
@@ -92,3 +93,13 @@ def generate_capsjoined(mons):
 	joined2caps = {caps2joined[i]:i for i in caps2joined}
 	
 	return caps2joined,joined2caps
+	
+##########
+
+tutor_moves = ["Mega Punch", "Swords Dance", "Mega Kick", "Body Slam",\
+	"Double Edge", "Counter", "Seismic Toss", "Mimic", "Metronome",\
+	"Soft Boiled", "Dream Eater", "Thunder Wave", "Explosion",\
+	"Rock Slide", "Substitute", "Dynamic Punch", "Rollout", "Psych Up",\
+	"Snore", "Icy Wind", "Endure", "Mud Slap","Ice Punch", "Swagger",\
+	"Sleep Talk", "Swift", "Defense Curl", "Thunder Punch", "Fire Punch",\
+	"Fury Cutter"]

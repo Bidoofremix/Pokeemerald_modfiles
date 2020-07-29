@@ -44,15 +44,30 @@ def clean_move(move):
 	return " ".join([i.capitalize() for i in \
 		move.replace("MOVE_","").split("_")])
 	
+def clean_num(num):
+	if isinstance(num,int):
+		return int(num)
+	if isinstance(num,float):
+		try:
+			return int(num)
+		except ValueError:
+			return float(num)
+	else:
+		return str(num)
+	
 ########## 
 
-pokemon_excels = []
-excel_splits = ["E","L","R","Z"]
-for i,s in enumerate(excel_splits):
+def excel_files(mons):
+	pokemon_excels = []
+	mon_per_file = 100
+	how_many_excels = (len(mons) // mon_per_file) + 1
+	for i in range(1,how_many_excels+1):
 
-	if i == 0:
-		suffix = "A-{0}".format(s)
-	else:
-		suffix = "{0}-{1}".format(chr(ord(excel_splits[i-1])+1),s)
+		if i == 0:
+			suffix = "1-{0}".format(i*mon_per_file)
+		else:
+			suffix = "{0}-{1}".format(((i-1)*mon_per_file)+1,i*mon_per_file)
 
-	pokemon_excels.append(normalize_path("pokemon/pokemon_{0}.xlsx".format(suffix)))
+		pokemon_excels.append(normalize_path("pokemon/pokemon_{0}.xlsx".format(suffix)))
+
+	return pokemon_excels

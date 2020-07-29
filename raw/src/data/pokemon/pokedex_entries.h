@@ -553,6 +553,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_ALOLAN_TRIFOX] = 
+    {
+        .categoryName = _("TINY FOX"),
+        .height = 3,
+        .weight = 32,
+        .description = gTrifoxPokedexText,
+        .pokemonScale = 550,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_ALOLAN_VULPIX] = 
     {
         .categoryName = _("FOX"),
@@ -837,6 +849,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .description = gPersianPokedexText,
         .pokemonScale = 320,
         .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_ALOLAN_MEOWSY] = 
+    {
+        .categoryName = _("KITTEN"),
+        .height = 3,
+        .weight = 18,
+        .description = gMeowsyPokedexText,
+        .pokemonScale = 550,
+        .pokemonOffset = 0,
         .trainerScale = 256,
         .trainerOffset = 0,
     },
@@ -1203,7 +1227,7 @@ const struct PokedexEntry gPokedexEntries[] =
 
     [NATIONAL_DEX_MINICORN] = 
     {
-        .categoryName = _("VINE"),
+        .categoryName = _("TINY HORSE"),
         .height = 6,
         .weight = 213,
         .description = gMinicornPokedexText,
@@ -1235,6 +1259,42 @@ const struct PokedexEntry gPokedexEntries[] =
         .pokemonOffset = 0,
         .trainerScale = 289,
         .trainerOffset = 1,
+    },
+
+    [NATIONAL_DEX_GALARIAN_MINICORN] = 
+    {
+        .categoryName = _("TINY HORSE"),
+        .height = 6,
+        .weight = 213,
+        .description = gGalarianMinicornPokedexText,
+        .pokemonScale = 390,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_GALARIAN_PONYTA] = 
+    {
+        .categoryName = _("UNICORN"),
+        .height = 8,
+        .weight = 240,
+        .description = gGalarianPonytaPokedexText,
+        .pokemonScale = 320,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_GALARIAN_RAPIDASH] = 
+    {
+        .categoryName = _("UNICORN"),
+        .height = 17,
+        .weight = 800,
+        .description = gGalarianRapidashPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 211,
+        .trainerOffset = 0,
     },
 
     [NATIONAL_DEX_SLOWPOKE] = 
@@ -1319,6 +1379,30 @@ const struct PokedexEntry gPokedexEntries[] =
         .pokemonOffset = 2,
         .trainerScale = 293,
         .trainerOffset = 2,
+    },
+
+    [NATIONAL_DEX_SIRFETCHD] = 
+    {
+        .categoryName = _("WILD DUCK"),
+        .height = 8,
+        .weight = 1170,
+        .description = gSirfetchdPokedexText,
+        .pokemonScale = 320,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_MADAME] = 
+    {
+        .categoryName = _("ELEGANT"),
+        .height = 9,
+        .weight = 420,
+        .description = gMadamePokedexText,
+        .pokemonScale = 300,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [NATIONAL_DEX_CHICKS] = 
@@ -1417,6 +1501,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_ALOLAN_GRIMEY] = 
+    {
+        .categoryName = _("SLUDGE"),
+        .height = 2,
+        .weight = 39,
+        .description = gGrimeyPokedexText,
+        .pokemonScale = 650,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_ALOLAN_GRIMER] = 
     {
         .categoryName = _("SLUDGE"),
@@ -1463,6 +1559,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .pokemonOffset = 0,
         .trainerScale = 269,
         .trainerOffset = 1,
+    },
+
+    [NATIONAL_DEX_TURBAN] = 
+    {
+        .categoryName = _("SPIKY SHELL"),
+        .height = 10,
+        .weight = 625,
+        .description = gTurbanPokedexText,
+        .pokemonScale = 290,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
     },
 
     [NATIONAL_DEX_GASTLY] = 
@@ -3229,6 +3337,18 @@ const struct PokedexEntry gPokedexEntries[] =
         .trainerOffset = 0,
     },
 
+    [NATIONAL_DEX_NUMPUFF] = 
+    {
+        .categoryName = _("EXPLOSION"),
+        .height = 10,
+        .weight = 290,
+        .description = gNumpuffPokedexText,
+        .pokemonScale = 290,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
     [NATIONAL_DEX_SHUCKLE] = 
     {
         .categoryName = _("MOLD"),
@@ -3790,6 +3910,54 @@ const struct PokedexEntry gPokedexEntries[] =
         .pokemonScale = 321,
         .pokemonOffset = 7,
         .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_OBSTAGOON] = 
+    {
+        .categoryName = _("BLOCKING"),
+        .height = 16,
+        .weight = 460,
+        .description = gObstagoonPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 224,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_GALARIAN_ZIGZAGOON] = 
+    {
+        .categoryName = _("TINYRACCOON"),
+        .height = 4,
+        .weight = 175,
+        .description = gGalarianZigzagoonPokedexText,
+        .pokemonScale = 490,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_GALARIAN_LINOONE] = 
+    {
+        .categoryName = _("RUSHING"),
+        .height = 5,
+        .weight = 325,
+        .description = gGalarianLinoonePokedexText,
+        .pokemonScale = 440,
+        .pokemonOffset = 0,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+    },
+
+    [NATIONAL_DEX_GALARIAN_OBSTAGOON] = 
+    {
+        .categoryName = _("BLOCKING"),
+        .height = 16,
+        .weight = 460,
+        .description = gGalarianObstagoonPokedexText,
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 224,
         .trainerOffset = 0,
     },
 

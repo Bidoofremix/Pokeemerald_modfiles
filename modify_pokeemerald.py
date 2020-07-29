@@ -2,7 +2,8 @@
 
 import os,re,xlrd,argparse,copy
 from config import pokeemerald_dir,slash
-from misc import normalize_path
+from misc import normalize_path,excel_files,clean_num
+from pokemon_tools import *
 
 wrk_dir = os.getcwd()
 
@@ -179,81 +180,208 @@ for dir, subdirs, files in os.walk(raw_folder):
 			
 ########## pokemon data
 
+required_stats_file = "base_stats.txt"
+
+required_stats = []
+with open(required_stats_file, "r") as f:
+	for line in f:
+		required_stats.append(line.rstrip("\n").rstrip("\r"))
+
+new_mon_order = []
+species_order_file = normalize_path("{0}/include/constants/species.h".format(pokeemerald_dir))
+with open(species_order_file, "r") as f:
+	for line in f:
+		if line.startswith("#define SPECIES_"):
+			if not "UNOWN_" in line:
+				species = line.rstrip("\n").rstrip("\r").split(" ")[1]
+				species = species.replace("SPECIES_","")
+				new_mon_order.append(species)
+
 pokemon_data = {}
 
-pokemon_excel = normalize_path("pokemon/pokemon.xlsx")
+new_base_stats = {}
+new_move_data = {}
 
-xl_workbook = xlrd.open_workbook(pokemon_excel)
-xl_sheet = xl_workbook.sheet_by_index(0)
+pokemon_excels = excel_files(new_mon_order)
 
-new_data = ""
-for i in range(0,xl_sheet.nrows):
-	row = [c.value for c in xl_sheet.row(i)]
+for file in pokemon_excels:
+	xl_workbook = xlrd.open_workbook(file)
 	
-	# next species found, save previous
-	if row[0].startswith("SPECIES_") or i == xl_sheet.nrows-1:
-		if new_data != "":
-			pokemon_data[species_name] = new_data
-		species_name = row[0]
-		new_data = {}
+	for n in range(0,len(xl_workbook.sheet_names())):
+		xl_sheet = xl_workbook.sheet_by_index(n)
+
+		new_data = ""
+		for i in range(0,xl_sheet.nrows):
+			row = [cell.value for cell in xl_sheet.row(i)]
+			row[1] = clean_num(row[1])
+			if len(row) > 2:
+				row[2] = clean_num(row[2])
+
+			if row[0] == "NAME":
+				mon = row[1]
+				new_base_stats[mon] = {}
+				new_move_data[mon] = {"LEVEL_UP":[], "EGG_MOVE":[],
+					"TUTOR_MOVE":[], "TM_MOVE":[]}
+			elif row[0] == "LEVEL_UP":
+				new_move_data[mon]["LEVEL_UP"].append([check_move(row[1]),check_level(row[2])])
+			elif row[0] == "EGG_MOVE":
+				new_move_data[mon]["EGG_MOVE"].append(check_move(row[1]))
+			elif row[0] == "TUTOR_MOVE":
+				new_move_data[mon]["TUTOR_MOVE"].append(check_move(row[1]))
+			elif row[0] == "TM_MOVE":
+				new_move_data[mon]["TM_MOVE"].append(check_tmmove(row[1]))
+			else:
+				if row[0].startswith("."):
+					new_base_stats[mon][row[0]] = row[1]
 			
-	# current species
-	if not row[0].startswith("SPECIES_") and row[0] != "":
-		new_data[row[0]] = row[1]
+########## write base stat and move data to files
 
-# save last species
-#pokemon_data[species_name] = new_data
+caps2joined, joined2caps = generate_capsjoined(new_mon_order)
 
-
-########## replace rows with new data
-
+# base stats
 base_stats_file = normalize_path("{0}/src/data/pokemon/base_stats.h".format(pokeemerald_dir))
 
-# follow which data was replaced
-data_replaced = {}
-
-species_on = 0
-species_pattern = r'\[(SPECIES_\w+)\]'
-attribute_pattern = r'.(\w+)'
-replace_pattern = r'(\s+= )(.+)(,$)'
-
-# open file and modify lines
-lines = []
-with open(base_stats_file) as f:
-	for line in f:
-		if "SPECIES_" in line:
-			species_name = re.search(species_pattern,line).group(1)
-			if species_name in pokemon_data:
-				species_on = 1
-			else:
-				species_on = 0
-				
-		else:
-			if species_on:
-				re_match = re.search(attribute_pattern,line)
-				if re_match:
-					attrib = re_match.group(1)
-					if attrib in pokemon_data[species_name]:
-						if species_name not in data_replaced:
-							data_replaced[species_name] = {}
-						data_replaced[species_name][attrib] = pokemon_data[species_name][attrib]
-						line = re.sub(replace_pattern, r'\1{0}\3'.format(\
-							pokemon_data[species_name][attrib]),line)
-		
-		lines.append(line)
-
-if data_replaced == pokemon_data:
-	print("\nreplaced base stats data successfully")
-else:		
-	print("\nWARNING: not all modifications on base stats updated")
-	
-# write to file
 with open(base_stats_file, "w") as f:
-	for line in lines:
-		f.write(line)
-		
-print("wrote changes to file")
+	
+	f.write("// Maximum value for a female Pokémon is 254 (MON_FEMALE) which is 100% female.\n")
+	f.write("// 255 (MON_GENDERLESS) is reserved for genderless Pokémon.\n")
+	f.write("#define PERCENT_FEMALE(percent) min(254, ((percent * 255) / 100))\n")
+	f.write("\n")
+	f.write("const struct BaseStats gBaseStats[] =\n")
+	f.write("{\n")
+	f.write("    [SPECIES_NONE] = {0},\n")
+	f.write("\n")
+	
+	for mon in new_mon_order:
+	
+		mon = mon.replace("SPECIES_","")
+	
+		if mon in ["NONE","EGG"]:
+			continue
+	
+		f.write("    [SPECIES_{0}] = \n".format(mon))
+		f.write("    {\n")
+		for stat in required_stats:
+			f.write("        {0} = {1},\n".format(stat,new_base_stats[mon][stat]))
+		f.write("    },\n")
+		f.write("\n")
+	
+	f.write("};\n")
+	
+# level up moves
+levelup_file = normalize_path("{0}/src/data/pokemon/level_up_learnsets.h".format(pokeemerald_dir))
 
+with open(levelup_file, "w") as f:
+
+	f.write("#define LEVEL_UP_MOVE(lvl, moveLearned) {.move = moveLearned, .level = lvl}\n")
+	f.write("#define LEVEL_UP_END (0xffff)\n")
+	f.write("\n")
+	for mon in new_mon_order:
+	
+		mon = mon.replace("SPECIES_","")
+		if mon in ["NONE","EGG"]:
+			continue
+	
+		f.write("static const struct LevelUpMove s{0}LevelUpLearnset[] = {{\n".format(\
+			caps2joined[mon]))
+		for move in new_move_data[mon]["LEVEL_UP"]:
+			f.write("    LEVEL_UP_MOVE({0}, {1}),\n".format(move[1],move[0]))
+		f.write("    LEVEL_UP_END\n")
+		f.write("};\n")
+
+# egg moves
+eggmove_file = normalize_path("{0}/src/data/pokemon/egg_moves.h".format(pokeemerald_dir))
+
+with open(eggmove_file, "w") as f:
+	f.write("#define EGG_MOVES_SPECIES_OFFSET 20000\n")
+	f.write("#define EGG_MOVES_TERMINATOR 0xFFFF\n")
+	f.write("#define egg_moves(species, moves...) (SPECIES_##species + EGG_MOVES_SPECIES_OFFSET), moves\n")
+	f.write("\n")
+	f.write("const u16 gEggMoves[] = {\n")
+	
+	for mon in new_mon_order:
+		mon = mon.replace("SPECIES_","")
+		if mon in ["NONE","EGG"]:
+			continue
+		if len(new_move_data[mon]["EGG_MOVE"]) == 0:
+			continue
+		
+		f.write("    egg_moves({0},\n".format(mon))
+		for move in new_move_data[mon]["EGG_MOVE"][:-1]:
+			f.write("        {0},\n".format(move))
+		f.write("        {0}),\n".format(new_move_data[mon]["EGG_MOVE"][-1]))
+		f.write("\n")
+		
+	f.write("    EGG_MOVES_TERMINATOR\n")
+	f.write("};\n")
+	
+# tutor moves
+tutormove_file = normalize_path("{0}/src/data/pokemon/tutor_learnsets.h".format(pokeemerald_dir))
+
+with open(tutormove_file, "w") as f:
+	f.write("const u16 gTutorMoves[] =\n")
+	f.write("{\n")
+	for move in tutor_moves:
+		f.write("    [TUTOR_{0}] = {0},\n".format(check_move(move)))
+	f.write("};\n")
+	f.write("\n")
+	f.write("#define TUTOR_LEARNSET(moves) ((u32)(moves))\n")
+	f.write("#define TUTOR(move) ((u64)1 << (TUTOR_##move))\n")
+	f.write("\n")
+	f.write("static const u32 sTutorLearnsets[] =\n")
+	f.write("{\n")
+	f.write("    [SPECIES_NONE]       = TUTOR_LEARNSET(0),\n")
+	f.write("\n")
+	
+	for mon in new_mon_order:
+		mon = mon.replace("SPECIES_","")
+		if mon in ["EGG","NONE"]:
+			continue
+	
+		f.write("    [SPECIES_{0}] = TUTOR_LEARNSET".format(mon))
+		moves = new_move_data[mon]["TUTOR_MOVE"]
+		if len(moves) == 0:
+			f.write("(0),\n")
+		elif len(moves) == 1:
+			f.write("(TUTOR({0})),\n".format(moves[0]))
+		else:
+			f.write("(TUTOR({0})\n".format(moves[0]))
+			for move in moves[1:-1]:
+				f.write("\t"*11 + "|TUTOR({0})\n".format(move))
+			f.write("\t"*11 + "|TUTOR({0})),\n".format(moves[-1]))
+		f.write("\n")
+	f.write("};\n")
+
+# tm moves
+tm_file = normalize_path("{0}/src/data/pokemon/tmhm_learnsets.h".format(pokeemerald_dir))
+
+with open(tm_file, "w") as f:
+	f.write("#define TMHM_LEARNSET(moves) {(u32)(moves), ((u64)(moves) >> 32)}\n")
+	f.write("#define TMHM(tmhm) ((u64)1 << (ITEM_##tmhm - ITEM_TM01_FOCUS_PUNCH))\n")
+	f.write("\n")
+	f.write("// This table determines which TMs and HMs a species is capable of learning.\n")
+	f.write("// Each entry is a 64-bit bit array spread across two 32-bit values, with\n")
+	f.write("// each bit corresponding to a .\n")
+	f.write("const u32 gTMHMLearnsets[][2] =\n")
+	f.write("{\n")
+	f.write("    [SPECIES_NONE]    = TMHM_LEARNSET(0),\n")
+	f.write("\n")
+	for mon in new_mon_order:
+		mon = mon.replace("SPECIES_","")
+		if mon in ["NONE","EGG"]:
+			continue
+	
+		f.write("    [SPECIES_{0}] = TMHM_LEARNSET".format(mon))
+		moves = sorted(new_move_data[mon]["TM_MOVE"])
+		if len(moves) > 0:
+			f.write("(TMHM({0})\n".format(moves[0]))
+			for move in moves[1:-1]:
+				f.write("\t"*11 + "| TMHM({0})\n".format(move))
+			f.write("\t"*11 + "| TMHM({0})),\n".format(moves[-1]))
+		else:
+			f.write("(0),\n")
+		f.write("\n")
+	f.write("};\n")
 
 ########## trainer data
 

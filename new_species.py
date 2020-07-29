@@ -9,6 +9,10 @@ from PIL import Image
 
 raw_folder = normalize_path(os.getcwd() + "\\raw")
 
+print("script disabled, edit source to re-enable run")
+exit(0)
+
+
 ########## read mandatory base stats from base_stats.txt
 
 required_stats_file = "base_stats.txt"
@@ -653,14 +657,6 @@ with open(tm_file, "w") as f:
 ########## tutor moves
 
 tutor_file = normalize_path("{0}/src/data/pokemon/tutor_learnsets.h".format(raw_folder))
-
-tutor_moves = ["Mega Punch", "Swords Dance", "Mega Kick", "Body Slam",\
-	"Double Edge", "Counter", "Seismic Toss", "Mimic", "Metronome",\
-	"Soft Boiled", "Dream Eater", "Thunder Wave", "Explosion",\
-	"Rock Slide", "Substitute", "Dynamic Punch", "Rollout", "Psych Up",\
-	"Snore", "Icy Wind", "Endure", "Mud Slap","Ice Punch", "Swagger",\
-	"Sleep Talk", "Swift", "Defense Curl", "Thunder Punch", "Fire Punch",\
-	"Fury Cutter"]
 	
 tutor_moves = [check_move(m) for m in tutor_moves]
 
