@@ -994,6 +994,7 @@ with open(anims_file, "w") as f:
 	f.write("    ANIMCMD_FRAME(0, 30),\n")
 	f.write("    ANIMCMD_FRAME(1, 30),\n")
 	f.write("    ANIMCMD_FRAME(0, 1),\n")
+	f.write("    ANIMCMD_FRAME(1, 30),\n")
 	f.write("    ANIMCMD_END,\n")
 	f.write("};\n")
 	f.write("\n")
