@@ -8,8 +8,8 @@ wrk_dir = os.getcwd()
 
 raw_folder = normalize_path(wrk_dir + "/raw")
 
-#print("script disabled, modify source to re-enable run")
-#exit(0)
+print("script disabled, modify source to re-enable run")
+exit(0)
 
 ########## vanilla encounter data
 
@@ -123,9 +123,10 @@ for route in sorted(route_data["encounters"], key=lambda x: x["map"]):
 				row += 1
 		
 		if "fishing_mons" in route:
-		
+				
+			row = mon_row+2
 			worksheet.write(row,col+4,route["fishing_mons"]["encounter_rate"])
-		
+	
 			mons = [route["fishing_mons"]["mons"][i] for i in fishing_groups[rod]]
 				
 			row = mon_row+2	

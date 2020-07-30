@@ -631,6 +631,8 @@ with open(trainer_file, "w") as f:
 
 ########### wild encounters		
 
+print("\nmodifying wild encounters")
+
 # read everything from vanilla
 # only wild pokemon encounters are changed
 # the rest need to be injected from vanilla	
@@ -639,6 +641,7 @@ with open(vanilla_wild_data, "r") as f:
 	vanilla_encounters = json.load(f)
 
 wild_data_excel = normalize_path("wild_data/wild_data.xlsx")		
+print("read encounter data from: %s" % wild_data_excel)
 
 new_encounter_data = []
 
@@ -652,13 +655,12 @@ for n in range(0,len(xl_workbook.sheet_names())):
 	
 	# map name and base label
 	row = [clean_num(cell.value) for cell in xl_sheet.row(0)]
-	route_data["map"] = xl_sheet.cell(0,1)
-	route_data["base_label"] = xl_sheet.cell(1,1)
+	route_data["map"] = xl_sheet.cell(0,1).value
+	route_data["base_label"] = xl_sheet.cell(1,1).value
 
 	# land, water and rock smash encounters
-	
 	for index,biome in [(0,"land_mons"),(6,"water_mons"),(12,"rock_smash_mons")]:
-		if xl_sheet.cell(5,index).value != "":
+		if xl_sheet.cell(5,index+1).value != "":
 			route_data[biome] = {"mons":[]}
 			for row in range(5,17):
 				if xl_sheet.cell(row,index+1).value == "":
@@ -670,16 +672,51 @@ for n in range(0,len(xl_workbook.sheet_names())):
 				route_data[biome]["mons"].append(mon)
 			route_data[biome]["encounter_rate"] = int(xl_sheet.cell(5,index+4).value)
 			
-	
-	print(route_data)
-	input(">>")
-				
-exit(0)
+	# fishing encounters
+	if xl_sheet.cell(25,1).value != "":
+		route_data["fishing_mons"] = {"mons":[]}
 		
+		# old rod
+		for row in [25,26]:
+			mon = {}
+			mon["species"] = xl_sheet.cell(row,1).value
+			mon["min_level"] = int(xl_sheet.cell(row,2).value)
+			mon["max_level"] = int(xl_sheet.cell(row,3).value)
+			route_data["fishing_mons"]["mons"].append(mon)
+			
+		# good rod
+		for row in range(25,28):
+			mon = {}
+			mon["species"] = xl_sheet.cell(row,7).value
+			mon["min_level"] = int(xl_sheet.cell(row,8).value)
+			mon["max_level"] = int(xl_sheet.cell(row,9).value)	
+			route_data["fishing_mons"]["mons"].append(mon)
+
+		# super rod
+		for row in range(25,30):
+			mon = {}
+			mon["species"] = xl_sheet.cell(row,13).value
+			mon["min_level"] = int(xl_sheet.cell(row,14).value)
+			mon["max_level"] = int(xl_sheet.cell(row,15).value)	
+			route_data["fishing_mons"]["mons"].append(mon)
+
+		route_data["fishing_mons"]["encounter_rate"] = int(xl_sheet.cell(25,4).value)
+		
+	new_encounter_data.append(route_data)	
+		
+for n,category in enumerate(vanilla_encounters["wild_encounter_groups"]):
+	if category["label"] == "gWildMonHeaders":
+		vanilla_encounters["wild_encounter_groups"][n]["encounters"] = new_encounter_data
+		
+with open(normalize_path("{0}/src/data/wild_encounters.json".format(\
+	pokeemerald_dir)), "w") as f:
+		json.dump(vanilla_encounters,f,indent=3)
+	
+print("done")
+	
 ########### maps
 
 print("\nupdating maps")
-
 
 #os_cmd = "./update_maps.py --mode insert"
 
