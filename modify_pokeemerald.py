@@ -666,7 +666,7 @@ for n in range(0,len(xl_workbook.sheet_names())):
 				if xl_sheet.cell(row,index+1).value == "":
 					break
 				mon = {}
-				mon["species"] = xl_sheet.cell(row,index+1).value
+				mon["species"] = "SPECIES_%s" % xl_sheet.cell(row,index+1).value
 				mon["min_level"] = int(xl_sheet.cell(row,index+2).value)
 				mon["max_level"] = int(xl_sheet.cell(row,index+3).value)
 				route_data[biome]["mons"].append(mon)
@@ -679,7 +679,7 @@ for n in range(0,len(xl_workbook.sheet_names())):
 		# old rod
 		for row in [25,26]:
 			mon = {}
-			mon["species"] = xl_sheet.cell(row,1).value
+			mon["species"] = "SPECIES_%s" % xl_sheet.cell(row,1).value
 			mon["min_level"] = int(xl_sheet.cell(row,2).value)
 			mon["max_level"] = int(xl_sheet.cell(row,3).value)
 			route_data["fishing_mons"]["mons"].append(mon)
@@ -687,7 +687,7 @@ for n in range(0,len(xl_workbook.sheet_names())):
 		# good rod
 		for row in range(25,28):
 			mon = {}
-			mon["species"] = xl_sheet.cell(row,7).value
+			mon["species"] = "SPECIES_%s" % xl_sheet.cell(row,7).value
 			mon["min_level"] = int(xl_sheet.cell(row,8).value)
 			mon["max_level"] = int(xl_sheet.cell(row,9).value)	
 			route_data["fishing_mons"]["mons"].append(mon)
@@ -695,7 +695,7 @@ for n in range(0,len(xl_workbook.sheet_names())):
 		# super rod
 		for row in range(25,30):
 			mon = {}
-			mon["species"] = xl_sheet.cell(row,13).value
+			mon["species"] = "SPECIES_%s" % xl_sheet.cell(row,13).value
 			mon["min_level"] = int(xl_sheet.cell(row,14).value)
 			mon["max_level"] = int(xl_sheet.cell(row,15).value)	
 			route_data["fishing_mons"]["mons"].append(mon)
