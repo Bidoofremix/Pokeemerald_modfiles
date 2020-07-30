@@ -8,6 +8,9 @@ wrk_dir = os.getcwd()
 
 raw_folder = normalize_path(wrk_dir + "/raw")
 
+print("script disabled, modify source to re-enable run")
+exit(0)
+
 ########## vanilla encounter data
 
 encounter_file = normalize_path("{0}/src/data/wild_encounters.json".format(vanilla_dir))
