@@ -8,8 +8,8 @@ wrk_dir = os.getcwd()
 
 raw_folder = normalize_path(wrk_dir + "/raw")
 
-print("script disabled, modify source to re-enable run")
-exit(0)
+#print("script disabled, modify source to re-enable run")
+#exit(0)
 
 ########## vanilla encounter data
 
@@ -27,8 +27,6 @@ for i in route_data["fields"]:
 	encounter_slots[i["type"]] = i["encounter_rates"]
 	if i["type"] == "fishing_mons":
 		fishing_groups = i["groups"]
-		
-print(fishing_groups)
 	
 ########## write to excel	
 	
@@ -84,14 +82,15 @@ for route in sorted(route_data["encounters"], key=lambda x: x["map"]):
 		worksheet.write(row,col+3,"max", top)
 		worksheet.write(row,col+4,"encounter_rate", top)
 		row += 1
+
+		for slot in encounter_slots[biome]:
+			worksheet.write(row,col,slot)
+			row += 1
 		
 		if biome in route:
-			worksheet.write(row,col+4,route[biome]["encounter_rate"])
-			for slot in encounter_slots[biome]:
-				worksheet.write(row,col,slot)
-				row += 1
-				
 			row = mon_row+2
+			worksheet.write(row,col+4,route[biome]["encounter_rate"])
+
 			for mon in route[biome]["mons"]:
 				worksheet.write(row,col+1,mon["species"].replace("SPECIES_",""))
 				worksheet.write(row,col+2,mon["min_level"])
@@ -119,14 +118,15 @@ for route in sorted(route_data["encounters"], key=lambda x: x["map"]):
 		worksheet.write(row,col+4,"encounter_rate",top)
 		row += 1
 		
+		for slot in [encounter_slots["fishing_mons"][i] for i in fishing_groups[rod]]:
+				worksheet.write(row,col,slot)
+				row += 1
+		
 		if "fishing_mons" in route:
 		
 			worksheet.write(row,col+4,route["fishing_mons"]["encounter_rate"])
 		
 			mons = [route["fishing_mons"]["mons"][i] for i in fishing_groups[rod]]
-			for slot in [encounter_slots["fishing_mons"][i] for i in fishing_groups[rod]]:
-				worksheet.write(row,col,slot)
-				row += 1
 				
 			row = mon_row+2	
 			for mon in mons:

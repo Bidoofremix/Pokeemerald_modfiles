@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-import os,re,xlrd,argparse,copy
-from config import pokeemerald_dir,slash
+import os,re,xlrd,argparse,copy,json
+from config import pokeemerald_dir,slash,vanilla_dir
 from misc import normalize_path,excel_files,clean_num
 from pokemon_tools import *
 
@@ -629,6 +629,53 @@ with open(trainer_file, "w") as f:
 	for line in trainer_file_lines:
 		f.write(line)
 
+########### wild encounters		
+
+# read everything from vanilla
+# only wild pokemon encounters are changed
+# the rest need to be injected from vanilla	
+vanilla_wild_data = normalize_path("{0}/src/data/wild_encounters.json".format(vanilla_dir))
+with open(vanilla_wild_data, "r") as f:
+	vanilla_encounters = json.load(f)
+
+wild_data_excel = normalize_path("wild_data/wild_data.xlsx")		
+
+new_encounter_data = []
+
+xl_workbook = xlrd.open_workbook(wild_data_excel)
+for n in range(0,len(xl_workbook.sheet_names())):
+	xl_sheet = xl_workbook.sheet_by_index(n)
+
+	route_data = {}
+	
+	new_data = ""
+	
+	# map name and base label
+	row = [clean_num(cell.value) for cell in xl_sheet.row(0)]
+	route_data["map"] = xl_sheet.cell(0,1)
+	route_data["base_label"] = xl_sheet.cell(1,1)
+
+	# land, water and rock smash encounters
+	
+	for index,biome in [(0,"land_mons"),(6,"water_mons"),(12,"rock_smash_mons")]:
+		if xl_sheet.cell(5,index).value != "":
+			route_data[biome] = {"mons":[]}
+			for row in range(5,17):
+				if xl_sheet.cell(row,index+1).value == "":
+					break
+				mon = {}
+				mon["species"] = xl_sheet.cell(row,index+1).value
+				mon["min_level"] = int(xl_sheet.cell(row,index+2).value)
+				mon["max_level"] = int(xl_sheet.cell(row,index+3).value)
+				route_data[biome]["mons"].append(mon)
+			route_data[biome]["encounter_rate"] = int(xl_sheet.cell(5,index+4).value)
+			
+	
+	print(route_data)
+	input(">>")
+				
+exit(0)
+		
 ########### maps
 
 print("\nupdating maps")
