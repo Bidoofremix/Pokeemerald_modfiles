@@ -1171,10 +1171,8 @@ static const union AnimCmd *const sAnims_ALOLAN_DUGTRIO[] =
 
 static const union AnimCmd sAnim_MEOWSY_1[] =
 {
+    ANIMCMD_FRAME(1, 40),
     ANIMCMD_FRAME(0, 20),
-    ANIMCMD_FRAME(1, 20),
-    ANIMCMD_FRAME(0, 20),
-    ANIMCMD_FRAME(1, 20),
     ANIMCMD_END,
 };
 static const union AnimCmd *const sAnims_MEOWSY[] =

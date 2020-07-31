@@ -1,4 +1,11 @@
 < //
+#include "constants/weather.h"
+#include "constants/battle_anim.h"
+
+struct SpeciesItem
+// >
+
+< //
 u16 GetBattleBGM(void)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_KYOGRE_GROUDON)
@@ -777,6 +784,7 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_VENOMOTH - 1] = 0x4b,
     [SPECIES_DIGLETT - 1] = 0x10,
     [SPECIES_DUGTRIO - 1] = 0x4c,
+    [SPECIES_MEOWSY - 1] = 0x17,
     [SPECIES_MEOWTH - 1] = 0x52,
     [SPECIES_PERSIAN - 1] = 0x17,
     [SPECIES_PSYDUCK - 1] = 0x06,

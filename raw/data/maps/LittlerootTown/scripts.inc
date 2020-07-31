@@ -12,6 +12,13 @@ NewIsland_EventScript_Mewtwo::
 	release
 	end
 	
+Test_EventScript_Castform::
+	lock
+	setwildbattle SPECIES_CASTFORM, 3, ITEM_NONE
+	dowildbattle
+	release
+	end
+	
 NewIsland_Text_Test:
 	.string "Hello!$"
 	
@@ -149,7 +156,7 @@ LittlerootTown_Text_GiveThisSootheBell: @ 81E87F0
 	.string "You're your father's child, all right.\n"
 	.string "You look good together with POKéMON!\p"
 	.string "Here, honey! If you're going out on an\n"
-	.string "adventure, give this SOOTHE BELL to.\p"
+	.string "adventure, give this SOOTHE BELL to\p"
 	.string "your POKéMON. It'll look so cute!$"	
 	
 LittlerootTown_Text_OurNewHomeLetsGoInside: @ 81E86BC
