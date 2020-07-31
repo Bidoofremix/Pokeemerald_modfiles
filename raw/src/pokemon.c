@@ -817,6 +817,7 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_MAGNEMITE - 1] = 0x54,
     [SPECIES_MAGNETON - 1] = 0x2c,
     [SPECIES_FARFETCHD - 1] = 0x48,
+    [SPECIES_CHICKS - 1] = 0x43,
     [SPECIES_DODUO - 1] = 0x4c,
     [SPECIES_DODRIO - 1] = 0x41,
     [SPECIES_SEEL - 1] = 0x0b,

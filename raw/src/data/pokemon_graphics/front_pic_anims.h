@@ -1889,6 +1889,7 @@ static const union AnimCmd sAnim_CHICKS_1[] =
     ANIMCMD_FRAME(1, 20),
     ANIMCMD_FRAME(0, 20),
     ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(0, 20),
     ANIMCMD_END,
 };
 static const union AnimCmd *const sAnims_CHICKS[] =
