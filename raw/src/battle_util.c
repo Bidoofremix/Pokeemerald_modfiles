@@ -11,6 +11,16 @@
 // >
 
 < //
+    case ABILITY_STRONG_JAW:
+        if (gBattleMoves[move].flags & FLAG_STRONG_JAW_BOOST)
+			// change Strong Jaw boost to 30%
+			//MulModifier(&modifier, UQ_4_12(1.5));
+           MulModifier(&modifier, UQ_4_12(1.3));
+        break;
+    case ABILITY_MEGA_LAUNCHER:
+// >
+
+< //
     if (moveType == TYPE_GROUND && !IsBattlerGrounded(battlerDef))
     {
         modifier = UQ_4_12(0.0);
