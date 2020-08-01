@@ -69,7 +69,8 @@ void PlayBattleBGM(void)
 // >
 
 < //
-u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove, bool8 isEvolving)
+u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove)
+#Ru16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove, bool8 isEvolving)
 {
     u32 retVal = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
