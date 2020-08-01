@@ -114,8 +114,8 @@ PetalburgCity_Gym_Text_DadGoHelpBreeder: @ 8205C40
 	.string "There's a POKéMON BREEDER at the\n"
 	.string "BREEDER's CLUB that needs help.\p"
 	.string "After that, we can have an official\n"
-	.string "battle here at the GYM.$"
-	.string "So, off you go, then!$
+	.string "battle here at the GYM.\p"
+	.string "So, off you go, then!$"
 
 PetalburgCity_Gym_Text_NormanGoToVerdanturf: @ 8205DB4
 	.string "DAD: Hm? Aren't you going to the\n"
