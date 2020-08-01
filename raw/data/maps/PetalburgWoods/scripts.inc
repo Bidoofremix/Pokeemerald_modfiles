@@ -49,7 +49,53 @@ PetalburgWoods_Text_ThatWasAwfullyClose: @ 822E63D
 	.string "this confidential data.\p"
 	.string "I know, I'll give you a GREAT BALL as\n"
 	.string "my thanks!$"
+	
+PetalburgWoods_EventScript_Venusaur::
+	lock
+	playmoncry SPECIES_VENUSAUR, 2
+	bufferspeciesname 0, SPECIES_VENUSAUR
+	msgbox PetalburgWoods_Text_Venusaur, MSGBOX_SIGN
+	release
+	end
 
+PetalburgWoods_EventScript_VenusaurLady::
+	lock
+	faceplayer
+	bufferspeciesname 0, SPECIES_VENUSAUR
+	applymovement 14, Common_Movement_FaceLeft
+	waitmovement 0
+	msgbox PetalburgWoods_Text_VenusaurLady1, MSGBOX_DEFAULT
+	closemessage
+	playmoncry SPECIES_VENUSAUR, 2
+	waitmoncry
+	playse SE_W070
+	special DoSealedChamberShakingEffect2
+	waitstate
+	delay 40
+	playse SE_TRACK_MOVE
+	playse SE_W070
+	special DoSealedChamberShakingEffect2
+	waitstate
+	delay 40
+	faceplayer
+	msgbox PetalburgWoods_Text_VenusaurLady2, MSGBOX_DEFAULT
+	applymovement 14, Common_Movement_FaceLeft
+	waitmovement 0
+	release
+	end
+	
+PetalburgWoods_Text_Venusaur:
+	.string "{STR_VAR_1}: Saurr!$"
+	
+PetalburgWoods_Text_VenusaurLady1:
+	.string "{STR_VAR_1}, budge up!$"
+	
+PetalburgWoods_Text_VenusaurLady2:
+	.string "I'm sorry.\p"
+	.string "My {STR_VAR_1} has stopped\n"
+	.string "obeying me since it evolved.\p"
+	.string "I'm having problems making it move…$"	
+	
 PetalburgWoods_Text_TeamAquaAfterSomethingInRustboro: @ 822E6C7
 	.string "Didn't that TEAM MAGMA thug say\n"
 	.string "they were after something in\l"
