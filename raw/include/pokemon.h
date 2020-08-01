@@ -9,6 +9,6 @@ struct PokemonSubstruct0
 
 < //
 void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon);
-u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove, bool8isEvolving);
+u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove, bool8 isEvolving);
 void DeleteFirstMoveAndGiveMoveToMon(struct Pokemon *mon, u16 move);
 // >
