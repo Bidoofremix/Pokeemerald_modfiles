@@ -1,7 +1,7 @@
 < //
 Route117_EventScript_Aisha:: @ 81F3C65
-	trainerbattle_single TRAINER_AISHA, Route117_Text_29D1D1, Route117_Text_29D206
-	msgbox Route117_Text_29D24C, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_AISHA, Route117_Text_AishaIntro, Route117_Text_AishaDefeat
+	msgbox Route117_Text_AishaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
 Route117_EventScript_AquaGrunt1::
