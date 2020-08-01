@@ -42,7 +42,7 @@
             "script": "Route103_EventScript_CantGoEastTrigger",
             "type": "trigger",
             "var": "VAR_ROUTE103_STATE",
-            "var_value": "1",
+            "var_value": "0",
             "x": 24,
             "y": 9
         }
