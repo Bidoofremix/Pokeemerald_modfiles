@@ -6,36 +6,6 @@ struct SpeciesItem
 // >
 
 < //
-void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon)
-{
-	u16 species = GetBoxMonData(boxMon, MON_DATA_SPECIES, NULL);
-	s32 level = GetLevelFromBoxMonExp(boxMon);
-	s32 i;
-
-	for (i = 0; gLevelUpLearnsets[species][i] != LEVEL_UP_END; i++)
-	{
-		u16 moveLevel;
-		u16 move;
-
-		moveLevel = (gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_LV);
-
-		if (moveLevel == 0)
-			continue;
-
-		if (moveLevel > (level << 9))
-			break;
-
-		move = (gLevelUpLearnsets[species][i] & LEVEL_UP_MOVE_ID);
-
-		if (GiveMoveToBoxMon(boxMon, move) == MON_HAS_MAX_MOVES)
-			 DeleteFirstMoveAndGiveMoveToBoxMon(boxMon, move);
-	}
-}
-
-u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove)
-// >
-
-< //
 u16 GetBattleBGM(void)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_KYOGRE_GROUDON)
@@ -95,8 +65,13 @@ u16 GetBattleBGM(void)
         return MUS_BATTLE27;
 }
 
-u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)
+void PlayBattleBGM(void)
+// >
+
+< //
+u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove, bool8 isEvolving)
 {
+    u32 retVal = 0;
     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
     u8 level = GetMonData(mon, MON_DATA_LEVEL, NULL);
 
@@ -108,22 +83,43 @@ u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove)
     {
         sLearningMoveTableID = 0;
     }
-    while(gLevelUpLearnsets[species][sLearningMoveTableID] != LEVEL_UP_END)
+    // Added evolution moves; Pokemon will learn moves listed at level zero upon evolution
+    if(isEvolving && (gLevelUpLearnsets[species][sLearningMoveTableID].level == 0))
     {
-        u16 moveLevel;
-        moveLevel = (gLevelUpLearnsets[species][sLearningMoveTableID] & LEVEL_UP_MOVE_LV);
-        while (moveLevel == 0 || moveLevel == (level << 9))
-        {
-            gMoveToLearn = (gLevelUpLearnsets[species][sLearningMoveTableID] & LEVEL_UP_MOVE_ID);
-            sLearningMoveTableID++;
-            return GiveMoveToMon(mon, gMoveToLearn);
-        }
+        gMoveToLearn = gLevelUpLearnsets[species][sLearningMoveTableID].move;
+        retVal = GiveMoveToMon(mon, gMoveToLearn);
         sLearningMoveTableID++;
+        return retVal;        
     }
-    return 0;
+    if(isEvolving && (gLevelUpLearnsets[species][sLearningMoveTableID].level > 0))
+    {
+        while (gLevelUpLearnsets[species][sLearningMoveTableID].level != level)
+         {
+            sLearningMoveTableID++;
+            if (gLevelUpLearnsets[species][sLearningMoveTableID].move == LEVEL_UP_END)
+                return 0;
+         }
+    }
+
+    if (firstMove)
+    {
+        while (gLevelUpLearnsets[species][sLearningMoveTableID].level != level)
+        {
+            sLearningMoveTableID++;
+            if (gLevelUpLearnsets[species][sLearningMoveTableID].move == LEVEL_UP_END)
+                return 0;
+        }
+    }
+    if (gLevelUpLearnsets[species][sLearningMoveTableID].level == level)
+    {
+        gMoveToLearn = gLevelUpLearnsets[species][sLearningMoveTableID].move;
+        sLearningMoveTableID++;
+        retVal = GiveMoveToMon(mon, gMoveToLearn);
+    }
+    return retVal;
 }
 
-void PlayBattleBGM(void)
+void DeleteFirstMoveAndGiveMoveToMon(struct Pokemon *mon, u16 move)
 // >
 
 < //

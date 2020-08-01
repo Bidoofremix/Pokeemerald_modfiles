@@ -8,7 +8,7 @@ struct PokemonSubstruct0
 // >
 
 < //
-void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg);
-u16 MonTryLearningNewMoveEvolution(struct Pokemon *mon, bool8 firstMove);
-void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg);
+void GiveBoxMonInitialMoveset(struct BoxPokemon *boxMon);
+u16 MonTryLearningNewMove(struct Pokemon *mon, bool8 firstMove, bool8isEvolving);
+void DeleteFirstMoveAndGiveMoveToMon(struct Pokemon *mon, u16 move);
 // >

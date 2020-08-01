@@ -397,3 +397,37 @@ static void BuildEggMoveset(struct Pokemon *egg, struct BoxPokemon *father, stru
 
 static void RemoveEggFromDayCare(struct DayCare *daycare)
 // >
+
+< //
+static void ApplyDaycareExperience(struct Pokemon *mon)
+{
+    s32 i;
+    bool8 firstMove;
+    u16 learnedMove;
+
+    for (i = 0; i < MAX_LEVEL; i++)
+    {
+        // Add the mon's gained daycare experience level by level until it can't level up anymore.
+        if (TryIncrementMonLevel(mon))
+        {
+            // Teach the mon new moves it learned while in the daycare.
+            firstMove = TRUE;
+            while ((learnedMove = MonTryLearningNewMove(mon, firstMove, 0)) != 0)
+            {
+                firstMove = FALSE;
+                if (learnedMove == MON_HAS_MAX_MOVES)
+                    DeleteFirstMoveAndGiveMoveToMon(mon, gMoveToLearn);
+            }
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    // Re-calculate the mons stats at its new level.
+    CalculateMonStats(mon);
+}
+
+static u16 TakeSelectedPokemonFromDaycare(struct DaycareMon *daycareMon)
+// >

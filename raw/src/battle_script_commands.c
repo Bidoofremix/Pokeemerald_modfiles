@@ -24,6 +24,50 @@
 // >
 
 < //
+static void Cmd_handlelearnnewmove(void)
+{
+    const u8 *jumpPtr1 = T1_READ_PTR(gBattlescriptCurrInstr + 1);
+    const u8 *jumpPtr2 = T1_READ_PTR(gBattlescriptCurrInstr + 5);
+
+    u16 learnMove = MonTryLearningNewMove(&gPlayerParty[gBattleStruct->expGetterMonId], gBattlescriptCurrInstr[9], 0);
+    while (learnMove == MON_ALREADY_KNOWS_MOVE)
+        learnMove = MonTryLearningNewMove(&gPlayerParty[gBattleStruct->expGetterMonId], FALSE, 0);
+
+    if (learnMove == 0)
+    {
+        gBattlescriptCurrInstr = jumpPtr2;
+    }
+    else if (learnMove == MON_HAS_MAX_MOVES)
+    {
+        gBattlescriptCurrInstr += 10;
+    }
+    else
+    {
+        gActiveBattler = GetBattlerAtPosition(B_POSITION_PLAYER_LEFT);
+
+        if (gBattlerPartyIndexes[gActiveBattler] == gBattleStruct->expGetterMonId
+            && !(gBattleMons[gActiveBattler].status2 & STATUS2_TRANSFORMED))
+        {
+            GiveMoveToBattleMon(&gBattleMons[gActiveBattler], learnMove);
+        }
+        if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+        {
+            gActiveBattler = GetBattlerAtPosition(B_POSITION_PLAYER_RIGHT);
+            if (gBattlerPartyIndexes[gActiveBattler] == gBattleStruct->expGetterMonId
+                && !(gBattleMons[gActiveBattler].status2 & STATUS2_TRANSFORMED))
+            {
+                GiveMoveToBattleMon(&gBattleMons[gActiveBattler], learnMove);
+            }
+        }
+
+        gBattlescriptCurrInstr = jumpPtr1;
+    }
+}
+
+static void Cmd_yesnoboxlearnmove(void)
+// >
+
+< //
 static bool32 TryAegiFormChange(void)
 {
     // Only Aegislash with Stance Change can transform, transformed mons cannot.
