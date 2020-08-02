@@ -48,7 +48,7 @@
 #define FLAG_DOUBLE_BATTLE_ENABLED    0x23 // Unused Flag
 #define FLAG_NORMAN_INTRODUCED_GYM   0x24 // Unused Flag
 #define FLAG_RECEIVED_VERDANTURF_EGG    0x25 // Unused Flag
-#define FLAG_UNUSED_0x026    0x26 // Unused Flag
+#define FLAG_ASKED_VERDANTURF_EGG   0x26 // Unused Flag
 #define FLAG_UNUSED_0x027    0x27 // Unused Flag
 #define FLAG_UNUSED_0x028    0x28 // Unused Flag
 #define FLAG_UNUSED_0x029    0x29 // Unused Flag

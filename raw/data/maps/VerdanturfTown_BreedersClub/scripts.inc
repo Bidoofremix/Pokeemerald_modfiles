@@ -3,6 +3,66 @@ VerdanturfTown_BreedersClub_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, VerdanturfTown_BreedersClub_OnTransition
 	.byte 0
 
+VerdanturfTown_BreedersClub_EventScript_Lady::
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_VERDANTURF_EGG, VerdanturfTown_BreedersHouse_EventScript_GotEgg
+	call_if_unset FLAG_ASKED_VERDANTURF_EGG VerdanturfTown_BreedersClub_EventScript_HiYouMustBePlayer
+	msgbox VerdanturfTown_BreedersClub_Text_WillYouTakeCareOfThisEgg, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq VerdanturfTown_BreedersHouse_EventScript_GiveEgg
+	compare VAR_RESULT, NO
+	goto_if_eq VerdanturfTown_BreedersHouse_EventScript_RefusedEgg
+	end
+	
+VerdanturfTown_BreedersClub_EventScript_HiYouMustBePlayer::
+	msgbox VerdanturfTown_BreedersClub_Text_HiYouMustBePlayer, MSGBOX_DEFAULT
+	setflag FLAG_ASKED_VERDANTURF_EGG
+	end
+	
+VerdanturfTown_BreedersHouse_EventScript_GiveEgg::
+	getpartysize
+	compare VAR_RESULT, 6
+	goto_if_eq LavaridgeTown_EventScript_NoRoomForEgg
+	playfanfare MUS_FANFA4
+	message LavaridgeTown_Text_ReceivedTheEgg
+	waitfanfare
+	giveegg SPECIES_MEOWSY
+	setflag FLAG_RECEIVED_VERDANTURF_EGG
+	setvar VAR_PETALBURG_GYM_STATE, 6
+	release
+	end
+	
+VerdanturfTown_BreedersHouse_EventScript_RefusedEgg::
+	msgbox VerdanturfTown_BreedersHouse_Text_RefuseEgg, MSGBOX_DEFAULT
+	release
+	end
+	
+VerdanturfTown_BreedersHouse_EventScript_GotEgg::
+	msgbox VerdanturfTown_BreedersHouse_Text_GotEgg, MSGBOX_NPC
+	end
+		
+VerdanturfTown_BreedersClub_Text_HiYouMustBePlayer:
+	.string "Hi! You must be {PLAYER}.\p"
+	.string "NORMAN told me that you should be able\n"
+	.string "to help me with this EGG.\p"
+	.string "You see, I found this lone EGG at a\n"
+	.string "roadside and rescued it, but I am\l"
+	.string "already taking care of so many POKéMON\l"
+	.string "so many POKéMON that I simply don't\l"
+	.string "have the space$"
+	
+VerdanturfTown_BreedersClub_Text_WillYouTakeCareOfThisEgg:
+	.string "{PLAYER}, will you take care\n"
+	.string "of this EGG?$"	
+	
+VerdanturfTown_BreedersHouse_Text_GotEgg:
+	.string "Please give NORMAN my greetings!$"
+	
+VerdanturfTown_BreedersHouse_Text_RefuseEgg:
+	.string "No?\p"
+	.string "But I don't know who else we could ask…$"	
+	
 VerdanturfTown_BreedersClub_EventScript_OldLady::
 	lock
 	faceplayer
@@ -41,12 +101,14 @@ VerdanturfTown_BreedersClub_EventScript_OldLady_NoIDontLikeBreeding::
 	end
 	
 VerdanturfTown_BreedersClub_Text_OldLady_DoYouLikeBreeding:
-	.string "Do you like raising POKéMON, youngster?$"
+	.string "Are you a TRAINER? At such a young age?\p"
+	.string "Good, good. I like your spirit.\n"
+	.string "Do you like raising your POKéMON\l"
+	.string "from EGGS?$"
 
 VerdanturfTown_BreedersClub_Text_OldLady_Good:
-	.string "Good, good! I had you figured for a\n"
-	.string "talented young TRAINER.\p"
-	.string "Here, take this.$"
+	.string "I knew it! I can see talent in\n"
+	.string "TRAINERS. Take this!$"
 	
 VerdanturfTown_BreedersClub_Text_OldLady_Disappointing:
 	.string "Oh? That's disappointing. What are kids\n"
@@ -56,10 +118,14 @@ VerdanturfTown_BreedersClub_Text_OldLady_BagIsFull:
 	.string "Oh? Your BAG is full.$"
 	
 VerdanturfTown_BreedersClub_Text_OldLady_Charcoal:
-	.string "Give CHARCOAL to a POKéMON whose ability\n"
-	.string "is FLAME BODY or MAGMA ARMOR.\p"
-	.string "You'll see that EGGS will start hatching\n"
-	.string "quite rapidly!$"
+	.string "It was recently discovered that\n"
+	.string "CHARCOAL doesn't only boost the power\l"
+	.string "of FIRE-type moves.\p"
+	.string "It is also useful for hatching EGGS.\n"
+	.string "Give CHARCOAL to a POKéMON that has\l"
+	.string "FLAME BODY or MAGMA ARMOR.\p"
+	.string "You'll be surprised how fast your\n"
+	.string "EGGS hatch!$"
 	
 VerdanturfTown_BreedersClub_EventScript_Display1::
 	goto_if_unset FLAG_RECEIVED_FATEFUL_KNOT, VerdanturfTown_BreedersClub_EventScript_Display1_ForSomeReason
@@ -85,67 +151,6 @@ VerdanturfTown_BreedersClub_EventScript_Display2::
 VerdanturfTown_BreedersClub_Text_Everstone:
 	.string "A perfectly round EVERSTONE is on\n"
 	.string "display in the glass case.$"
-
-VerdanturfTown_BreedersClub_EventScript_Rater::
-	lock
-	faceplayer
-	msgbox VerdanturfTown_BreedersClub_Text_Hello, MSGBOX_DEFAULT
-	goto VerdanturfTown_BreedersClub_EventScript_ChooseMonToShowBreeder
-	end
-	
-VerdanturfTown_BreedersClub_Text_Hello:
-	.string "Hi! Which POKéMON would you like me\n"
-	.string "to evaluate?$"
-	
-VerdanturfTown_BreedersClub_EventScript_ChooseMonToShowBreeder::
-	lock
-	faceplayer
-	special ChoosePartyMon
-	waitstate
-	compare VAR_0x8004, 255
-	goto_if_ne VerdanturfTown_BreedersClub_EventScript_ShowMonToBreeder
-	compare VAR_0x8004, 255
-	goto_if_eq VerdanturfTown_BreedersClub_EventScript_CancelMonSelect
-	end	
-
-VerdanturfTown_BreedersClub_EventScript_ShowMonToBreeder::
-	lock
-	faceplayer
-	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
-	compare VAR_RESULT, SPECIES_EGG
-	goto_if_eq VerdanturfTown_BreedersClub_EventScript_ShowEggToBreeder
-	special BufferHPAtkDef
-	msgbox VerdanturfTown_BreedersClub_Text_RateHPAtkDef, MSGBOX_DEFAULT
-	special BufferSpASpDSpe
-	msgbox VerdanturfTown_BreedersClub_Text_RateSpASpDSpe, MSGBOX_DEFAULT
-	release
-	end	
-
-VerdanturfTown_BreedersClub_Text_RateHPAtkDef:
-	.string "Its HP is {STR_VAR_1}, Attack is {STR_VAR_2}\n"
-	.string "and Defense is {STR_VAR_3}.$"
-	
-VerdanturfTown_BreedersClub_Text_RateSpASpDSpe:
-	.string "Also, its Special Attack is {STR_VAR_1}, Special\n"
-	.string "Defense is {STR_VAR_2} and Speed is {STR_VAR_3}.\p"
-	.string "That's how I see this POKéMON.$"
-	
-VerdanturfTown_BreedersClub_EventScript_CancelMonSelect::
-	msgbox VerdanturfTown_BreedersClub_Text_MaybeNextTimeThen, MSGBOX_DEFAULT
-	release
-	end
-	
-VerdanturfTown_BreedersClub_Text_MaybeNextTimeThen:
-	.string "Oh, you don't want to evaluate your\n"
-	.string "POKéMON? Maybe next time, then.$"
-	
-VerdanturfTown_BreedersClub_EventScript_ShowEggToBreeder::
-	msgbox VerdanturfTown_BreedersClub_Text_ThisIsAnEgg, MSGBOX_DEFAULT
-	goto VerdanturfTown_BreedersClub_EventScript_ChooseMonToShowBreeder
-	end
-	
-VerdanturfTown_BreedersClub_Text_ThisIsAnEgg:
-	.string "This is an EGG. I can't evaluate it!$"
 
 VerdanturfTown_BreedersClub_EventScript_Clerk::
 	lock

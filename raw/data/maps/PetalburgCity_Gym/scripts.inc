@@ -11,6 +11,21 @@ PetalburgCity_Gym_OnTransition: @ 820489E
 	call_if_set FLAG_NORMAN_INTRODUCED_GYM, PetalburgCity_Gym_EventScript_NormanAtBattleField
 	end
 	
+@ NOTE: Strength and OHKO rooms are misleading. Both are more accurately Critical-Hit
+PetalburgCity_Gym_EventScript_OpenUnlockedDoors:: @ 82048B5
+// >
+
+< //
+PetalburgCity_Gym_OnTransition: @ 820492D
+	compare VAR_PETALBURG_GYM_STATE, 1
+	call_if_eq PetalburgCity_Gym_EventScript_MoveWallyToEntrance
+	compare VAR_PETALBURG_GYM_STATE, 6
+	call_if_lt PetalburgCity_Gym_EventScript_MoveNormanToEntrance
+	call_if_set FLAG_RECEIVED_VERDANTURF_EGG, PetalburgCity_Gym_MapScript_GymAccessible
+	call_if_set FLAG_NORMAN_INTRODUCED_GYM, PetalburgCity_Gym_EventScript_NormanAtBattleField
+	call_if_set FLAG_SYS_GAME_CLEAR, PetalburgCity_Gym_EventScript_CheckNormanForRematch
+	end
+
 PetalburgCity_Gym_EventScript_NormanAtBattleField::
 	clearflag FLAG_HIDE_PETALBURG_GYM_NORMAN
 	showobjectat 1, MAP_PETALBURG_CITY_GYM
@@ -23,10 +38,9 @@ PetalburgCity_Gym_MapScript_GymAccessible::
 	setmetatile 5, 16, 540, 1
 	setmetatile 5, 17, 548, 1
 	setvar VAR_0x8000, 1
-	end	
+	end		
 	
-@ NOTE: Strength and OHKO rooms are misleading. Both are more accurately Critical-Hit
-PetalburgCity_Gym_EventScript_OpenUnlockedDoors:: @ 82048B5
+PetalburgCity_Gym_EventScript_MoveWallyToEntrance:: @ 820494D
 // >
 
 < //
