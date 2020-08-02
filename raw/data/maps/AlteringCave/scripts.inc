@@ -52,14 +52,14 @@ AlteringCave_Text_EvalIntro:
 	.string "You look like such a nice kid.\n"
 	.string "Let's have a battle!$"
 	
-AlteringCave_Text_EarlDefeat:
+AlteringCave_Text_EvaDefeat:
 	.string "My goodness!$"
 	
-AlteringCave_Text_EarlGotTooExcited:
-	.string "My husband get so excited by battles\n"
+AlteringCave_Text_EvaGotTooExcited:
+	.string "My husband gets so excited by battles\n"
 	.string "that he can't think straight.$"
 
-AlteringCave_Text_EarlNotEnoughMons:
+AlteringCave_Text_EvaNotEnoughMons:
 	.string "We would like to battle you, but it\n"
 	.string "seems that you don't have enough\l"
 	.string" POKéMON for a double battle.$"	
