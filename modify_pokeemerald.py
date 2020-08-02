@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import os,re,xlrd,argparse,copy,json
+import os,re,xlrd,argparse,copy,json,shutil
 from config import pokeemerald_dir,slash,vanilla_dir
 from misc import normalize_path,excel_files,clean_num
 from pokemon_tools import *
@@ -729,7 +729,18 @@ os_cmd = "{0}update_maps.py --mode insert".format(suffix)
 	
 os.system(os_cmd)
 		
-print("done")		
+print("done")	
+
+########## heal locations
+
+print("\nfix heal_locations.h")
+
+vanilla_heal_locations = normalize_path("{0}/include/constants_heal_locations.h".format(vanilla_dir))
+mod_heal_locations = normalize_path("{0}/include/constants_heal_locations.h".format(pokeemerald_dir))
+		
+shutil.copyfile(vanilla_heal_locations,mod_heal_locations)
+
+print("done")
 		
 ########## finish
 
