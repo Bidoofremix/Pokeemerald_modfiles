@@ -48,7 +48,7 @@ AlteringCave_Text_EarlNotEnoughMons:
 	.string "What? You don't have enough\n"
 	.string "POKéMON for a double battle!$"
 	
-AlteringCave_Text_EvalIntro:
+AlteringCave_Text_EvaIntro:
 	.string "You look like such a nice kid.\n"
 	.string "Let's have a battle!$"
 	
