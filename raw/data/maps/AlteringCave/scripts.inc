@@ -55,7 +55,7 @@ AlteringCave_Text_EvalIntro:
 AlteringCave_Text_EvaDefeat:
 	.string "My goodness!$"
 	
-AlteringCave_Text_EvaGotTooExcited:
+AlteringCave_Text_EvaMyHusbandGetsExcited:
 	.string "My husband gets so excited by battles\n"
 	.string "that he can't think straight.$"
 
