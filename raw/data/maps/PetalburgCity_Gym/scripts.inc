@@ -6,11 +6,6 @@ PetalburgCity_Gym_OnLoad: @ 820489E
 	call_if_ge PetalburgCity_Gym_EventScript_UnlockAllDoors
 	end
 
-PetalburgCity_Gym_OnTransition: @ 820489E
-	call_if_set FLAG_RECEIVED_VERDANTURF_EGG, PetalburgCity_Gym_MapScript_GymAccessible
-	call_if_set FLAG_NORMAN_INTRODUCED_GYM, PetalburgCity_Gym_EventScript_NormanAtBattleField
-	end
-	
 @ NOTE: Strength and OHKO rooms are misleading. Both are more accurately Critical-Hit
 PetalburgCity_Gym_EventScript_OpenUnlockedDoors:: @ 82048B5
 // >

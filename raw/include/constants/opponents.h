@@ -5,8 +5,9 @@
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 
 #define TRAINER_MEWTWO                      855
+#define TRAINER_EARL_AND_EVA                856
 
-#define TRAINERS_COUNT                      856
+#define TRAINERS_COUNT                      857
 #define MAX_TRAINERS_COUNT                  1000
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

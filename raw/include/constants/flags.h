@@ -42,16 +42,16 @@
 #define FLAG_TEMP_1F     (TEMP_FLAGS_START + 0x1F)
 #define TEMP_FLAGS_END   FLAG_TEMP_1F
 
-#define FLAG_RECEIVED_CHARCOAL_BREEDERSCLUB    0x20 // Unused Flag
-#define FLAG_RECEIVED_DESTINY_KNOT             0x21 // Unused Flag
-#define FLAG_RECEIVED_FATEFUL_KNOT             0x22 // Unused Flag
-#define FLAG_DOUBLE_BATTLE_ENABLED    0x23 // Unused Flag
-#define FLAG_NORMAN_INTRODUCED_GYM   0x24 // Unused Flag
-#define FLAG_RECEIVED_VERDANTURF_EGG    0x25 // Unused Flag
-#define FLAG_ASKED_VERDANTURF_EGG   0x26 // Unused Flag
-#define FLAG_UNUSED_0x027    0x27 // Unused Flag
-#define FLAG_UNUSED_0x028    0x28 // Unused Flag
-#define FLAG_UNUSED_0x029    0x29 // Unused Flag
+#define FLAG_RECEIVED_CHARCOAL_BREEDERSCLUB          0x20 // Unused Flag
+#define FLAG_RECEIVED_DESTINY_KNOT                   0x21 // Unused Flag
+#define FLAG_RECEIVED_FATEFUL_KNOT                   0x22 // Unused Flag
+#define FLAG_DOUBLE_BATTLE_ENABLED                   0x23 // Unused Flag
+#define FLAG_NORMAN_INTRODUCED_GYM                   0x24 // Unused Flag
+#define FLAG_RECEIVED_VERDANTURF_EGG                 0x25 // Unused Flag
+#define FLAG_ASKED_VERDANTURF_EGG                    0x26 // Unused Flag
+#define FLAG_ITEM_ALTERING_CAVE_HEAVY_BALL           0x27 // Unused Flag
+#define FLAG_ITEM_ALTERING_CAVE_POTION               0x28 // Unused Flag
+#define FLAG_HIDDEN_ITEM_ALTERING_CAVE_THICK_CLUB    0x29 // Unused Flag
 #define FLAG_UNUSED_0x02A    0x2A // Unused Flag
 #define FLAG_UNUSED_0x02B    0x2B // Unused Flag
 #define FLAG_UNUSED_0x02C    0x2C // Unused Flag

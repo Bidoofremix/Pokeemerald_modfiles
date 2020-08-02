@@ -127,6 +127,30 @@ VerdanturfTown_BreedersClub_Text_OldLady_Charcoal:
 	.string "You'll be surprised how fast your\n"
 	.string "EGGS hatch!$"
 	
+VerdanturfTown_BreedersClub_EventScript_OldMan::
+	lock
+	faceplayer
+	msgbox VerdanturfTown_BreedersClub_Text_OldMan, MSGBOX_DEFAULT
+	goto_if_defeated TRAINER_VICKY, VerdanturfTown_BreedersClub_EventScript_WhatYouDefeatedVicky
+	release
+	end
+	
+VerdanturfTown_BreedersClub_EventScript_WhatYouDefeatedVicky::
+	msgbox VerdanturfTown_BreedersClub_Text_WhatYouDefeatedVicky
+	release
+	end
+	
+VerdanturfTown_BreedersClub_Text_OldMan:
+	.string "Oh hoh ho! Back in the days, I was\n"
+	.string "one of the mightiest TRAINERS around!\p"
+	.string "The name WINSTRATE still carries\n"
+	.string "so much respect, it makes people go\p"
+	.string "silent in awe!$"
+	
+VerdanturfTown_BreedersClub_Text_WhatYouDefeatedVicky:
+	.string "…What? You defeated my wife VICKY?\p"
+	.string "Oh. I ought to go home sometimes.$"
+	
 VerdanturfTown_BreedersClub_EventScript_Display1::
 	goto_if_unset FLAG_RECEIVED_FATEFUL_KNOT, VerdanturfTown_BreedersClub_EventScript_Display1_ForSomeReason
 	msgbox VerdanturfTown_BreedersClub_Text_FatefulKnot, MSGBOX_SIGN
