@@ -735,8 +735,8 @@ print("done")
 
 print("\nfix heal_locations.h")
 
-vanilla_heal_locations = normalize_path("{0}/include/constants_heal_locations.h".format(vanilla_dir))
-mod_heal_locations = normalize_path("{0}/include/constants_heal_locations.h".format(pokeemerald_dir))
+vanilla_heal_locations = normalize_path("{0}/include/constants/heal_locations.h".format(vanilla_dir))
+mod_heal_locations = normalize_path("{0}/include/constants/heal_locations.h".format(pokeemerald_dir))
 		
 shutil.copyfile(vanilla_heal_locations,mod_heal_locations)
 
