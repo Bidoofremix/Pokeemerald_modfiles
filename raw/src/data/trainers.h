@@ -37,8 +37,8 @@
         .items = {},
         .doubleBattle = TRUE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
-        .partySize = ARRAY_COUNT(sParty_EarlAndEva1),
-        .party = {.NoItemCustomMoves = sParty_EarlAndEva1},
+        .partySize = ARRAY_COUNT(sParty_EarlAndEva),
+        .party = {.NoItemCustomMoves = sParty_EarlAndEva},
     },
 	
     [TRAINER_SAWYER_1] =
