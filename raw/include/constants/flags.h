@@ -1440,7 +1440,7 @@
 
 
 // Daily Flags
-#define DAILY_FLAGS_START                           0x920
+#define DAILY_FLAGS_START                           (FLAG_RECEIVED_POKEDEX_FROM_BIRCH + (8 - FLAG_RECEIVED_POKEDEX_FROM_BIRCH % 8))
 #define FLAG_UNUSED_0x920                           (DAILY_FLAGS_START + 0x0)  // Unused Flag
 #define FLAG_DAILY_CONTEST_LOBBY_RECEIVED_BERRY     (DAILY_FLAGS_START + 0x1)
 #define FLAG_DAILY_SECRET_BASE                      (DAILY_FLAGS_START + 0x2)
@@ -1506,7 +1506,9 @@
 #define FLAG_UNUSED_0x95D                           (DAILY_FLAGS_START + 0x3D) // Unused Flag
 #define FLAG_UNUSED_0x95E                           (DAILY_FLAGS_START + 0x3E) // Unused Flag
 #define FLAG_UNUSED_0x95F                           (DAILY_FLAGS_START + 0x3F) // Unused Flag
-#define DAILY_FLAGS_END                             FLAG_UNUSED_0x95F
+#define DAILY_FLAGS_END                             FLAG_UNUSED_0x95F + (7 - FLAG_UNUSED_0x95F % 8)
+
+#define FLAGS_COUNT (DAILY_FLAGS_END + 1)
 
 // Special Flags (Stored in EWRAM (gSpecialFlags), not in the SaveBlock)
 #define SPECIAL_FLAGS_START                     0x4000

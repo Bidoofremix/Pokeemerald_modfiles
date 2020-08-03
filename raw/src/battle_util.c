@@ -453,7 +453,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
     return ApplyModifier(modifier, basePower);
 }
 
-static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 isCrit)
+static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 isCrit, bool32 updateFlags)
 {
     u8 atkStage;
     u32 atkStat;
@@ -548,10 +548,9 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
                 MulModifier(&modifier, UQ_4_12(1.5));
         }
         break;
-    // case ABILITY_FLOWER_GIFT:
-        // if (gBattleMons[battlerAtk].species == SPECIES_CHERRIM && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY)
-            // MulModifier(&modifier, UQ_4_12(1.5));
-        // break;
+    case ABILITY_FLOWER_GIFT:
+        //
+		break;
     case ABILITY_HUSTLE:
         if (IS_MOVE_PHYSICAL(move))
             MulModifier(&modifier, UQ_4_12(1.5));
@@ -567,21 +566,25 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
     {
     case ABILITY_THICK_FAT:
         if (moveType == TYPE_FIRE || moveType == TYPE_ICE)
+        {
             MulModifier(&modifier, UQ_4_12(0.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_THICK_FAT);
+        }
         break;
     }
 
     // ally's abilities
-    // if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
-    // {
-        // switch (GetBattlerAbility(BATTLE_PARTNER(battlerAtk)))
-        // {
-        // case ABILITY_FLOWER_GIFT:
-            // if (gBattleMons[BATTLE_PARTNER(battlerAtk)].species == SPECIES_CHERRIM)
-                // MulModifier(&modifier, UQ_4_12(1.5));
-            // break;
-        // }
-    // }
+    if (IsBattlerAlive(BATTLE_PARTNER(battlerAtk)))
+    {
+        switch (GetBattlerAbility(BATTLE_PARTNER(battlerAtk)))
+        {
+        case ABILITY_FLOWER_GIFT:
+            //if (gBattleMons[BATTLE_PARTNER(battlerAtk)].species == SPECIES_CHERRIM)
+            //MulModifier(&modifier, UQ_4_12(1.5));
+            break;
+        }
+    }
 
     // attacker's hold effect
     switch (GetBattlerHoldEffect(battlerAtk, TRUE))
@@ -612,6 +615,7 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 }
 
 static bool32 CanEvolve(u32 species)
+
 {
     u32 i;
 
@@ -623,7 +627,7 @@ static bool32 CanEvolve(u32 species)
     return FALSE;
 }
 
-static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 isCrit)
+static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, bool32 isCrit, bool32 updateFlags)
 {
     bool32 usesDefStat;
     u8 defStage;
@@ -675,20 +679,32 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
     {
     case ABILITY_MARVEL_SCALE:
         if (gBattleMons[battlerDef].status1 & STATUS1_ANY && usesDefStat)
+        {
             MulModifier(&modifier, UQ_4_12(1.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_MARVEL_SCALE);
+        }
         break;
     case ABILITY_FUR_COAT:
         if (usesDefStat)
+        {
             MulModifier(&modifier, UQ_4_12(2.0));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_FUR_COAT);
+        }
         break;
     case ABILITY_GRASS_PELT:
         if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && usesDefStat)
+        {
+            MulModifier(&modifier, UQ_4_12(1.5));
+            if (updateFlags)
+                RecordAbilityBattle(battlerDef, ABILITY_GRASS_PELT);
+        }
+        break;
+    case ABILITY_FLOWER_GIFT:
+        if (gBattleMons[battlerDef].species == SPECIES_CHERRIM && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && !usesDefStat)
             MulModifier(&modifier, UQ_4_12(1.5));
         break;
-    // case ABILITY_FLOWER_GIFT:
-        // if (gBattleMons[battlerDef].species == SPECIES_CHERRIM && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && !usesDefStat)
-            // MulModifier(&modifier, UQ_4_12(1.5));
-        // break;
     }
 
     // ally's abilities
@@ -817,4 +833,21 @@ bool32 CanBattlerGetOrLoseItem(u8 battlerId, u16 itemId)
 }
 
 struct Pokemon *GetIllusionMonPtr(u32 battlerId)
+// >
+
+< //
+            case ABILITY_POWER_CONSTRUCT:
+                // if ((gBattleMons[battler].species == SPECIES_ZYGARDE || gBattleMons[battler].species == SPECIES_ZYGARDE_10)
+                    // && gBattleMons[battler].hp <= gBattleMons[battler].maxHP / 2)
+                // {
+                    // gBattleStruct->changedSpecies[gBattlerPartyIndexes[battler]] = gBattleMons[battler].species;
+                    // gBattleMons[battler].species = SPECIES_ZYGARDE_COMPLETE;
+                    // BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
+                    // effect++;
+                // }
+                // break;
+            }
+        }
+        break;
+    case ABILITYEFFECT_MOVES_BLOCK: // 2
 // >
