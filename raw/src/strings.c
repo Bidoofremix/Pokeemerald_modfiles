@@ -2,7 +2,5 @@
 const u8 gText_ThrowInPremierBall[] = _("I'll throw in a PREMIER BALL, too.{PAUSE_UNTIL_PRESS}");
 const u8 gText_ThrowInPremierBalls[] = _("I'll throw in some PREMIER BALLS, too.{PAUSE_UNTIL_PRESS}");
 const u8 gText_YouAlreadyHaveThis[] = _("You already have this item.{PAUSE_UNTIL_PRESS}");
-const u8 gText_SorryWereOutOfThis[] = _("I'm very sorry, we're out of\nthis item.{PAUSE_UNTIL_PRESS}");
-const u8 gText_SoldOut[] = _("Sold Out");
 const u8 gText_CantBuyKeyItem[] = _("{STR_VAR_2}? Oh, no.\nI can't buy that.{PAUSE_UNTIL_PRESS}");
 // >

@@ -1,43 +1,4 @@
 < //
-static u8 GetDaycareCompatibilityScore(struct DayCare *daycare);
-static void DaycarePrintMonInfo(u8 windowId, s32 daycareSlotId, u8 y, u8 listPos);
-
-// RAM buffers used to assist with BuildEggMoveset()
-EWRAM_DATA static u16 sHatchedEggLevelUpMoves[EGG_LVL_UP_MOVES_ARRAY_COUNT] = {0};
-// >
-
-< //
-static void DaycarePrintMonLvl(struct DayCare *daycare, u8 windowId, u32 daycareSlotId, u32 y)
-{
-    u8 level;
-    u32 x;
-    u8 lvlText[12];
-    u8 intText[8];
-
-    StringCopy(lvlText, gText_Lv);
-    level = GetLevelAfterDaycareSteps(&daycare->mons[daycareSlotId].mon, daycare->mons[daycareSlotId].steps);
-    ConvertIntToDecimalStringN(intText, level, STR_CONV_MODE_LEFT_ALIGN, 3);
-    StringAppend(lvlText, intText);
-    x = GetStringRightAlignXOffset(1, lvlText, 112);
-    DaycareAddTextPrinter(windowId, lvlText, x, y);
-}
-
-static void DaycarePrintMonInfo(u8 windowId, s32 daycareSlotId, u8 y, u8 listPos)
-{
-    if (daycareSlotId < (unsigned) DAYCARE_MON_COUNT)
-    {
-        DaycarePrintMonNickname(&gSaveBlock1Ptr->daycare, windowId, daycareSlotId, y);
-        DaycarePrintMonLvl(&gSaveBlock1Ptr->daycare, windowId, daycareSlotId, y);
-    }
-}
-
-#define tMenuListTaskId     data[0]
-#define tWindowId           data[1]
-
-static void Task_HandleDaycareLevelMenuInput(u8 taskId)
-// >
-
-< //
 static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
 {
     u8 i;
