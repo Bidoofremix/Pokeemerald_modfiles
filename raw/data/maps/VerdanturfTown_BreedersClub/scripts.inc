@@ -49,8 +49,7 @@ VerdanturfTown_BreedersClub_Text_HiYouMustBePlayer:
 	.string "You see, I found this lone EGG at a\n"
 	.string "roadside and rescued it, but I am\l"
 	.string "already taking care of so many POKéMON\l"
-	.string "so many POKéMON that I simply don't\l"
-	.string "have the space$"
+	.string "that I simply don't have the space.$"
 	
 VerdanturfTown_BreedersClub_Text_WillYouTakeCareOfThisEgg:
 	.string "{PLAYER}, will you take care\n"

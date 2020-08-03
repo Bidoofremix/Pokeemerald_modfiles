@@ -16,17 +16,17 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Mewtwo[] = {
 };
 
 static const struct TrainerMonNoItemCustomMoves sParty_EarlAndEva[] = {
-    {
-    .iv = 0,
-    .lvl = 5,
-    .species = SPECIES_TYROGUE,
-	.moves = {MOVE_HELPING_HAND, MOVE_NONE, MOVE_NONE, MOVE_NONE}
-    },
 	{
     .iv = 0,
     .lvl = 5,
     .species = SPECIES_CHIKORITA,
 	.moves = {MOVE_RAZOR_LEAF, MOVE_NONE, MOVE_NONE, MOVE_NONE}
+    },
+    {
+    .iv = 0,
+    .lvl = 5,
+    .species = SPECIES_TYROGUE,
+	.moves = {MOVE_HELPING_HAND, MOVE_NONE, MOVE_NONE, MOVE_NONE}
     }
 };
 

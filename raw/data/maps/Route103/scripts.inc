@@ -92,7 +92,7 @@ Route103_Text_MayRoute103Pokemon: @ 81EC7A6
 < //
 Route103_Text_ShortcutToOldale: @ 81ECBB5
 	.string "The land has risen here and a shoal\n"
-	.string "has formed. It's a shortcut to\n"
+	.string "has formed. It's a shortcut to\l"
 	.string "OLDALE TOWN.\p"
 	.string "Fufufu, that's useful, isn't it?$"
 
