@@ -2,14 +2,14 @@
 PetalburgWoods_EventScript_DevonResearcherRight:: @ 822E079
 	lockall
 	call PetalburgWoods_EventScript_DevonResearcherIntro
-	applymovement 4, PetalburgWoods_Movement_DevonResearcherApproachPlayerRight
+	applymovement LOCALID_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherApproachPlayerRight
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestLeft
 	waitmovement 0
 	msgbox PetalburgWoods_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT
 	closemessage
-	playbgm MUS_MGM0, 0
-	applymovement 3, PetalburgWoods_Movement_AquaEntrance
+	playbgm MUS_MGM_0, 0
+	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaEntrance	
 // >
 
 < //
