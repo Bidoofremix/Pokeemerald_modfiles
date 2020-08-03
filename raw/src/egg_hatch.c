@@ -1,5 +1,5 @@
 < //
-u8 GetEggStepsToSubtract(void)
+u8 GetEggCyclesToSubtract(void)
 {
     u8 count, i;
 	int n = 1;

@@ -1,4 +1,16 @@
 < //
+PetalburgWoods_EventScript_DevonResearcherLeft:: @ 822DFD7
+	lockall
+	call PetalburgWoods_EventScript_DevonResearcherIntro
+	applymovement LOCALID_DEVON_EMPLOYEE, PetalburgWoods_Movement_DevonResearcherApproachPlayerLeft
+	waitmovement 0
+	msgbox PetalburgWoods_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT
+	closemessage
+	playbgm MUS_MGM_0, 0
+	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaEntrance
+// >
+
+< //
 PetalburgWoods_EventScript_DevonResearcherRight:: @ 822E079
 	lockall
 	call PetalburgWoods_EventScript_DevonResearcherIntro
@@ -9,7 +21,7 @@ PetalburgWoods_EventScript_DevonResearcherRight:: @ 822E079
 	msgbox PetalburgWoods_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT
 	closemessage
 	playbgm MUS_MGM_0, 0
-	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaEntrance	
+	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaEntrance
 // >
 
 < //

@@ -43,7 +43,7 @@ for dir, subdirs, files in os.walk(raw_folder):
 		mod_path = normalize_path("{0}\{1}".format(dir,fname))
 
 		pokeemerald_path = normalize_path(pokeemerald_dir + mod_path[len(raw_folder):])
-		
+
 		print(pokeemerald_path)
 		
 		# fix japanese characters in strings.c
