@@ -525,7 +525,7 @@ for i in range(0,xl_sheet.nrows):
 
 		mons = []
 		trainer = row[0]
-	elif row[0] != "" and row[0] != "END":
+	elif row[0] != "" and row[0] != "END" and not row[0].startswith("#"):
 			if row[0] == "species":
 				columns = row
 			elif not row[0].startswith("."):
