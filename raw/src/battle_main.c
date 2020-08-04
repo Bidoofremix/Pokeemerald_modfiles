@@ -67,6 +67,22 @@ const struct OamData gOamData_831ACA8 =
 
 < //
 static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 firstTrainer)
+#Rstatic u8 dynamicLevel(u8 playerHighestLevel, u8 standardLevel)
+{
+	
+	u8 level;
+	
+	level = (int)((playerHighestLevel * 1.1) - 2);
+	
+	if (level < standardLevel)
+		level = standardLevel;
+	if (level > 100)
+		level = 100;
+	
+	return level;
+}
+
+static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 firstTrainer)
 {
 	
 	// custom pokeballs and dynamic levels
@@ -209,21 +225,6 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     }
 
     return gTrainers[trainerNum].partySize;
-}
-
-static u8 dynamicLevel(u8 playerHighestLevel, u8 standardLevel)
-{
-	
-	u8 level;
-	
-	level = (int)((playerHighestLevel * 1.1) - 2);
-	
-	if (level < standardLevel)
-		level = standardLevel;
-	if (level > 100)
-		level = 100;
-	
-	return level;
 }
 
 void VBlankCB_Battle(void)
