@@ -7564,6 +7564,359 @@ static const union AnimCmd *const sAnims_CLONE_BLASTOISE[] =
     sAnim_CLONE_BLASTOISE_1,
 };
 
+static const union AnimCmd sAnim_UNOWN_B_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_C_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_D_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_E_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_F_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_G_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_H_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_I_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_J_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_K_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_L_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_M_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_N_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_O_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_P_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_Q_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_R_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_S_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_T_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_U_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_V_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_W_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_X_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_Y_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_Z_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_EMARK_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+static const union AnimCmd sAnim_UNOWN_QMARK_1[] =
+{
+    ANIMCMD_FRAME(0, 30),
+    ANIMCMD_FRAME(1, 30),
+    ANIMCMD_FRAME(0, 1),
+    ANIMCMD_END,
+};
+
+
+static const union AnimCmd *const sAnims_UNOWN_B[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_B_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_C[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_C_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_D[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_D_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_E[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_E_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_F[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_F_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_G[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_G_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_H[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_H_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_I[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_I_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_J[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_J_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_K[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_K_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_L[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_L_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_M[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_M_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_N[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_N_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_O[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_O_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_P[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_P_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_Q[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_Q_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_R[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_R_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_S[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_S_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_T[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_T_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_U[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_U_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_V[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_V_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_W[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_W_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_X[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_X_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_Y[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_Y_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_Z[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_Z_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_EMARK[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_EMARK_1,
+};
+
+static const union AnimCmd *const sAnims_UNOWN_QMARK[] ={
+    sAnim_GeneralFrame0,
+    sAnim_UNOWN_QMARK_1,
+};
+
+
 #define ANIM_CMD(name)             [SPECIES_##name] = sAnims_##name
 #define ANIM_CMD_FULL(name, anims) [SPECIES_##name] = anims
 
