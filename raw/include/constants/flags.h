@@ -1,4 +1,4 @@
-< //
+< // START
 #ifndef GUARD_CONSTANTS_FLAGS_H
 #define GUARD_CONSTANTS_FLAGS_H
 
@@ -202,17 +202,16 @@
 #define FLAG_UNUSED_0x4AE                                           0xBD // Unused Flag
 #define FLAG_UNUSED_0x4AF                                           0xBE // Unused Flag
 #define FLAG_UNUSED_0x4B0                                           0xBF // Unused Flag
-
-#define FLAG_RECEIVED_CHARCOAL_BREEDERSCLUB          0xC0 // Unused Flag
-#define FLAG_RECEIVED_DESTINY_KNOT                   0xC1 // Unused Flag
-#define FLAG_RECEIVED_FATEFUL_KNOT                   0xC2 // Unused Flag
-#define FLAG_DOUBLE_BATTLE_ENABLED                   0xC3 // Unused Flag
-#define FLAG_NORMAN_INTRODUCED_GYM                   0xC4 // Unused Flag
-#define FLAG_RECEIVED_VERDANTURF_EGG                 0xC5 // Unused Flag
-#define FLAG_ASKED_VERDANTURF_EGG                    0xC6 // Unused Flag
-#define FLAG_ITEM_ALTERING_CAVE_HEAVY_BALL           0xC7 // Unused Flag
-#define FLAG_ITEM_ALTERING_CAVE_POTION               0xC8 // Unused Flag
-#define FLAG_HIDDEN_ITEM_ALTERING_CAVE_THICK_CLUB    0xC9 // Unused Flag
+#define FLAG_UNUSED_0x4B1                                           0xC0 // Unused Flag
+#define FLAG_UNUSED_0x4B2                                           0xC1 // Unused Flag
+#define FLAG_UNUSED_0x4B3                                           0xC2 // Unused Flag
+#define FLAG_UNUSED_0x4B4                                           0xC3 // Unused Flag
+#define FLAG_UNUSED_0x4B5                                           0xC4 // Unused Flag
+#define FLAG_UNUSED_0x4B6                                           0xC5 // Unused Flag
+#define FLAG_UNUSED_0x4B7                                           0xC6 // Unused Flag
+#define FLAG_UNUSED_0x4B8                                           0xC7 // Unused Flag
+#define FLAG_UNUSED_0x4B9                                           0xC8 // Unused Flag
+#define FLAG_UNUSED_0x4B10                                          0xC9 // Unused Flag
 
 
 // Scripts
@@ -761,26 +760,26 @@
 #define FLAG_HIDDEN_ITEM_NAVEL_ROCK_TOP_SACRED_ASH           (FLAG_HIDDEN_ITEMS_START + 0x6D)
 #define FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY                (FLAG_HIDDEN_ITEMS_START + 0x6E)
 #define FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL                 (FLAG_HIDDEN_ITEMS_START + 0x6F)
-#define FLAG_UNUSED_0x02A    0x2D0 // Unused Flag
-#define FLAG_UNUSED_0x02B    0x2D1 // Unused Flag
-#define FLAG_UNUSED_0x02C    0x2D2 // Unused Flag
-#define FLAG_UNUSED_0x02D    0x2D3 // Unused Flag
-#define FLAG_UNUSED_0x02E    0x2D4 // Unused Flag
-#define FLAG_UNUSED_0x02F    0x2D5 // Unused Flag
-#define FLAG_UNUSED_0x030    0x2D6 // Unused Flag
-#define FLAG_UNUSED_0x031    0x2D7 // Unused Flag
-#define FLAG_UNUSED_0x032    0x2D8 // Unused Flag
-#define FLAG_UNUSED_0x033    0x2D9 // Unused Flag
-#define FLAG_UNUSED_0x034    0x2DA // Unused Flag
-#define FLAG_UNUSED_0x035    0x2DB // Unused Flag
-#define FLAG_UNUSED_0x036    0x2DC // Unused Flag
-#define FLAG_UNUSED_0x037    0x2DD // Unused Flag
-#define FLAG_UNUSED_0x038    0x2DE // Unused Flag
-#define FLAG_UNUSED_0x039    0x2DF // Unused Flag
-#define FLAG_UNUSED_0x03A    0x2E0 // Unused Flag
-#define FLAG_UNUSED_0x03B    0x2E1 // Unused Flag
-#define FLAG_UNUSED_0x03C    0x2E2 // Unused Flag
-#define FLAG_UNUSED_0x03D    0x2E3 // Unused Flag
+#define FLAG_HIDDEN_ITEM_ALTERING_CAVE_THICK_CLUB            (FLAG_HIDDEN_ITEMS_START + 0x70) // Unused Flag
+#define FLAG_UNUSED_0x02B                                    (FLAG_HIDDEN_ITEMS_START + 0x71) // Unused Flag
+#define FLAG_UNUSED_0x02C                                    (FLAG_HIDDEN_ITEMS_START + 0x72) // Unused Flag
+#define FLAG_UNUSED_0x02D                                    (FLAG_HIDDEN_ITEMS_START + 0x73) // Unused Flag
+#define FLAG_UNUSED_0x02E                                    (FLAG_HIDDEN_ITEMS_START + 0x74) // Unused Flag
+#define FLAG_UNUSED_0x02F                                    (FLAG_HIDDEN_ITEMS_START + 0x75) // Unused Flag
+#define FLAG_UNUSED_0x030                                    (FLAG_HIDDEN_ITEMS_START + 0x76) // Unused Flag
+#define FLAG_UNUSED_0x031                                    (FLAG_HIDDEN_ITEMS_START + 0x77) // Unused Flag
+#define FLAG_UNUSED_0x032                                    (FLAG_HIDDEN_ITEMS_START + 0x78) // Unused Flag
+#define FLAG_UNUSED_0x033                                    (FLAG_HIDDEN_ITEMS_START + 0x79) // Unused Flag
+#define FLAG_UNUSED_0x034                                    (FLAG_HIDDEN_ITEMS_START + 0x7A) // Unused Flag
+#define FLAG_UNUSED_0x035                                    (FLAG_HIDDEN_ITEMS_START + 0x7B) // Unused Flag
+#define FLAG_UNUSED_0x036                                    (FLAG_HIDDEN_ITEMS_START + 0x7C) // Unused Flag
+#define FLAG_UNUSED_0x037                                    (FLAG_HIDDEN_ITEMS_START + 0x7D) // Unused Flag
+#define FLAG_UNUSED_0x038                                    (FLAG_HIDDEN_ITEMS_START + 0x7E) // Unused Flag
+#define FLAG_UNUSED_0x039                                    (FLAG_HIDDEN_ITEMS_START + 0x7F) // Unused Flag
+#define FLAG_UNUSED_0x03A                                    (FLAG_HIDDEN_ITEMS_START + 0x80) // Unused Flag
+#define FLAG_UNUSED_0x03B                                    (FLAG_HIDDEN_ITEMS_START + 0x81) // Unused Flag
+#define FLAG_UNUSED_0x03C                                    (FLAG_HIDDEN_ITEMS_START + 0x82) // Unused Flag
+#define FLAG_UNUSED_0x03D                                    (FLAG_HIDDEN_ITEMS_START + 0x83) // Unused Flag
 
 
 // Event Flags
@@ -1522,4 +1521,4 @@
 #define SPECIAL_FLAGS_END                       (SPECIAL_FLAGS_START + 0x7F)
 
 #endif // GUARD_CONSTANTS_FLAGS_H
-// >
+// > END
