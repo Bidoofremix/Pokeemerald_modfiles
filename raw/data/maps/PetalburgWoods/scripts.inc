@@ -72,7 +72,6 @@ PetalburgWoods_EventScript_Venusaur::
 
 PetalburgWoods_EventScript_VenusaurLady::
 	lock
-	faceplayer
 	bufferspeciesname 0, SPECIES_VENUSAUR
 	applymovement 14, Common_Movement_FaceLeft
 	waitmovement 0
