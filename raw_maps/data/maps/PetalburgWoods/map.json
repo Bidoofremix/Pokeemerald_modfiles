@@ -111,7 +111,7 @@
         {
             "elevation": 3,
             "flag": "FLAG_HIDE_PETALBURG_WOODS_AQUA_GRUNT",
-            "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
+            "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_F",
             "movement_range_x": 0,
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
@@ -253,7 +253,7 @@
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_BADGE05_GET",
             "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
             "movement_range_x": 0,
             "movement_range_y": 0,
@@ -261,12 +261,12 @@
             "script": "PetalburgWoods_EventScript_VenusaurLady",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 14,
+            "x": 15,
             "y": 35
         },
         {
             "elevation": 3,
-            "flag": "0",
+            "flag": "FLAG_BADGE05_GET",
             "graphics_id": "OBJ_EVENT_GFX_BIG_VENUSAUR_DOLL",
             "movement_range_x": 0,
             "movement_range_y": 0,
@@ -274,7 +274,7 @@
             "script": "PetalburgWoods_EventScript_Venusaur",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 12,
+            "x": 13,
             "y": 35
         }
     ],
