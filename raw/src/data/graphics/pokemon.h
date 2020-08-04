@@ -3259,6 +3259,10 @@ const u32 gMonShinyPalette_CloneBlastoise[] = INCBIN_U32("graphics/pokemon/clone
 const u8 gMonIcon_CloneBlastoise[] = INCBIN_U8("graphics/pokemon/clone_blastoise/icon.4bpp");
 const u8 gMonFootprint_CloneBlastoise[] = INCBIN_U8("graphics/pokemon/clone_blastoise/footprint.1bpp");
 
+const u32 gMonFrontPic_Egg[] = INCBIN_U32("graphics/pokemon/egg/anim_front.4bpp.lz");
+const u32 gMonPalette_Egg[] = INCBIN_U32("graphics/pokemon/egg/normal.gbapal.lz");
+const u8 gMonIcon_Egg[] = INCBIN_U8("graphics/pokemon/egg/icon.4bpp");
+
 const u32 gMonFrontPic_UnownA[] = INCBIN_U32("graphics/pokemon/unown/a/anim_front.4bpp.lz");
 const u32 gMonBackPic_UnownA[] = INCBIN_U32("graphics/pokemon/unown/a/back.4bpp.lz");
 
