@@ -12,17 +12,17 @@ parser.add_argument("--force", action="store_true",\
 	help="force rearrangement of custom flag file")
 parser.add_argument("--trainers", type=int, required=True,\
 	help="how many new trainer flags")
-parser.add_argument("--daily", type=int, default=0,\
-	help="how many new daily flags")
+parser.add_argument("--hiddenitems", type=int, default=1,\
+	help="how many new hidden items")
 	
 args = vars(parser.parse_args())	
 	
 ########## get vanilla number of trainers
 
-opponents_file = normalize_path("{0}/include/constants/opponents.h".format(vanilla_dir))
+opponents_file = normalize_path("{0}/include/constants/opponents.h".format(pokeemerald_dir))
 with open(opponents_file, "r") as f:
 	for line in f:
-		if "MAX_TRAINERS_COUNT" in line:
+		if "#define MAX_TRAINERS_COUNT" in line:
 			num_trainers = int(line.rstrip("\n").rstrip("\r").split()[2])
 	
 ########## open flag file
@@ -50,16 +50,17 @@ print("reads flags from: %s" % flag_file)
 with open(flag_file, "r") as f:
 	lines = f.read().splitlines()
 	
-special_flags_started = 0
+system_flags_started = 0
 unused_flags = []
 used_flags = []
 
 for line in lines:
 	if line.startswith("#define DAILY_FLAGS_START"):
-		special_flags_started = 1
+		system_flags_started = 1
 	else:
-		if line.startswith("#define FLAG_UNUSED") and not "MYSTERY_GIFT" in line:
-			if not special_flags_started:
+		if line.startswith("#define FLAG_UNUSED") and not "MYSTERY_GIFT" in line \
+			and not "SYSTEM_FLAGS" in line:
+			if not system_flags_started:
 				unused_flags.append(line)
 		elif line.startswith("#define FLAG") and not line.startswith("#define FLAG_UNUSED"):
 			used_flags.append(line)
@@ -87,10 +88,21 @@ else:
 print("\nof unused flags, allocate:")
 print(" {0} for trainers ({1} -> {2})".format(new_trainer_flags,num_trainers,\
 	new_num_trainers))
-print(" %s for other things" % (len(unused_flags)-new_trainer_flags))
+print(" {0} for hidden items".format(args["hiddenitems"]))
+print(" %s for other things" % (len(unused_flags)-new_trainer_flags-args["hiddenitems"]))
 
-non_trainer_flags = unused_flags[:-new_trainer_flags]
-trainer_flags = unused_flags[-new_trainer_flags:]
+# divide to trainer and non trainer flags
+non_trainer_flags = unused_flags[new_trainer_flags:]
+trainer_flags = unused_flags[:new_trainer_flags]
+
+# divide to hidden item and non trainer flags
+
+hidden_item_flags = non_trainer_flags[:args["hiddenitems"]]
+non_trainer_flags = non_trainer_flags[args["hiddenitems"]:]
+
+
+print(len(hidden_item_flags))
+print(len(non_trainer_flags))
 
 ########## insert non-trainer flags after temp flags
 
@@ -102,6 +114,15 @@ for n,line in enumerate(new_lines):
 non_trainer_flags.insert(0,"")
 new_lines[insert_index:insert_index] = non_trainer_flags
 
+
+# insert hidden item flags after last hidden item
+for n, line in enumerate(new_lines):
+	if "FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL" in line:
+		insert_index = n+1
+		break	
+		
+new_lines[insert_index:insert_index] = hidden_item_flags	
+		
 ########## renumber flag offsets
 		
 flag_pattern = r'#define ([^\s]+) +(0[xX][0-9a-fA-F]+)'
@@ -117,9 +138,11 @@ for n,line in enumerate(new_lines):
 	relative_definition = False
 
 	if line.startswith("#define"):
-
-		# all other lines than trainer flag end and badge number
-		if not line.startswith(("#define TRAINER_FLAGS_END","#define NUM_BADGES")):
+	
+		# all other lines than trainer flag end, badge number, system and daily flags
+		if not line.startswith(("#define TRAINER_FLAGS_END","#define NUM_BADGES")) \
+			and not "DAILY_FLAGS" in line and not "SYSTEM_FLAGS" in line \
+			and not "SPECIAL_FLAGS" in line:
 			re_match = re.match(flag_start_sum_pattern,line)
 
 			# relative definitions
