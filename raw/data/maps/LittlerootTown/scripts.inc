@@ -138,6 +138,8 @@ LittlerootTown_EventScript_SetReceivedRunningShoes:: @ 81E8686
 LittlerootTown_EventScript_GiveRunningShoes:: @ 81E8693
 	msgbox LittlerootTown_Text_GiveThisSootheBell, MSGBOX_DEFAULT
 	giveitem ITEM_SOOTHE_BELL
+	msgbox LittlerootTown_Text_HeresSomethingFromDad, MSGBOX_DEFAULT
+	giveitem ITEM_EXP_SHARE
 	//playfanfare MUS_FANFA4
 	//message LittlerootTown_Text_SwitchShoesWithRunningShoes
 	//waitfanfare
@@ -156,8 +158,12 @@ LittlerootTown_Text_GiveThisSootheBell: @ 81E87F0
 	.string "You're your father's child, all right.\n"
 	.string "You look good together with POKéMON!\p"
 	.string "Here, honey! If you're going out on an\n"
-	.string "adventure, give this SOOTHE BELL to\p"
+	.string "adventure, give this SOOTHE BELL to\l"
 	.string "your POKéMON. It'll look so cute!$"	
+	
+LittlerootTown_Text_HeresSomethingFromDad:
+	.string "MOM: Oh, I almost forgot.\p"
+	.string "Here's something from DAD, too!$"
 	
 LittlerootTown_Text_OurNewHomeLetsGoInside: @ 81E86BC
 // >
