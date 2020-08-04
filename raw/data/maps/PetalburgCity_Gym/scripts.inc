@@ -39,6 +39,23 @@ PetalburgCity_Gym_EventScript_MoveWallyToEntrance:: @ 820494D
 // >
 
 < //
+PetalburgCity_Gym_Text_DadYoureHereWithYourPokemon: @ 82057A2
+	.string "DAD: Hm?\p"
+	.string "Well, if it isn't {PLAYER}!\n"
+	.string "So you're all finished moving in?\p"
+	.string "I'm not surprised that you managed\n"
+	.string "to get here by yourself. I knew\l"
+	.string "PROFESSOR BIRCH would give you\l"
+	.string "your very own POKéMON!\p"
+	.string "Then I guess you're going to\n"
+	.string "become a TRAINER like me, {PLAYER}.\p"
+	.string "That's great news!\n"
+	.string "I'll be looking forward to it!$"
+
+PetalburgCity_Gym_Text_WallyIdLikeAPokemon: @ 82058B1
+// >
+
+< //
 PetalburgCity_Gym_EventScript_NormanBattle:: @ 8204E3B
 	goto_if_unset FLAG_NORMAN_INTRODUCED_GYM, PetalburgCity_Gym_EventScript_NormanIntroducesGym
 	// VAR_TEMP_1: how many trainers have been battled
