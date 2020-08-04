@@ -3376,6 +3376,11 @@ extern const u32 gMonFrontPic_UnownQuestionMark[];
 extern const u32 gMonBackPic_UnownQuestionMark[];
 extern const u8 gMonIcon_UnownQuestionMark[];
 
+extern const u32 gMonPic_Egg[];
+extern const u32 gMonPalette_Egg[];
+extern const u32 gMonFrontPic_Egg[];
+extern const u32 gMonStillFrontPic_Egg[];
+extern const u8 gMonIcon_Egg[];
 
 // trainer sprites
 extern const u32 gTrainerFrontPic_Hiker[];

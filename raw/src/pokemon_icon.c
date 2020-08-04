@@ -495,6 +495,7 @@ const u8 *const gMonIconTable[] =
     [SPECIES_UNOWN_Z] = gMonIcon_UnownZ,
     [SPECIES_UNOWN_EMARK] = gMonIcon_UnownExclamationMark,
     [SPECIES_UNOWN_QMARK] = gMonIcon_UnownQuestionMark,
+	[SPECIES_EGG] = gMonIcon_Egg,
 };
 
 const u8 gMonIconPaletteIndices[] =

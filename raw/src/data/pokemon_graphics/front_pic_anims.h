@@ -8,9 +8,24 @@ static const union AnimCmd sAnim_NONE_1[] =
     ANIMCMD_END,
 };
 
+static const union AnimCmd sAnim_EGG_1[] =
+{
+    ANIMCMD_FRAME(0, 6),
+    ANIMCMD_FRAME(1, 6),
+    ANIMCMD_FRAME(2, 6),
+    ANIMCMD_FRAME(3, 6),
+    ANIMCMD_END,
+};
+
 static const union AnimCmd *const sAnims_NONE[] ={
     sAnim_GeneralFrame0,
     sAnim_NONE_1,
+};
+
+
+static const union AnimCmd *const sAnims_EGG[] ={
+    sAnim_GeneralFrame0,
+    sAnim_EGG_1,
 };
 
 static const union AnimCmd sAnim_BULBASAUR_1[] =
@@ -8021,6 +8036,34 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(CLONE_SQUIRTLE),
     ANIM_CMD(CLONE_WARTORTLE),
     ANIM_CMD(CLONE_BLASTOISE),
+	ANIM_CMD(EGG),
+	ANIM_CMD(UNOWN_B),
+    ANIM_CMD(UNOWN_C),
+    ANIM_CMD(UNOWN_D),
+    ANIM_CMD(UNOWN_E),
+    ANIM_CMD(UNOWN_F),
+    ANIM_CMD(UNOWN_G),
+    ANIM_CMD(UNOWN_H),
+    ANIM_CMD(UNOWN_I),
+    ANIM_CMD(UNOWN_J),
+    ANIM_CMD(UNOWN_K),
+    ANIM_CMD(UNOWN_L),
+    ANIM_CMD(UNOWN_M),
+    ANIM_CMD(UNOWN_N),
+    ANIM_CMD(UNOWN_O),
+    ANIM_CMD(UNOWN_P),
+    ANIM_CMD(UNOWN_Q),
+    ANIM_CMD(UNOWN_R),
+    ANIM_CMD(UNOWN_S),
+    ANIM_CMD(UNOWN_T),
+    ANIM_CMD(UNOWN_U),
+    ANIM_CMD(UNOWN_V),
+    ANIM_CMD(UNOWN_W),
+    ANIM_CMD(UNOWN_X),
+    ANIM_CMD(UNOWN_Y),
+    ANIM_CMD(UNOWN_Z),
+    ANIM_CMD(UNOWN_EMARK),
+    ANIM_CMD(UNOWN_QMARK),
 };
 
 #undef ANIM_CMD
