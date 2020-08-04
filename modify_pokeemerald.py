@@ -577,18 +577,21 @@ for trainer in trainer_data:
 	
 	first_index = ""
 	for i,line in enumerate(trainer_party_file_lines):
-		if defined_trainers[trainer] in line:
-			first_index = i
-		elif first_index != "" and line.startswith("static const struct Trainer"):
-			last_index = i-1
-			break
+		if "static const struct Trainer" in line:
+			trainer_party = line.split(" ")[4].split("[")[0]
+			if trainer_party == defined_trainers[trainer]:
+				first_index = i
+			elif first_index != "" and line.startswith("static const struct Trainer"):
+				last_index = i-1
+				break
 			
 	trainer_party_file_lines[first_index:last_index] = trainer_lines
 
 	trainer_on = 0
 	for i,line in enumerate(trainer_file_lines):
 		if "[TRAINER_" in line:
-			if trainer in line:
+			trainer_name = line.split("[")[1].split("]")[0]
+			if trainer == trainer_name:
 				trainer_on = 1
 			else:
 				trainer_on = 0
