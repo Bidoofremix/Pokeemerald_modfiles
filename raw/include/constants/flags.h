@@ -1003,10 +1003,10 @@
 #define FLAG_HIDE_MT_PYRE_SUMMIT_ARCHIE                             0x3BB
 #define FLAG_HIDE_MT_PYRE_SUMMIT_TEAM_AQUA                          0x3BC
 #define FLAG_HIDE_BATTLE_TOWER_REPORTER                             0x3BD
-#define FLAG_HIDE_ROUTE_110_RIVAL_1                                 0x3BE
+#define FLAG_HIDE_ROUTE_110_RIVAL                                   0x3BE
 #define FLAG_HIDE_CHAMPIONS_ROOM_RIVAL                              0x3BF
 #define FLAG_HIDE_CHAMPIONS_ROOM_BIRCH                              0x3C0
-#define FLAG_HIDE_ROUTE_110_RIVAL_2                                 0x3C1
+#define FLAG_HIDE_ROUTE_110_RIVAL_ON_BIKE                           0x3C1
 #define FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE                           0x3C2
 #define FLAG_HIDE_AQUA_HIDEOUT_GRUNTS                               0x3C3
 #define FLAG_HIDE_LILCOVE_MOTEL_GAME_DESIGNERS                      0x3C4
