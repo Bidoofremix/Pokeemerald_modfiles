@@ -414,7 +414,7 @@
 #define FLAG_RECEIVED_DURIN_BERRY            0x184
 #define FLAG_RECEIVED_BELUE_BERRY            0x185
 #define FLAG_ENABLE_RIVAL_MATCH_CALL         0x186
-#define FLFLAG_RECEIVED_CHARCOAL             0x187
+#define FLAG_RECEIVED_CHARCOAL             0x187
 #define FLAG_LATIOS_OR_LATIAS_ROAMING        0x188
 #define FLAG_RECEIVED_REPEAT_BALL            0x189
 #define FLAG_RECEIVED_OLD_ROD                0x18A
@@ -1006,7 +1006,7 @@
 #define FLAG_HIDE_ROUTE_110_RIVAL_1                                 0x3BE
 #define FLAG_HIDE_CHAMPIONS_ROOM_RIVAL                              0x3BF
 #define FLAG_HIDE_CHAMPIONS_ROOM_BIRCH                              0x3C0
-#define FLAG_HIDE_ROUTE_110_RIVAL_2                                 0x3C1
+#define FLAG_HIDE_ROUTE_110_RIVAL_ON_BIKE                           0x3C1
 #define FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE                           0x3C2
 #define FLAG_HIDE_AQUA_HIDEOUT_GRUNTS                               0x3C3
 #define FLAG_HIDE_LILCOVE_MOTEL_GAME_DESIGNERS                      0x3C4

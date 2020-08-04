@@ -104,6 +104,40 @@ PetalburgCity_Gym_EventScript_GiveFacade:: @ 8204ED2
 // >
 
 < //
+PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial:: @ 82049A4
+	lockall
+	msgbox PetalburgCity_Gym_Text_DadSoDidItWorkOut, MSGBOX_DEFAULT
+	msgbox PetalburgCity_Gym_Text_WallyThankYouBye, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestDown
+	applymovement LOCALID_WALLY, PetalburgCity_Gym_Movement_WallyExitGym
+	waitmovement 0
+	playse SE_KAIDAN
+	removeobject LOCALID_WALLY
+	setflag FLAG_HIDE_PETALBURG_CITY_WALLY
+	delay 30
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	//msgbox PetalburgCity_Gym_Text_DadGoCollectBadges, MSGBOX_DEFAULT
+	msgbox PetalburgCity_Gym_Text_DadGoHelpBreeder, MSGBOX_DEFAULT
+	setvar VAR_PETALBURG_GYM_STATE, 2
+	releaseall
+	end
+
+PetalburgCity_Gym_Movement_WallyExitGym: @ 82049EC
+// >
+
+< //
+PetalburgCity_Gym_EventScript_NormanNoBadges:: @ 8204D4A
+	//msgbox PetalburgCity_Gym_Text_NormanGoToRustboro, MSGBOX_DEFAULT
+	msgbox PetalburgCity_Gym_Text_NormanGoToVerdanturf, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgCity_Gym_EventScript_NormanOneBadge:: @ 8204D54
+// >
+
+< //
 PetalburgCity_Gym_Text_NormanGoToRustboro: @ 8205DB4
 	.string "DAD: Hm? Aren't you going to the\n"
 	.string "POKéMON GYM in RUSTBORO CITY?\p"
