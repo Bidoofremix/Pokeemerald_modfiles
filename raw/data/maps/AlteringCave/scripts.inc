@@ -70,7 +70,8 @@ AlteringCave_EventScript_HeavyBall::
 	
 AlteringCave_EventScript_Potion::
 	finditem ITEM_POTION
-	end		
+	end
+	
 	
 AlteringCave_OnTransition: @ 823B17D
 	end
