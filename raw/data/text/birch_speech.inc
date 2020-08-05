@@ -14,17 +14,16 @@ gText_Birch_Pokemon:: @ 82C89FB
 
 gText_Birch_MainSpeech:: @ 82C8A1F
 	.string "This hack is intended to pose an\n"
-	.string "unusual challenge. In this game,\l"
-	.string "you won't be able to win with\l"
-	.string "overpowered POKéMON.\p"
+	.string "unusual challenge. In this game, you\l"
+	.string "won't be able to win with overpowered\l"
+	.string "POKéMON.\p"
 	.string "Instead, you will need to create\n"
 	.string "clever strategies and train your\l"
 	.string "POKéMON into an outstanding\l"
 	.string "condition.\p"
 	.string "But don't worry, there are many\n"
-	.string "features that enable you to\l"
-	.string "create powerful teams without\l"
-	.string "grinding."
+	.string "features that enable you to create\l"
+	.string "powerful teams without grinding.\p"
 	.string "$"
 
 gText_Birch_AndYouAre:: @ 82C8BD0

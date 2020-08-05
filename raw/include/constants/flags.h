@@ -51,7 +51,7 @@
 #define FLAG_ASKED_VERDANTURF_EGG              0x26 // Unused Flag
 #define FLAG_ITEM_ALTERING_CAVE_HEAVY_BALL     0x27 // Unused Flag
 #define FLAG_ITEM_ALTERING_CAVE_POTION         0x28 // Unused Flag
-#define FLAG_UNUSED_0x047    0x29 // Unused Flag
+#define FLAG_ROUTE_103_EAST_ACCESSIBLE         0x29 // Unused Flag
 #define FLAG_UNUSED_0x048    0x2A // Unused Flag
 #define FLAG_UNUSED_0x049    0x2B // Unused Flag
 #define FLAG_UNUSED_0x04A    0x2C // Unused Flag

@@ -7,7 +7,7 @@ Route103_MapScripts:: @ 81EC38E
 Route103_OnTransition: @ 81EC399
 	call Common_EventScript_SetupRivalGfxId
 	call ProfBirch_EventScript_UpdateLocation
-	call_if_set FLAG_ADVENTURE_STARTED, Route103_EventScript_CanGoEast
+	call_if_set FLAG_ROUTE_103_EAST_ACCESSIBLE, Route103_EventScript_CanGoEast
 	end
 
 Route103_OnLoad: @ 81EC3A4
