@@ -27,7 +27,7 @@ PetalburgWoods_EventScript_DevonResearcherRight:: @ 822E079
 < //
 PetalburgWoods_Text_HandOverThosePapers: @ 822E428
 	.string "You! UNIVERSITY RESEARCHER!\p"
-	.string "Hand over that flashdrive!$"
+	.string "Hand over that FLASHDRIVE!$"
 
 PetalburgWoods_Text_YouHaveToHelpMe: @ 822E457
 	.string "Aiyeeeh!\p"
@@ -57,7 +57,7 @@ PetalburgWoods_Text_YouveGotSomeNerve: @ 822E563
 PetalburgWoods_Text_ThatWasAwfullyClose: @ 822E63D
 	.string "Whew…\n"
 	.string "That was awfully close!\p"
-	.string "Thanks to you, he didn't rob me of\n"
+	.string "Thanks to you, she didn't rob me of\n"
 	.string "this confidential data.\p"
 	.string "I know, I'll give you a GREAT BALL as\n"
 	.string "my thanks!$"

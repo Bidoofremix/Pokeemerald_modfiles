@@ -30,6 +30,7 @@ VerdanturfTown_BreedersHouse_EventScript_GiveEgg::
 	giveegg SPECIES_MEOWSY
 	setflag FLAG_RECEIVED_VERDANTURF_EGG
 	setvar VAR_PETALBURG_GYM_STATE, 6
+	clearflag FLAG_HIDE_PETALBURG_GYM_GREETER
 	release
 	end
 	

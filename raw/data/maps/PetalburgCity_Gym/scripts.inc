@@ -1,33 +1,27 @@
 < //
 PetalburgCity_Gym_OnLoad: @ 820489E
 	compare VAR_PETALBURG_GYM_STATE, 6
-	goto_if_eq PetalburgCity_Gym_EventScript_OpenUnlockedDoors
-	compare VAR_PETALBURG_GYM_STATE, 7
-	call_if_ge PetalburgCity_Gym_EventScript_UnlockAllDoors
+	goto_if_ge PetalburgCity_Gym_EventScript_OpenUnlockedDoors
 	end
 
 @ NOTE: Strength and OHKO rooms are misleading. Both are more accurately Critical-Hit
 PetalburgCity_Gym_EventScript_OpenUnlockedDoors:: @ 82048B5
-// >
+	setmetatile 4, 104, METATILE_PetalburgGym_SlidingDoor_Frame4, 1
+	setmetatile 4, 105, METATILE_BattleFrontier_Door_Corridor, 1
+	setvar VAR_0x8000, 1
+	end
+	
+PetalburgCity_Gym_EventScript_UnlockAllDoors:: @ 82048FF
+	end
 
-< //
 PetalburgCity_Gym_OnTransition: @ 820492D
 	compare VAR_PETALBURG_GYM_STATE, 1
 	call_if_eq PetalburgCity_Gym_EventScript_MoveWallyToEntrance
-	compare VAR_PETALBURG_GYM_STATE, 6
+	compare VAR_PETALBURG_GYM_STATE, 7
 	call_if_lt PetalburgCity_Gym_EventScript_MoveNormanToEntrance
-	call_if_set FLAG_RECEIVED_VERDANTURF_EGG, PetalburgCity_Gym_MapScript_GymAccessible
 	call_if_set FLAG_NORMAN_INTRODUCED_GYM, PetalburgCity_Gym_EventScript_NormanAtBattleField
 	call_if_set FLAG_SYS_GAME_CLEAR, PetalburgCity_Gym_EventScript_CheckNormanForRematch
 	end
-	
-PetalburgCity_Gym_Debug::
-	bufferstring 1, VAR_PETALBURG_GYM_STATE
-	msgbox debug, MSGBOX_DEFAULT
-	end
-
-debug::
-	.string "{STR_VAR_1}$"
 	
 PetalburgCity_Gym_EventScript_NormanAtBattleField::
 	clearflag FLAG_HIDE_PETALBURG_GYM_NORMAN
@@ -36,12 +30,19 @@ PetalburgCity_Gym_EventScript_NormanAtBattleField::
 	setvar VAR_0x8000, 1
 	return
 	end
+
+PetalburgCity_Gym_EventScript_EnterGymRoom::
+	lockall
+	setvar VAR_0x8008, 4
+	setvar VAR_0x8009, 8
+	msgbox PetalburgCity_Gym_Text_EnterGym, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq PetalburgCity_Gym_EventScript_EnterRoom
+	releaseall
+	end
 	
-PetalburgCity_Gym_MapScript_GymAccessible::
-	setmetatile 5, 16, 540, 1
-	setmetatile 5, 17, 548, 1
-	setvar VAR_0x8000, 1
-	end		
+PetalburgCity_Gym_Text_EnterGym:
+	.string "Enter gym?$"
 	
 PetalburgCity_Gym_EventScript_MoveWallyToEntrance:: @ 820494D
 // >
@@ -108,16 +109,15 @@ PetalburgCity_Gym_EventScript_NormanIntroducesGym::
 	closemessage
 	applymovement 1, Movement_Norman_ToDoor
 	waitmovement 0
-	opendoor 5, 17
+	opendoor 4, 105
 	waitdooranim
 	applymovement 1, Movement_Norman_ToDoor
 	waitmovement 0
 	removeobject 1
 	setflag FLAG_HIDE_PETALBURG_GYM_NORMAN
-	closedoor 5, 17
+	closedoor 4, 105
 	waitdooranim
 	setflag FLAG_NORMAN_INTRODUCED_GYM
-	clearflag FLAG_HIDE_PETALBURG_GYM_GREETER
 	release
 	end
 
@@ -233,8 +233,7 @@ PetalburgCity_Gym_Text_TheNextGymIsAtRustboro:
 	.string "RUSTBORO CITY.\p"
 	.string "Go west of PETALBURG and you\n"
 	.string "should find it easily enough.\p"
-	.string "Give ROXANNE my greetings,\n"
-	.string "{PLAYER}!$"
+	.string "Say hi to ROXANNE from me, {PLAYER}!$"
 	
 PetalburgCity_Gym_Text_NormanGoToDewford: @ 8205EAE
 // >
@@ -246,9 +245,29 @@ PetalburgCity_Gym_Text_GymGuideAdvice: @ 8206542
 	.string "have to defeat the GYM TRAINERS.\p"
 	.string "They have tough POKéMON, so you\n"
 	.string "need to be well prepared.\p"
-	.string "Good luck, {PLAYER}!$"
+	.string "Go for it, {PLAYER}!$"
 
 PetalburgCity_Gym_Text_GymGuidePostVictory: @ 82066F3
+// >
+
+< //
+PetalburgCity_Gym_EventScript_Berke:: @ 820546E
+	trainerbattle_single TRAINER_BERKE, PetalburgCity_Gym_Text_BerkeIntro, PetalburgCity_Gym_Text_BerkeDefeat
+	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, PetalburgCity_Gym_EventScript_BerkePostBadge
+	msgbox PetalburgCity_Gym_Text_BerkePostBattle, MSGBOX_AUTOCLOSE
+	end
+
+PetalburgCity_Gym_EventScript_SlideOpenOHKORoomDoors:: @ 8205492
+// >
+
+< //
+PetalburgCity_Gym_EventScript_Jody:: @ 8205522
+	trainerbattle_single TRAINER_JODY, PetalburgCity_Gym_Text_JodyIntro, PetalburgCity_Gym_Text_JodyDefeat
+	goto_if_set FLAG_DEFEATED_PETALBURG_GYM, PetalburgCity_Gym_EventScript_JodyPostBadge
+	msgbox PetalburgCity_Gym_Text_JodyPostBattle, MSGBOX_AUTOCLOSE
+	end
+
+PetalburgCity_Gym_EventScript_SlideOpenStrengthRoomDoors:: @ 8205546
 // >
 
 < //

@@ -117,6 +117,14 @@
             "type": "sign",
             "x": 7,
             "y": 110
+        },
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "PetalburgCity_Gym_EventScript_EnterGymRoom",
+            "type": "sign",
+            "x": 4,
+            "y": 105
         }
     ],
     "connections": null,
