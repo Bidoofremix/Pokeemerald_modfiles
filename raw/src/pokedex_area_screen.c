@@ -2,12 +2,13 @@
 static bool8 MapHasMon(const struct WildPokemonHeader *info, u16 species)
 {
 	// make altering cave behave like a regular map
-    /* if (GetRegionMapSectionId(info->mapGroup, info->mapNum) == MAPSEC_ALTERING_CAVE)
+    if (GetRegionMapSectionId(info->mapGroup, info->mapNum) == MAPSEC_ALTERING_CAVE)
     {
         sPokedexAreaScreen->unk6E2++;
-        if (sPokedexAreaScreen->unk6E2 != sPokedexAreaScreen->unk6E4 + 1)
-            return FALSE;
-    }*/
+		return TRUE;
+        //if (sPokedexAreaScreen->unk6E2 != sPokedexAreaScreen->unk6E4 + 1)
+        //    return FALSE;
+    }
 
     if (MonListHasMon(info->landMonsInfo, species, 12))
         return TRUE;

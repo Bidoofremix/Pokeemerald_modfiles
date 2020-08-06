@@ -20,7 +20,15 @@ PetalburgCity_Gym_OnTransition: @ 820492D
 	call_if_set FLAG_NORMAN_INTRODUCED_GYM, PetalburgCity_Gym_EventScript_NormanAtBattleField
 	call_if_set FLAG_SYS_GAME_CLEAR, PetalburgCity_Gym_EventScript_CheckNormanForRematch
 	end
+	
+PetalburgCity_Gym_Debug::
+	bufferstring 1, VAR_PETALBURG_GYM_STATE
+	msgbox debug, MSGBOX_DEFAULT
+	end
 
+debug::
+	.string "{STR_VAR_1}$"
+	
 PetalburgCity_Gym_EventScript_NormanAtBattleField::
 	clearflag FLAG_HIDE_PETALBURG_GYM_NORMAN
 	showobjectat 1, MAP_PETALBURG_CITY_GYM
