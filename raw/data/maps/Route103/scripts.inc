@@ -15,8 +15,8 @@ Route103_OnLoad: @ 81EC3A4
 
 Route103_EventScript_CanGoEast:
 	setvar VAR_ROUTE103_STATE, 1
-	setobjectxyperm 23, 9, 8
-	setobjectxyperm 24, 7, 7
+	setobjectxyperm 24, 9, 8
+	setobjectxyperm 23, 7, 7
 	end		
 
 Route103_EventScript_Rival:: @ 81EC3C1
@@ -32,7 +32,7 @@ Route103_EventScript_ZigzagoonBoy::
 	lock
 	faceplayer
 	bufferspeciesname 0, SPECIES_ZIGZAGOON
-	goto_if_set FLAG_ADVENTURE_STARTED, Route103_EventScript_ZigzagoonBoy_CanGoEast
+	goto_if_set FLAG_ROUTE_103_EAST_ACCESSIBLE, Route103_EventScript_ZigzagoonBoy_CanGoEast
 	msgbox Route103_Text_ZigzagoonIsTraining, MSGBOX_DEFAULT
 	release
 	end

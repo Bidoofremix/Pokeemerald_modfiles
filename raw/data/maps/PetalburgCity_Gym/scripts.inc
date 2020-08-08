@@ -195,9 +195,9 @@ PetalburgCity_Gym_Text_NormanGoToVerdanturf: @ 8205DB4
 
 PetalburgCity_Gym_Text_HowWasVerdanturf: @ 8205FE5
 	.string "So, how was VERDANTURF TOWN?\p"
-	.string "Oh, you got an EGG? You should carry\n"
-	.string "it with you and it will hatch when\l"
-	.string "it is mature.\p"
+	.string "Oh, you got an EGG?\n"
+	.string "You should carry it with you and it\l"
+	.string "will hatch when it is mature.\p"
 	.string "But now, we will battle. As per the\n"
 	.string "official protocol, I will stand at the\l"
 	.string "battlefield.\p"

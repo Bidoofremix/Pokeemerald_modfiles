@@ -32,7 +32,7 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
             "script": "AlteringCave_EventScript_Mary",
-            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_sight_or_berry_tree_id": "2",
             "trainer_type": "3",
             "x": 17,
             "y": 24

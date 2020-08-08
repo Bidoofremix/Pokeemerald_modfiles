@@ -77,6 +77,16 @@
 // >
 
 < //
+    switch (GetBattlerHoldEffect(battlerAtk, TRUE))
+    {
+    case HOLD_EFFECT_THICK_CLUB:
+        if ((gBattleMons[battlerAtk].species == SPECIES_CUBONE || gBattleMons[battlerAtk].species == SPECIES_MAROWAK || gBattleMons[battlerAtk].species == SPECIES_ALOLAN_MAROWAK) && IS_MOVE_PHYSICAL(move))
+            MulModifier(&modifier, UQ_4_12(2.0));
+        break;
+    case HOLD_EFFECT_DEEP_SEA_TOOTH:
+// >
+	
+< //
 u8 TryWeatherFormChange(u8 battler)
 {
     u8 ret = 0;
