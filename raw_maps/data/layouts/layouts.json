@@ -4321,6 +4321,16 @@
             "width": 30
         },
         {
+            "blockdata_filepath": "data/layouts/SilentForest/map.bin",
+            "border_filepath": "data/layouts/SilentForest/border.bin",
+            "height": 50,
+            "id": "LAYOUT_SILENT_FOREST",
+            "name": "SilentForest_Layout",
+            "primary_tileset": "gTileset_General",
+            "secondary_tileset": "gTileset_Rustboro",
+            "width": 26
+        },
+        {
             "blockdata_filepath": "data/layouts/LittlerootTown_ProfessorBirchsLabWithTable/map.bin",
             "border_filepath": "data/layouts/LittlerootTown_ProfessorBirchsLabWithTable/border.bin",
             "height": 13,
