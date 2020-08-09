@@ -1054,6 +1054,7 @@ static const u8 sMonFrontAnimIdsTable[NUM_SPECIES - 1] =
     [SPECIES_MIGHTYENA - 1] = 0x10,
     [SPECIES_ZIGZAGOON - 1] = 0x03,
     [SPECIES_LINOONE - 1] = 0x09,
+    [SPECIES_GALARIAN_ZIGZAGOON - 1] = 0x31,
     [SPECIES_WURMPLE - 1] = 0x00,
     [SPECIES_SILCOON - 1] = 0x00,
     [SPECIES_BEAUTIFLY - 1] = 0x04,
