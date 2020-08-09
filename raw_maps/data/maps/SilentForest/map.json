@@ -1,9 +1,9 @@
 {
-    "allow_bike": false,
+    "allow_bike": true,
     "allow_cycling": "",
     "allow_escape_rope": false,
     "allow_escaping": "",
-    "allow_running": false,
+    "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
     ],
@@ -12,15 +12,42 @@
     ],
     "id": "MAP_SILENT_FOREST",
     "layout": "LAYOUT_SILENT_FOREST",
-    "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_HIGHTOWN",
+    "map_type": "MAP_TYPE_ROUTE",
+    "music": "MUS_DAN02",
     "name": "SilentForest",
     "object_events": [
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "OBJ_EVENT_GFX_BIG_SNORLAX_DOLL",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "script": "NULL",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "0",
+            "x": 9,
+            "y": 13
+        }
     ],
     "region_map_section": "MAPSEC_SILENT_FOREST",
     "requires_flash": false,
-    "show_map_name": false,
+    "show_map_name": true,
     "warp_events": [
+        {
+            "dest_map": "MAP_ROUTE116",
+            "dest_warp_id": 5,
+            "elevation": 0,
+            "x": 4,
+            "y": 44
+        },
+        {
+            "dest_map": "MAP_ROUTE116",
+            "dest_warp_id": 6,
+            "elevation": 0,
+            "x": 5,
+            "y": 44
+        }
     ],
     "weather": "WEATHER_NONE"
 }
