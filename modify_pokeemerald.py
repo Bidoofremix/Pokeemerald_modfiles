@@ -83,7 +83,7 @@ for dir, subdirs, files in os.walk(raw_folder):
 		# remove leading empty lines and comment line < //
 		tmp_chunks = []
 		for m in mod_chunks:
-			while m[0].replace(" ","") == "":
+			while m[0].replace(" ","").replace("\t","") == "":
 				m = m[1:]
 			if m[0].startswith("< //"):
 				if m[0].startswith("< // START"):
