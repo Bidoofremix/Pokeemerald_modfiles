@@ -3,5 +3,4 @@ SilentForest_MapScripts::
 	.byte 0
 
 SilentForest_OnTransition:
-
-end
+	end
