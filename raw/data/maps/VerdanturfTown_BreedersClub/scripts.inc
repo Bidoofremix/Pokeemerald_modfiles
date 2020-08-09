@@ -149,7 +149,7 @@ VerdanturfTown_BreedersClub_Text_OldMan:
 	.string "silent in awe!$"
 	
 VerdanturfTown_BreedersClub_Text_WhatYouDefeatedVicky:
-	.string "…What?\"
+	.string "…What?\p"
 	.string "You defeated my wife VICKY?\p"
 	.string "Oh.\n"
 	.string "I ought to go home sometimes…$"
@@ -190,7 +190,6 @@ VerdanturfTown_BreedersClub_EventScript_Clerk::
 	end	
 	
 VerdanturfTown_BreedersClub_Pokemart:
-	.2byte ITEM_DESTINY_KNOT
 	.2byte ITEM_EVERSTONE
 	.2byte ITEM_POWER_WEIGHT
 	.2byte ITEM_POWER_BRACER
