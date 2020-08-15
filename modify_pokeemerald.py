@@ -660,7 +660,7 @@ for n in range(0,len(xl_workbook.sheet_names())):
 	row = [clean_num(cell.value) for cell in xl_sheet.row(0)]
 	route_data["map"] = xl_sheet.cell(0,1).value
 	route_data["base_label"] = xl_sheet.cell(1,1).value
-
+	
 	# land, water and rock smash encounters
 	for index,biome in [(0,"land_mons"),(6,"water_mons"),(12,"rock_smash_mons")]:
 		if xl_sheet.cell(5,index+1).value != "":
