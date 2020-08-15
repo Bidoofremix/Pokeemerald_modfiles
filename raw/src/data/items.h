@@ -1,4 +1,21 @@
 < //
+    [ITEM_DEVON_GOODS] =
+    {
+        .name = _("FLASHDRIVE"),
+        .itemId = ITEM_DEVON_GOODS,
+        .price = 0,
+        .description = sDevonGoodsDesc,
+        .importance = 2,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = 4,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 0,
+    },
+
+    [ITEM_SOOT_SACK] =
+// >
+
+< //
     [ITEM_EVERSTONE] =
     {
         .name = _("Everstone"),
