@@ -5,5 +5,6 @@
 	def_special BufferSpASpDSpe
 	def_special GetLeadMonPotentialAbility
 	def_special SetLeadMonAbility
+	def_special StoreSelectedMoveForPostDocTutor
 	def_special TrySetBattleTowerLinkType
 // >

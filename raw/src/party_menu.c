@@ -29,6 +29,26 @@ static void Task_DoLearnedMoveFanfareAfterText(u8 taskId)
 // >
 
 < //
+void BufferMoveDeleterNicknameAndMove(void)
+{
+    struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
+    u16 move = GetMonData(mon, MON_DATA_MOVE1 + gSpecialVar_0x8005);
+
+    GetMonNickname(mon, gStringVar1);
+    StringCopy(gStringVar2, gMoveNames[move]);
+}
+
+void StoreSelectedMoveForPostDocTutor(void)
+{
+	struct Pokemon *mon = &gPlayerParty[gSpecialVar_0x8004];
+    u16 move = GetMonData(mon, MON_DATA_MOVE1 + gSpecialVar_0x8005);
+	gSpecialVar_0x8005 = move;
+}	
+
+void MoveDeleterForgetMove(void)
+// >
+
+< //
 static bool8 CanLearnTutorMove(u16 species, u8 tutor)
 {
 	

@@ -6,8 +6,8 @@ RustboroCity_University_PostDocRoom_MapScripts::
 RustboroCity_University_EventScript_PostDoc::
 	lockall
 	faceplayer
-	call_if_unset FLAG_INTRODUCED_MOVE_POSTDOC, RustboroCity_University_EventScript_PostDoc_Introduce
 	call_if_set FLAG_INTRODUCED_MOVE_POSTDOC, RustboroCity_University_EventScript_PostDoc_HelloPlayer
+	call_if_unset FLAG_INTRODUCED_MOVE_POSTDOC, RustboroCity_University_EventScript_PostDoc_Introduce
 	msgbox RustboroCity_University_PostDoc_WouldYouLikeMeToTeachAMove, MSGBOX_YESNO
 	switch VAR_RESULT
 	case YES, RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach
@@ -18,7 +18,7 @@ RustboroCity_University_EventScript_PostDoc::
 RustboroCity_University_EventScript_PostDoc_Introduce::
 	msgbox RustboroCity_University_PostDoc_HelloIAmAPostDoc, MSGBOX_DEFAULT
 	setflag FLAG_INTRODUCED_MOVE_POSTDOC
-	end
+	return
 	
 RustboroCity_University_PostDoc_HelloIAmAPostDoc:
 	.string "Hello!\p"
@@ -33,7 +33,7 @@ RustboroCity_University_PostDoc_HelloIAmAPostDoc:
 
 RustboroCity_University_EventScript_PostDoc_HelloPlayer::
 	msgbox RustboroCity_University_PostDoc_GoodToSeeyouAgain, MSGBOX_DEFAULT
-	end
+	return
 	
 RustboroCity_University_PostDoc_GoodToSeeyouAgain:
 	.string "Hello, {PLAYER}!\n"
@@ -60,10 +60,13 @@ RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach::
 	special MoveDeleterChooseMoveToForget
 	fadescreen FADE_FROM_BLACK
 	special BufferMoveDeleterNicknameAndMove
-	
-	msgbox RustboroCity_University_PostDoc_WhichMonShouldLearnTheMove, MSGBOX_DEFAULT
 
-	// which mon to teach the move
+	// which mon to teach the move	
+	msgbox RustboroCity_University_PostDoc_WhichMonShouldLearnTheMove, MSGBOX_DEFAULT
+	
+	// teach the move
+	// set VAR_0x800B to 1 for special mode in CanLearnTutorMove
+	setvar VAR_0x800B, 1
 	call MoveTutor_EventScript_OpenPartyMenu
 	
 	releaseall
