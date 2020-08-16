@@ -22,6 +22,24 @@ RustboroCity_DevonCorp_2F_EventScript_NoRoomForDreamBall::
 	release
 	end
 	
+RustboroCity_DevonCorp_2F_EventScript_WeUsedToHaveADevice::
+	lock
+	faceplayer
+	msgbox RustboroCity_DevonCorp_2F_Text_DeviceToReviveFossils, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_2F_Text_DeviceToReviveFossils:
+	.string "We used to have a device to revive\n"
+	.string "ancient POKéMON from fossils.\p"
+	.string "But then, the ecology and evolution\n"
+	.string "research group here at the UNIVERSITY\l"
+	.string "discovered that the ancient POKéMON\l"
+	.string "are not extinct after all!\p"
+	.string "It just goes to show you how important\n"
+	.string "it is to understand the environment\n"
+	.string "around us.$"
+	
 RustboroCity_DevonCorp_2F_EventScript_FossilScientist:: @ 82118F1
 // >
 
@@ -67,11 +85,21 @@ RustboroCity_DevonCorp_2F_Text_DevelopDeviceToResurrectFossils: @ 8211F48
 // >
 
 < //
+RustboroCity_DevonCorp_2F_Text_OhIsThatSo: @ 8212046
+	.string "Oh, is that so?\p"
+	.string "The UNIVERSITY's technological\n"
+	.string "expertise is outstanding,\l"
+	.string "I tell you.$"
+
+RustboroCity_DevonCorp_2F_Text_TwoFossilsPickOne: @ 8212092
+// >
+
+< //
 RustboroCity_DevonCorp_2F_Text_WhatToWorkOnNext: @ 8212386
 	.string "Well, now what shall I work on\n"
 	.string "developing next?\p"
 	.string "Our academic freedom allows us to\n"
-	.string "make ourinspirations into reality.\p"
+	.string "make our inspirations into reality.\p"
 	.string "One couldn't ask for a better\n"
 	.string "environment as a researcher.$"
 // > END
