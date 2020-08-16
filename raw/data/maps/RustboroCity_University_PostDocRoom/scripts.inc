@@ -56,30 +56,21 @@ RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach::
 	
 	// which move
 	fadescreen FADE_TO_BLACK
-	// selected move will be stored in gSpecialVar_0x8005
+	// selected move will be stored in VAR_0x8005
 	special MoveDeleterChooseMoveToForget
 	fadescreen FADE_FROM_BLACK
-	BufferMoveDeleterNicknameAndMove
+	special BufferMoveDeleterNicknameAndMove
 	
 	msgbox RustboroCity_University_PostDoc_WhichMonShouldLearnTheMove, MSGBOX_DEFAULT
 
 	// which mon to teach the move
-	setvar VAR_0x8005, TUTOR_MOVE_SWAGGER
 	call MoveTutor_EventScript_OpenPartyMenu
 	
 	releaseall
 	end
 	
-RustboroCity_University_PostDoc_WhichMonKnowsTheMove:
-	.string "Which POKéMON is is that knows the\n"
-	.string "move you want to teach?$"
-
-RustboroCity_University_PostDoc_WhichMonKnowsTheMove:
-	.string "And which POKéMON should try to\n"
-	.string "learn the move?$"
-	
 RustboroCity_University_PostDoc_IsThisTheMove:
-	.string "{STR_VAR_2!}\n"
+	.string "{STR_VAR_2}!\n"
 	.string "Is this the move you want to teach?$"
 	
 Rustboro_University_EventScript_PostDoc_ThatIsAnEgg::
@@ -105,4 +96,4 @@ RustboroCity_University_Text_PostDoc_ComeAgain: @ 821EC3F
 	
 RustboroCity_University_PostDocRoom_OnTransition:
 	end
-// >
+// > END

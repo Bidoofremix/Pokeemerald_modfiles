@@ -3,5 +3,4 @@ RustboroCity_University_PostDocRoom_MapScripts::
 	.byte 0
 
 RustboroCity_University_PostDocRoom_OnTransition:
-
-end
+	end
