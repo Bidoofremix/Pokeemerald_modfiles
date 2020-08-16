@@ -114,16 +114,16 @@ for i,line in enumerate(layouts_json_file_lines):
 		break
 
 new_lines = []
-new_lines.append("    {\n")
-new_lines.append('      "blockdata_filepath": "data/layouts/{0}/map.bin",\n'.format(args["name"]))
-new_lines.append('      "border_filepath": "data/layouts/{0}/border.bin",\n'.format(args["name"]))
-new_lines.append('      "height": 9,\n')
-new_lines.append('      "id": "LAYOUT_{0}",\n'.format(upper_underscore_name))
-new_lines.append('      "name": "{0}_Layout",\n'.format(args["name"]))
-new_lines.append('      "primary_tileset": "gTileset_Building",\n')
-new_lines.append('      "secondary_tileset": "gTileset_GenericBuilding",\n')
-new_lines.append('      "width": 10\n')
-new_lines.append('    },\n')
+new_lines.append("        {\n")
+new_lines.append('            "blockdata_filepath": "data/layouts/{0}/map.bin",\n'.format(args["name"]))
+new_lines.append('            "border_filepath": "data/layouts/{0}/border.bin",\n'.format(args["name"]))
+new_lines.append('            "height": 9,\n')
+new_lines.append('            "id": "LAYOUT_{0}",\n'.format(upper_underscore_name))
+new_lines.append('            "name": "{0}_Layout",\n'.format(args["name"]))
+new_lines.append('            "primary_tileset": "gTileset_Building",\n')
+new_lines.append('            "secondary_tileset": "gTileset_GenericBuilding",\n')
+new_lines.append('            "width": 10\n')
+new_lines.append('        },\n')
 
 layouts_json_file_lines[insert_index:insert_index] = new_lines
 
