@@ -1,0 +1,40 @@
+{
+    "allow_bike": false,
+    "allow_cycling": "",
+    "allow_escape_rope": false,
+    "allow_escaping": "",
+    "allow_running": false,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_RUSTBORO_CITY_UNIVERSITY_GREAT_HALL",
+    "layout": "LAYOUT_RUSTBORO_CITY_UNIVERSITY_GREAT_HALL",
+    "map_type": "MAP_TYPE_INDOOR",
+    "music": "MUS_HIGHTOWN",
+    "name": "RustboroCity_University_GreatHall",
+    "object_events": [
+    ],
+    "region_map_section": "MAPSEC_RUSTBORO_CITY",
+    "requires_flash": false,
+    "show_map_name": false,
+    "warp_events": [
+        {
+            "dest_map": "MAP_RUSTBORO_CITY_DEVON_CORP_1F",
+            "dest_warp_id": 3,
+            "elevation": 0,
+            "x": 7,
+            "y": 15
+        },
+        {
+            "dest_map": "MAP_RUSTBORO_CITY_DEVON_CORP_1F",
+            "dest_warp_id": 4,
+            "elevation": 0,
+            "x": 8,
+            "y": 15
+        }
+    ],
+    "weather": "WEATHER_NONE"
+}

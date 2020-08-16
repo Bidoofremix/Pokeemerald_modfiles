@@ -96,6 +96,20 @@
             "elevation": 0,
             "x": 42,
             "y": 4
+        },
+        {
+            "dest_map": "MAP_RUSTBORO_CITY_UNIVERSITY_GREAT_HALL",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 22,
+            "y": 1
+        },
+        {
+            "dest_map": "MAP_RUSTBORO_CITY_UNIVERSITY_GREAT_HALL",
+            "dest_warp_id": 1,
+            "elevation": 0,
+            "x": 23,
+            "y": 1
         }
     ],
     "weather": "WEATHER_NONE"
