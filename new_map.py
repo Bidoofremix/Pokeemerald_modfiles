@@ -196,7 +196,7 @@ with open(event_scripts_file, "r") as f:
 	for line in f:
 		event_scripts_file_lines.append(line)
 
-event_scripts_file_lines.insert(-3,'\t.include "data/maps/{0}/scripts.inc\n'.format(\
+event_scripts_file_lines.insert(-3,'\t.include "data/maps/{0}/scripts.inc"\n'.format(\
 	args["name"]))
 
 with open(event_scripts_file, "w") as f:
