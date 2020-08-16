@@ -44,6 +44,7 @@ RustboroCity_University_PostDoc_WouldYouLikeMeToTeachAMove:
 	.string "move to your POKéMON?$"
 	
 RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach::
+	// which mon knows move
 	msgbox RustboroCity_University_PostDoc_WhichMoveDoYouWantToTeach, MSGBOX_DEFAULT
 	special ChoosePartyMon
 	waitstate
@@ -51,17 +52,21 @@ RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach::
 	goto_if_eq RustboroCity_University_EventScript_PostDoc_ComeAgain
 	special IsSelectedMonEgg
 	compare VAR_RESULT, TRUE
-	goto_if_eq RustboroCity_University_Text_EvenICantKnowAnEggsMoves
+	goto_if_eq Rustboro_University_EventScript_PostDoc_ThatIsAnEgg
+	
+	// which move
 	fadescreen FADE_TO_BLACK
+	// selected move will be stored in gSpecialVar_0x8005
 	special MoveDeleterChooseMoveToForget
 	fadescreen FADE_FROM_BLACK
 	BufferMoveDeleterNicknameAndMove
+	
 	msgbox RustboroCity_University_PostDoc_WhichMonShouldLearnTheMove, MSGBOX_DEFAULT
-	special ChoosePartyMon
-	msgbox RustboroCity_University_PostDoc_IsThisTheMove, MSGBOX_YESNO
-	switch VAR_RESULT
-	case YES, RustboroCity_University_
-	case NO, RustboroCity_University_Text_PostDoc_ComeAgain
+
+	// which mon to teach the move
+	setvar VAR_0x8005, TUTOR_MOVE_SWAGGER
+	call MoveTutor_EventScript_OpenPartyMenu
+	
 	releaseall
 	end
 	
@@ -78,16 +83,16 @@ RustboroCity_University_PostDoc_IsThisTheMove:
 	.string "Is this the move you want to teach?$"
 	
 Rustboro_University_EventScript_PostDoc_ThatIsAnEgg::
-	msgbox RustboroCity_University_Text_EvenICantKnowAnEggsMoves, MSGBOX_DEFAULT
+	msgbox RustboroCity_University_Text_ICantWorkWithEggs, MSGBOX_DEFAULT
 	releaseall
 	end
 	
 RustboroCity_University_PostDoc_WhichMoveDoYouWantToTeach:
 	.string "Which move do you want me to teach?$"
 	
-RustboroCity_University_Text_EvenICantKnowAnEggsMoves:
-	.string "That is an EGG!\n"
-	.string "Even I can't know an EGG's moves.$"
+RustboroCity_University_Text_ICantWorkWithEggs:
+	.string "What?\n"
+	.string "I can't work with EGGS.$"
 	
 RustboroCity_University_EventScript_PostDoc_ComeAgain:: @ 821EAE6
 	msgbox RustboroCity_University_Text_PostDoc_ComeAgain, MSGBOX_DEFAULT
