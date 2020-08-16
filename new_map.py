@@ -109,7 +109,7 @@ with open(layouts_json_file, "r") as f:
 		layouts_json_file_lines.append(line)
 		
 for i,line in enumerate(layouts_json_file_lines):
-	if line == "    },\n":
+	if line.endswith("},\n"):
 		insert_index = i+1
 		break
 
