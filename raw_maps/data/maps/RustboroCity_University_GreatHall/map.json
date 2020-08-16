@@ -13,7 +13,7 @@
     "id": "MAP_RUSTBORO_CITY_UNIVERSITY_GREAT_HALL",
     "layout": "LAYOUT_RUSTBORO_CITY_UNIVERSITY_GREAT_HALL",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_HIGHTOWN",
+    "music": "MUS_GOTOWN",
     "name": "RustboroCity_University_GreatHall",
     "object_events": [
     ],

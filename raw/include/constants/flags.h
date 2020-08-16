@@ -55,7 +55,7 @@
 #define FLAG_ITEM_SILENT_FOREST_LEAF_STONE     0x2A // Unused Flag
 #define FLAG_UNIVERSITY_RECEIVED_DREAM_BALL    0x2B // Unused Flag
 #define FLAG_UNIVERSITY_RECEIVED_AMULET_COIN   0x2C // Unused Flag
-#define FLAG_UNUSED_0x04B    0x2D // Unused Flag
+#define FLAG_INTRODUCED_MOVE_POSTDOC           0x2D // Unused Flag
 #define FLAG_UNUSED_0x04C    0x2E // Unused Flag
 #define FLAG_UNUSED_0x04D    0x2F // Unused Flag
 #define FLAG_UNUSED_0x04E    0x30 // Unused Flag

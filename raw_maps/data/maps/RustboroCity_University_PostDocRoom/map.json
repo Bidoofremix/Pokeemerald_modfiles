@@ -13,7 +13,7 @@
     "id": "MAP_RUSTBORO_CITY_UNIVERSITY_POST_DOC_ROOM",
     "layout": "LAYOUT_RUSTBORO_CITY_UNIVERSITY_POST_DOC_ROOM",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_HIGHTOWN",
+    "music": "MUS_GOTOWN",
     "name": "RustboroCity_University_PostDocRoom",
     "object_events": [
         {
@@ -23,7 +23,7 @@
             "movement_range_x": 2,
             "movement_range_y": 1,
             "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-            "script": "NULL",
+            "script": "RustboroCity_University_EventScript_PostDoc",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
             "x": 4,

@@ -11,7 +11,7 @@ RustboroCity_University_EventScript_PostDoc::
 	msgbox RustboroCity_University_PostDoc_WouldYouLikeMeToTeachAMove, MSGBOX_YESNO
 	switch VAR_RESULT
 	case YES, RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach
-	case NO, RustboroCity_University_EventScript_PostDoc_PleaseComeAgain
+	case NO, RustboroCity_University_EventScript_PostDoc_ComeAgain
 	releaseall
 	end
 	
@@ -69,10 +69,6 @@ RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach::
 	releaseall
 	end
 	
-RustboroCity_University_PostDoc_IsThisTheMove:
-	.string "{STR_VAR_2}!\n"
-	.string "Is this the move you want to teach?$"
-	
 Rustboro_University_EventScript_PostDoc_ThatIsAnEgg::
 	msgbox RustboroCity_University_Text_ICantWorkWithEggs, MSGBOX_DEFAULT
 	releaseall
@@ -80,6 +76,10 @@ Rustboro_University_EventScript_PostDoc_ThatIsAnEgg::
 	
 RustboroCity_University_PostDoc_WhichMoveDoYouWantToTeach:
 	.string "Which move do you want me to teach?$"
+	
+RustboroCity_University_PostDoc_WhichMonShouldLearnTheMove:
+	.string "And which POKéMON should try to\n"
+	.string "learn that move?$"
 	
 RustboroCity_University_Text_ICantWorkWithEggs:
 	.string "What?\n"

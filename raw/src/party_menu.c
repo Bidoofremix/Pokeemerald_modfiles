@@ -1,14 +1,22 @@
 < //
+#include "data.h"
+#include "daycare.h"
+#include "decompress.h"
+// >
+
+< //
 static void Task_LearnedMove(u8 taskId)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     s16 *move = &gPartyMenu.data1;
     u16 item = gSpecialVar_ItemId;
 
-    if (move[1] == 0)
-    {
-        AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
-    }
+	// no more happiness from TM teaching
+    //if (move[1] == 0)
+    //{
+    //    AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
+    //}
+	
     GetMonNickname(mon, gStringVar1);
     StringCopy(gStringVar2, gMoveNames[move[0]]);
     StringExpandPlaceholders(gStringVar4, gText_PkmnLearnedMove3);
@@ -18,6 +26,35 @@ static void Task_LearnedMove(u8 taskId)
 }
 
 static void Task_DoLearnedMoveFanfareAfterText(u8 taskId)
+// >
+
+< //
+static bool8 CanLearnTutorMove(u16 species, u8 tutor)
+{
+	
+	// custom modification for postdoc tutor moves
+	// in postdoc dialog, VAR_0x800B is set to 1
+	// it should be 0 everywhere else in vanilla
+	if (gSpecialVar_0x800B == 1)
+	{
+		// check level-up and egg moves here
+		return TRUE;
+	}
+	else
+	{
+		if (sTutorLearnsets[species] & (1 << tutor))
+			return TRUE;
+		else
+			return FALSE;
+	}
+	
+	// if (sTutorLearnsets[species] & (1 << tutor))
+        // return TRUE;
+    // else
+        // return FALSE;
+}
+
+static void InitPartyMenuWindows(u8 layout)
 // >
 
 < //
