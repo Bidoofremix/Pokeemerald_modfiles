@@ -18,7 +18,7 @@
             "name": "RustboroCity_University_PostDocRoom_Layout",
             "primary_tileset": "gTileset_Building",
             "secondary_tileset": "gTileset_Facility",
-            "width": 10
+            "width": 12
         },
         {
             "blockdata_filepath": "data/layouts/RustboroCity_University_GreatHall/map.bin",
