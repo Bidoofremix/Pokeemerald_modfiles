@@ -101,7 +101,7 @@ RustboroCity_DevonCorp_3F_EventScript_MrStone:: @ 821256C
 RustboroCity_DevonCorp_3F_EventScript_TryGiveAmuletCoin::
 	lock
 	faceplayer
-	msgbox RustboroCity_DevonCorp_3F_Text_OhYesTheReward, MSGBOX_DEFAULT
+	msgbox RustboroCity_DevonCorp_3F_Text_OhDearTheReward, MSGBOX_DEFAULT
 	giveitem ITEM_AMULET_COIN
 	compare VAR_RESULT, FALSE
 	goto_if_eq RustboroCity_DevonCorp_3F_EventScript_NoRoomForAmuletCoin
@@ -109,6 +109,13 @@ RustboroCity_DevonCorp_3F_EventScript_TryGiveAmuletCoin::
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainAmuletCoin, MSGBOX_DEFAULT
 	release
 	end
+	
+RustboroCity_DevonCorp_3F_Text_OhDearTheReward:
+	.string "Oh dear!\p"
+	.string "You still haven't received your\n"
+	.string "reward for agreeing to take the\l"
+	.string "LETTER to STEVEN.\p"
+	.string "Here, please take this!$"
 	
 RustboroCity_DevonCorp_3F_EventScript_GiveExpShare:: @ 8212595
 // >
