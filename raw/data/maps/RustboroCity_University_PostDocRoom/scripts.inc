@@ -63,12 +63,13 @@ RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach::
 	goto_if_eq RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach
 	special StoreSelectedMoveForPostDocTutor
 	
-	// which mon to teach the move	
+	// which mon to teach the move
 	msgbox RustboroCity_University_PostDoc_WhichMonShouldLearnTheMove, MSGBOX_DEFAULT
 	
 	// teach the move
 	// set VAR_0x800B to 1 for special mode in CanLearnTutorMove
 	setvar VAR_0x800B, 1
+	msgbox RustboroCity_University_PostDoc_WhichMonShouldLearnTheMove, MSGBOX_DEFAULT
 	call MoveTutor_EventScript_OpenPartyMenu
 	
 	releaseall
@@ -83,6 +84,7 @@ RustboroCity_University_PostDoc_WhichMoveDoYouWantToTeach:
 	.string "Which move do you want me to teach?$"
 	
 RustboroCity_University_PostDoc_WhichMonShouldLearnTheMove:
+	.string "{STR_VAR_1}, {STR_VAR_2}\p"
 	.string "And which POKéMON should try to\n"
 	.string "learn that move?$"
 	
