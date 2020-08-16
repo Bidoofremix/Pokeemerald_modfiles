@@ -59,8 +59,10 @@ RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach::
 	// selected move will be stored in VAR_0x8005
 	special MoveDeleterChooseMoveToForget
 	fadescreen FADE_FROM_BLACK
-	special BufferMoveDeleterNicknameAndMove
-
+	compare VAR_0x8005, MAX_MON_MOVES
+	goto_if_eq RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach
+	special StoreSelectedMoveForPostDocTutor
+	
 	// which mon to teach the move	
 	msgbox RustboroCity_University_PostDoc_WhichMonShouldLearnTheMove, MSGBOX_DEFAULT
 	
