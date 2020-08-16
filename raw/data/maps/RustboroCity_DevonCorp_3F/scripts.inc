@@ -70,7 +70,7 @@ RustboroCity_DevonCorp_3F_Text_MrStoneExplainAmuletCoin:
 	.string "It is a fairly rare object that\n"
 	.string "doubles the amount of money won\l"
 	.string "from battles.\p"
-	.string "I trust that you can put it to\n
+	.string "I trust that you can put it to\n"
 	.string "good use.$"	
 	
 RustboroCity_DevonCorp_3F_Text_MrStoneRestUp:
