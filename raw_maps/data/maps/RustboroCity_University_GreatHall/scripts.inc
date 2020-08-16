@@ -3,5 +3,4 @@ RustboroCity_University_GreatHall_MapScripts::
 	.byte 0
 
 RustboroCity_University_GreatHall_OnTransition:
-
-end
+	end
