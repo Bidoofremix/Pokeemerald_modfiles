@@ -24,19 +24,39 @@ static void DisplayPartyPokemonBarDetail(u8, const u8*, u8, const u8*);
 < //
 static void DisplayPartyPokemonDataToTeachMove(u8 slot, u16 item, u8 tutor)
 {
-    switch (CanMonLearnTMTutor(&gPlayerParty[slot], item, tutor))
-    {
-    case CANNOT_LEARN_MOVE:
-    case CANNOT_LEARN_MOVE_IS_EGG:
-        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE_2);
-        break;
-    case ALREADY_KNOWS_MOVE:
-        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_LEARNED);
-        break;
-    default:
-        DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_2);
-        break;
-    }
+	if gSpecialVar_0x800B == 1
+	{
+		switch (CanMonLearnPostDocTutor(&gPlayerParty[slot], item, tutor))
+		{
+		case CANNOT_LEARN_MOVE:
+		case CANNOT_LEARN_MOVE_IS_EGG:
+			DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE_2);
+			break;
+		case ALREADY_KNOWS_MOVE:
+			DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_LEARNED);
+			break;
+		default:
+			DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_2);
+			break;
+		}
+	}
+	else
+	// vanilla
+	{
+		switch (CanMonLearnTMTutor(&gPlayerParty[slot], item, tutor))
+		{
+		case CANNOT_LEARN_MOVE:
+		case CANNOT_LEARN_MOVE_IS_EGG:
+			DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE_2);
+			break;
+		case ALREADY_KNOWS_MOVE:
+			DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_LEARNED);
+			break;
+		default:
+			DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_2);
+			break;
+		}
+	}
 }
 
 // duplicate of GetEggSpecies for postdoc tutor
