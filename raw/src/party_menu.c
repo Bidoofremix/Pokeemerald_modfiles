@@ -1,37 +1,24 @@
 < //
 #include "data.h"
 #include "daycare.h"
+#include "data/pokemon/egg_moves.h"
 #include "decompress.h"
+// >
+
+< //
+#include "constants/species.h"
+
+#define EGG_LVL_UP_MOVES_ARRAY_COUNT    50
+EWRAM_DATA static u16 sHatchedEggLevelUpMoves[EGG_LVL_UP_MOVES_ARRAY_COUNT] = {0};
+EWRAM_DATA static u16 sHatchedEggEggMoves[EGG_MOVES_ARRAY_COUNT] = {0};
+
+#define PARTY_PAL_SELECTED     (1 << 0)
 // >
 
 < //
 static u8 CanMonLearnTMTutor(struct Pokemon *, u16, u8);
 static u8 CanMonLearnPostDocTutor(struct Pokemon *, u16);
 static void DisplayPartyPokemonBarDetail(u8, const u8*, u8, const u8*);
-// >
-
-< //
-static void Task_LearnedMove(u8 taskId)
-{
-    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
-    s16 *move = &gPartyMenu.data1;
-    u16 item = gSpecialVar_ItemId;
-
-	// no more happiness from TM teaching
-    //if (move[1] == 0)
-    //{
-    //    AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
-    //}
-	
-    GetMonNickname(mon, gStringVar1);
-    StringCopy(gStringVar2, gMoveNames[move[0]]);
-    StringExpandPlaceholders(gStringVar4, gText_PkmnLearnedMove3);
-    DisplayPartyMenuMessage(gStringVar4, TRUE);
-    ScheduleBgCopyTilemapToVram(2);
-    gTasks[taskId].func = Task_DoLearnedMoveFanfareAfterText;
-}
-
-static void Task_DoLearnedMoveFanfareAfterText(u8 taskId)
 // >
 
 < //
@@ -52,19 +39,116 @@ static void DisplayPartyPokemonDataToTeachMove(u8 slot, u16 item, u8 tutor)
     }
 }
 
+// duplicate of GetEggSpecies for postdoc tutor
+static u16 GetEggSpecies(u16 species)
+{
+    int i, j, k;
+    bool8 found;
+
+    // Working backwards up to 5 times seems arbitrary, since the maximum number
+    // of times would only be 3 for 3-stage evolutions.
+    for (i = 0; i < EVOS_PER_MON; i++)
+    {
+        found = FALSE;
+        for (j = 1; j < NUM_SPECIES; j++)
+        {
+            for (k = 0; k < EVOS_PER_MON; k++)
+            {
+                if (gEvolutionTable[j][k].targetSpecies == species)
+                {
+                    species = j;
+                    found = TRUE;
+                    break;
+                }
+            }
+
+            if (found)
+                break;
+        }
+
+        if (j == NUM_SPECIES)
+            break;
+    }
+
+    return species;
+}
+
+// duplicate of GetEggMoves for postdoc tutor
+static u8 GetEggMoves(struct Pokemon *pokemon, u16 *eggMoves)
+{
+    u16 eggMoveIdx;
+    u16 numEggMoves;
+    u16 species;
+    u16 i;
+
+    numEggMoves = 0;
+    eggMoveIdx = 0;
+    species = GetMonData(pokemon, MON_DATA_SPECIES);
+
+	// change species to first evo for compatibility with egg moves
+	species = GetEggSpecies(species);
+
+    for (i = 0; i < ARRAY_COUNT(gEggMoves) - 1; i++)
+    {
+        if (gEggMoves[i] == species + EGG_MOVES_SPECIES_OFFSET)
+        {
+            eggMoveIdx = i + 1;
+            break;
+        }
+    }
+
+    for (i = 0; i < EGG_MOVES_ARRAY_COUNT; i++)
+    {
+        if (gEggMoves[eggMoveIdx + i] > EGG_MOVES_SPECIES_OFFSET)
+        {
+            // TODO: the curly braces around this if statement are required for a matching build.
+            break;
+        }
+
+        eggMoves[i] = gEggMoves[eggMoveIdx + i];
+        numEggMoves++;
+    }
+
+    return numEggMoves;
+}
+
 static u8 CanMonLearnPostDocTutor(struct Pokemon *mon, u16 move)
 {
-    if (GetMonData(mon, MON_DATA_IS_EGG))
-        return CANNOT_LEARN_MOVE_IS_EGG;
-
-    if (MonKnowsMove(mon, move) == TRUE)
-	{
-        return ALREADY_KNOWS_MOVE;
+	u8 numMoves;
+	u16 numEggMoves;
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+	u16 i;
+	u8 n;
+	
+	if (GetMonData(mon, MON_DATA_IS_EGG))
+    {
+		return CANNOT_LEARN_MOVE_IS_EGG;
 	}
-    else
-	{
-        return CAN_LEARN_MOVE;
+	
+	if (MonKnowsMove(mon, move) == TRUE)
+    {
+		return ALREADY_KNOWS_MOVE;
 	}
+	
+	// egg moves
+	numEggMoves = GetEggMoves(mon, sHatchedEggEggMoves);
+	
+	for (i = 0; i < numEggMoves; i++)
+	{
+		if (sHatchedEggEggMoves[i] == move)
+			return CAN_LEARN_MOVE;
+	}
+	
+	// level up moves
+	numMoves = GetLevelUpMovesBySpecies(species, sHatchedEggLevelUpMoves);
+	
+	for (n = 0; n < numMoves; n++)
+	{
+		if (move == sHatchedEggLevelUpMoves[n])
+			return CAN_LEARN_MOVE;
+	}
+	
+	return CANNOT_LEARN_MOVE;
 }
 
 static void DisplayPartyPokemonDataForMultiBattle(u8 slot)
@@ -191,4 +275,28 @@ static void Task_TryLearningNextMove(u8 taskId)
     u16 result = MonTryLearningNewMove(&gPlayerParty[gPartyMenu.slotId], FALSE, 0);
 
     switch (result)
+// >
+
+< //
+static void Task_LearnedMove(u8 taskId)
+{
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    s16 *move = &gPartyMenu.data1;
+    u16 item = gSpecialVar_ItemId;
+
+	// no more happiness from TM teaching
+    //if (move[1] == 0)
+    //{
+    //    AdjustFriendship(mon, FRIENDSHIP_EVENT_LEARN_TMHM);
+    //}
+	
+    GetMonNickname(mon, gStringVar1);
+    StringCopy(gStringVar2, gMoveNames[move[0]]);
+    StringExpandPlaceholders(gStringVar4, gText_PkmnLearnedMove3);
+    DisplayPartyMenuMessage(gStringVar4, TRUE);
+    ScheduleBgCopyTilemapToVram(2);
+    gTasks[taskId].func = Task_DoLearnedMoveFanfareAfterText;
+}
+
+static void Task_DoLearnedMoveFanfareAfterText(u8 taskId)
 // >
