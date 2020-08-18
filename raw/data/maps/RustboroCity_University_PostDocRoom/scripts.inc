@@ -61,7 +61,7 @@ RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach::
 	fadescreen FADE_FROM_BLACK
 	compare VAR_0x8005, MAX_MON_MOVES
 	goto_if_eq RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach
-	special StoreSelectedMoveForPostDocTutor
+	special SetMoveForPostDocTutor
 	
 	// which mon to teach the move
 	msgbox RustboroCity_University_PostDoc_WhichMonShouldLearnTheMove, MSGBOX_DEFAULT
