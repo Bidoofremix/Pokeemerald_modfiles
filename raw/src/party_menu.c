@@ -24,9 +24,9 @@ static void DisplayPartyPokemonBarDetail(u8, const u8*, u8, const u8*);
 < //
 static void DisplayPartyPokemonDataToTeachMove(u8 slot, u16 item, u8 tutor)
 {
-	if gSpecialVar_0x800B == 1
+	if (gSpecialVar_0x800B == 1)
 	{
-		switch (CanMonLearnPostDocTutor(&gPlayerParty[slot], item, tutor))
+		switch (CanMonLearnPostDocTutor(&gPlayerParty[slot], tutor))
 		{
 		case CANNOT_LEARN_MOVE:
 		case CANNOT_LEARN_MOVE_IS_EGG:
