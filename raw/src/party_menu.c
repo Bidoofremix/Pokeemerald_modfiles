@@ -58,9 +58,13 @@ static u8 CanMonLearnPostDocTutor(struct Pokemon *mon, u16 move)
         return CANNOT_LEARN_MOVE_IS_EGG;
 
     if (MonKnowsMove(mon, move) == TRUE)
+	{
         return ALREADY_KNOWS_MOVE;
+	}
     else
+	{
         return CAN_LEARN_MOVE;
+	}
 }
 
 static void DisplayPartyPokemonDataForMultiBattle(u8 slot)

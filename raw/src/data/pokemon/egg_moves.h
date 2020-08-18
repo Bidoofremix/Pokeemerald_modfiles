@@ -3,7 +3,7 @@
 #define EGG_MOVES_TERMINATOR 0xFFFF
 #define egg_moves(species, moves...) (SPECIES_##species + EGG_MOVES_SPECIES_OFFSET), moves
 
-const u16 gEggMoves[] = {
+static const u16 gEggMoves[] = {
     egg_moves(BULBASAUR,
         MOVE_SKULL_BASH,
         MOVE_CHARM,

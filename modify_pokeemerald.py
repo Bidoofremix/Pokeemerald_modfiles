@@ -297,7 +297,7 @@ with open(eggmove_file, "w") as f:
 	f.write("#define EGG_MOVES_TERMINATOR 0xFFFF\n")
 	f.write("#define egg_moves(species, moves...) (SPECIES_##species + EGG_MOVES_SPECIES_OFFSET), moves\n")
 	f.write("\n")
-	f.write("const u16 gEggMoves[] = {\n")
+	f.write("static const u16 gEggMoves[] = {\n")
 	
 	for mon in new_mon_order:
 		mon = mon.replace("SPECIES_","")
