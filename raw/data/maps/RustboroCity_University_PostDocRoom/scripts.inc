@@ -96,6 +96,7 @@ RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach::
 	removemoney 500, 0
 	updatemoneybox 0, 0
 	delay 40
+	delay 40
 	hidemoneybox
 	msgbox RustboroCity_University_Text_PostDoc_ComeAgain, MSGBOX_DEFAULT
 	release
