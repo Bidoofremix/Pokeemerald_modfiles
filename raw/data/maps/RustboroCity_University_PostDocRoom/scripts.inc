@@ -4,15 +4,18 @@ RustboroCity_University_PostDocRoom_MapScripts::
 	.byte 0
 
 RustboroCity_University_EventScript_PostDoc::
-	lockall
+	lock
 	faceplayer
 	call_if_set FLAG_INTRODUCED_MOVE_POSTDOC, RustboroCity_University_EventScript_PostDoc_HelloPlayer
 	call_if_unset FLAG_INTRODUCED_MOVE_POSTDOC, RustboroCity_University_EventScript_PostDoc_Introduce
+
+	showmoneybox 0, 0, 0
 	msgbox RustboroCity_University_PostDoc_WouldYouLikeMeToTeachAMove, MSGBOX_YESNO
+
 	switch VAR_RESULT
 	case YES, RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach
 	case NO, RustboroCity_University_EventScript_PostDoc_ComeAgain
-	releaseall
+	release
 	end
 	
 RustboroCity_University_EventScript_PostDoc_Introduce::
@@ -22,14 +25,13 @@ RustboroCity_University_EventScript_PostDoc_Introduce::
 	
 RustboroCity_University_PostDoc_HelloIAmAPostDoc:
 	.string "Hello!\p"
-	.string "I am a postdoctoral researcher\n"
-	.string "here at the UNIVERSITY.\p"
+	.string "I am a postdoctoral researcher here\n"
+	.string "at the UNIVERSITY.\p"
 	.string "I am studying POKéMON behaviour\n"
 	.string "in relation to move learning.\p"
-	.string "I have discovered that an\n"
-	.string "individual POKéMON can under\l"
-	.string "certain circumstances learn to use\l"
-	.string "a new move after observing it.$"
+	.string "I have discovered that an individual\n"
+	.string "POKéMON can in certain situations\l"
+	.string "learn a new move by observing it.$"
 
 RustboroCity_University_EventScript_PostDoc_HelloPlayer::
 	msgbox RustboroCity_University_PostDoc_GoodToSeeyouAgain, MSGBOX_DEFAULT
@@ -40,14 +42,20 @@ RustboroCity_University_PostDoc_GoodToSeeyouAgain:
 	.string "It is good to see you again.$"
 	
 RustboroCity_University_PostDoc_WouldYouLikeMeToTeachAMove:
-	.string "Would you like me to teach a new\n"
-	.string "move to your POKéMON?$"
+	.string "For ¥500, I can teach your POKéMON a\n"
+	.string "new move. Is that okay?$"
 	
 RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach::
+	// money check
+	checkmoney 500, 0
+	compare VAR_RESULT, FALSE
+	goto_if_eq RustboroCity_University_EventScript_PostDoc_NotEnoughMoney
+	
 	// which mon knows move
 	msgbox RustboroCity_University_PostDoc_WhichMoveDoYouWantToTeach, MSGBOX_DEFAULT
 	special ChoosePartyMon
 	waitstate
+	faceplayer
 	compare VAR_0x8004, 255
 	goto_if_eq RustboroCity_University_EventScript_PostDoc_ComeAgain
 	special IsSelectedMonEgg
@@ -56,27 +64,51 @@ RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach::
 	
 	// which move
 	fadescreen FADE_TO_BLACK
-	// selected move will be stored in VAR_0x8005
+	// selected move position be stored in VAR_0x8005 after this
 	special MoveDeleterChooseMoveToForget
 	fadescreen FADE_FROM_BLACK
+	faceplayer
 	compare VAR_0x8005, MAX_MON_MOVES
 	goto_if_eq RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach
+	
+	// selected move position is converted to actual move
 	special SetMoveForPostDocTutor
 	
 	// which mon to teach the move
 	msgbox RustboroCity_University_PostDoc_WhichMonShouldLearnTheMove, MSGBOX_DEFAULT
 	
 	// teach the move
-	// set VAR_0x800B to 1 for special mode in CanLearnTutorMove
+	// set VAR_0x800B to 1 for special mode in 
+	// TryTutorSelectedMon and DisplayPartyPokemonDataToTeachMove
 	setvar VAR_0x800B, 1
 	call MoveTutor_EventScript_OpenPartyMenu
 	
-	releaseall
+	// more dialogue here
+	// check if tutoring happened -> "success, your pkmn learned this"
+	// take money
+	faceplayer
+	compare VAR_RESULT, 0
+	goto_if_eq RustboroCity_University_EventScript_PostDoc_ComeAgain
+	msgbox RustboroCity_University_PostDoc_ThatWillBe500, MSGBOX_DEFAULT
+	showmoneybox 0, 0, 0
+	delay 40
+	playse SE_REGI
+	removemoney 500, 0
+	updatemoneybox 0, 0
+	delay 40
+	hidemoneybox
+	msgbox RustboroCity_University_Text_PostDoc_ComeAgain, MSGBOX_DEFAULT
+	release
+	end
+	
+RustboroCity_University_EventScript_PostDoc_NotEnoughMoney::
+	msgbox Route121_SafariZoneEntrance_Text_NotEnoughMoney, MSGBOX_DEFAULT
+	release
 	end
 	
 Rustboro_University_EventScript_PostDoc_ThatIsAnEgg::
 	msgbox RustboroCity_University_Text_ICantWorkWithEggs, MSGBOX_DEFAULT
-	releaseall
+	release
 	end
 	
 RustboroCity_University_PostDoc_WhichMoveDoYouWantToTeach:
@@ -90,10 +122,17 @@ RustboroCity_University_Text_ICantWorkWithEggs:
 	.string "What?\n"
 	.string "I can't work with EGGS.$"
 	
+RustboroCity_University_PostDoc_ThatWillBe500:
+	.string "Success!\p"
+	.string "Your {STR_VAR_1} learned {STR_VAR_2}.\p"
+	.string "That will be ¥500, then.$"
+	
 RustboroCity_University_EventScript_PostDoc_ComeAgain:: @ 821EAE6
+	faceplayer
+	hidemoneybox
 	msgbox RustboroCity_University_Text_PostDoc_ComeAgain, MSGBOX_DEFAULT
-	releaseall
-	end	
+	release
+	end
 	
 RustboroCity_University_Text_PostDoc_ComeAgain: @ 821EC3F
 	.string "Come again if there are moves that\n"
