@@ -36,7 +36,7 @@ RustboroCity_DevonCorp_2F_Text_DeviceToReviveFossils:
 	.string "discovered that the ancient POKéMON\l"
 	.string "are not extinct after all!\p"
 	.string "It just goes to show you how important\n"
-	.string "it is to understand the environment\n"
+	.string "it is to understand the environment\l"
 	.string "around us.$"
 	
 RustboroCity_DevonCorp_2F_EventScript_FossilScientist:: @ 82118F1

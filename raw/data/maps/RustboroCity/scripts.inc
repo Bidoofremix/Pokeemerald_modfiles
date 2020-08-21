@@ -1,4 +1,13 @@
 < //
+RustboroCity_OnFrame: @ 81E070B
+	// disable match call tutorial
+	//map_script_2 VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_ScientistAddMatchCall
+	.2byte 0
+
+RustboroCity_EventScript_ScientistAddMatchCall:: @ 81E0715
+// >
+
+< //
 RustboroCity_Text_WaitDontTakeMyGoods: @ 81E1817
 	.string "Wait! Pleeeaaase!\p"
 	.string "Don't take my Flashdrive!$"
