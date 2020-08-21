@@ -1,7 +1,7 @@
 < //
     [ITEM_DEVON_GOODS] =
     {
-        .name = _("FLASHDRIVE"),
+        .name = _("Flashdrive"),
         .itemId = ITEM_DEVON_GOODS,
         .price = 0,
         .description = sDevonGoodsDesc,

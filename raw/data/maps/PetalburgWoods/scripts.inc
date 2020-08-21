@@ -27,7 +27,7 @@ PetalburgWoods_EventScript_DevonResearcherRight:: @ 822E079
 < //
 PetalburgWoods_Text_HandOverThosePapers: @ 822E428
 	.string "You! UNIVERSITY RESEARCHER!\p"
-	.string "Hand over that FLASHDRIVE!$"
+	.string "Hand over that Flashdrive!$"
 
 PetalburgWoods_Text_YouHaveToHelpMe: @ 822E457
 	.string "Aiyeeeh!\p"

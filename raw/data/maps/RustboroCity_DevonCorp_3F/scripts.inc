@@ -52,18 +52,16 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident:: @ 821246E
 
 RustboroCity_DevonCorp_3F_EventScript_NoRoomForAmuletCoin::
 	msgbox RustboroCity_DevonCorp_3F_Text_NoRoomForAmuletCoin, MSGBOX_DEFAULT
-	end
+	return
 	
 RustboroCity_DevonCorp_3F_Text_NoRoomForAmuletCoin:
 	.string "Oh?\p"
 	.string "Your BAG is full.$"
 	
 RustboroCity_DevonCorp_3F_EventScript_ReceivedAmuletCoin::
-	playfanfare MUS_FANFA4
-	waitfanfare
 	setflag FLAG_UNIVERSITY_RECEIVED_AMULET_COIN
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainAmuletCoin, MSGBOX_DEFAULT
-	end
+	return
 	
 RustboroCity_DevonCorp_3F_Text_MrStoneExplainAmuletCoin:
 	.string "PROF. STONE: That {STR_VAR_1}…\p"
