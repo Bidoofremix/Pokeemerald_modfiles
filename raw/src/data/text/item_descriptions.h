@@ -15,3 +15,12 @@ static const u8 sDestinyKnotDesc[] = _(
 
 static const u8 sBlackSludgeDesc[] = _(
 // >
+
+< //
+static const u8 sDreamBallDesc[] = _(
+    "A Ball that works\n"
+    "well if used on a\n"
+    "sleeping POKéMON.");
+
+static const u8 sBeastBallDesc[] = _(
+// >

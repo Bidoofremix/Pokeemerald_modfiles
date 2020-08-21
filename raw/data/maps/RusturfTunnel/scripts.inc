@@ -25,7 +25,7 @@ RusturfTunnel_Text_GruntTakePackage: @ 822D2E1
 	.string "The BOSS told me this would be a\n"
 	.string "slick-and-easy job to pull.\p"
 	.string "All I had to do was steal some gadget\n"
-	.string "from UNIVERSITY.\p"
+	.string "from the UNIVERSITY.\p"
 	.string "Tch!\n"
 	.string "You want it back that badly, take it!$"
 

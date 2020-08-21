@@ -24,6 +24,18 @@
 // >
 
 < //
+            case ITEM_QUICK_BALL:
+                if (gBattleResults.battleTurnCounter == 0)
+                    ballMultiplier = 40;
+                break;
+			case ITEM_DREAM_BALL:
+				if (gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP)
+                    ballMultiplier = 40;
+                break;
+            case ITEM_DUSK_BALL:
+// >
+
+< //
 static void Cmd_handlelearnnewmove(void)
 {
     const u8 *jumpPtr1 = T1_READ_PTR(gBattlescriptCurrInstr + 1);

@@ -2,14 +2,13 @@
 RustboroCity_DevonCorp_2F_EventScript_PokemonDreamsScientist:: @ 82118DA
 	lock
 	faceplayer
-	compare VAR_FOSSIL_RESURRECTION_STATE, 1
-	call_if_eq RustboroCity_DevonCorp_2F_EventScript_SetFossilReady
 	msgbox RustboroCity_DevonCorp_2F_Text_DeviceToVisualizePokemonDreams, MSGBOX_DEFAULT
 	goto_if_unset FLAG_UNIVERSITY_RECEIVED_DREAM_BALL, RustboroCity_DevonCorp_2F_EventScript_GiveDreamBall
 	release
 	end
 
 RustboroCity_DevonCorp_2F_EventScript_GiveDreamBall::
+	msgbox RustboroCity_DevonCorp_2F_Text_IMadeThisAsASideInvention, MSGBOX_DEFAULT
 	giveitem ITEM_DREAM_BALL
 	compare VAR_RESULT, FALSE
 	goto_if_eq OldaleTown_EventScript_BagIsFull
@@ -41,6 +40,17 @@ RustboroCity_DevonCorp_2F_Text_DeviceToReviveFossils:
 	.string "around us.$"
 	
 RustboroCity_DevonCorp_2F_EventScript_FossilScientist:: @ 82118F1
+// >
+
+< //
+RustboroCity_DevonCorp_2F_EventScript_BallScientist:: @ 8211886
+	lock
+	faceplayer
+	msgbox RustboroCity_DevonCorp_2F_Text_WeFinallyMadeNewBalls, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_DevonCorp_2F_EventScript_DevelopedBalls:: @ 82118A6
 // >
 
 < //

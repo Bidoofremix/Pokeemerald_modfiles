@@ -132,7 +132,7 @@ RustboroCity_DevonCorp_3F_Text_MrStoneIHaveFavor: @ 8212609
 	.string "Well, on the way, could you stop off in\n"
 	.string "DEWFORD TOWN?\p"
 	.string "I was hoping that you'd deliver a\n"
-	.string "LETTER to STEVEN in DEWFORD.$"
+	.string "Letter to STEVEN in DEWFORD.$"
 
 RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis: @ 821277C
 	.string "PROF. STONE: Now, you should know\n"
@@ -189,7 +189,7 @@ RustboroCity_DevonCorp_3F_Text_ThisIs3rdFloorWaitHere: @ 8212C37
 	.string "Our RECTOR's main office is here.\p"
 	.string "Anyway, I can't tell you how much I'm\n"
 	.string "grateful for what you've done.\p"
-	.string "Um… By the way, that FLASHDRIVE\n"
+	.string "Um… By the way, that Flashdrive\n"
 	.string "you got back for us…\p"
 	.string "Could I get you to deliver that to\n"
 	.string "the SHIPYARD in SLATEPORT?\p"
