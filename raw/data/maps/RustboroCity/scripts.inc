@@ -37,6 +37,30 @@ RustboroCity_Text_GymSign: @ 81E2167
 // >
 
 < //
+RustboroCity_Text_MayHiLetsRegister: @ 81E1A49
+	.string "MAY: Oh, hi, {PLAYER}{KUN}!\p"
+	.string "I just realized that we haven't\n"
+	.string "been using the POKéNAV!\p"
+	.string "Let's register each other so we can\n"
+	.string "contact one another anytime!\p"
+	.string "… … … … … …$"
+
+RustboroCity_Text_RegisteredMay: @ 81E1ADB
+// >
+
+< //
+RustboroCity_Text_BrendanHiLetsRegister: @ 81E1D7D
+	.string "BRENDAN: Oh, hey, {PLAYER}!\p"
+	.string "I just realized that we haven't\n"
+	.string "been using the POKéNAV!\p"
+	.string "Let's register each other so we can\n"
+	.string "get in touch anytime!\p"
+	.string "… … … … … …$"
+
+RustboroCity_Text_RegisteredBrendan: @ 81E1E11
+// >
+
+< //
 RustboroCity_Text_WeShortenItToDevon: @ 81E123F
 	.string "The RUSTBORO UNIVERSITY…\n"
 	.string "We all just shorten it to UNIVERSITY.\p"
