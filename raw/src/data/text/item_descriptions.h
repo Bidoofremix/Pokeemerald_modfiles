@@ -1,6 +1,6 @@
 < //
 static const u8 sDevonGoodsDesc[] = _(
-    "A FLASHDRIVE that\n"
+    "A Flashdrive that\n"
     "apparently holds\n"
     "sensitive data.");
 
