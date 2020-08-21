@@ -176,7 +176,7 @@ with open(new_scripts_file, "w") as f:
 	f.write("\t.byte 0\n")
 	f.write("\n")
 	f.write("{0}_OnTransition:\n".format(args["name"]))
-	f.write("\nend")
+	f.write("\tend\n")
 	f.write("\n")
 	
 ########## event_scripts.s	
