@@ -562,7 +562,7 @@ for i in range(0,xl_sheet.nrows):
 							
 						mon["ability"] = str(ability_num)
 							
-			if 	shiny_mons or mon_abilities:
+			if shiny_mons or mon_abilities:
 				if mon_moves:
 					category = "ItemCustomMovesAbilityShiny"
 				else:
@@ -642,7 +642,7 @@ for trainer in trainer_data:
 		trainer_lines.append(last_line)
 		
 	trainer_lines.append("};\n")
-	
+
 	first_index = ""
 	for i,line in enumerate(trainer_party_file_lines):
 		if "static const struct Trainer" in line:
@@ -652,9 +652,9 @@ for trainer in trainer_data:
 			elif first_index != "" and line.startswith("static const struct Trainer"):
 				last_index = i-1
 				break
-			
-	trainer_party_file_lines[first_index:last_index] = trainer_lines
 
+	trainer_party_file_lines[first_index:last_index] = trainer_lines
+	
 	trainer_on = 0
 	for i,line in enumerate(trainer_file_lines):
 		if "[TRAINER_" in line:
@@ -672,6 +672,10 @@ for trainer in trainer_data:
 					line += "F_TRAINER_PARTY_CUSTOM_MOVESET"
 				elif trainer_data[trainer]["category"] == "ItemDefaultMoves":
 					line += "F_TRAINER_PARTY_HELD_ITEM"
+				elif trainer_data[trainer]["category"] == "ItemCustomMovesAbilityShiny":
+					line += "F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_ABILITY"
+				elif trainer_data[trainer]["category"] == "ItemDefaultMovesAbilityShiny":
+					line += "F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_ABILITY"
 				else:
 					line += "0"
 				line += ",\n"
