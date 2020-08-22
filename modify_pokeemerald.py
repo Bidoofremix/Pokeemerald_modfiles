@@ -459,10 +459,25 @@ for i in range(0,xl_sheet.nrows):
 							mon["iv"],trainer))
 				
 				mons[i] = mon
+						
+			# check shinyness
+			shinies = [mon["shiny"] for mon in mons]
+			if any(shinies):
+				shiny_mons = True					
+			else:
+				shiny_mons = False
+			
+			# check abilities
+			abilities = [mon["ability"] for mon in mons]
+			if any(abilities):
+				mon_abilities = True
+			else:
+				mon_abilities = False
+								
 		
 			# validate items
 			items = [mon["heldItem"] for mon in mons]
-			if any(items):
+			if any(items) or shiny_mons or mon_abilities:
 				mon_items = True
 				for i,mon in enumerate(mons):
 				
@@ -511,22 +526,6 @@ for i in range(0,xl_sheet.nrows):
 					exit(0)
 				mon["species"] = species_name
 				mons[i] = mon
-			
-						
-			# check shinyness
-			shinies = [mon["shiny"] for mon in mons]
-			if any(shinies):
-				shiny_mons = True					
-			else:
-				shiny_mons = False
-			
-			# check abilities
-			abilities = [mon["ability"] for mon in mons]
-			if any(abilities):
-				mon_abilities = True
-			else:
-				mon_abilities = False
-								
 
 			if shiny_mons or mon_abilities:
 			
@@ -562,19 +561,22 @@ for i in range(0,xl_sheet.nrows):
 							ability_num = 2
 							
 						mon["ability"] = str(ability_num)
-						
-				print(mons)
-				input(">>")
-					
-			if mon_items and mon_moves:
-				category = "ItemCustomMoves"
-			elif mon_items:
-				category = "ItemDefaultMoves"
-			elif mon_moves:
-				category = "NoItemCustomMoves"
-			else:
-				category = "NoItemDefaultMoves"
-			
+							
+			if 	shiny_mons or mon_abilities:
+				if mon_moves:
+					category = "ItemCustomMovesAbilityShiny"
+				else:
+					category = "ItemDefaultMovesAbilityShiny"
+			else:		
+				if mon_items and mon_moves:
+					category = "ItemCustomMoves"
+				elif mon_items:
+					category = "ItemDefaultMoves"
+				elif mon_moves:
+					category = "NoItemCustomMoves"
+				else:
+					category = "NoItemDefaultMoves"
+				
 			trainer_data[trainer] = {"pokemon":mons, "category":category}
 
 		mons = []
@@ -615,11 +617,23 @@ for trainer in trainer_data:
 		trainer_lines.append("    {\n")
 		trainer_lines.append("    .iv = {0},\n".format(mon["iv"]))
 		trainer_lines.append("    .lvl = {0},\n".format(mon["lvl"]))
-		if trainer_data[trainer]["category"] in ["ItemCustomMoves","ItemDefaultMoves"]:
+		
+		# item
+		if trainer_data[trainer]["category"] in ["ItemCustomMoves","ItemDefaultMoves",\
+			"ItemCustomMovesAbilityShiny","ItemDefaultMovesAbilityShiny"]:
 			trainer_lines.append("    .heldItem = {0},\n".format(mon["heldItem"]))
-		if trainer_data[trainer]["category"] in ["NoItemCustomMoves","ItemCustomMoves"]:
+			
+		# custom moves
+		if trainer_data[trainer]["category"] in ["NoItemCustomMoves","ItemCustomMoves",\
+			"ItemCustomMovesAbilityShiny"]:
 			trainer_lines.append("    .moves = {%s},\n" % \
 				", ".join(mon["moves"]))
+		
+		# ability and shinyness
+		if trainer_data[trainer]["category"] in ["ItemCustomMovesAbilityShiny","ItemDefaultMovesAbilityShiny"]:
+			trainer_lines.append("    .abilityNum = {0},\n".format(mon["ability"]))
+			trainer_lines.append("    .shiny = {0},\n".format(mon["shiny"]))
+		
 		trainer_lines.append("    .species = {0},\n".format(mon["species"]))
 		last_line = "    }"
 		if i != len(trainer_mons)-1:

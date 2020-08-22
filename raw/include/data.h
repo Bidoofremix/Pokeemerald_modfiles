@@ -8,7 +8,17 @@ struct TrainerMonItemCustomMoves
     u16 moves[MAX_MON_MOVES];
 };
 
-// new trainer type for fixed ability and shiny mons
+// new trainer types for fixed ability and shiny mons
+struct TrainerMonItemDefaultMovesAbilityShiny
+{
+	u16 iv;
+    u8 lvl;
+    u16 species;
+    u16 heldItem;
+	u32 abilityNum;
+	u8 shiny;
+};
+
 struct TrainerMonItemCustomMovesAbilityShiny
 {
 	u16 iv;
@@ -26,6 +36,7 @@ union TrainerMonPtr
     const struct TrainerMonNoItemCustomMoves *NoItemCustomMoves;
     const struct TrainerMonItemDefaultMoves *ItemDefaultMoves;
     const struct TrainerMonItemCustomMoves *ItemCustomMoves;
+	const struct TrainerMonItemDefaultMovesAbilityShiny *ItemDefaultMovesAbilityShiny;
     const struct TrainerMonItemCustomMovesAbilityShiny *ItemCustomMovesAbilityShiny;
 };
 

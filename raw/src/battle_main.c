@@ -212,6 +212,35 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                 }
                 break;
             }
+			case F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_ABILITY:
+			{    
+				const struct TrainerMonItemDefaultMovesAbilityShiny *partyData = gTrainers[trainerNum].party.ItemDefaultMovesAbilityShiny;
+
+                for (j = 0; gSpeciesNames[partyData[i].species][j] != EOS; j++)
+                    nameHash += gSpeciesNames[partyData[i].species][j];
+
+                personalityValue += nameHash << 8;
+                fixedIV = partyData[i].iv * 31 / 255;
+				
+				level = dynamicLevel(playerHighestLevel, partyData[i].lvl);
+				
+				if (partyData[i].shiny == 1)
+				{
+					CreateMon(&party[i], partyData[i].species, level, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_SHINY, 0);
+				}
+				else
+				{
+				    CreateMon(&party[i], partyData[i].species, level, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                    // CreateMon(&party[i], partyData[i].species, partyData[i].lvl, fixedIV, TRUE, personalityValue, OT_ID_RANDOM_NO_SHINY, 0);
+                }
+					
+                SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[i].heldItem);
+
+				// ability
+				SetMonData(&party[i], MON_DATA_ABILITY_NUM, &partyData[i].abilityNum);
+				
+                break;
+			}
 			case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_ABILITY:
 			{    
 				const struct TrainerMonItemCustomMovesAbilityShiny *partyData = gTrainers[trainerNum].party.ItemCustomMovesAbilityShiny;
