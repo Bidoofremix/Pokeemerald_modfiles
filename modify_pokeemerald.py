@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import os,re,xlrd,argparse,copy,json,shutil
+import os,re,xlrd,argparse,copy,json,shutil,random
 from config import pokeemerald_dir,slash,vanilla_dir
 from misc import normalize_path,excel_files,clean_num
 from pokemon_tools import *
@@ -429,7 +429,7 @@ with open(items_file, "r") as f:
 	for line in f:
 		if line.startswith("#define ITEM_"):
 			defined_items.add(line.split(" ")[1])			
-			
+	
 trainer_excel = normalize_path("trainers/trainers.xlsx")
 
 xl_workbook = xlrd.open_workbook(trainer_excel)
@@ -511,7 +511,61 @@ for i in range(0,xl_sheet.nrows):
 					exit(0)
 				mon["species"] = species_name
 				mons[i] = mon
-				
+			
+						
+			# check shinyness
+			shinies = [mon["shiny"] for mon in mons]
+			if any(shinies):
+				shiny_mons = True					
+			else:
+				shiny_mons = False
+			
+			# check abilities
+			abilities = [mon["ability"] for mon in mons]
+			if any(abilities):
+				mon_abilities = True
+			else:
+				mon_abilities = False
+								
+
+			if shiny_mons or mon_abilities:
+			
+				# set shininess
+				for i,mon in enumerate(mons):
+					if mon["shiny"] != "":
+						mon["shiny"] = "1"
+					else:
+						mon["shiny"] = "0"
+					mons[i] = mon					
+								
+				# validate abilities
+				for i,mon in enumerate(mons):
+					if mon["ability"] == "":
+						mon["ability"] = str(random.randint(0,2))
+					else:
+						tmp_ability = check_ability(mon["ability"])
+
+						# abilities defined in base stats
+						mon_abilities = new_base_stats[mon["species"].replace("SPECIES_","")][".abilities"]
+						ability1, ability2 = mon_abilities.lstrip("{").rstrip("}").replace(" ","").split(",")
+						hiddenability = new_base_stats[mon["species"].replace("SPECIES_","")][".abilityHidden"]
+						
+						if tmp_ability not in [ability1,ability2,hiddenability]:
+							print("\nerror: invalid ability '{0}' for {1} ({2})".format(tmp_ability,mon["species"],trainer))
+							exit(0)
+						
+						if tmp_ability == ability1:
+							ability_num = 0
+						elif tmp_ability == ability2:
+							ability_num = 1
+						elif tmp_ability == hiddenability:
+							ability_num = 2
+							
+						mon["ability"] = str(ability_num)
+						
+				print(mons)
+				input(">>")
+					
 			if mon_items and mon_moves:
 				category = "ItemCustomMoves"
 			elif mon_items:

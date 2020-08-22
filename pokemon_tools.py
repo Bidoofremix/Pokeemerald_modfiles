@@ -34,6 +34,16 @@ with open(item_file, "r") as f:
 				move = "SOLAR_BEAM"
 			attack2tm[move] = tm_move
 			
+# abilities
+ability_file = normalize_path("{0}/include/constants/abilities.h".format(\
+	pokeemerald_dir))
+defined_abilities = set([])
+with open(ability_file, "r") as f:
+	for line in f:
+		if line.startswith("#define ABILITY"):
+			ability = line.split(" ")[1]
+			defined_abilities.add(ability)
+			
 unowns = [chr(i+64) for i in range(1,27)]
 unowns += ["EMARK","QMARK"]			
 			
@@ -69,6 +79,13 @@ def check_tmmove(move):
 		print("\nerror: did not recognize TM/HM move '%s'" % move)
 		exit(0)
 	return attack2tm[tmp_move]
+	
+def check_ability(ability):
+	ability = "ABILITY_" + ability.upper().replace(" ","_")
+	if ability not in defined_abilities:
+		print("\nerror: did not recognize ability '%s'" % ability)
+		exit(0)
+	return ability
 	
 def generate_capsjoined(mons):
 	mons = [i.replace("SPECIES_","") for i in mons]
