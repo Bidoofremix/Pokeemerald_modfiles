@@ -468,7 +468,7 @@ BrineBeach_Text_PikachuTrainer:
 	.string "teach Surf to your Pikachu.$"
 
 BrineBeach_Text_Pikachu:
-	.string "Chu-pikaa!$"
+	.string "Pikachu: Chu-pikaa!$"
 
 BrineBeach_Text_KarateGirl_Intro:
 	.string "Training at the sea heightens the\l"
