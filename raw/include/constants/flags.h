@@ -57,9 +57,9 @@
 #define FLAG_UNIVERSITY_RECEIVED_AMULET_COIN   0x2C // Unused Flag
 #define FLAG_INTRODUCED_MOVE_POSTDOC           0x2D // Unused Flag
 #define FLAG_DEFEATED_GYARADOS                 0x2E // Unused Flag
-#define FLAG_HIDE_BRINE_BEACH_TEAM_AQUA        0x2F // Unused Flag
-#define FLAG_UNUSED_0x04E    0x30 // Unused Flag
-#define FLAG_UNUSED_0x04F    0x31 // Unused Flag
+#define FLAG_HIDE_GYARADOS                     0x2F // Unused Flag
+#define FLAG_HIDE_BRINE_BEACH_TEAM_AQUA        0x30 // Unused Flag
+#define FLAG_UNUSED_0x04F                      0x31 // Unused Flag
 #define FLAG_UNUSED_0x054                    0x32  // Unused Flag
 #define FLAG_UNUSED_0x055                    0x33  // Unused Flag
 #define FLAG_UNUSED_0x068                    0x34  // Unused Flag
