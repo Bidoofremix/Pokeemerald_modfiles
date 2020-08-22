@@ -11,7 +11,7 @@
         {
             "direction": "up",
             "map": "MAP_ROUTE107",
-            "offset": 0
+            "offset": 75
         }
     ],
     "coord_events": [

@@ -1,5 +1,5 @@
 BrineBeach_MapConnectionsList:
-	connection up, 0, MAP_ROUTE107
+	connection up, 75, MAP_ROUTE107
 
 BrineBeach_MapConnections:
 	.4byte 1
