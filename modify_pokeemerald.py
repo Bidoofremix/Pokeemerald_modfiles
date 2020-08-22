@@ -29,7 +29,7 @@ if args["reset"]:
 
 os.chdir(wrk_dir)
 
-########## walk through other mods
+########## walk through all snippets
 
 print("\nread files in raw folder")
 
