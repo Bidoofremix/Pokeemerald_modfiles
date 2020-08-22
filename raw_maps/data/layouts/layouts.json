@@ -16,8 +16,8 @@
             "height": 9,
             "id": "LAYOUT_BRINE_BEACH",
             "name": "BrineBeach_Layout",
-            "primary_tileset": "gTileset_Building",
-            "secondary_tileset": "gTileset_GenericBuilding",
+            "primary_tileset": "gTileset_General",
+            "secondary_tileset": "gTileset_Dewford",
             "width": 10
         },
         {

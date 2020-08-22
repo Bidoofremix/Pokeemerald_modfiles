@@ -61,7 +61,7 @@ for folder in [map_dir,layout_dir,constants_dir]:
 	
 			for fname in files:
 			
-				if fname in ["map_groups.json","map.json","layouts.json","map.bin","border.bin"]:
+				if fname in ["map_groups.json","map.json","layouts.json","map.bin","border.bin","connections.inc"]:
 				
 					relative_path = normalize_path("{0}\{1}".format(dir,fname).replace(pokeemerald_dir,""))
 					
@@ -169,7 +169,7 @@ if args["mode"] == "backup":
 		backup_this_file = 0
 	
 		# custom maps
-		if file.rsplit(slash,1)[-1] in ["map.json","map.bin","border.bin"] and \
+		if file.rsplit(slash,1)[-1] in ["map.json","map.bin","border.bin","connections.inc"] and \
 			file_meta[file]["vanilla"]["path"] == "":
 				backup_this_file = 1
 	

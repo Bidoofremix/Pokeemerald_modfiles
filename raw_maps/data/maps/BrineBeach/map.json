@@ -7,7 +7,13 @@
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
     ],
-    "connections": null,
+    "connections": [
+        {
+            "direction": "up",
+            "map": "MAP_ROUTE107",
+            "offset": 0
+        }
+    ],
     "coord_events": [
     ],
     "id": "MAP_BRINE_BEACH",
