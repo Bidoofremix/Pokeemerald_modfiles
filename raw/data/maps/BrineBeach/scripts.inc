@@ -420,9 +420,9 @@ BrineBeach_Text_Shelly_Lose:
 	
 BrineBeach_Text_Shelly2:
 	.string "You know what?\p"
-	.string "You're not worth the trouble. We can\n"
-	.string "cause mayhem without that big stupid\l"
-	.string "serpent anyway.\p"
+	.string "You're not worth the trouble.\p"
+	.string "We can cause mayhem without that big\n"
+	.string	"stupid "serpent anyway.\p"
 	.string "Remember that the next time I see you,\n"
 	.string "I'm not going to be this nice!$"
 	
@@ -459,15 +459,15 @@ BrineBeach_Text_AquaGrunt3:
 	.string "I refuse to acknowledge your victory.$"
 	
 BrineBeach_Text_PikachuTrainerIntro:
-	.string "I have a really cool PIKACHU!\n"
-	.string "Wanna see it SURF?$"
+	.string "I have a really cool Pikachu!\n"
+	.string "Wanna see it Surf?$"
 	
 BrineBeach_Text_PikachuTrainerLose:
 	.string "That was rad!$"
 	
 BrineBeach_Text_PikachuTrainer:
 	.string "There's a dude around here that can\n"
-	.string "teach SURF to your PIKACHU.$"
+	.string "teach Surf to your Pikachu.$"
 
 BrineBeach_Text_Pikachu:
 	.string "Chu-pikaa!$"

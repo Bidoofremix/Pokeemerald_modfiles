@@ -69,11 +69,11 @@ static const struct TrainerMonNoItemCustomMoves sParty_Tycho[] = {
     .iv = 0,
     .lvl = 25,
     .species = SPECIES_PIKACHU,
-	.moves = {MOVE_SHOCK_WAVE,MOVE_SURF,MOVE_NONE,MOVE_NONE}
+	.moves = {MOVE_SHOCK_WAVE,MOVE_SURF,MOVE_NONE,MOVE_NONE},
     }
 };
 
-static const struct TrainerMonNoItemCustomMoves sParty_Caden = {
+static const struct TrainerMonNoItemDefaultMoves sParty_Caden[] = {
 	{
     .iv = 0,
     .lvl = 23,
