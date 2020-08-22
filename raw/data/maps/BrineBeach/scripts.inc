@@ -126,7 +126,7 @@ BrineBeach_EventScript_DefeatedGyarados::
 
 	// brawly to player
 	delay 20
-	applymovement EVENT_OBJ_ID_PLAYER, BrineBeach_Movement_PlayerToBrawly
+	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_PlayerToBrawly
 	waitmovement 0
 	delay 20
 	msgbox BrineBeach_Text_Brawly4, MSGBOX_DEFAULT
@@ -222,17 +222,17 @@ BrineBeach_EventScript_Brawly::
 	end
 
 BrineBeach_EventScript_Movement_y9::
-	applymovement EVENT_OBJ_ID_PLAYER, BrineBeach_Movement_y9
+	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_y9
 	waitmovement 0
 	return	
 	
 BrineBeach_EventScript_Movement_y10::
-	applymovement EVENT_OBJ_ID_PLAYER, BrineBeach_Movement_y10
+	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_y10
 	waitmovement 0
 	return	
 	
 BrineBeach_EventScript_Movement_y11::
-	applymovement EVENT_OBJ_ID_PLAYER, BrineBeach_Movement_y11
+	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_y11
 	waitmovement 0
 	return
 	
@@ -271,6 +271,7 @@ BrineBeach_EventScript_KarateGirl::
 	
 BrineBeach_EventScript_Fisherman::
 	trainerbattle_single TRAINER_CHEVIS, BrineBeach_Text_Fisherman_Intro, BrineBeach_Text_Fisherman_Loss
+	bufferspeciesname 0, SPECIES_GYARADOS
 	msgbox BrineBeach_Text_Fisherman, MSGBOX_AUTOCLOSE
 	end		
 	
@@ -370,22 +371,24 @@ BrineBeach_Movement_Gyarados:
 	step_end
 
 BrineBeach_Text_Gyarados:
-	.string "GYARADOS: Gyashaa!$"
+	.string "Gyarados: Gyashaa!$"
 	
 BrineBeach_Text_Brawly1:
 	.string "That was impressive! What's your name\n"
 	.string "again?\p"
-	.string "{PLAYER}? Thanks for taking care of TEAM\n"
-	.string "{AQUA}! It was a close call.$"
+	.string "{PLAYER}? Thanks for taking care of\n"
+	.string "TEAM {AQUA}!\l"
+	.string "It was a close call.$"
 
 BrineBeach_Text_Brawly2:
-	.string "That GYARADOS is still super mad,\n"
-	.string "though. It needs to be calmed down\l"
+	.string "That Gyarados is still super mad,\n"
+	.string "though.\p"
+	.string "It needs to be calmed down\n"
 	.string "before it busts the whole island.\p"
 	.string "My POKéMON are totally knocked out…$"
 	
 BrineBeach_Text_Brawly3:
-	.string "{PLAYER}, could you tame the GYARADOS?\n"
+	.string "{PLAYER}, could you tame the Gyarados?\n"
 	.string "The safety of the people of DEWFORD\l"
 	.string "depends on you!$"
 	
@@ -404,11 +407,11 @@ BrineBeach_Text_ShellyToBrawly:
 	
 BrineBeach_Text_Shelly1:
 	.string "Your name is {PLAYER}, right?\p"
-	.string "Your reputation precedes you. I heard\n"
-	.string "you thwarted our plans in PETALBURG\l"
-	.string "WOODS and gave a good beating to one of\l"
-	.string "our members.\p"
-	.string "I won't have you run wild and scare my\n"
+	.string "Your reputation precedes you.\p"
+	.string "I heard that you thwarted TEAM \n"
+	.string "{MAGMA}'s plans in PETALBURG WOODS.\p"
+	.string "Unlike those spineless loons, I\n"
+	.string "won't have you run wild and scare my\l"
 	.string "subordinates.\p"
 	.string "You will make up for it!$"
 	
@@ -482,13 +485,13 @@ BrineBeach_Text_KarateGirl:
 	
 BrineBeach_Text_Fisherman_Intro:
 	.string "Shh! This is my secret fishing place!$"
-	
+
 BrineBeach_Text_Fisherman_Loss:
 	.string "You tangled my lines…$"
 	
 BrineBeach_Text_Fisherman:
 	.string "One day I'm going to haul in the\n"
-	.string "mightiest GYARADOS there is.$"
+	.string "mightiest {STR_VAR_1} there is.$"
 
 BrineBeach_Text_SurfersHut_Sign:
 	.string "SURFER'S HUT$"
