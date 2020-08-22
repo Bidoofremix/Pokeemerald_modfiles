@@ -1,5 +1,4 @@
 < // START
-
 .set LOCALID_GYARADOS, 1
 .set LOCALID_SHELLY, 2
 .set LOCALID_BRAWLY, 3
@@ -271,7 +270,6 @@ BrineBeach_EventScript_KarateGirl::
 	
 BrineBeach_EventScript_Fisherman::
 	trainerbattle_single TRAINER_CHEVIS, BrineBeach_Text_Fisherman_Intro, BrineBeach_Text_Fisherman_Loss
-	bufferspeciesname 0, SPECIES_GYARADOS
 	msgbox BrineBeach_Text_Fisherman, MSGBOX_AUTOCLOSE
 	end		
 	
@@ -427,8 +425,8 @@ BrineBeach_Text_Shelly_YoureNotWorthTheTrouble:
 	.string "I'm not going to be this nice!$"
 	
 BrineBeach_Text_AquaGrunt1_Intro:
-	.string "You tryna interfere with us? Get\n"
-	.string "lost, kid!$"
+	.string "You tryna interfere with us?\"
+	.string "Get lost, kid!$"
 
 BrineBeach_Text_AquaGrunt1_Lose:
 	.string "Ow. That's harsh, man!$"
@@ -491,7 +489,7 @@ BrineBeach_Text_Fisherman_Loss:
 	
 BrineBeach_Text_Fisherman:
 	.string "One day I'm going to haul in the\n"
-	.string "mightiest {STR_VAR_1} there is.$"
+	.string "mightiest Gyarados there is.$"
 
 BrineBeach_Text_SurfersHut_Sign:
 	.string "SURFER'S HUT$"
