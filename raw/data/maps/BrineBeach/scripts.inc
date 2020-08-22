@@ -236,19 +236,19 @@ BrineBeach_EventScript_Movement_y11::
 	waitmovement 0
 	return
 	
-BrineBeach_EventScript_AquaGrunt54::
-	trainerbattle_single TRAINER_GRUNT_54, BrineBeach_Text_AquaGrunt54_Intro, BrineBeach_Text_AquaGrunt54_Lose
-	msgbox BrineBeach_Text_AquaGrunt54, MSGBOX_AUTOCLOSE
+BrineBeach_EventScript_AquaGrunt_1::
+	trainerbattle_single TRAINER_GRUNT_BRINE_BEACH_1, BrineBeach_Text_AquaGrunt1_Intro, BrineBeach_Text_AquaGrunt1_Lose
+	msgbox BrineBeach_Text_AquaGrunt1, MSGBOX_AUTOCLOSE
 	end
 
-BrineBeach_EventScript_AquaGrunt55::
-	trainerbattle_single TRAINER_GRUNT_55, BrineBeach_Text_AquaGrunt55_Intro, BrineBeach_Text_AquaGrunt55_Lose
-	msgbox BrineBeach_Text_AquaGrunt55, MSGBOX_AUTOCLOSE
+BrineBeach_EventScript_AquaGrunt_2::
+	trainerbattle_single TRAINER_GRUNT_BRINE_BEACH_2, BrineBeach_Text_AquaGrunt2_Intro, BrineBeach_Text_AquaGrunt2_Lose
+	msgbox BrineBeach_Text_AquaGrunt2, MSGBOX_AUTOCLOSE
 	end
 	
-BrineBeach_EventScript_AquaGrunt56::
-	//trainerbattle_single TRAINER_GRUNT_56, BrineBeach_Text_AquaGrunt56_Intro, BrineBeach_Text_AquaGrunt56_Lose
-	msgbox BrineBeach_Text_AquaGrunt56, MSGBOX_AUTOCLOSE
+BrineBeach_EventScript_AquaGrunt_3::
+	trainerbattle_single TRAINER_GRUNT_BRINE_BEACH_3, BrineBeach_Text_AquaGrunt3_Intro, BrineBeach_Text_AquaGrunt3_Lose
+	msgbox BrineBeach_Text_AquaGrunt3, MSGBOX_AUTOCLOSE
 	end	
 	
 BrineBeach_EventScript_PikachuTrainer::
@@ -426,36 +426,36 @@ BrineBeach_Text_Shelly2:
 	.string "Remember that the next time I see you,\n"
 	.string "I'm not going to be this nice!$"
 	
-BrineBeach_Text_AquaGrunt54_Intro:
+BrineBeach_Text_AquaGrunt1_Intro:
 	.string "You tryna interfere with us? Get\n"
 	.string "lost, kid!$"
 
-BrineBeach_Text_AquaGrunt54_Lose:
-	.string "Ow. Bit harsh, wasn't that?$"
+BrineBeach_Text_AquaGrunt1_Lose:
+	.string "Ow. That's harsh, man!$"
 		
-BrineBeach_Text_AquaGrunt54:
+BrineBeach_Text_AquaGrunt1:
 	.string "Our ADMIN will take care of you.\n"
 	.string "Don't you dare doubt it!$"
 
-BrineBeach_Text_AquaGrunt55_Intro:
+BrineBeach_Text_AquaGrunt2_Intro:
 	.string "Do you have any idea how long we've\n"
 	.string "stood in the rain? I'm soaked!$"
 
-BrineBeach_Text_AquaGrunt55_Lose:
+BrineBeach_Text_AquaGrunt2_Lose:
 	.string "What the…?$"
 		
-BrineBeach_Text_AquaGrunt55:
+BrineBeach_Text_AquaGrunt2:
 	.string "I'd sell my soul for a pair of dry socks.$"
 
-BrineBeach_Text_AquaGrunt56_Intro:
+BrineBeach_Text_AquaGrunt3_Intro:
 	.string "I'm one good victory away from applying\n"
 	.string "for an ADMIN status.\p"
 	.string "Now do as I say and lose!$"
 
-BrineBeach_Text_AquaGrunt56_Lose:
+BrineBeach_Text_AquaGrunt3_Lose:
 	.string "This is not possible! You cheated!$"
 		
-BrineBeach_Text_AquaGrunt56:
+BrineBeach_Text_AquaGrunt3:
 	.string "I refuse to acknowledge your victory.$"
 	
 BrineBeach_Text_PikachuTrainerIntro:
