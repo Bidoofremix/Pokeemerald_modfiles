@@ -122,7 +122,7 @@
         .doubleBattle = FALSE,
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .partySize = ARRAY_COUNT(sParty_Caden),
-        .party = {.NoItemDefaultMoves = sParty_Caden},
+        .party = {.NoItemDefaultMoves = sParty_Chevis},
     },
 	
     [TRAINER_SAWYER_1] =

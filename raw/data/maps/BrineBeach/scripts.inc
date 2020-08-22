@@ -42,7 +42,7 @@ BrineBeach_EventScript_ControlAqua::
 	return
 	
 BrineBeach_EventScript_HeavyRain::
-	setweather WEATHER_RAIN_HEAVY
+	setweather WEATHER_RAIN_THUNDERSTORM
 	setvar VAR_0x8000, 1
 	return
 	
@@ -129,13 +129,13 @@ BrineBeach_EventScript_DefeatedGyarados::
 	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_PlayerToBrawly
 	waitmovement 0
 	delay 20
-	msgbox BrineBeach_Text_Brawly4, MSGBOX_DEFAULT
+	msgbox BrineBeach_Text_Brawly_ThatWasQuiteAShow, MSGBOX_DEFAULT
 	closemessage
 	
 	// remove brawly
 	setflag FLAG_DEFEATED_GYARADOS
 	fadescreenswapbuffers 1
-	removeobject 8
+	removeobject LOCALID_BRAWLY
 	fadescreenswapbuffers 0
 	
 	releaseall
@@ -146,7 +146,7 @@ BrineBeach_EventScript_Shelly::
 	playbgm MUS_AQA_0, 0
 	
 	// shelly to brawly
-	msgbox BrineBeach_Text_ShellyToBrawly, MSGBOX_DEFAULT
+	msgbox BrineBeach_Text_Shelly_ThatllShowYouNotToMeddle, MSGBOX_DEFAULT
 	closemessage
 	delay 20
 	applymovement LOCALID_SHELLY, BrineBeach_Movement_Shelly1
@@ -154,7 +154,7 @@ BrineBeach_EventScript_Shelly::
 	waitmovement 0
 	
 	// shelly to player
-	msgbox BrineBeach_Text_Shelly1, MSGBOX_DEFAULT
+	msgbox BrineBeach_Text_Shelly_YourReputationPrecedesYou, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_SHELLY, BrineBeach_Movement_Shelly2
 	waitmovement 0
@@ -167,7 +167,7 @@ BrineBeach_EventScript_Shelly::
 	applymovement LOCALID_SHELLY, BrineBeach_Movement_Shelly3
 	waitmovement 0
 	delay 20
-	msgbox BrineBeach_Text_Shelly2, MSGBOX_DEFAULT
+	msgbox BrineBeach_Text_Shelly_YoureNotWorthTheTrouble, MSGBOX_DEFAULT
 	closemessage
 	setflag FLAG_HIDE_BRINE_BEACH_TEAM_AQUA
 	
@@ -183,20 +183,20 @@ BrineBeach_EventScript_Shelly::
 	delay 40
 	
 	// brawly to player
-	applymovement 8, BrineBeach_Movement_Brawly1
+	applymovement LOCALID_BRAWLY, BrineBeach_Movement_Brawly1
 	waitmovement 0
-	msgbox BrineBeach_Text_Brawly1, MSGBOX_DEFAULT
+	msgbox BrineBeach_Text_Brawly_ThatWasImpressive, MSGBOX_DEFAULT
 	closemessage
 	
 	// gyarados shouts
 	playmoncry SPECIES_GYARADOS, 2
 	delay 20
-	applymovement 8, BrineBeach_Movement_Brawly2
+	applymovement LOCALID_BRAWLY, BrineBeach_Movement_Brawly2
 	waitmoncry
 	waitmovement 0
 	
 	// brawly to player
-	msgbox BrineBeach_Text_Brawly2, MSGBOX_DEFAULT
+	msgbox BrineBeach_Text_Brawly_GyaradosIsStillMad, MSGBOX_DEFAULT
 	closemessage
 	
 	// gyarados shouts again, shaking
@@ -209,7 +209,7 @@ BrineBeach_EventScript_Shelly::
 	delay 20
 	
 	// brawly to player
-	msgbox BrineBeach_Text_Brawly3, MSGBOX_DEFAULT
+	msgbox BrineBeach_Text_Brawly_CouldYouTameTheGyarados, MSGBOX_DEFAULT
 	
 	releaseall
 	end
@@ -217,7 +217,7 @@ BrineBeach_EventScript_Shelly::
 BrineBeach_EventScript_Brawly::
 	lock
 	faceplayer
-	msgbox BrineBeach_Text_Brawly3, MSGBOX_DEFAULT
+	msgbox BrineBeach_Text_Brawly_CouldYouTameTheGyarados, MSGBOX_DEFAULT
 	release
 	end
 
@@ -373,26 +373,26 @@ BrineBeach_Movement_Gyarados:
 BrineBeach_Text_Gyarados:
 	.string "Gyarados: Gyashaa!$"
 	
-BrineBeach_Text_Brawly1:
+BrineBeach_Text_Brawly_ThatWasImpressive:
 	.string "That was impressive! What's your name\n"
 	.string "again?\p"
 	.string "{PLAYER}? Thanks for taking care of\n"
 	.string "TEAM {AQUA}!\l"
 	.string "It was a close call.$"
 
-BrineBeach_Text_Brawly2:
+BrineBeach_Text_Brawly_GyaradosIsStillMad:
 	.string "That Gyarados is still super mad,\n"
 	.string "though.\p"
 	.string "It needs to be calmed down\n"
 	.string "before it busts the whole island.\p"
 	.string "My POKéMON are totally knocked out…$"
 	
-BrineBeach_Text_Brawly3:
+BrineBeach_Text_Brawly_CouldYouTameTheGyarados:
 	.string "{PLAYER}, could you tame the Gyarados?\n"
 	.string "The safety of the people of DEWFORD\l"
 	.string "depends on you!$"
 	
-BrineBeach_Text_Brawly4:
+BrineBeach_Text_Brawly_ThatWasQuiteAShow:
 	.string "Wow! That was quite a show!\p"
 	.string "Thank you for saving DEWFORD TOWN!\n"
 	.string "I have a feeling I'll see you later at\l"
@@ -400,12 +400,12 @@ BrineBeach_Text_Brawly4:
 	.string "Well, I gotta go to prepare for an epic\n"
 	.string "battle! I'm looking forward to it!$"
 	
-BrineBeach_Text_ShellyToBrawly:
+BrineBeach_Text_Shelly_ThatllShowYouNotToMeddle:
 	.string "SHELLY: There! That'll show you not to\n"
 	.string "meddle with TEAM {AQUA}'s business.\l"
 	.string "Now get out of my way.$"
 	
-BrineBeach_Text_Shelly1:
+BrineBeach_Text_Shelly_YourReputationPrecedesYou:
 	.string "Your name is {PLAYER}, right?\p"
 	.string "Your reputation precedes you.\p"
 	.string "I heard that you thwarted TEAM \n"
@@ -418,11 +418,11 @@ BrineBeach_Text_Shelly1:
 BrineBeach_Text_Shelly_Lose:	
 	.string "You're not an ordinary kid, are you?$"
 	
-BrineBeach_Text_Shelly2:
+BrineBeach_Text_Shelly_YoureNotWorthTheTrouble:
 	.string "You know what?\p"
-	.string "You're not worth the trouble.\p"
-	.string "We can cause mayhem without that big\n"
-	.string	"stupid "serpent anyway.\p"
+	.string "You're not worth the trouble.\n"
+	.string "We can cause mayhem without that big\l"
+	.string	"stupid serpent anyway.\p"
 	.string "Remember that the next time I see you,\n"
 	.string "I'm not going to be this nice!$"
 	
