@@ -425,7 +425,7 @@ BrineBeach_Text_Shelly_YoureNotWorthTheTrouble:
 	.string "I'm not going to be this nice!$"
 	
 BrineBeach_Text_AquaGrunt1_Intro:
-	.string "You tryna interfere with us?\"
+	.string "You tryna interfere with us?\n"
 	.string "Get lost, kid!$"
 
 BrineBeach_Text_AquaGrunt1_Lose:
