@@ -17,7 +17,7 @@ Route103_EventScript_CanGoEast:
 	setvar VAR_ROUTE103_STATE, 1
 	setobjectxyperm 24, 9, 8
 	setobjectxyperm 23, 7, 7
-	end		
+	end
 
 Route103_EventScript_Rival:: @ 81EC3C1
 // >
