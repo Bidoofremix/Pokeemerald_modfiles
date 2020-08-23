@@ -37,7 +37,7 @@
             "script": "BrineBeach_EventScript_Gyarados",
             "type": "trigger",
             "var": "VAR_BRINE_BEACH_STATE",
-            "var_value": "1",
+            "var_value": "2",
             "x": 44,
             "y": 11
         },
@@ -46,7 +46,7 @@
             "script": "BrineBeach_EventScript_Gyarados",
             "type": "trigger",
             "var": "VAR_BRINE_BEACH_STATE",
-            "var_value": "1",
+            "var_value": "2",
             "x": 44,
             "y": 12
         },
@@ -55,7 +55,7 @@
             "script": "BrineBeach_EventScript_Gyarados",
             "type": "trigger",
             "var": "VAR_BRINE_BEACH_STATE",
-            "var_value": "1",
+            "var_value": "2",
             "x": 44,
             "y": 13
         }
