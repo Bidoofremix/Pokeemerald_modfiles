@@ -11,6 +11,16 @@
             "width": 30
         },
         {
+            "blockdata_filepath": "data/layouts/SurfersHut/map.bin",
+            "border_filepath": "data/layouts/SurfersHut/border.bin",
+            "height": 9,
+            "id": "LAYOUT_SURFERS_HUT",
+            "name": "SurfersHut_Layout",
+            "primary_tileset": "gTileset_Building",
+            "secondary_tileset": "gTileset_GenericBuilding",
+            "width": 12
+        },
+        {
             "blockdata_filepath": "data/layouts/MysterySprings/map.bin",
             "border_filepath": "data/layouts/MysterySprings/border.bin",
             "height": 40,
