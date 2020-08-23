@@ -321,7 +321,6 @@ BrineBeach_Movement_Shelly1:
 BrineBeach_Movement_Shelly2:
 	delay_8
 	walk_right
-	walk_right
 	step_end
 	
 BrineBeach_Movement_Shelly3:
@@ -404,8 +403,9 @@ BrineBeach_Text_Brawly_ThatWasQuiteAShow:
 	.string "battle! I'm looking forward to it!$"
 	
 BrineBeach_Text_Shelly_ThatllShowYouNotToMeddle:
-	.string "SHELLY: There! That'll show you not to\n"
-	.string "meddle with TEAM {AQUA}'s business.\l"
+	.string "SHELLY: There!\p"
+	.string "That'll show you not to meddle with\n"
+	.string "TEAM {AQUA}'s business.\l"
 	.string "Now get out of my way.$"
 	
 BrineBeach_Text_Shelly_YourReputationPrecedesYou:

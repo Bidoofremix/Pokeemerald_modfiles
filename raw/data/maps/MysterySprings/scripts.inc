@@ -53,8 +53,8 @@ MysterySprings_Text_GreetingsChild:
 	.string "You have arrived at the MYSTERY\n"
 	.string "SPRINGS.\p"
 	.string "With powers conferred by this\n"
-	.string "enigmatic fountain, we can\l"
-	.string "change POKéMON's abilities.\p"
+	.string "enigmatic fountain, we can change\l"
+	.string "POKéMON's abilities.\p"
 	.string "To do so, a strong bond must exist\n"
 	.string "between the TRAINER and POKéMON.\p"
 	.string "Now…$"
@@ -63,8 +63,8 @@ MysterySprings_Text_Ability0::
 	.string "I admire POKéMON's first abilities.$"
 	
 MysterySprings_Text_Ability1::
-	.string "I find beauty in POKéMON's\n"
-	.string "second abilities.$"
+	.string "I find beauty in POKéMON's second\n"
+	.string "abilities.$"
 	
 MysterySprings_Text_Ability2::
 	.string "I have unlocked the secrets of\n"
