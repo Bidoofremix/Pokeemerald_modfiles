@@ -5,6 +5,11 @@
 .set LOCALID_GRUNT1, 4
 .set LOCALID_GRUNT2, 5
 .set LOCALID_GRUNT3, 6
+.set LOCALID_WINGULL1, 11
+.set LOCALID_WINGULL2, 12
+.set LOCALID_WINGULL3, 13
+.set LOCALID_WINGULL4, 14
+.set LOCALID_WINGULL5, 15
 
 // Brine Beach states:
 // 0: Shelly not defeated, Gyarados not defeated
@@ -47,6 +52,16 @@ BrineBeach_tmp::
 	
 BrineBeach_ShowGyarados::
 	clearflag FLAG_HIDE_GYARADOS
+	setobjectxyperm LOCALID_WINGULL1, 56, 5
+	setobjectmovementtype LOCALID_WINGULL1, MOVEMENT_TYPE_LOOK_AROUND
+	setobjectxyperm LOCALID_WINGULL2, 57, 5
+	setobjectmovementtype LOCALID_WINGULL2, MOVEMENT_TYPE_LOOK_AROUND
+	setobjectxyperm LOCALID_WINGULL3, 56, 7
+	setobjectmovementtype LOCALID_WINGULL3, MOVEMENT_TYPE_LOOK_AROUND
+	setobjectxyperm LOCALID_WINGULL4, 54, 6
+	setobjectmovementtype LOCALID_WINGULL4, MOVEMENT_TYPE_LOOK_AROUND
+	setobjectxyperm LOCALID_WINGULL5, 55, 6
+	setobjectmovementtype LOCALID_WINGULL5, MOVEMENT_TYPE_LOOK_AROUND
 	return
 	
 BrineBeach_EventScript_ControlWeather::
@@ -203,8 +218,8 @@ BrineBeach_EventScript_WonShelly::
 	fadescreen 0
 	delay 40
 	
-	// brawly to player
-	applymovement LOCALID_BRAWLY, BrineBeach_Movement_Brawly1
+	// player walks to brawly
+	applymovement LOCALID_BRAWLY, BrineBeach_Movement_WalkPlayerToBrawly
 	waitmovement 0
 	msgbox BrineBeach_Text_Brawly_ThatWasImpressive, MSGBOX_DEFAULT
 	closemessage
@@ -212,9 +227,10 @@ BrineBeach_EventScript_WonShelly::
 	// gyarados shouts
 	playmoncry SPECIES_GYARADOS, 2
 	delay 20
-	applymovement LOCALID_BRAWLY, BrineBeach_Movement_Brawly2
+	applymovement LOCALID_BRAWLY, BrineBeach_Movement_BrawlyLooksAtGyarados
 	waitmoncry
 	waitmovement 0
+	delay 40
 	
 	// brawly to player
 	msgbox BrineBeach_Text_Brawly_GyaradosIsStillMad, MSGBOX_DEFAULT
@@ -299,17 +315,21 @@ BrineBeach_EventScript_SurfersHut::
 	msgbox BrineBeach_Text_SurfersHut_Sign, MSGBOX_SIGN
 	end
 	
-BrineBeach_Movement_Brawly1:
-	face_right
+BrineBeach_Movement_WalkPlayerToBrawly:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	face_up
 	step_end
 	
-BrineBeach_Movement_Brawly2:
+BrineBeach_Movement_BrawlyLooksAtGyarados:
 	face_left
 	delay_16
 	delay_16
 	delay_16
 	delay_16
-	face_right
+	face_down
 	step_end
 	
 BrineBeach_Movement_Brawly3:
