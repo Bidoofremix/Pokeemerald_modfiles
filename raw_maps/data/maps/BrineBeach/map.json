@@ -6,6 +6,14 @@
     "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [
+        {
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "BrineBeach_EventScript_SurfersHut",
+            "type": "sign",
+            "x": 9,
+            "y": 12
+        }
     ],
     "connections": [
         {
@@ -15,6 +23,42 @@
         }
     ],
     "coord_events": [
+        {
+            "elevation": 0,
+            "script": "BrineBeach_EventScript_Shelly",
+            "type": "trigger",
+            "var": "VAR_0x8008",
+            "var_value": "1",
+            "x": 50,
+            "y": 11
+        },
+        {
+            "elevation": 0,
+            "script": "BrineBeach_EventScript_Gyarados",
+            "type": "trigger",
+            "var": "VAR_0x8000",
+            "var_value": "1",
+            "x": 44,
+            "y": 10
+        },
+        {
+            "elevation": 0,
+            "script": "BrineBeach_EventScript_Gyarados",
+            "type": "trigger",
+            "var": "VAR_0x8000",
+            "var_value": "1",
+            "x": 44,
+            "y": 11
+        },
+        {
+            "elevation": 0,
+            "script": "BrineBeach_EventScript_Gyarados",
+            "type": "trigger",
+            "var": "VAR_0x8000",
+            "var_value": "1",
+            "x": 44,
+            "y": 12
+        }
     ],
     "id": "MAP_BRINE_BEACH",
     "layout": "LAYOUT_BRINE_BEACH",
@@ -32,7 +76,7 @@
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 29,
+            "x": 31,
             "y": 9
         },
         {
@@ -41,7 +85,7 @@
             "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_F",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
@@ -54,12 +98,12 @@
             "graphics_id": "OBJ_EVENT_GFX_BRAWLY",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "NULL",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 47,
-            "y": 11
+            "x": 46,
+            "y": 10
         },
         {
             "elevation": 3,
@@ -69,10 +113,10 @@
             "movement_range_y": 0,
             "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "BrineBeach_EventScript_AquaGrunt_1",
-            "trainer_sight_or_berry_tree_id": "3",
+            "trainer_sight_or_berry_tree_id": "2",
             "trainer_type": "1",
-            "x": 64,
-            "y": 22
+            "x": 47,
+            "y": 19
         },
         {
             "elevation": 3,
@@ -80,12 +124,12 @@
             "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_F",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "movement_type": "MOVEMENT_TYPE_FACE_UP",
             "script": "BrineBeach_EventScript_AquaGrunt_2",
-            "trainer_sight_or_berry_tree_id": "2",
+            "trainer_sight_or_berry_tree_id": "1",
             "trainer_type": "1",
-            "x": 46,
-            "y": 19
+            "x": 31,
+            "y": 27
         },
         {
             "elevation": 3,
@@ -93,12 +137,64 @@
             "graphics_id": "OBJ_EVENT_GFX_AQUA_MEMBER_M",
             "movement_range_x": 0,
             "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_UP",
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
             "script": "BrineBeach_EventScript_AquaGrunt_3",
-            "trainer_sight_or_berry_tree_id": "1",
+            "trainer_sight_or_berry_tree_id": "3",
+            "trainer_type": "1",
+            "x": 41,
+            "y": 13
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "OBJ_EVENT_GFX_GIRL_3",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_ROTATE_COUNTERCLOCKWISE",
+            "script": "BrineBeach_EventScript_KarateGirl",
+            "trainer_sight_or_berry_tree_id": "3",
+            "trainer_type": "1",
+            "x": 77,
+            "y": 6
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "OBJ_EVENT_GFX_PIKACHU",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "BrineBeach_EventScript_Pikachu",
+            "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "0",
-            "x": 31,
-            "y": 27
+            "x": 63,
+            "y": 22
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+            "script": "BrineBeach_EventScript_PikachuTrainer",
+            "trainer_sight_or_berry_tree_id": "1",
+            "trainer_type": "1",
+            "x": 64,
+            "y": 22
+        },
+        {
+            "elevation": 3,
+            "flag": "0",
+            "graphics_id": "OBJ_EVENT_GFX_FISHERMAN",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+            "script": "BrineBeach_EventScript_Fisherman",
+            "trainer_sight_or_berry_tree_id": "0",
+            "trainer_type": "1",
+            "x": 17,
+            "y": 18
         }
     ],
     "region_map_section": "MAPSEC_BRINE_BEACH",

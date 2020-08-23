@@ -54,12 +54,12 @@ BrineBeach_EventScript_Gyarados::
 	
 	// walk to place
 	getplayerxy VAR_TEMP_0, VAR_TEMP_1
-	compare VAR_TEMP_1, 9
-	call_if_eq BrineBeach_EventScript_Movement_y9
 	compare VAR_TEMP_1, 10
 	call_if_eq BrineBeach_EventScript_Movement_y10
 	compare VAR_TEMP_1, 11
 	call_if_eq BrineBeach_EventScript_Movement_y11
+	compare VAR_TEMP_1, 12
+	call_if_eq BrineBeach_EventScript_Movement_y12
 	
 	delay 40	
 	applymovement LOCALID_BRAWLY, BrineBeach_Movement_Brawly3
@@ -88,7 +88,7 @@ BrineBeach_EventScript_Gyarados::
 	msgbox BrineBeach_Text_Gyarados, MSGBOX_DEFAULT
 	closemessage
 	delay 40
-	setwildbattle SPECIES_GYARADOS, 30, ITEM_NONE
+	setwildbattle SPECIES_GYARADOS, 25, ITEM_NONE
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	
 	//dowildbattle
@@ -220,11 +220,6 @@ BrineBeach_EventScript_Brawly::
 	release
 	end
 
-BrineBeach_EventScript_Movement_y9::
-	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_y9
-	waitmovement 0
-	return	
-	
 BrineBeach_EventScript_Movement_y10::
 	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_y10
 	waitmovement 0
@@ -232,6 +227,11 @@ BrineBeach_EventScript_Movement_y10::
 	
 BrineBeach_EventScript_Movement_y11::
 	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_y11
+	waitmovement 0
+	return	
+	
+BrineBeach_EventScript_Movement_y12::
+	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_y12
 	waitmovement 0
 	return
 	
@@ -327,20 +327,9 @@ BrineBeach_Movement_Shelly3:
 	delay_16
 	step_end
 	
-BrineBeach_Movement_y9:
-	walk_left
-	walk_left
-	walk_up
-	walk_up
-	walk_left
-	walk_left
-	walk_in_place_left
-	step_end
-	
 BrineBeach_Movement_y10:
 	walk_left
 	walk_left
-	walk_up
 	walk_up
 	walk_up
 	walk_left
@@ -349,6 +338,17 @@ BrineBeach_Movement_y10:
 	step_end
 	
 BrineBeach_Movement_y11:
+	walk_left
+	walk_left
+	walk_up
+	walk_up
+	walk_up
+	walk_left
+	walk_left
+	walk_in_place_left
+	step_end
+	
+BrineBeach_Movement_y12:
 	walk_left
 	walk_left
 	walk_up
@@ -443,7 +443,8 @@ BrineBeach_Text_AquaGrunt2_Lose:
 	.string "What the…?$"
 		
 BrineBeach_Text_AquaGrunt2:
-	.string "I'd sell my soul for a pair of dry socks.$"
+	.string "I'd sell my soul for a pair of\n"
+	.string "dry socks…$"
 
 BrineBeach_Text_AquaGrunt3_Intro:
 	.string "I'm one good victory away from applying\n"
