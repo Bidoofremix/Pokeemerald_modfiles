@@ -35,7 +35,7 @@ BrineBeach_OnTransition::
 	call_if_eq BrineBeach_EventScript_SetShellyCoordinates
 	end
 
-call_if_eq BrineBeach_EventScript_SetShellyCoordinates::
+BrineBeach_EventScript_SetShellyCoordinates::
 	setobjectxyperm LOCALID_SHELLY, 49, 12
 	turnobject LOCALID_SHELLY, DIR_EAST
 	end
