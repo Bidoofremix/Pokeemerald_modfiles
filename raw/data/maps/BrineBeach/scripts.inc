@@ -315,6 +315,10 @@ BrineBeach_EventScript_SurfersHut::
 	msgbox BrineBeach_Text_SurfersHut_Sign, MSGBOX_SIGN
 	end
 	
+BrineBeach_Movement_Brawly1:
+	face_right
+	step_end
+	
 BrineBeach_Movement_WalkPlayerToBrawly:
 	walk_left
 	walk_left
