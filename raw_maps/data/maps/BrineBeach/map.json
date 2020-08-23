@@ -27,8 +27,8 @@
             "elevation": 0,
             "script": "BrineBeach_EventScript_Shelly",
             "type": "trigger",
-            "var": "VAR_0x8008",
-            "var_value": "1",
+            "var": "VAR_BRINE_BEACH_STATE",
+            "var_value": "0",
             "x": 50,
             "y": 12
         },
@@ -36,7 +36,7 @@
             "elevation": 0,
             "script": "BrineBeach_EventScript_Gyarados",
             "type": "trigger",
-            "var": "VAR_0x8000",
+            "var": "VAR_BRINE_BEACH_STATE",
             "var_value": "1",
             "x": 44,
             "y": 11
@@ -45,7 +45,7 @@
             "elevation": 0,
             "script": "BrineBeach_EventScript_Gyarados",
             "type": "trigger",
-            "var": "VAR_0x8000",
+            "var": "VAR_BRINE_BEACH_STATE",
             "var_value": "1",
             "x": 44,
             "y": 12
@@ -54,7 +54,7 @@
             "elevation": 0,
             "script": "BrineBeach_EventScript_Gyarados",
             "type": "trigger",
-            "var": "VAR_0x8000",
+            "var": "VAR_BRINE_BEACH_STATE",
             "var_value": "1",
             "x": 44,
             "y": 13

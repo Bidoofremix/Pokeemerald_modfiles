@@ -6,6 +6,11 @@
 .set LOCALID_GRUNT2, 5
 .set LOCALID_GRUNT3, 6
 
+// Brine Beach states:
+// 0: Team Aqua not defeated, Gyarados not defeated
+// 1: Team Aqua defeated, Gyarados not defeated
+// 2: Team Aqua defeated, Gyarados defeated
+
 BrineBeach_MapScripts::
 	map_script MAP_SCRIPT_ON_RESUME, BrineBeach_OnResume
 	map_script MAP_SCRIPT_ON_TRANSITION, BrineBeach_OnTransition
@@ -24,7 +29,6 @@ SilentForest_Mapscript_CtrlObj::
 	
 BrineBeach_OnTransition::
 	call BrineBeach_EventScript_ControlWeather
-	call BrineBeach_EventScript_ControlAqua
 	call_if_unset FLAG_DEFEATED_GYARADOS, BrineBeach_ShowGyarados
 	end
 
@@ -40,18 +44,9 @@ BrineBeach_ShowGyarados::
 BrineBeach_EventScript_ControlWeather::
 	goto_if_unset FLAG_DEFEATED_GYARADOS BrineBeach_EventScript_HeavyRain
 	return
-
-BrineBeach_EventScript_ControlAqua::
-	goto_if_unset FLAG_HIDE_BRINE_BEACH_TEAM_AQUA BrineBeach_EventScript_ShowAqua
-	return
 	
 BrineBeach_EventScript_HeavyRain::
 	setweather WEATHER_RAIN_THUNDERSTORM
-	setvar VAR_0x8000, 1
-	return
-	
-BrineBeach_EventScript_ShowAqua::
-	setvar VAR_0x8008, 1
 	return
 	
 BrineBeach_EventScript_Gyarados::
@@ -116,7 +111,7 @@ BrineBeach_EventScript_Gyarados::
 BrineBeach_EventScript_DefeatedGyarados::
 
 	// remove gyarados sprite
-	setvar VAR_0x8000, 0
+	setvar BRINE_BEACH_STATE, 2
 	fadescreenswapbuffers 1
 	//fadescreen 1
 	removeobject LOCALID_GYARADOS
@@ -181,7 +176,7 @@ BrineBeach_EventScript_Shelly::
 	removeobject LOCALID_GRUNT1
 	removeobject LOCALID_GRUNT2
 	removeobject LOCALID_GRUNT3
-	setvar 0x8008, 0
+	setvar BRINE_BEACH_STATE, 1
 	delay 20
 	fadescreen 0
 	delay 40
