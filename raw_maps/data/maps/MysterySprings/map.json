@@ -13,7 +13,7 @@
     "id": "MAP_MYSTERY_SPRINGS",
     "layout": "LAYOUT_MYSTERY_SPRINGS",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_HIGHTOWN",
+    "music": "MUS_DAN03",
     "name": "MysterySprings",
     "object_events": [
     ],
@@ -26,7 +26,7 @@
             "dest_warp_id": 0,
             "elevation": 0,
             "x": 10,
-            "y": 18
+            "y": 25
         }
     ],
     "weather": "WEATHER_NONE"

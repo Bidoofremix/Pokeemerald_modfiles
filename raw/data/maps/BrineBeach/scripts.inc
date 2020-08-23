@@ -28,6 +28,11 @@ BrineBeach_OnTransition::
 	call_if_unset FLAG_DEFEATED_GYARADOS, BrineBeach_ShowGyarados
 	end
 
+BrineBeach_tmp::
+	// DewfordTown_PokemonCenter_1F_EventScript_Man
+	warp MAP_DEWFORD_TOWN, 255, 2, 12
+	end
+	
 BrineBeach_ShowGyarados::
 	clearflag FLAG_HIDE_GYARADOS
 	end
@@ -54,12 +59,12 @@ BrineBeach_EventScript_Gyarados::
 	
 	// walk to place
 	getplayerxy VAR_TEMP_0, VAR_TEMP_1
-	compare VAR_TEMP_1, 10
-	call_if_eq BrineBeach_EventScript_Movement_y10
 	compare VAR_TEMP_1, 11
 	call_if_eq BrineBeach_EventScript_Movement_y11
 	compare VAR_TEMP_1, 12
 	call_if_eq BrineBeach_EventScript_Movement_y12
+	compare VAR_TEMP_1, 13
+	call_if_eq BrineBeach_EventScript_Movement_y13
 	
 	delay 40	
 	applymovement LOCALID_BRAWLY, BrineBeach_Movement_Brawly3
@@ -220,11 +225,6 @@ BrineBeach_EventScript_Brawly::
 	release
 	end
 
-BrineBeach_EventScript_Movement_y10::
-	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_y10
-	waitmovement 0
-	return	
-	
 BrineBeach_EventScript_Movement_y11::
 	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_y11
 	waitmovement 0
@@ -232,6 +232,11 @@ BrineBeach_EventScript_Movement_y11::
 	
 BrineBeach_EventScript_Movement_y12::
 	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_y12
+	waitmovement 0
+	return	
+	
+BrineBeach_EventScript_Movement_y13::
+	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_y13
 	waitmovement 0
 	return
 	
@@ -327,20 +332,9 @@ BrineBeach_Movement_Shelly3:
 	delay_16
 	step_end
 	
-BrineBeach_Movement_y10:
-	walk_left
-	walk_left
-	walk_up
-	walk_up
-	walk_left
-	walk_left
-	walk_in_place_left
-	step_end
-	
 BrineBeach_Movement_y11:
 	walk_left
 	walk_left
-	walk_up
 	walk_up
 	walk_up
 	walk_left
@@ -349,6 +343,17 @@ BrineBeach_Movement_y11:
 	step_end
 	
 BrineBeach_Movement_y12:
+	walk_left
+	walk_left
+	walk_up
+	walk_up
+	walk_up
+	walk_left
+	walk_left
+	walk_in_place_left
+	step_end
+	
+BrineBeach_Movement_y13:
 	walk_left
 	walk_left
 	walk_up
@@ -472,7 +477,7 @@ BrineBeach_Text_Pikachu:
 	.string "Pikachu: Chu-pikaa!$"
 
 BrineBeach_Text_KarateGirl_Intro:
-	.string "Training at the sea heightens the\l"
+	.string "Training at the sea heightens the\n"
 	.string "senses of the body and soul!$"
 	
 BrineBeach_Text_KarateGirl_Loss:
