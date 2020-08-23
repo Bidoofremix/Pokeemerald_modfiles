@@ -24,9 +24,27 @@ static void DisplayPartyPokemonBarDetail(u8, const u8*, u8, const u8*);
 < //
 static void DisplayPartyPokemonDataToTeachMove(u8 slot, u16 item, u8 tutor)
 {
-	if (gSpecialVar_0x800B == 1)
+	// postdoc tutor
+	//if (gSpecialVar_0x800B == 1)
+	if (gSpecialVar_0x800B == MODE_MOVE_TUTOR_POSTDOC)
 	{
 		switch (CanMonLearnPostDocTutor(&gPlayerParty[slot], tutor))
+		{
+		case CANNOT_LEARN_MOVE:
+		case CANNOT_LEARN_MOVE_IS_EGG:
+			DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_NOT_ABLE_2);
+			break;
+		case ALREADY_KNOWS_MOVE:
+			DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_LEARNED);
+			break;
+		default:
+			DisplayPartyPokemonDescriptionData(slot, PARTYBOX_DESC_ABLE_2);
+			break;
+		}
+	}
+	else if (gSpecialVar_0x800B == MODE_MOVE_TUTOR_SURFER)
+	{
+		switch (CanMonLearnSurferTutor(&gPlayerParty[slot], tutor))
 		{
 		case CANNOT_LEARN_MOVE:
 		case CANNOT_LEARN_MOVE_IS_EGG:
@@ -166,6 +184,33 @@ static u8 CanMonLearnPostDocTutor(struct Pokemon *mon, u16 move)
 	{
 		if (move == sHatchedEggLevelUpMoves[n])
 			return CAN_LEARN_MOVE;
+	}
+	
+	return CANNOT_LEARN_MOVE;
+}
+
+static u8 CanMonLearnSurferTutor(struct Pokemon *mon, u16 move)
+{
+    u16 species = GetMonData(mon, MON_DATA_SPECIES, 0);
+	
+	if (GetMonData(mon, MON_DATA_IS_EGG))
+    {
+		return CANNOT_LEARN_MOVE_IS_EGG;
+	}
+	
+	else
+	{
+		if (species == SPECIES_PICHU || species == SPECIES_PIKACHU || species == SPECIES_RAICHU || species == SPECIES_ALOLAN_RAICHU)
+		{
+			if (MonKnowsMove(mon, move) == TRUE)
+            {
+        		return ALREADY_KNOWS_MOVE;
+        	}
+			else
+			{
+				return CAN_LEARN_MOVE;
+			}
+		}
 	}
 	
 	return CANNOT_LEARN_MOVE;

@@ -80,7 +80,8 @@ RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach::
 	// teach the move
 	// set VAR_0x800B to 1 for special mode in 
 	// TryTutorSelectedMon and DisplayPartyPokemonDataToTeachMove
-	setvar VAR_0x800B, 1
+	//setvar VAR_0x800B, 1
+	setvar VAR_0x800B, MODE_MOVE_TUTOR_POSTDOC
 	call MoveTutor_EventScript_OpenPartyMenu
 	
 	// more dialogue here
