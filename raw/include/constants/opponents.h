@@ -12,8 +12,9 @@
 #define TRAINER_TYCHO                       860
 #define TRAINER_CADEN                       861
 #define TRAINER_CHEVIS                      862
+#define TRAINER_SHELLY_BRINE_BEACH          863
 
-#define TRAINERS_COUNT                      863
+#define TRAINERS_COUNT                      864
 #define MAX_TRAINERS_COUNT                  1000
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

@@ -125,5 +125,19 @@
         .party = {.NoItemDefaultMoves = sParty_Chevis},
     },
 	
+	[TRAINER_SHELLY_BRINE_BEACH] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_AQUA_ADMIN,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_AQUA,
+        .trainerPic = TRAINER_PIC_AQUA_ADMIN_F,
+        .trainerName = _("SHELLY"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = ARRAY_COUNT(sParty_ShellyBrineBeach),
+        .party = {.NoItemDefaultMoves = sParty_ShellyBrineBeach},
+    },
+	
     [TRAINER_SAWYER_1] =
 // >

@@ -64,6 +64,19 @@ static const struct TrainerMonNoItemDefaultMoves sParty_GruntBrineBeach3[] = {
     }
 };
 
+static const struct TrainerMonNoItemDefaultMoves sParty_ShellyBrineBeach[] = {
+    {
+    .iv = 50,
+    .lvl = 25,
+    .species = SPECIES_CROCONAW,
+    },
+    {
+    .iv = 50,
+    .lvl = 24,
+    .species = SPECIES_NIDORINA,
+    }
+};
+
 static const struct TrainerMonNoItemCustomMoves sParty_Tycho[] = {
 	{
     .iv = 0,

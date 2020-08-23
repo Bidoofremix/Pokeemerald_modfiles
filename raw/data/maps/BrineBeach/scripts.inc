@@ -111,7 +111,7 @@ BrineBeach_EventScript_Gyarados::
 BrineBeach_EventScript_DefeatedGyarados::
 
 	// remove gyarados sprite
-	setvar BRINE_BEACH_STATE, 2
+	setvar VAR_BRINE_BEACH_STATE, 2
 	fadescreenswapbuffers 1
 	//fadescreen 1
 	removeobject LOCALID_GYARADOS
@@ -159,7 +159,7 @@ BrineBeach_EventScript_Shelly::
 	waitmovement 0
 	
 	// battle
-	//trainerbattle_no_intro TRAINER_SHELLY_3, BrineBeach_Text_Shelly_Lose
+	trainerbattle_no_intro TRAINER_SHELLY_BRINE_BEACH, BrineBeach_Text_Shelly_Lose
 	
 	// shelly departs
 	delay 40
@@ -176,7 +176,7 @@ BrineBeach_EventScript_Shelly::
 	removeobject LOCALID_GRUNT1
 	removeobject LOCALID_GRUNT2
 	removeobject LOCALID_GRUNT3
-	setvar BRINE_BEACH_STATE, 1
+	setvar VAR_BRINE_BEACH_STATE, 1
 	delay 20
 	fadescreen 0
 	delay 40
