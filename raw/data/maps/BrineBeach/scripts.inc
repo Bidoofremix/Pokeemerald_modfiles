@@ -37,8 +37,8 @@ BrineBeach_OnTransition::
 
 BrineBeach_EventScript_SetShellyCoordinates::
 	setobjectxyperm LOCALID_SHELLY, 49, 12
-	turnobject LOCALID_SHELLY, DIR_EAST
-	end
+	setobjectmovementtype LOCALID_SHELLY, MOVEMENT_TYPE_FACE_RIGHT
+	return
 	
 BrineBeach_tmp::
 	// DewfordTown_PokemonCenter_1F_EventScript_Man
@@ -47,7 +47,7 @@ BrineBeach_tmp::
 	
 BrineBeach_ShowGyarados::
 	clearflag FLAG_HIDE_GYARADOS
-	end
+	return
 	
 BrineBeach_EventScript_ControlWeather::
 	goto_if_unset FLAG_DEFEATED_GYARADOS BrineBeach_EventScript_HeavyRain
@@ -117,7 +117,6 @@ BrineBeach_EventScript_Gyarados::
 	end
 	
 BrineBeach_EventScript_DefeatedGyarados::
-
 	// remove gyarados sprite
 	setvar VAR_BRINE_BEACH_STATE, 3
 	fadescreenswapbuffers 1
@@ -176,7 +175,7 @@ BrineBeach_EventScript_Shelly::
 
 BrineBeach_EventScript_ShellyRematch::
 	lockall
-	playbmg MUS_AQA_0, 0
+	playbgm MUS_AQA_0, 0
 	faceplayer
 	msgbox BrineBeach_Text_Shelly_YouWantToGetToThatGyarados, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_SHELLY_BRINE_BEACH, BrineBeach_Text_Shelly_Lose
