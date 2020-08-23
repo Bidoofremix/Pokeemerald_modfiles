@@ -18,6 +18,7 @@ EWRAM_DATA static u16 sHatchedEggEggMoves[EGG_MOVES_ARRAY_COUNT] = {0};
 < //
 static u8 CanMonLearnTMTutor(struct Pokemon *, u16, u8);
 static u8 CanMonLearnPostDocTutor(struct Pokemon *, u16);
+static u8 CanMonLearnSurferTutor(struct Pokemon *, u16);
 static void DisplayPartyPokemonBarDetail(u8, const u8*, u8, const u8*);
 // >
 

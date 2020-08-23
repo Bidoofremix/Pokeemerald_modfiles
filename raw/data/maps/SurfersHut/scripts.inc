@@ -9,22 +9,26 @@ SurfersHut_EventScript_Surfer::
 	call_if_unset FLAG_INTRODUCED_SURFER_TUTOR, SurfersHut_EventScript_IntroduceSurfer
 	call_if_set FLAG_INTRODUCED_SURFER_TUTOR, SurfersHut_EventScript_ICanTeachSurf
 	switch VAR_RESULT
-	case YES, RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach
-	case NO, RustboroCity_University_EventScript_PostDoc_ComeAgain
+	case YES, SurfersHut_EventScript_TeachSurf
+	case NO, SurfersHut_EventScript_Cancel
 	release
 	end
 	
 SurfersHut_EventScript_IntroduceSurfer::	
 	msgbox SurfersHut_Text_HowzitBrah, MSGBOX_YESNO
-	end
+	return
+	
+SurfersHut_EventScript_ICanTeachSurf::
+	msgbox SurfersHut_Text_ICanTeachSurf, MSGBOX_YESNO
+	return
 	
 SurfersHut_EventScript_TeachSurf::
 	setvar VAR_0x800B, MODE_MOVE_TUTOR_SURFER
-	setvar VAR_0x8005, TUTOR_MOVE_SURF
+	setvar VAR_0x8005, MOVE_SURF
 	call MoveTutor_EventScript_OpenPartyMenu
 	compare VAR_RESULT, 0
-	goto_if_eq SurfersHut_EventScript_LearnedSurf
-	goto MoveTutor_EventScript_SwaggerTaught
+	goto_if_eq SurfersHut_EventScript_Cancel
+	goto SurfersHut_EventScript_LearnedSurf
 	end
 	
 SurfersHut_EventScript_Cancel::
@@ -81,7 +85,7 @@ SurfersHut_EventScript_Pikachu2::
 	playmoncry SPECIES_PIKACHU, 0
 	msgbox SurfersHut_Text_Pikachu2, MSGBOX_AUTOCLOSE
 	release
-	end	
+	end
 	
 SurfersHut_Text_Pikachu1:
 	.string "PIKACHU: Pipipi?"
