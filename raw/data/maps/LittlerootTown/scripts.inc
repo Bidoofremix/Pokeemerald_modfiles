@@ -95,7 +95,7 @@ Text_ICanChangeThisMonsAbilityTo:
 Text_DoneThisMonsAbilityIs:
 	.string "Done! This POKéMON's Ability was\n"
 	.string "changed to {STR_VAR_2}.\p"
-	.string "A good choice, if I may say so!$"
+	.string "A good choice, if I may say so.$"
 
 Text_ComeBackToMeIfYouChangeYourMind:
 	.string "Huh? You don't want to change the\n"
