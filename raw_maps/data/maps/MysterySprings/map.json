@@ -1,0 +1,33 @@
+{
+    "allow_bike": false,
+    "allow_cycling": "",
+    "allow_escape_rope": false,
+    "allow_escaping": "",
+    "allow_running": false,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_MYSTERY_SPRINGS",
+    "layout": "LAYOUT_MYSTERY_SPRINGS",
+    "map_type": "MAP_TYPE_INDOOR",
+    "music": "MUS_HIGHTOWN",
+    "name": "MysterySprings",
+    "object_events": [
+    ],
+    "region_map_section": "MAPSEC_BRINE_BEACH",
+    "requires_flash": false,
+    "show_map_name": false,
+    "warp_events": [
+        {
+            "dest_map": "MAP_BRINE_BEACH",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 10,
+            "y": 18
+        }
+    ],
+    "weather": "WEATHER_NONE"
+}

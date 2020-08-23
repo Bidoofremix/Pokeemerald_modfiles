@@ -201,6 +201,13 @@
     "requires_flash": false,
     "show_map_name": true,
     "warp_events": [
+        {
+            "dest_map": "MAP_MYSTERY_SPRINGS",
+            "dest_warp_id": 0,
+            "elevation": 0,
+            "x": 52,
+            "y": 2
+        }
     ],
     "weather": "WEATHER_SUNNY"
 }
