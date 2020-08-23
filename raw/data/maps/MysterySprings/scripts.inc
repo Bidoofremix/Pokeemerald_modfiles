@@ -52,12 +52,11 @@ MysterySprings_Text_GreetingsChild:
 	.string "Greetings, child!\p"
 	.string "You have arrived at the MYSTERY\n"
 	.string "SPRINGS.\p"
-	.string "By using the powers conferred by\n"
-	.string "this enigmatic fountain, we can\l"
+	.string "With powers conferred by this\n"
+	.string "enigmatic fountain, we can\l"
 	.string "change POKéMON's abilities.\p"
 	.string "To do so, a strong bond must exist\n"
-	.string "between the TRAINER and their\l"
-	.string "POKéMON.\l"
+	.string "between the TRAINER and POKéMON.\p"
 	.string "Now…$"
 	
 MysterySprings_Text_Ability0::
@@ -101,12 +100,12 @@ MysterySprings_EventScript_CancelChangeAbility::
 	end
 	
 MysterySprings_Text_MonsAbilityIs::
-	.string "{STR_VAR_1}'s current ability is\n"
+	.string "{STR_VAR_1}'s current ability is…\n"
 	.string "{STR_VAR_3}.$"
 	
 MysterySprings_Text_IWontChangeThisMonsAbility:
-	.string "That is a fabulous Ability. I won't\n"
-	.string "change it!$"
+	.string "That is a fabulous Ability.\n"
+	.string "I won't change it!$"
 	
 MysterySprings_Text_ICannotChangeThisMonsAbility:
 	.string "Huh?\p"
