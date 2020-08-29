@@ -17,7 +17,22 @@
 			//MulModifier(&modifier, UQ_4_12(1.5));
            MulModifier(&modifier, UQ_4_12(1.3));
         break;
+	case ABILITY_PUNK_ROCK:
+		if (gBattleMoves[move].flags & FLAG_SOUND)
+			MulModifier(&modifier, UQ_4_12(1.3));
+		break;
     case ABILITY_MEGA_LAUNCHER:
+// >
+
+< //
+    case ABILITY_DRY_SKIN:
+        if (moveType == TYPE_FIRE)
+            MulModifier(&modifier, UQ_4_12(1.25));
+        break;
+	case ABILITY_PUNK_ROCK:
+		if (gBattleMoves[move].flags & FLAG_SOUND)
+			MulModifier(&modifier, UQ_4_12(0.5));
+    case ABILITY_FLUFFY:
 // >
 
 < //
