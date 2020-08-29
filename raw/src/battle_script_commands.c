@@ -111,10 +111,10 @@ static void Cmd_getexp(void)
                     viaExpShare++;
             }
 
-            //calculatedExp = gBaseStats[gBattleMons[gBattlerFainted].species].expYield * gBattleMons[gBattlerFainted].level / 7;
+            calculatedExp = gBaseStats[gBattleMons[gBattlerFainted].species].expYield * gBattleMons[gBattlerFainted].level / 7;
 
 			// scaled exp part 1
-            calculatedExp = gBaseStats[gBattleMons[gBattlerFainted].species].expYield * gBattleMons[gBattlerFainted].level / 5;
+            //calculatedExp = gBaseStats[gBattleMons[gBattlerFainted].species].expYield * gBattleMons[gBattlerFainted].level / 5;
 
             if (viaExpShare) // at least one mon is getting exp via exp share
             {
@@ -187,8 +187,8 @@ static void Cmd_getexp(void)
                         gBattleMoveDamage += gExpShareExp;
 					
 					// scaled exp part 2
-					gBattleMoveDamage = gBattleMoveDamage * (cubed(2*gBattleMons[gBattlerFainted].level + 10) / \
-					    cubed(gBattleMons[gBattlerFainted].level + GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) + 10) ) + 1;
+					//gBattleMoveDamage = gBattleMoveDamage * (cubed(2*gBattleMons[gBattlerFainted].level + 10) / \
+					//    cubed(gBattleMons[gBattlerFainted].level + GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) + 10) ) + 1;
 						
 					// unevolved pokemon boost
 					if (gEvolutionTable[GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPECIES)][0].method == EVO_LEVEL \
