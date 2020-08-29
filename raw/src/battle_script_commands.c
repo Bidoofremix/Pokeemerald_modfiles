@@ -24,6 +24,120 @@
 // >
 
 < //
+static const u8 sPickupProbabilities[] =
+{
+    30, 40, 50, 60, 70, 80, 90, 94, 98
+};
+
+static const u16 sBonanzaItems[] =
+{
+    ITEM_SUPER_POTION,
+    ITEM_FULL_HEAL,
+    ITEM_HYPER_POTION,
+    ITEM_GREAT_BALL,
+    ITEM_SUPER_REPEL,
+    ITEM_ESCAPE_ROPE,
+    ITEM_MAX_REPEL,
+    ITEM_REVIVE,
+    ITEM_ULTRA_BALL,
+    ITEM_MAX_POTION,
+    ITEM_RARE_CANDY,
+    ITEM_PROTEIN,
+    ITEM_MAX_REVIVE,
+    ITEM_HP_UP,
+    ITEM_FULL_RESTORE,
+    ITEM_MAX_REVIVE,
+    ITEM_PP_MAX,
+    ITEM_MAX_ELIXIR,
+};
+
+static const u16 sRareBonanzaItems[] =
+{
+    ITEM_MAX_POTION,
+    ITEM_NUGGET,
+    ITEM_KINGS_ROCK,
+    ITEM_FULL_RESTORE,
+    ITEM_DUSK_STONE,
+    ITEM_RAZOR_CLAW,
+    ITEM_DAWN_STONE,
+    ITEM_ICE_STONE,
+    ITEM_SHINY_STONE,
+    ITEM_LEFTOVERS,
+    ITEM_MASTER_BALL,
+};
+static const u8 sTerrainToType[] =
+// >
+
+< //
+            lvlDivBy10 = (GetMonData(&gPlayerParty[i], MON_DATA_LEVEL)-1) / 10; //Moving this here makes it easier to add in abilities like Honey Gather
+            if (lvlDivBy10 > 9)
+                lvlDivBy10 = 9;
+
+			// with the addition of hidden abilities, nums 0, 1 and 2 exist
+            if (GetMonData(&gPlayerParty[i], MON_DATA_ABILITY_NUM) == 2)
+			{
+                ability = gBaseStats[species].abilityHidden;
+			}
+            else if (GetMonData(&gPlayerParty[i], MON_DATA_ABILITY_NUM) == 1)
+			{
+                ability = gBaseStats[species].abilities[1];
+			}
+			else
+			{
+				ability = gBaseStats[species].abilities[0];
+			}
+
+            if (ability == ABILITY_PICKUP
+                && species != 0
+                && species != SPECIES_EGG
+                && heldItem == ITEM_NONE
+                && (Random() % 10) == 0)
+            {
+                s32 j;
+                s32 rand = Random() % 100;
+
+                for (j = 0; j < (int)ARRAY_COUNT(sPickupProbabilities); j++)
+                {
+                    if (sPickupProbabilities[j] > rand)
+                    {
+                        SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &sPickupItems[lvlDivBy10 + j]);
+                        break;
+                    }
+                    else if (rand == 99 || rand == 98)
+                    {
+                        SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &sRarePickupItems[lvlDivBy10 + (99 - rand)]);
+                        break;
+                    }
+                }
+            }
+			else if (ability == ABILITY_BONANZA
+                && species != 0
+                && species != SPECIES_EGG
+                && heldItem == ITEM_NONE
+                && (Random() % 10) == 0)
+            {
+                s32 j;
+                s32 rand = Random() % 100;
+
+                for (j = 0; j < (int)ARRAY_COUNT(sPickupProbabilities); j++)
+                {
+                    if (sPickupProbabilities[j] > rand)
+                    {
+                        SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &sBonanzaItems[lvlDivBy10 + j]);
+                        break;
+                    }
+                    else if (rand == 99 || rand == 98)
+                    {
+                        SetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM, &sRareBonanzaItems[lvlDivBy10 + (99 - rand)]);
+                        break;
+                    }
+                }
+            }
+            #if (defined ITEM_HONEY)
+            else if (ability == ABILITY_HONEY_GATHER
+// >
+
+< //
             case ITEM_QUICK_BALL:
                 if (gBattleResults.battleTurnCounter == 0)
                     ballMultiplier = 40;
