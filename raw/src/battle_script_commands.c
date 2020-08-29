@@ -45,43 +45,15 @@ static const struct OamData sOamData_MonIconOnLvlUpBox =
 
 < //
 static void Cmd_jumpbasedontype(void);
-static float EXP(float y);
-static float LOG(float y);
-static float POW(float b, float p);
+static float cubed(float y);
 static void Cmd_getexp(void);
 // >
 
 < //
 static void Cmd_getexp(void)
-#Rfloat EXP(float y)
+#Rfloat cubed(float y)
 {
-  union
-  {
-	float d;
-	struct
-	{
-#ifdef LITTLE_ENDIAN
-	  short j, i;
-#else
-	  short i, j;
-#endif
-	} n;
-  } eco;
-  eco.n.i = EXP_A*(y) + (EXP_C);
-  eco.n.j = 0;
-  return eco.d;
-}
-
-float LOG(float y)
-{
-  int * nTemp = (int*)&y;
-  y = (*nTemp) >> 16;
-  return (y - EXP_C) / EXP_A;
-}
-
-float POW(float b, float p)
-{
-  return EXP(LOG(b) * p);
+  return y*y*y;
 }
 
 static void Cmd_getexp(void)
@@ -215,13 +187,13 @@ static void Cmd_getexp(void)
                         gBattleMoveDamage += gExpShareExp;
 					
 					// scaled exp part 2
-					gBattleMoveDamage = gBattleMoveDamage * ( POW((2*gBattleMons[gBattlerFainted].level + 10), 2.5) / \
-					    POW((gBattleMons[gBattlerFainted].level + GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) + 10), 2.5) ) + 1;
+					gBattleMoveDamage = gBattleMoveDamage * (cubed(2*gBattleMons[gBattlerFainted].level + 10) / \
+					    cubed(gBattleMons[gBattlerFainted].level + GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) + 10) ) + 1;
 						
 					// unevolved pokemon boost
 					if (gEvolutionTable[GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPECIES)][0].method == EVO_LEVEL \
-						&& GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) >= \
-						gEvolutionTable[GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL)][0].param)
+						&& (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) >= \
+						gEvolutionTable[GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPECIES)][0].param))
 						gBattleMoveDamage = (gBattleMoveDamage * 120) / 100;
 
                     if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
