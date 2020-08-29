@@ -32,6 +32,7 @@
 	case ABILITY_PUNK_ROCK:
 		if (gBattleMoves[move].flags & FLAG_SOUND)
 			MulModifier(&modifier, UQ_4_12(0.5));
+		break; 
     case ABILITY_FLUFFY:
 // >
 

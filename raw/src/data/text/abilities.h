@@ -1,8 +1,8 @@
 < //
 static const u8 sFullMetalBodyDescription[] = _("Prevents stat reduction.");
 static const u8 sBonanzaDescription[] = _("Finds rare items and money.");
-static const u8 sPunkRockDescription[] = _("Finds rare items and money.");
-static const u8 sNeuroforceDescription[] = _("Boosts sound-based moves.");
+static const u8 sPunkRockDescription[] = _("Boosts sound-based moves.");
+static const u8 sNeuroforceDescription[] = _("Ups “super effective.“.");
 // >
 
 < //
