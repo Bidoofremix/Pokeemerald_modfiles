@@ -36,6 +36,54 @@
 // >
 
 < //
+#define MON_ICON_LVLUP_BOX_TAG      0xD75A
+#define EXP_A 184
+#define EXP_C 16249
+	
+static const struct OamData sOamData_MonIconOnLvlUpBox =
+// >
+
+< //
+static void Cmd_jumpbasedontype(void);
+static float EXP(float y);
+static float LOG(float y);
+static float POW(float b, float p);
+static void Cmd_getexp(void);
+// >
+
+< //
+static void Cmd_getexp(void)
+#Rfloat EXP(float y)
+{
+  union
+  {
+	float d;
+	struct
+	{
+#ifdef LITTLE_ENDIAN
+	  short j, i;
+#else
+	  short i, j;
+#endif
+	} n;
+  } eco;
+  eco.n.i = EXP_A*(y) + (EXP_C);
+  eco.n.j = 0;
+  return eco.d;
+}
+
+float LOG(float y)
+{
+  int * nTemp = (int*)&y;
+  y = (*nTemp) >> 16;
+  return (y - EXP_C) / EXP_A;
+}
+
+float POW(float b, float p)
+{
+  return EXP(LOG(b) * p);
+}
+
 static void Cmd_getexp(void)
 {
     u16 item;
@@ -123,7 +171,7 @@ static void Cmd_getexp(void)
         if (gBattleControllerExecFlags == 0)
         {
             item = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HELD_ITEM);
-
+			
             if (item == ITEM_ENIGMA_BERRY)
                 holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
             else
@@ -157,6 +205,7 @@ static void Cmd_getexp(void)
 
                 if (GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HP))
                 {
+					
                     if (gBattleStruct->sentInPokes & 1)
                         gBattleMoveDamage = *exp;
                     else
@@ -166,8 +215,14 @@ static void Cmd_getexp(void)
                         gBattleMoveDamage += gExpShareExp;
 					
 					// scaled exp part 2
-					gBattleMoveDamage = gBattleMoveDamage * (pow((2*gBattleMons[gBattlerFainted].level + 10), 2.5)/ \
-						pow(gBattleMons[gBattlerFainted].level + GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) + 10), 2.5) + 1
+					gBattleMoveDamage = gBattleMoveDamage * ( POW((2*gBattleMons[gBattlerFainted].level + 10), 2.5) / \
+					    POW((gBattleMons[gBattlerFainted].level + GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) + 10), 2.5) ) + 1;
+						
+					// unevolved pokemon boost
+					if (gEvolutionTable[GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_SPECIES)][0].method == EVO_LEVEL \
+						&& GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL) >= \
+						gEvolutionTable[GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_LEVEL)][0].param)
+						gBattleMoveDamage = (gBattleMoveDamage * 120) / 100;
 
                     if (holdEffect == HOLD_EFFECT_LUCKY_EGG)
                         gBattleMoveDamage = (gBattleMoveDamage * 150) / 100;
