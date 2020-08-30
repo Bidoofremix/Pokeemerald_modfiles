@@ -10,7 +10,7 @@ VerdanturfTown_BreedersClub_EventScript_Lady::
 	call_if_unset FLAG_ASKED_VERDANTURF_EGG VerdanturfTown_BreedersClub_EventScript_HiYouMustBePlayer
 	msgbox VerdanturfTown_BreedersClub_Text_WillYouTakeCareOfThisEgg, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq VerdanturfTown_BreedersHouse_EventScript_GiveEgg
+	goto_if_eq VerdanturfTown_BreedersHouse_EventScript_TryGiveMeowsyEgg
 	compare VAR_RESULT, NO
 	goto_if_eq VerdanturfTown_BreedersHouse_EventScript_RefusedEgg
 	end
@@ -20,6 +20,7 @@ VerdanturfTown_BreedersClub_EventScript_HiYouMustBePlayer::
 	setflag FLAG_ASKED_VERDANTURF_EGG
 	return
 	
+// old
 VerdanturfTown_BreedersHouse_EventScript_GiveEgg::
 	getpartysize
 	compare VAR_RESULT, 6
@@ -34,13 +35,35 @@ VerdanturfTown_BreedersHouse_EventScript_GiveEgg::
 	release
 	end
 	
+// current
+VerdanturfTown_BreedersHouse_EventScript_TryGiveMeowsyEgg: @ 8674D4C
+	specialvar VAR_EVENT_MEOWSY_SLOT, CalculatePlayerPartyCount
+	compare VAR_EVENT_MEOWSY_SLOT, PARTY_SIZE
+	goto_if_eq LavaridgeTown_EventScript_NoRoomForEgg
+	call VerdanturfTown_BreedersHouse_EventScript_GiveMeowsyEgg
+	playfanfare MUS_FANFA4
+	message LavaridgeTown_Text_ReceivedTheEgg
+	waitfanfare
+	setflag FLAG_RECEIVED_VERDANTURF_EGG
+	setvar VAR_PETALBURG_GYM_STATE, 6
+	clearflag FLAG_HIDE_PETALBURG_GYM_GREETER
+	VerdanturfTown_BreedersHouse_Text_PleaseGiveNormanMyGreetings
+	release
+	end
+	
+VerdanturfTown_BreedersHouse_EventScript_GiveMeowsyEgg: @ 8674D7E
+	giveegg SPECIES_MEOWSY
+	setmonobedient VAR_EVENT_MEOWSY_SLOT
+	setmonmove VAR_EVENT_MEOWSY_SLOT, 3, MOVE_HAPPY_HOUR
+	return
+
 VerdanturfTown_BreedersHouse_EventScript_RefusedEgg::
 	msgbox VerdanturfTown_BreedersHouse_Text_RefuseEgg, MSGBOX_DEFAULT
 	release
 	end
 	
 VerdanturfTown_BreedersHouse_EventScript_GotEgg::
-	msgbox VerdanturfTown_BreedersHouse_Text_GotEgg, MSGBOX_NPC
+	msgbox VerdanturfTown_BreedersHouse_Text_PleaseGiveNormanMyGreetings, MSGBOX_NPC
 	end
 		
 VerdanturfTown_BreedersClub_Text_HiYouMustBePlayer:
@@ -56,7 +79,7 @@ VerdanturfTown_BreedersClub_Text_WillYouTakeCareOfThisEgg:
 	.string "{PLAYER}, will you take care\n"
 	.string "of this EGG?$"	
 	
-VerdanturfTown_BreedersHouse_Text_GotEgg:
+VerdanturfTown_BreedersHouse_Text_PleaseGiveNormanMyGreetings:
 	.string "Please give NORMAN my greetings!$"
 	
 VerdanturfTown_BreedersHouse_Text_RefuseEgg:
