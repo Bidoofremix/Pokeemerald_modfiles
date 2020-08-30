@@ -18,7 +18,7 @@ VerdanturfTown_BreedersClub_EventScript_Lady::
 VerdanturfTown_BreedersClub_EventScript_HiYouMustBePlayer::
 	msgbox VerdanturfTown_BreedersClub_Text_HiYouMustBePlayer, MSGBOX_DEFAULT
 	setflag FLAG_ASKED_VERDANTURF_EGG
-	end
+	return
 	
 VerdanturfTown_BreedersHouse_EventScript_GiveEgg::
 	getpartysize
@@ -101,18 +101,22 @@ VerdanturfTown_BreedersClub_EventScript_OldLady_NoIDontLikeBreeding::
 	end
 	
 VerdanturfTown_BreedersClub_Text_OldLady_DoYouLikeBreeding:
-	.string "Are you a TRAINER? At such a young age?\p"
-	.string "Good, good. I like your spirit.\n"
-	.string "Do you like raising your POKéMON\l"
+	.string "Are you a TRAINER?\n"
+	.strign "At such a young age?\p"
+	.string "Good, good.\n"
+	.string "I like your spirit.\p"
+	.string "Do you like raising your POKéMON\n"
 	.string "from EGGS?$"
 
 VerdanturfTown_BreedersClub_Text_OldLady_Good:
-	.string "I knew it! I can see talent in\n"
-	.string "TRAINERS. Take this!$"
+	.string "I knew it!\n"
+	.string "I can see talent in TRAINERS.\p"
+	.string "Take this!$"
 	
 VerdanturfTown_BreedersClub_Text_OldLady_Disappointing:
-	.string "Oh? That's disappointing. What are kids\n"
-	.string "even good for nowdays…!$"
+	.string "Oh?\n"
+	.string "That's disappointing.\l"
+	.string "What are kids even good for nowdays…!$"
 	
 VerdanturfTown_BreedersClub_Text_OldLady_BagIsFull:
 	.string "Oh? Your BAG is full.$"
@@ -136,7 +140,7 @@ VerdanturfTown_BreedersClub_EventScript_OldMan::
 	end
 	
 VerdanturfTown_BreedersClub_EventScript_WhatYouDefeatedVicky::
-	msgbox VerdanturfTown_BreedersClub_Text_WhatYouDefeatedVicky
+	msgbox VerdanturfTown_BreedersClub_Text_WhatYouDefeatedVicky, MSGBOX_DEFAULT
 	release
 	end
 	
