@@ -50,7 +50,7 @@ VerdanturfTown_BreedersClub_Text_HiYouMustBePlayer:
 	.string "You see, I found this lone EGG at a\n"
 	.string "roadside and rescued it, but I am\l"
 	.string "already taking care of so many POKéMON\l"
-	.string "that I simply don't have the space.$"
+	.string "that I simply don't have more space.$"
 	
 VerdanturfTown_BreedersClub_Text_WillYouTakeCareOfThisEgg:
 	.string "{PLAYER}, will you take care\n"
@@ -103,19 +103,17 @@ VerdanturfTown_BreedersClub_EventScript_OldLady_NoIDontLikeBreeding::
 VerdanturfTown_BreedersClub_Text_OldLady_DoYouLikeBreeding:
 	.string "Are you a TRAINER?\n"
 	.string "At such a young age?\p"
-	.string "Good, good.\n"
-	.string "I like your spirit.\p"
+	.string "Good, good. I like your spirit.\p"
 	.string "Do you like raising your POKéMON\n"
 	.string "from EGGS?$"
 
 VerdanturfTown_BreedersClub_Text_OldLady_Good:
-	.string "I knew it!\n"
-	.string "I can see talent in TRAINERS.\p"
+	.string "I knew it! I can see talent in\n"
+	.string "TRAINERS.\p"
 	.string "Take this!$"
 	
 VerdanturfTown_BreedersClub_Text_OldLady_Disappointing:
-	.string "Oh?\n"
-	.string "That's disappointing.\l"
+	.string "Oh? That's disappointing.\p"
 	.string "What are kids even good for nowdays…!$"
 	
 VerdanturfTown_BreedersClub_Text_OldLady_BagIsFull:
@@ -149,7 +147,7 @@ VerdanturfTown_BreedersClub_Text_OldMan:
 	.string "Back in the days, I was one of the\n"
 	.string "mightiest TRAINERS around!\p"
 	.string "The name WINSTRATE still carries\n"
-	.string "so much respect, it makes people go\p"
+	.string "so much respect, it makes people go\l"
 	.string "silent in awe!$"
 	
 VerdanturfTown_BreedersClub_Text_WhatYouDefeatedVicky:
