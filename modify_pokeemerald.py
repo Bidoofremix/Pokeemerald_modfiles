@@ -398,10 +398,10 @@ trainer_file_lines = []
 with open(trainer_file, "r") as f:
 	for line in f:
 		trainer_file_lines.append(line)
-		if line.startswith("    [TRAINER_"):
+		if "[TRAINER_" in line:
 			if party != "":
 				defined_trainers[current_trainer] = party
-			current_trainer = line.lstrip(" ").split("]")[0].lstrip("[")
+			current_trainer = line.lstrip().split("]")[0].lstrip("[")
 		else:
 			if ".party = {" in line:
 				party = line.lstrip(" ").split(" ")[4].split("}")[0]
