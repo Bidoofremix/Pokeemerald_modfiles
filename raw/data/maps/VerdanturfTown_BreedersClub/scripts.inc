@@ -102,7 +102,7 @@ VerdanturfTown_BreedersClub_EventScript_OldLady_NoIDontLikeBreeding::
 	
 VerdanturfTown_BreedersClub_Text_OldLady_DoYouLikeBreeding:
 	.string "Are you a TRAINER?\n"
-	.strign "At such a young age?\p"
+	.string "At such a young age?\p"
 	.string "Good, good.\n"
 	.string "I like your spirit.\p"
 	.string "Do you like raising your POKéMON\n"
