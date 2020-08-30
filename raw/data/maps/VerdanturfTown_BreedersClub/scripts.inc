@@ -56,6 +56,7 @@ VerdanturfTown_BreedersHouse_EventScript_GiveMeowsyEgg: @ 8674D7E
 	setmonobedient VAR_EVENT_MEOWSY_SLOT
 	setmonmove VAR_EVENT_MEOWSY_SLOT, 3, MOVE_HAPPY_HOUR
 	setmonball VAR_EVENT_MEOWSY_SLOT, ITEM_LUXURY_BALL
+	setmonmetbreedersclub VAR_EVENT_MEOWSY_SLOT
 	return
 
 VerdanturfTown_BreedersHouse_EventScript_RefusedEgg::

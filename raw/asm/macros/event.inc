@@ -11,6 +11,11 @@
 	.2byte \slot
 	.2byte \item
 	.endm
+	
+	.macro setmonmetbreedersclub slot:req
+	.byte 0xe4
+	.2byte \slot
+	.endm
 
 @ Supplementary
 // >

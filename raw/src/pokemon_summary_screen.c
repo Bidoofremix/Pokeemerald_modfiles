@@ -9,7 +9,7 @@ static void PrintEggMemo(void)
         if (sum->metLocation == METLOC_FATEFUL_ENCOUNTER)
             text = gText_PeculiarEggNicePlace;
 		else if (sum->metLocation == METLOC_BREEDERSCLUB_EGG)
-			text = gText_EggFromTraveler;
+			text = gText_EggFromBreedersClub;
         else if (DidMonComeFromGBAGames() == FALSE || DoesMonOTMatchOwner() == FALSE)
             text = gText_PeculiarEggTrade;
         else if (sum->metLocation == METLOC_SPECIAL_EGG)
