@@ -55,7 +55,7 @@
             "script": "RustboroCity_DevonCorp_1F_EventScript_StairGuard",
             "trainer_sight_or_berry_tree_id": "0",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "x": 15,
+            "x": 42,
             "y": 5
         },
         {
