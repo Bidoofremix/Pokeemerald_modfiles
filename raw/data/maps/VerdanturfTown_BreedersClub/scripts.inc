@@ -47,7 +47,7 @@ VerdanturfTown_BreedersHouse_EventScript_TryGiveMeowsyEgg: @ 8674D4C
 	setflag FLAG_RECEIVED_VERDANTURF_EGG
 	setvar VAR_PETALBURG_GYM_STATE, 6
 	clearflag FLAG_HIDE_PETALBURG_GYM_GREETER
-	VerdanturfTown_BreedersHouse_Text_PleaseGiveNormanMyGreetings
+	msgbox VerdanturfTown_BreedersHouse_Text_PleaseGiveNormanMyGreetings, MSGBOX_DEFAULT
 	release
 	end
 	
@@ -55,6 +55,7 @@ VerdanturfTown_BreedersHouse_EventScript_GiveMeowsyEgg: @ 8674D7E
 	giveegg SPECIES_MEOWSY
 	setmonobedient VAR_EVENT_MEOWSY_SLOT
 	setmonmove VAR_EVENT_MEOWSY_SLOT, 3, MOVE_HAPPY_HOUR
+	setmonball VAR_EVENT_MEOWSY_SLOT, ITEM_LUXURY_BALL
 	return
 
 VerdanturfTown_BreedersHouse_EventScript_RefusedEgg::

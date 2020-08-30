@@ -1,4 +1,34 @@
 < //
+static void PrintEggMemo(void)
+{
+    const u8 *text;
+    struct PokeSummary *sum = &sMonSummaryScreen->summary;
+
+    if (sMonSummaryScreen->summary.sanity != 1)
+    {
+        if (sum->metLocation == METLOC_FATEFUL_ENCOUNTER)
+            text = gText_PeculiarEggNicePlace;
+		else if (sum->metLocation == METLOC_BREEDERSCLUB_EGG)
+			text = gText_EggFromTraveler;
+        else if (DidMonComeFromGBAGames() == FALSE || DoesMonOTMatchOwner() == FALSE)
+            text = gText_PeculiarEggTrade;
+        else if (sum->metLocation == METLOC_SPECIAL_EGG)
+            text = (DidMonComeFromRSE() == TRUE) ? gText_EggFromHotSprings : gText_EggFromTraveler;
+        else
+            text = gText_OddEggFoundByCouple;
+    }
+    else
+    {
+        text = gText_OddEggFoundByCouple;
+    }
+
+    PrintTextOnWindow(AddWindowFromTemplateList(sPageInfoTemplate, PSS_DATA_WINDOW_INFO_MEMO), text, 0, 1, 0, 0);
+}
+
+static void PrintSkillsPageText(void)
+// >
+
+< //
 static void KeepMoveSelectorVisible(u8 firstSpriteId);
 static void BufferIvOrEvStats(u8 mode);
 
