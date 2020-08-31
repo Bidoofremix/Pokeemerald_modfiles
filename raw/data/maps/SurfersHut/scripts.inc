@@ -16,6 +16,7 @@ SurfersHut_EventScript_Surfer::
 	
 SurfersHut_EventScript_IntroduceSurfer::	
 	msgbox SurfersHut_Text_HowzitBrah, MSGBOX_YESNO
+	setflag FLAG_INTRODUCED_SURFER_TUTOR
 	return
 	
 SurfersHut_EventScript_ICanTeachSurf::
@@ -51,8 +52,8 @@ SurfersHut_Text_HowzitBrah:
 	.string "quite a tough POKéMON TRAINER.\p"
 	.string "You know what?\n"
 	.string "If you have a Pichu, Pikachu or\l"
-	.string "Raichu, I can teach them Surf.\l"
-	.string "Seeing them on waves gets me amped!p"
+	.string "Raichu, I can teach them Surf.\p"
+	.string "Seeing them on waves gets me amped!\p"
 	.string "So, do you want that?$"
 	
 SurfersHut_Text_ICanTeachSurf:
@@ -88,7 +89,7 @@ SurfersHut_EventScript_Pikachu2::
 	end
 	
 SurfersHut_Text_Pikachu1:
-	.string "PIKACHU: Pipipi?"
+	.string "PIKACHU: Pipipi?$"
 	
 SurfersHut_Text_Pikachu2:
 	.string "PIKACHU: Pikaa-chu!$"

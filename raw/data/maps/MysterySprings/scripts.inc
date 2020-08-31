@@ -37,6 +37,7 @@ MysterySprings_EventScript_IntroduceAbilityChanger::
 	
 MysterySprings_EventScript_AbilityChanger::
 	bufferleadmonspeciesname 0
+	msgbox MysterySprings_Text_LetMeSeeYourMon, MSGBOX_DEFAULT
 	// check that lead mon is not egg
 	compare VAR_0x8005, 2
 	call_if_eq MysterySprings_EventScript_CheckHappinessHidden
@@ -66,7 +67,7 @@ MysterySprings_EventScript_CheckHappinessHidden::
 	return
 	
 MysterySprings_EventScript_NotEnoughHappiness::
-	msgbox test, MSGBOX_DEFAULT
+	msgbox MysterySprings_Text_NotEnoughHappiness, MSGBOX_DEFAULT
 	release
 	end
 	
@@ -76,7 +77,7 @@ MysterySprings_Text_GreetingsChild:
 	.string "SPRINGS.\p"
 	.string "With powers conferred by this\n"
 	.string "enigmatic fountain, we can change\l"
-	.string "POKéMON's abilities.\p"
+	.string "POKéMON's Abilities.\p"
 	.string "To do so, a strong bond must exist\n"
 	.string "between the TRAINER and POKéMON.\p"
 	.string "Now…$"
@@ -102,17 +103,20 @@ MysterySprings_Text_LetMeSeeYourMon::
 	
 MysterySprings_Text_ItBelievesInYou::
 	.string "It believes in you, and wants\n"
-	.string "to stand by your side.$"
+	.string "to stand by your side.\p"
+	.string "With a bond this strong, the\n"
+	.string "Ability can be changed.$"
 	
 MysterySprings_Text_ItIsYourFaithfulPartner::
 	.string "It is your faithful partner, and\n"
-	.string "hopes to be with you always.$"
+	.string "hopes to be with you always.\p"
+	.string "With a bond this strong, the\n"
+	.string "Ability can be changed.$"
 	
 MysterySprings_Text_NotEnoughHappiness::
 	.string "It is not in sync with you.\p"
 	.string "I'm sorry, but you need to have a\n"
 	.string "stronger bond to change its Ability.$"
-
 	
 MysterySprings_EventScript_CannotChangeAbility::
 	msgbox MysterySprings_Text_ICannotChangeThisMonsAbility, MSGBOX_DEFAULT
@@ -144,7 +148,7 @@ MysterySprings_EventScript_CancelChangeAbility::
 	end
 	
 MysterySprings_Text_MonsAbilityIs::
-	.string "{STR_VAR_1}'s current ability is…\n"
+	.string "{STR_VAR_1}'s current Ability is…\n"
 	.string "{STR_VAR_3}.$"
 	
 MysterySprings_Text_IWontChangeThisMonsAbility:

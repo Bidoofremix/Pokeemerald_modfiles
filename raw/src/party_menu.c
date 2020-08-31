@@ -255,12 +255,35 @@ static void TryTutorSelectedMon(u8 taskId)
         move = &gPartyMenu.data1;
         GetMonNickname(mon, gStringVar1);
 		// postdoc move tutor
-		if (gSpecialVar_0x800B == 1)
+		if (gSpecialVar_0x800B == MODE_MOVE_TUTOR_POSTDOC)
 		{
 			gPartyMenu.data1 = gSpecialVar_0x8005;
 			StringCopy(gStringVar2, gMoveNames[gPartyMenu.data1]);
 			move[1] = 2;
 			switch (CanMonLearnPostDocTutor(mon, gSpecialVar_0x8005))
+			{
+			case CANNOT_LEARN_MOVE:
+				DisplayLearnMoveMessageAndClose(taskId, gText_PkmnCantLearnMove);
+				return;
+			case ALREADY_KNOWS_MOVE:
+				DisplayLearnMoveMessageAndClose(taskId, gText_PkmnAlreadyKnows);
+				return;
+			default:
+				if (GiveMoveToMon(mon, gPartyMenu.data1) != MON_HAS_MAX_MOVES)
+				{
+					Task_LearnedMove(taskId);
+					return;
+				}
+				break;
+			}
+		}
+		// surfer move tutor
+		else if (gSpecialVar_0x800B == MODE_MOVE_TUTOR_SURFER)
+		{
+			gPartyMenu.data1 = gSpecialVar_0x8005;
+			StringCopy(gStringVar2, gMoveNames[gPartyMenu.data1]);
+			move[1] = 2;
+			switch (CanMonLearnSurferTutor(mon, gSpecialVar_0x8005))
 			{
 			case CANNOT_LEARN_MOVE:
 				DisplayLearnMoveMessageAndClose(taskId, gText_PkmnCantLearnMove);

@@ -31,13 +31,13 @@ BrineBeach_Mapscript_CtrlObj::
 	compare VAR_RESULT, B_OUTCOME_CAUGHT
 	goto_if_ne Common_EventScript_NopReturn
 	removeobject LOCALID_GYARADOS
-	setobjectxyperm LOCALID_WINGULL1, 79, 16
+	setobjectxyperm LOCALID_WINGULL1, 78, 16
 	setobjectxyperm LOCALID_WINGULL2, 81, 13
 	setobjectmovementtype LOCALID_WINGULL2, MOVEMENT_TYPE_WANDER_AROUND
 	setobjectxyperm LOCALID_WINGULL3, 77, 13
-	setobjectxyperm LOCALID_WINGULL4, 78, 18
+	setobjectxyperm LOCALID_WINGULL4, 79, 18
 	setobjectmovementtype LOCALID_WINGULL4, MOVEMENT_TYPE_WALK_SEQUENCE_LEFT_DOWN_RIGHT_UP
-	setobjectxyperm LOCALID_WINGULL5, 76, 20
+	setobjectxyperm LOCALID_WINGULL5, 77, 20
 	setobjectmovementtype LOCALID_WINGULL5, MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_UP_LEFT_DOWN
 	return
 	
