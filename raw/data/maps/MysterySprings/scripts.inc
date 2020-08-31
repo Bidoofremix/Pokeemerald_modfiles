@@ -38,6 +38,9 @@ MysterySprings_EventScript_IntroduceAbilityChanger::
 MysterySprings_EventScript_AbilityChanger::
 	bufferleadmonspeciesname 0
 	// check that lead mon is not egg
+	compare VAR_0x8005, 2
+	call_if_eq MysterySprings_EventScript_CheckHappinessHidden
+	call_if_lt MysterySprings_EventScript_CheckHappinessNormal
 	special GetLeadMonPotentialAbility
 	msgbox MysterySprings_Text_MonsAbilityIs, MSGBOX_DEFAULT
 	compare VAR_RESULT, 0
@@ -45,6 +48,25 @@ MysterySprings_EventScript_AbilityChanger::
 	compare VAR_RESULT, 1
 	goto_if_eq MysterySprings_EventScript_WontChangeAbility
 	goto MysterySprings_EventScript_ChangeAbilityYesNo
+	release
+	end
+	
+MysterySprings_EventScript_CheckHappinessNormal::
+	specialvar VAR_RESULT, GetLeadMonFriendshipScore
+	compare VAR_RESULT, 4
+	goto_if_lt MysterySprings_EventScript_NotEnoughHappiness
+	msgbox MysterySprings_Text_ItBelievesInYou, MSGBOX_DEFAULT
+	return
+	
+MysterySprings_EventScript_CheckHappinessHidden::
+	specialvar VAR_RESULT, GetLeadMonFriendshipScore
+	compare VAR_RESULT, 5
+	goto_if_lt MysterySprings_EventScript_NotEnoughHappiness
+	msgbox MysterySprings_Text_ItIsYourFaithfulPartner, MSGBOX_DEFAULT
+	return
+	
+MysterySprings_EventScript_NotEnoughHappiness::
+	msgbox test, MSGBOX_DEFAULT
 	release
 	end
 	
@@ -60,15 +82,37 @@ MysterySprings_Text_GreetingsChild:
 	.string "Now…$"
 	
 MysterySprings_Text_Ability0::
-	.string "I admire POKéMON's first abilities.$"
+	.string "I admire POKéMON's first Abilities.$"
 	
 MysterySprings_Text_Ability1::
 	.string "I find beauty in POKéMON's second\n"
-	.string "abilities.$"
+	.string "Abilities.$"
 	
 MysterySprings_Text_Ability2::
 	.string "I have unlocked the secrets of\n"
-	.string "POKéMON's hidden abilities.$"
+	.string "POKéMON's Hidden Abilities.\p"
+	.string "To attain a Hidden Ability, you and\n"
+	.string "your POKéMON must trust each other\l"
+	.string "immensely.$"
+
+MysterySprings_Text_LetMeSeeYourMon::
+	.string "Let me see your POKéMON first.\n"
+	.string "… … … … … …\p"
+	.string "Your {STR_VAR_1}…$"
+	
+MysterySprings_Text_ItBelievesInYou::
+	.string "It believes in you, and wants\n"
+	.string "to stand by your side.$"
+	
+MysterySprings_Text_ItIsYourFaithfulPartner::
+	.string "It is your faithful partner, and\n"
+	.string "hopes to be with you always.$"
+	
+MysterySprings_Text_NotEnoughHappiness::
+	.string "It is not in sync with you.\p"
+	.string "I'm sorry, but you need to have a\n"
+	.string "stronger bond to change its Ability.$"
+
 	
 MysterySprings_EventScript_CannotChangeAbility::
 	msgbox MysterySprings_Text_ICannotChangeThisMonsAbility, MSGBOX_DEFAULT

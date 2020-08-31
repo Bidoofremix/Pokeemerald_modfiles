@@ -33,9 +33,12 @@ BrineBeach_Mapscript_CtrlObj::
 	removeobject LOCALID_GYARADOS
 	setobjectxyperm LOCALID_WINGULL1, 79, 16
 	setobjectxyperm LOCALID_WINGULL2, 81, 13
+	setobjectmovementtype LOCALID_WINGULL2, MOVEMENT_TYPE_WANDER_AROUND
 	setobjectxyperm LOCALID_WINGULL3, 77, 13
 	setobjectxyperm LOCALID_WINGULL4, 78, 18
+	setobjectmovementtype LOCALID_WINGULL4, MOVEMENT_TYPE_WALK_SEQUENCE_LEFT_DOWN_RIGHT_UP
 	setobjectxyperm LOCALID_WINGULL5, 76, 20
+	setobjectmovementtype LOCALID_WINGULL5, MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_UP_LEFT_DOWN
 	return
 	
 BrineBeach_OnTransition::
@@ -466,7 +469,7 @@ BrineBeach_Text_Brawly_GyaradosIsStillMad:
 BrineBeach_Text_Brawly_CouldYouTameTheGyarados:
 	.string "{PLAYER}, could you calm down\n"
 	.string "Gyarados?\p"
-	.string "The safety of the people of DEWFORD\l"
+	.string "The safety of the people of DEWFORD\n"
 	.string "depends on you!$"
 	
 BrineBeach_Text_Brawly_ThatWasQuiteAShow:
