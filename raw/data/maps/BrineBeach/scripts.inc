@@ -23,14 +23,19 @@ BrineBeach_MapScripts::
 	.byte 0
 	
 BrineBeach_OnResume::
-	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, SilentForest_Mapscript_CtrlObj
+	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, BrineBeach_Mapscript_CtrlObj
 	end
 
-SilentForest_Mapscript_CtrlObj::
+BrineBeach_Mapscript_CtrlObj::
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_CAUGHT
 	goto_if_ne Common_EventScript_NopReturn
 	removeobject LOCALID_GYARADOS
+	setobjectxyperm LOCALID_WINGULL1, 79, 16
+	setobjectxyperm LOCALID_WINGULL2, 81, 13
+	setobjectxyperm LOCALID_WINGULL3, 77, 13
+	setobjectxyperm LOCALID_WINGULL4, 78, 18
+	setobjectxyperm LOCALID_WINGULL5, 76, 20
 	return
 	
 BrineBeach_OnTransition::
@@ -84,7 +89,7 @@ BrineBeach_EventScript_Gyarados::
 	compare VAR_TEMP_1, 13
 	call_if_eq BrineBeach_EventScript_Movement_y13
 	
-	delay 40	
+	delay 20
 	applymovement LOCALID_BRAWLY, BrineBeach_Movement_Brawly3
 	
 	// gyarados arrives
@@ -123,6 +128,8 @@ BrineBeach_EventScript_Gyarados::
 	clearflag FLAG_SYS_CTRL_OBJ_DELETE
 	specialvar VAR_RESULT, GetBattleOutcome
 	compare VAR_RESULT, B_OUTCOME_WON
+	goto_if_eq BrineBeach_EventScript_DefeatedGyarados
+	compare VAR_RESULT, B_OUTCOME_CAUGHT
 	goto_if_eq BrineBeach_EventScript_DefeatedGyarados
 	compare VAR_RESULT, B_OUTCOME_RAN
 	goto_if_eq BrineBeach_EventScript_DefeatedGyarados
@@ -219,7 +226,9 @@ BrineBeach_EventScript_WonShelly::
 	delay 40
 	
 	// player walks to brawly
-	applymovement LOCALID_BRAWLY, BrineBeach_Movement_WalkPlayerToBrawly
+	applymovement OBJ_EVENT_ID_PLAYER, BrineBeach_Movement_WalkPlayerToBrawly
+	waitmovement 0
+	applymovement LOCALID_BRAWLY, Common_Movement_FaceDown
 	waitmovement 0
 	msgbox BrineBeach_Text_Brawly_ThatWasImpressive, MSGBOX_DEFAULT
 	closemessage
@@ -313,6 +322,30 @@ BrineBeach_EventScript_Fisherman::
 	
 BrineBeach_EventScript_SurfersHut::
 	msgbox BrineBeach_Text_SurfersHut_Sign, MSGBOX_SIGN
+	end
+	
+BrineBeach_EventScript_Wingull1::
+	lock
+	faceplayer
+	playmoncry SPECIES_WINGULL, 0
+	msgbox BrineBeach_Text_Wingull1, MSGBOX_AUTOCLOSE
+	release
+	end
+	
+BrineBeach_EventScript_Wingull2::
+	lock
+	faceplayer
+	playmoncry SPECIES_WINGULL, 0
+	msgbox BrineBeach_Text_Wingull2, MSGBOX_AUTOCLOSE
+	release
+	end
+	
+BrineBeach_EventScript_Wingull3::
+	lock
+	faceplayer
+	playmoncry SPECIES_WINGULL, 0
+	msgbox BrineBeach_Text_Wingull1, MSGBOX_AUTOCLOSE
+	release
 	end
 	
 BrineBeach_Movement_Brawly1:
@@ -431,7 +464,8 @@ BrineBeach_Text_Brawly_GyaradosIsStillMad:
 	.string "My POKéMON are totally knocked out…$"
 	
 BrineBeach_Text_Brawly_CouldYouTameTheGyarados:
-	.string "{PLAYER}, could you tame the Gyarados?\n"
+	.string "{PLAYER}, could you calm down\n"
+	.string "Gyarados?\p"
 	.string "The safety of the people of DEWFORD\l"
 	.string "depends on you!$"
 	
@@ -545,5 +579,14 @@ BrineBeach_Text_Fisherman:
 
 BrineBeach_Text_SurfersHut_Sign:
 	.string "SURFER'S HUT$"
+	
+BrineBeach_Text_Wingull1:
+	.string "WINGULL: Pihyooh!$"
+	
+BrineBeach_Text_Wingull2:
+	.string "WINGULL: Piih?$"
+	
+BrineBeach_Text_Wingull3:
+	.string "WINGULL: Piih!$"
 
 // > END
