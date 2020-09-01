@@ -48,5 +48,13 @@ DewfordTown_Text_IHeardYouBattledGyarados::
 	.string "DEWFORD TOWN was saved!\l"
 	.string "You're a hero!$"
 	
+DewfordTown_EventScript_MarineShopSign:: @ 81E95BA
+	msgbox DewfordTown_Text_MarineShopSign, MSGBOX_SIGN
+	end	
+
+DewfordTown_Text_MarineShopSign::
+	.string "MARINE SHOP\n"
+	.string "“All things ocean!”$"
+	
 DewfordTown_EventScript_Briney:: @ 81E9511
 // >
