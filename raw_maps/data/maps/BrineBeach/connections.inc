@@ -1,5 +1,5 @@
 BrineBeach_MapConnectionsList:
-	connection up, 75, MAP_ROUTE107
+	connection up, 55, MAP_DEWFORD_TOWN
 
 BrineBeach_MapConnections:
 	.4byte 1

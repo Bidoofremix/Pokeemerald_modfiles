@@ -28,11 +28,11 @@ DewfordTown_EventScript_CoolTrainer::
 	end
 	
 DewfordTown_EventScript_NotDefeatedGyarados::
-	msgbox DewfordTown_Text_BrineyIsNotHere, MSGBOX_DEFAULT
+	msgbox DewfordTown_Text_BrawleyIsNotHere, MSGBOX_DEFAULT
 	release
 	end
 	
-DewfordTown_Text_BrineyIsNotHere::
+DewfordTown_Text_BrawleyIsNotHere::
 	.string "If you're here for a GYM battle,\n"
 	.string "you're out of luck. The LEADER\l"
 	.string "isn't here.\p"
@@ -48,7 +48,7 @@ DewfordTown_Text_IHeardYouBattledGyarados::
 	.string "DEWFORD TOWN was saved!\l"
 	.string "You're a hero!$"
 	
-DewfordTown_EventScript_MarineShopSign:: @ 81E95BA
+DewfordTown_EventScript_MarineShopSign::
 	msgbox DewfordTown_Text_MarineShopSign, MSGBOX_SIGN
 	end	
 
