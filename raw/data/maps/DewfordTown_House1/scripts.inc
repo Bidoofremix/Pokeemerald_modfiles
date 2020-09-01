@@ -15,7 +15,7 @@ DewfordTown_MarineShop_Pokemart: @ 821FE20
 	release
 	end	
 	
-DewfordTown_MarineShop_Pokemart:: @ 821FE2C
+DewfordTown_MarineShop_Pokemart_Man:: @ 821FE2C
 	lock
 	faceplayer
 	message DewfordTown_MarineShop_Text_WelcomeToTheMarineShop
@@ -34,4 +34,17 @@ DewfordTown_MarineShop_Text_ThankYouPleaseComeAgain::
 	.string "Please come again!$"
 	
 DewfordTown_House1_EventScript_Man:: @ 81FC3CE
+// >
+
+< //
+DewfordTown_House1_Text_LifeGoesSlowlyOnIsland: @ 81FC45B
+	.string "I left the major port of SLATEPORT\n"
+	.string "CITY when I married my husband here.\p"
+	.string "He is very fond of the sea, so he\n"
+	.string "set up a marine themed shop here.\p"
+	.string "Life goes by slowly on this little\n"
+	.string "island. But being surrounded by the\l"
+	.string "beautiful sea--that's happiness, too.$"
+
+DewfordTown_House1_Text_Zigzagoon: @ 81FC510
 // >
