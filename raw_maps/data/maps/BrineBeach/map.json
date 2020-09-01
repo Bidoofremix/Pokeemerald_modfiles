@@ -18,8 +18,8 @@
     "connections": [
         {
             "direction": "up",
-            "map": "MAP_ROUTE107",
-            "offset": 75
+            "map": "MAP_DEWFORD_TOWN",
+            "offset": 55
         }
     ],
     "coord_events": [
@@ -154,8 +154,8 @@
             "script": "BrineBeach_EventScript_KarateGirl",
             "trainer_sight_or_berry_tree_id": "3",
             "trainer_type": "1",
-            "x": 77,
-            "y": 6
+            "x": 78,
+            "y": 8
         },
         {
             "elevation": 3,
