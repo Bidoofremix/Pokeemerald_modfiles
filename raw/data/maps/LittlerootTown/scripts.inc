@@ -112,7 +112,7 @@ Debug_EventScript_SetFlagsGivePartyWarp::
 	setmonmove 1, 0, MOVE_QUICK_ATTACK
 	setmonmove 1, 0, MOVE_SAND_ATTACK
 	
-	givemon SPECIES_KADABRA, 20, ITEM_TWISTEDSPOON
+	givemon SPECIES_KADABRA, 20, ITEM_TWISTED_SPOON
 	setmonmove 2, 0, MOVE_CONFUSION
 	setmonmove 2, 1, MOVE_KINESIS
 	setmonmove 2, 2, MOVE_TELEPORT
