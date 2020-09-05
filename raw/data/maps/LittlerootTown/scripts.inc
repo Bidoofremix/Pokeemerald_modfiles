@@ -64,7 +64,7 @@ Debug_EventScript_SetFlagsGivePartyWarp::
 	settrainerflag TRAINER_GINA_AND_MIA_1
 	settrainerflag TRAINER_IVAN
 	// rustboro
-	FLAG_VISITED_RUSTBORO_CITY
+	setflag FLAG_VISITED_RUSTBORO_CITY
 	settrainerflag TRAINER_JOSH
 	settrainerflag TRAINER_TOMMY
 	settrainerflag TRAINER_MARC
@@ -103,6 +103,7 @@ Debug_EventScript_SetFlagsGivePartyWarp::
 	clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
 	setvar VAR_DEVON_CORP_3F_STATE, 1
 	setvar VAR_RUSTBORO_CITY_STATE, 6
+	giveitem ITEM_LETTER
 	
 	// warp player to mr brineys house
 	warp MAP_ROUTE104_MR_BRINEYS_HOUSE, 255, 5, 8
