@@ -748,35 +748,36 @@ for n in range(0,len(xl_workbook.sheet_names())):
 			route_data[biome]["encounter_rate"] = int(xl_sheet.cell(5,index+4).value)
 			
 	# fishing encounters
-	if xl_sheet.cell(25,1).value != "":
-		route_data["fishing_mons"] = {"mons":[]}
-		
-		# old rod
-		for row in [25,26]:
-			mon = {}
-			mon["species"] = "SPECIES_%s" % xl_sheet.cell(row,1).value
-			mon["min_level"] = int(xl_sheet.cell(row,2).value)
-			mon["max_level"] = int(xl_sheet.cell(row,3).value)
-			route_data["fishing_mons"]["mons"].append(mon)
+	if xl_sheet.nrows > 25:
+		if xl_sheet.cell(25,1).value != "":
+			route_data["fishing_mons"] = {"mons":[]}
 			
-		# good rod
-		for row in range(25,28):
-			mon = {}
-			mon["species"] = "SPECIES_%s" % xl_sheet.cell(row,7).value
-			mon["min_level"] = int(xl_sheet.cell(row,8).value)
-			mon["max_level"] = int(xl_sheet.cell(row,9).value)	
-			route_data["fishing_mons"]["mons"].append(mon)
+			# old rod
+			for row in [25,26]:
+				mon = {}
+				mon["species"] = "SPECIES_%s" % xl_sheet.cell(row,1).value
+				mon["min_level"] = int(xl_sheet.cell(row,2).value)
+				mon["max_level"] = int(xl_sheet.cell(row,3).value)
+				route_data["fishing_mons"]["mons"].append(mon)
+				
+			# good rod
+			for row in range(25,28):
+				mon = {}
+				mon["species"] = "SPECIES_%s" % xl_sheet.cell(row,7).value
+				mon["min_level"] = int(xl_sheet.cell(row,8).value)
+				mon["max_level"] = int(xl_sheet.cell(row,9).value)	
+				route_data["fishing_mons"]["mons"].append(mon)
 
-		# super rod
-		for row in range(25,30):
-			mon = {}
-			mon["species"] = "SPECIES_%s" % xl_sheet.cell(row,13).value
-			mon["min_level"] = int(xl_sheet.cell(row,14).value)
-			mon["max_level"] = int(xl_sheet.cell(row,15).value)	
-			route_data["fishing_mons"]["mons"].append(mon)
+			# super rod
+			for row in range(25,30):
+				mon = {}
+				mon["species"] = "SPECIES_%s" % xl_sheet.cell(row,13).value
+				mon["min_level"] = int(xl_sheet.cell(row,14).value)
+				mon["max_level"] = int(xl_sheet.cell(row,15).value)	
+				route_data["fishing_mons"]["mons"].append(mon)
 
-		route_data["fishing_mons"]["encounter_rate"] = int(xl_sheet.cell(25,4).value)
-		
+			route_data["fishing_mons"]["encounter_rate"] = int(xl_sheet.cell(25,4).value)
+			
 	new_encounter_data.append(route_data)	
 		
 for n,category in enumerate(vanilla_encounters["wild_encounter_groups"]):
