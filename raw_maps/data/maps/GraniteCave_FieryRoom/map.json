@@ -1,0 +1,33 @@
+{
+    "allow_bike": false,
+    "allow_cycling": "",
+    "allow_escape_rope": false,
+    "allow_escaping": "",
+    "allow_running": true,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "bg_events": [
+    ],
+    "connections": null,
+    "coord_events": [
+    ],
+    "id": "MAP_GRANITE_CAVE_FIERY_ROOM",
+    "layout": "LAYOUT_GRANITE_CAVE_FIERY_ROOM",
+    "map_type": "MAP_TYPE_UNDERGROUND",
+    "music": "MUS_DAN01",
+    "name": "GraniteCave_FieryRoom",
+    "object_events": [
+    ],
+    "region_map_section": "MAPSEC_GRANITE_CAVE",
+    "requires_flash": false,
+    "show_map_name": true,
+    "warp_events": [
+        {
+            "dest_map": "MAP_GRANITE_CAVE_1F",
+            "dest_warp_id": 4,
+            "elevation": 0,
+            "x": 4,
+            "y": 7
+        }
+    ],
+    "weather": "WEATHER_NONE"
+}

@@ -11,6 +11,16 @@
             "width": 30
         },
         {
+            "blockdata_filepath": "data/layouts/GraniteCave_FieryRoom/map.bin",
+            "border_filepath": "data/layouts/GraniteCave_FieryRoom/border.bin",
+            "height": 12,
+            "id": "LAYOUT_GRANITE_CAVE_FIERY_ROOM",
+            "name": "GraniteCave_FieryRoom_Layout",
+            "primary_tileset": "gTileset_General",
+            "secondary_tileset": "gTileset_Lavaridge",
+            "width": 32
+        },
+        {
             "blockdata_filepath": "data/layouts/SurfersHut/map.bin",
             "border_filepath": "data/layouts/SurfersHut/border.bin",
             "height": 9,
