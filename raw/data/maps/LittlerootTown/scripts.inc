@@ -105,6 +105,37 @@ Debug_EventScript_SetFlagsGivePartyWarp::
 	setvar VAR_RUSTBORO_CITY_STATE, 6
 	giveitem ITEM_LETTER
 	
+	// party
+	givemon SPECIES_COMBUSKEN, 20, ITEM_CHARCOAL
+	setmonmove 1, 0, MOVE_EMBER
+	setmonmove 1, 1, MOVE_DOUBLE_KICK
+	setmonmove 1, 0, MOVE_QUICK_ATTACK
+	setmonmove 1, 0, MOVE_SAND_ATTACK
+	
+	givemon SPECIES_KADABRA, 20, ITEM_TWISTEDSPOON
+	setmonmove 2, 0, MOVE_CONFUSION
+	setmonmove 2, 1, MOVE_KINESIS
+	setmonmove 2, 2, MOVE_TELEPORT
+	setmonmove 2, 3, MOVE_DISABLE
+	
+	givemon SPECIES_MARSHTOMP, 20, ITEM_NONE
+	setmonmove 3, 0, MOVE_MUD_SHOT
+	setmonmove 3, 1, MOVE_WATER_GUN
+	setmonmove 3, 2, MOVE_TACKLE
+	setmonmove 3, 3, MOVE_GROWL
+	
+	givemon SPECIES_GROVYLE, 20, ITEM_NONE
+	setmonmove 4, 0, MOVE_MEGA_DRAIN
+	setmonmove 4, 1, MOVE_QUICK_ATTACK
+	setmonmove 4, 2, MOVE_FURY_CUTTER
+	setmonmove 4, 3, MOVE_LEER
+	
+	givemon SPECIES_CUBONE, 20, ITEM_THICK_CLUB
+	setmonmove 5, 0, MOVE_BONE_CLUB
+	setmonmove 5, 1, MOVE_HEADBUTT
+	setmonmove 5, 2, MOVE_FOCUS_ENERGY
+	setmonmove 5, 3, MOVE_TAIL_WHIP
+	
 	// warp player to mr brineys house
 	warp MAP_ROUTE104_MR_BRINEYS_HOUSE, 255, 5, 8
 	end
