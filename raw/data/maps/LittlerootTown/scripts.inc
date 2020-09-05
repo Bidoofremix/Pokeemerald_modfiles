@@ -3,6 +3,111 @@ LittlerootTown_EventScript_BirchsHouseSignMale:: @ 81E81A9
 	msgbox LittlerootTown_Text_ProfBirchsHouse, MSGBOX_DEFAULT
 	return
 
+Debug_EventScript_SetFlagsGivePartyWarp::
+	// route 103
+	settrainerflag TRAINER_ISABELLE
+	settrainerflag TRAINER_ANDREW
+	settrainerflag TRAINER_PETE
+	settrainerflag TRAINER_MIGUEL_1
+	// altering cave
+	settrainerflag TRAINER_MARY
+	settrainerflag TRAINER_EARL_AND_EVA
+	// verdanturf
+	setflag FLAG_VISITED_VERDANTURF_TOWN                
+	setflag FLAG_RECEIVED_VERDANTURF_EGG
+	// rusturf pre-rustboro
+	settrainerflag TRAINER_MIKE_2
+	// route 117
+	settrainerflag TRAINER_LYDIA_1
+	settrainerflag TRAINER_DEREK
+	settrainerflag TRAINER_BRANDI
+	settrainerflag TRAINER_MELINA
+	settrainerflag TRAINER_AISHA
+	settrainerflag TRAINER_MARIA_1
+	settrainerflag TRAINER_ISAAC_1
+	settrainerflag TRAINER_ANNA_AND_MEG_1
+	settrainerflag TRAINER_DYLAN_1
+	// route 102
+	settrainerflag TRAINER_CALVIN_1
+	settrainerflag TRAINER_RICK
+	settrainerflag TRAINER_ALLEN
+	settrainerflag TRAINER_TIANA
+	// petalburg
+	setflag FLAG_VISITED_PETALBURG_CITY
+	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_UNCLE
+	setvar VAR_SCOTT_STATE, 1
+	setvar VAR_SCOTT_PETALBURG_ENCOUNTER, 1
+	setflag FLAG_HIDE_PETALBURG_GYM_WALLY
+	setflag FLAG_HIDE_PETALBURG_CITY_WALLY
+	setflag FLAG_ROUTE_103_EAST_ACCESSIBLE
+	setflag FLAG_HIDE_PETALBURG_CITY_WALLYS_AUNT
+	setflag FLAG_HIDE_LITTLEROOT_TOWN_BIRCHS_LAB_RIVAL
+	setflag FLAG_DEFEATED_PETALBURG_GYM
+	setflag FLAG_BADGE05_GET
+	clearflag FLAG_HIDE_DEWFORD_HALL_SLUDGE_BOMB_MAN
+	setflag FLAG_HIDE_PETALBURG_GYM_NORMAN
+	setflag FLAG_NORMAN_INTRODUCED_GYM
+	setvar VAR_PETALBURG_GYM_STATE, 7
+	setflag FLAG_RECEIVED_TM42
+	settrainerflag TRAINER_BERKE
+	settrainerflag TRAINER_JODY
+	// route 104
+	settrainerflag TRAINER_BILLY
+	settrainerflag TRAINER_CINDY_1
+	// petalburg woods
+	settrainerflag TRAINER_LYLE
+	setvar VAR_PETALBURG_WOODS_STATE, 1
+	settrainerflag TRAINER_JAMES_1
+	// route 104 north
+	settrainerflag TRAINER_WINSTON_1
+	settrainerflag TRAINER_HALEY_1
+	settrainerflag TRAINER_GINA_AND_MIA_1
+	settrainerflag TRAINER_IVAN
+	// rustboro
+	FLAG_VISITED_RUSTBORO_CITY
+	settrainerflag TRAINER_JOSH
+	settrainerflag TRAINER_TOMMY
+	settrainerflag TRAINER_MARC
+	setflag FLAG_DEFEATED_RUSTBORO_GYM
+	setflag FLAG_BADGE01_GET
+	setvar VAR_RUSTBORO_CITY_STATE, 1
+	addvar VAR_PETALBURG_GYM_STATE, 1
+	setflag FLAG_ENABLE_ROXANNE_MATCH_CALL
+	clearflag FLAG_ENABLE_ROXANNE_FIRST_CALL
+	// route 116
+	settrainerflag TRAINER_JOEY
+	settrainerflag TRAINER_JOSE
+	settrainerflag TRAINER_KAREN_1
+	settrainerflag TRAINER_CLARK
+	settrainerflag TRAINER_JOHNSON
+	settrainerflag TRAINER_DEVAN
+	// rusturf tunnel part 2
+	settrainerflag TRAINER_GRUNT_RUSTURF_TUNNEL
+	clearflag FLAG_DEVON_GOODS_STOLEN
+	setflag FLAG_RECOVERED_DEVON_GOODS
+	setvar VAR_RUSTBORO_CITY_STATE, 4
+	setvar VAR_BRINEY_HOUSE_STATE, 1
+	setflag FLAG_HIDE_ROUTE_116_MR_BRINEY
+	// devon corp / rustboro university
+	setflag FLAG_INTERACTED_WITH_DEVON_EMPLOYEE_GOODS_STOLEN
+	setflag FLAG_RETURNED_DEVON_GOODS
+	setflag FLAG_HIDE_RUSTBORO_CITY_DEVON_EMPLOYEE_1
+	setvar VAR_RUSTBORO_CITY_STATE, 5
+	setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
+	setflag FLAG_HIDE_ROUTE_116_WANDAS_BOYFRIEND
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDAS_BOYFRIEND
+	clearflag FLAG_HIDE_RUSTURF_TUNNEL_WANDA
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_MR_BRINEY
+	clearflag FLAG_HIDE_BRINEYS_HOUSE_PEEKO
+	setvar VAR_BRINEY_LOCATION, 1
+	clearflag FLAG_HIDE_RUSTBORO_CITY_RIVAL
+	setvar VAR_DEVON_CORP_3F_STATE, 1
+	setvar VAR_RUSTBORO_CITY_STATE, 6
+	
+	// warp player to mr brineys house
+	warp MAP_ROUTE104_MR_BRINEYS_HOUSE, 255, 5, 8
+	end
+	
 NewIsland_EventScript_Mewtwo::
 	lock
 	faceplayer
