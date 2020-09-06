@@ -62,8 +62,8 @@
 #define FLAG_INTRODUCED_ABILITY_CHANGER        0x31 // Unused Flag
 #define FLAG_INTRODUCED_SURFER_TUTOR           0x32  // Unused Flag
 #define FLAG_CAN_USE_SURF                      0x33  // Unused Flag
-#define FLAG_UNUSED_0x068                    0x34  // Unused Flag
-#define FLAG_UNUSED_RS_LEGENDARY_BATTLE_DONE 0x35 // Unused Flag. Used in R/S to indicate whether player defeated or caught Groudon/Kyogre in Cave of Origin.
+#define FLAG_ITEM_FIERY_PATH_FLAME_ORB         0x34  // Unused Flag
+#define FLAG_ITEM_FIERY_PATH_DUSK_BALL         0x35 // Unused Flag. Used in R/S to indicate whether player defeated or caught Groudon/Kyogre in Cave of Origin.
 #define FLAG_UNUSED_0x0E9                    0x36 // Unused Flag
 #define FLAG_UNUSED_0x1AA                    0x37 // Unused Flag
 #define FLAG_UNUSED_0x1AB                    0x38 // Unused Flag
