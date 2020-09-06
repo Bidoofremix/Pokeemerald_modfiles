@@ -81,6 +81,46 @@ RustboroCity_DevonCorp_3F_Text_MrStoneRestUp:
 RustboroCity_DevonCorp_3F_Movement_Unused: @ 821252F
 // >
 
+< //
+RustboroCity_DevonCorp_3F_EventScript_GiveExpShare:: @ 8212595
+	msgbox RustboroCity_DevonCorp_3F_Text_ThankYouForDeliveringLetter, MSGBOX_DEFAULT
+	giveitem ITEM_LUCKY_EGG
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_EXP_SHARE
+	msgbox RustboroCity_DevonCorp_3F_Text_ExplainLuckyEgg, MSGBOX_DEFAULT
+	closemessage
+	applymovement VAR_LAST_TALKED, Common_Movement_FaceOriginalDirection
+	waitmovement 0
+	release
+	end
+
+RustboroCity_DevonCorp_3F_EventScript_MrStoneAfterFavor:: @ 82125CC
+// >
+
+< //
+RustboroCity_DevonCorp_3F_Text_ExplainExpShare: @ 8212A9E
+	.string "MR. STONE: A POKéMON holding that\n"
+	.string "EXP. SHARE will be given some of the\l"
+	.string "EXP Points from battle.\p"
+	.string "It will get EXP Points even if it didn't\n"
+	.string "actually battle.\p"
+	.string "I would say EXP. SHARE is quite useful\n"
+	.string "for raising weak POKéMON.$"
+
+RustboroCity_DevonCorp_3F_Text_ExplainLuckyEgg:
+	.string "PROF. STONE: A POKéMON holding that\n"
+	.string "Lucky Egg will be given double the\l"
+	.string "amount of EXP Points from battle.\p"
+	.string "However, it will have to participate\n"
+	.string "in battle, unlike with EXP. Share.\p"
+	.string "Nevertheless, I would say that\n"
+	.string "Lucky Egg is quite useful for\l"
+	.string "raising weak POKéMON.$"
+	
+RustboroCity_DevonCorp_3F_Text_NotFamiliarWithTrends: @ 8212B78
+// >
+
 
 < //
 RustboroCity_DevonCorp_3F_EventScript_MrStone:: @ 821256C
@@ -161,7 +201,11 @@ RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp: @ 8212837
 
 RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare: @ 82129D2
 	.string "PROF. STONE: Well, then, {PLAYER}{KUN},\n"
-	.string "go with caution and care!$"
+	.string "go with caution and care.\p"
+	.string "Once the LETTER is delivered, please\n"
+	.string "come back to me so that I may reward\l"
+	.string "you with another rare item.\p"
+	.string "I'm counting on you!$"
 
 RustboroCity_DevonCorp_3F_Text_CountingOnYou: @ 8212A09
 	.string "PROF. STONE: I'm counting on you!$"
