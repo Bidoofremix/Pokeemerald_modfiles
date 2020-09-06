@@ -110,7 +110,7 @@ RustboroCity_DevonCorp_3F_Text_ExplainExpShare: @ 8212A9E
 
 RustboroCity_DevonCorp_3F_Text_ExplainLuckyEgg:
 	.string "PROF. STONE: A POKéMON holding that\n"
-	.string "Lucky Egg will be given double the\l"
+	.string "Lucky Egg will be given double\l"
 	.string "amount of EXP Points from battle.\p"
 	.string "However, it will have to participate\n"
 	.string "in battle, unlike with EXP. Share.\p"
