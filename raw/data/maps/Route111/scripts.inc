@@ -44,8 +44,8 @@ Route111_Text_MagmaGrunt2::
 	.string "point. Go on, scram!$"
 	
 Route111_Text_MagmaGrunt3::
-	.string "I accidentally ate the BOSS's lunch\"
-	.string "sandwhich, and now I'm on road duty…\p"
+	.string "I accidentally ate the BOSS's lunch\n"
+	.string "sandwhich, and now I'm on field duty…\p"
 	.string "Grumble…$"
 	
 Route111_Text_MagmaGrunt4::
