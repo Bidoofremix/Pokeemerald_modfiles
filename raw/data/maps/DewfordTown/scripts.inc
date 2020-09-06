@@ -11,13 +11,14 @@ DewfordTown_MapScripts:: @ 81E9507
 < //
 DewfordTown_OnTransition: @ 81E950D
 	setflag FLAG_VISITED_DEWFORD_TOWN
-	//call BrineBeach_EventScript_ControlWeather
-	//call_if_unset FLAG_DEFEATED_GYARADOS, DewfordTown_EventScript_SetCooltrainer
+	call BrineBeach_EventScript_ControlWeather
+	call_if_unset FLAG_DEFEATED_GYARADOS, DewfordTown_EventScript_SetCooltrainer
 	end
 
 DewfordTown_EventScript_SetCooltrainer::
 	setobjectxyperm LOCALID_COOLTRAINER, 8, 18
 	setobjectmovementtype LOCALID_COOLTRAINER, MOVEMENT_TYPE_FACE_DOWN
+	end
 	
 DewfordTown_EventScript_CoolTrainer::
 	lock
