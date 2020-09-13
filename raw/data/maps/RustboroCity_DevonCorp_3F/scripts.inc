@@ -64,7 +64,7 @@ RustboroCity_DevonCorp_3F_EventScript_ReceivedAmuletCoin::
 	return
 	
 RustboroCity_DevonCorp_3F_Text_MrStoneExplainAmuletCoin:
-	.string "PROF. STONE: That {STR_VAR_1}…\p"
+	.string "PROF. STONE: That Amulet Coin…\p"
 	.string "It is a fairly rare object that\n"
 	.string "doubles the amount of money won\l"
 	.string "from battles.\p"

@@ -338,6 +338,79 @@ static void Cmd_getexp(void)
 // >
 
 < //
+static u32 GetTrainerMoneyToGive(u16 trainerId)
+{
+    u32 i = 0;
+    u32 lastMonLevel = 0;
+    u32 moneyReward = 0;
+
+    if (trainerId == TRAINER_SECRET_BASE)
+    {
+        moneyReward = 20 * gBattleResources->secretBase->party.levels[0] * gBattleStruct->moneyMultiplier;
+    }
+    else
+    {
+        switch (gTrainers[trainerId].partyFlags)
+        {
+        case 0:
+            {
+                const struct TrainerMonNoItemDefaultMoves *party = gTrainers[trainerId].party.NoItemDefaultMoves;
+                lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
+            }
+            break;
+        case F_TRAINER_PARTY_CUSTOM_MOVESET:
+            {
+                const struct TrainerMonNoItemCustomMoves *party = gTrainers[trainerId].party.NoItemCustomMoves;
+                lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
+            }
+            break;
+        case F_TRAINER_PARTY_HELD_ITEM:
+            {
+                const struct TrainerMonItemDefaultMoves *party = gTrainers[trainerId].party.ItemDefaultMoves;
+                lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
+            }
+            break;
+        case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM:
+            {
+                const struct TrainerMonItemCustomMoves *party = gTrainers[trainerId].party.ItemCustomMoves;
+                lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
+            }
+            break;
+		case F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_ABILITY:
+			{
+	            const struct TrainerMonItemDefaultMovesAbilityShiny *party = gTrainers[trainerId].party.ItemDefaultMovesAbilityShiny;
+                lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
+			}
+			break;		
+		case F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_ABILITY:
+			{
+	            const struct TrainerMonItemCustomMovesAbilityShiny *party = gTrainers[trainerId].party.ItemCustomMovesAbilityShiny;
+                lastMonLevel = party[gTrainers[trainerId].partySize - 1].lvl;
+			}
+			break;
+        }
+
+        for (; gTrainerMoneyTable[i].classId != 0xFF; i++)
+        {
+            if (gTrainerMoneyTable[i].classId == gTrainers[trainerId].trainerClass)
+                break;
+        }
+
+        if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
+            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * gTrainerMoneyTable[i].value;
+        else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
+            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * 2 * gTrainerMoneyTable[i].value;
+        else
+            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * gTrainerMoneyTable[i].value;
+    }
+
+    return moneyReward;
+}
+
+static void Cmd_getmoneyreward(void)
+// >
+
+< //
 static void Cmd_handlelearnnewmove(void)
 {
     const u8 *jumpPtr1 = T1_READ_PTR(gBattlescriptCurrInstr + 1);
