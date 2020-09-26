@@ -8,6 +8,15 @@ static const u8 sSootSackDesc[] = _(
 // >
 
 < //
+static const u8 sAcroBikeDesc[] = _(
+    "A high-tech bike\n"
+    "with fast and\n"
+    "slow gear.");
+
+static const u8 sPokeblockCaseDesc[] = _(
+// >
+
+< //
 static const u8 sDestinyKnotDesc[] = _(
     "If the holder gets\n"
     "infatuated, the\n"

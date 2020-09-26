@@ -16,6 +16,24 @@
 // >
 
 < //
+    [ITEM_ACRO_BIKE] =
+    {
+        .name = _("Bike"),
+        .itemId = ITEM_ACRO_BIKE,
+        .price = 0,
+        .description = sAcroBikeDesc,
+        .importance = 1,
+        .unk19 = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = 2,
+        .fieldUseFunc = ItemUseOutOfBattle_Bike,
+        .secondaryId = 1,
+    },
+
+    [ITEM_POKEBLOCK_CASE] =
+// >
+
+< //
     [ITEM_EVERSTONE] =
     {
         .name = _("Everstone"),

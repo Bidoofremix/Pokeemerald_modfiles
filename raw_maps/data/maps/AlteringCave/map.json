@@ -1,8 +1,8 @@
 {
     "allow_bike": true,
-    "allow_cycling": "",
+    "allow_cycling": true,
     "allow_escape_rope": true,
-    "allow_escaping": "",
+    "allow_escaping": true,
     "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "bg_events": [

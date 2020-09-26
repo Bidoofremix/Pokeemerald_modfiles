@@ -17,7 +17,7 @@ MauvilleCity_BikeShop_EventScript_SkipGreeting:: @ 820EBF7
 
 < //
 MauvilleCity_BikeShop_EventScript_YesFar:: @ 820EC4A
-	message MauvilleCity_BikeShop_Text_TakeABike
+	mgbox MauvilleCity_BikeShop_Text_TakeABike, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_BIKE
 	giveitem ITEM_ACRO_BIKE
 	//goto MauvilleCity_BikeShop_EventScript_ChooseBike
@@ -50,7 +50,7 @@ MauvilleCity_BikeShop_Text_TakeABike: @ 820EF32
 	.string "gentle caress of the wind!\p"
 	.string "I'll tell you what!\n"
 	.string "I'll give you a BIKE!\p"
-	.string "Here, take this!$
+	.string "Here, take this!$"
 	
 MauvilleCity_BikeShop_Text_TwoBikesInOne:
 	.string "RYDEL: My BIKES have cutting-edge\n"
@@ -126,4 +126,4 @@ MauvilleCity_BikeShop_Text_Jumps: @ 820F898
 	.string "Press it backwards to make the BIKE\n"
 	.string "change directions while jumping.\p"
 	.string "Want to read a different page?$"
-// >
+// > END
