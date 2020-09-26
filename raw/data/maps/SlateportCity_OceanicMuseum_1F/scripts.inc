@@ -17,3 +17,13 @@ SlateportCity_OceanicMuseum_1F_Text_YouHaveToTakeThis: @ 820B49B
 
 SlateportCity_OceanicMuseum_1F_Text_WhirlpoolExperiment: @ 820B4CF
 // >
+
+< //
+SlateportCity_OceanicMuseum_1F_Text_RustboroBungled: @ 820B1D4
+	.string "I wonder what would have happened if\n"
+	.string "I'd been admitted to RUSTBORO\l"
+	.string "UNIVERSITY to study marine ecology\l"
+	.string "instead of joining TEAM AQUA…$"
+
+SlateportCity_OceanicMuseum_1F_Text_DidntHaveMoney: @ 820B218
+// >
