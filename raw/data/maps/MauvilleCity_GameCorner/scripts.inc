@@ -9,7 +9,7 @@ MauvilleCity_GameCorner_MapScripts:: @ 820FBB8
 	.set TM24_COINS,  4000
 	.set TM13_COINS,  4000
 	.set DOLL_COINS,  1000
-	.set STONE_COINS, 2000
+	.set STONE_COINS, 100
 
 	.set COINS_PRICE_50,  1000
 	.set COINS_PRICE_500, 10000
@@ -20,19 +20,14 @@ MauvilleCity_GameCorner_EventScript_CoinsClerk:: @ 820FBB9
 
 < //
 MauvilleCity_GameCorner_EventScript_ChooseTMPrize:: @ 820FED9
-	multichoice 12, 0, MULTI_GAME_CORNER_TMS, 0
+	multichoice 12, 0, MULTI_GAME_CORNER_STONES_1, 0
 	switch VAR_RESULT
 	case 0, MauvilleCity_GameCorner_EventScript_FireStone
 	case 1, MauvilleCity_GameCorner_EventScript_WaterStone
 	case 2, MauvilleCity_GameCorner_EventScript_ThunderStone
 	case 3, MauvilleCity_GameCorner_EventScript_LeafStone
-	case 4, MauvilleCity_GameCorner_EventScript_MoonStone
-	case 5, MauvilleCity_GameCorner_EventScript_SunStone
-	case 6, MauvilleCity_GameCorner_EventScript_ShinyStone
-	case 7, MauvilleCity_GameCorner_EventScript_DuskStone
-	case 8, MauvilleCity_GameCorner_EventScript_DawnStone
-	case 9, MauvilleCity_GameCorner_EventScript_IceStone
-	case 10, MauvilleCity_GameCorner_EventScript_CancelTMSelect
+	case 4, MauvilleCity_GameCorner_EventScript_IceStone
+	case 5, MauvilleCity_GameCorner_EventScript_CancelTMSelect
 	goto MauvilleCity_GameCorner_EventScript_CancelTMSelect
 	end
 	
@@ -60,10 +55,10 @@ MauvilleCity_GameCorner_EventScript_LeafStone:: @ 820FF2B
 	setvar VAR_0x8004, ITEM_LEAF_STONE
 	goto MauvilleCity_GameCorner_EventScript_ConfirmTMPrize
 
-MauvilleCity_GameCorner_EventScript_MoonStone:: @ 820FF2B
+MauvilleCity_GameCorner_EventScript_IceStone:: @ 820FF2B
 	setvar VAR_TEMP_1, 5
-	bufferitemname 0, ITEM_MOON_STONE
-	setvar VAR_0x8004, ITEM_MOON_STONE
+	bufferitemname 0, ITEM_ICE_STONE
+	setvar VAR_0x8004, ITEM_ICE_STONE
 	goto MauvilleCity_GameCorner_EventScript_ConfirmTMPrize
 
 MauvilleCity_GameCorner_EventScript_SunStone:: @ 820FF2B
