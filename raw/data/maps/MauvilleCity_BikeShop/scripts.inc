@@ -17,7 +17,7 @@ MauvilleCity_BikeShop_EventScript_SkipGreeting:: @ 820EBF7
 
 < //
 MauvilleCity_BikeShop_EventScript_YesFar:: @ 820EC4A
-	mgbox MauvilleCity_BikeShop_Text_TakeABike, MSGBOX_DEFAULT
+	msgbox MauvilleCity_BikeShop_Text_TakeABike, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_BIKE
 	giveitem ITEM_ACRO_BIKE
 	//goto MauvilleCity_BikeShop_EventScript_ChooseBike
