@@ -24,6 +24,15 @@ SlateportCity_OceanicMuseum_2F_Text_Grunt1Defeat: @ 820BEE2
 // >
 
 < //
+SlateportCity_OceanicMuseum_2F_Text_CameToSeeWhatsTakingSoLong: @ 820BFF2
+	.string "I came to see what was taking so\n"
+	.string "long to snatch a memory stick, and\l"
+	.string "you simps are held up by a child?$"
+
+SlateportCity_OceanicMuseum_2F_Text_ArchieWarning: @ 820C059
+// >
+
+< //
 SlateportCity_OceanicMuseum_2F_Text_SternThankYouForSavingUs: @ 820C2BE
 	.string "CAPT. STERN: You're…\n"
 	.string "Ah, okay, you're {PLAYER}{KUN}…\p"
