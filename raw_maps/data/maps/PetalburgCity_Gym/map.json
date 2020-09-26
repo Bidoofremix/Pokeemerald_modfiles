@@ -3,7 +3,7 @@
     "allow_cycling": "",
     "allow_escape_rope": false,
     "allow_escaping": "",
-    "allow_running": false,
+    "allow_running": true,
     "battle_scene": "MAP_BATTLE_SCENE_GYM",
     "bg_events": [
         {
