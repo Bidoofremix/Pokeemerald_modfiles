@@ -466,6 +466,51 @@
             "var_value": "0",
             "x": 11,
             "y": 44
+        },
+        {
+            "elevation": 0,
+            "script": "Route111_EventScript_SetRouteState1",
+            "type": "trigger",
+            "var": "VAR_TEMP_0",
+            "var_value": "0",
+            "x": 18,
+            "y": 107
+        },
+        {
+            "elevation": 0,
+            "script": "Route111_EventScript_SetRouteState1",
+            "type": "trigger",
+            "var": "VAR_ROUTE111_STATE",
+            "var_value": "0",
+            "x": 17,
+            "y": 107
+        },
+        {
+            "elevation": 0,
+            "script": "Route111_EventScript_WallyGivesPokeflute",
+            "type": "trigger",
+            "var": "VAR_ROUTE111_STATE",
+            "var_value": "1",
+            "x": 21,
+            "y": 125
+        },
+        {
+            "elevation": 0,
+            "script": "Route111_EventScript_WallyGivesPokeflute",
+            "type": "trigger",
+            "var": "VAR_ROUTE111_STATE",
+            "var_value": "1",
+            "x": 22,
+            "y": 125
+        },
+        {
+            "elevation": 0,
+            "script": "Route111_EventScript_WallyGivesPokeflute",
+            "type": "trigger",
+            "var": "VAR_ROUTE111_STATE",
+            "var_value": "1",
+            "x": 23,
+            "y": 125
         }
     ],
     "id": "MAP_ROUTE111",

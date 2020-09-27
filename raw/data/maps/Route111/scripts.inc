@@ -6,6 +6,16 @@ Route111_MapScripts:: @ 81F0CA7
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route111_OnFrame
 	.byte 0
 
+Route111_EventScript_SetRouteState1::
+	setvar VAR_ROUTE111_STATE, 1
+	end
+	
+Route111_EventScript_WallyGivesPokeflute::
+	lock
+	playmoncry SPECIES_PIKACHU, 0
+	release
+	end
+	
 Route111_EventScript_MagmaGrunt1::
 	lock
 	faceplayer
@@ -33,7 +43,6 @@ Route111_EventScript_MagmaGrunt4::
 	msgbox Route111_Text_MagmaGrunt4, MSGBOX_DEFAULT
 	release
 	end
-	
 	
 Route111_Text_MagmaGrunt1::
 	.string "Official TEAM MAGMA business here.\n"
