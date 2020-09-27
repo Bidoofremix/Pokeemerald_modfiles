@@ -1,9 +1,17 @@
 #!/usr/bin/python3
 
-import os,re,xlrd,argparse,copy,json,shutil,random
+import os,re,xlrd,argparse,copy,json,shutil,random,wmi
 from config import pokeemerald_dir,slash,vanilla_dir
 from misc import normalize_path,excel_files,clean_num
 from pokemon_tools import *
+
+c = wmi.WMI()
+
+for process in c.Win32_Process():
+	if process.Name == "porymap.exe":
+		print("\nERROR: porymap is running, not safe to modify content")
+		print("\nexit run")
+		exit(0)
 
 wrk_dir = os.getcwd()
 
