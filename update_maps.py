@@ -108,9 +108,9 @@ for dir, subdirs, files in os.walk(backup_dir,sound_dir,graphics_dir):
 		
 			absolute_path = normalize_path("{0}/{1}".format(dir,fname))
 			mod_path = backup_to_mod(absolute_path)
-			if not fname.endswith((".aif",".png")) and not os.path.isfile(mod_path):
+			if not fname.endswith((".aif",".png", ".pal")) and not os.path.isfile(mod_path):
 				custom_files.append(absolute_path)
-			elif fname.endswith((".aif",".png")):
+			elif fname.endswith((".aif",".png", "pal")):
 				custom_files.append(absolute_path)
 
 ########## insert files before porymap
