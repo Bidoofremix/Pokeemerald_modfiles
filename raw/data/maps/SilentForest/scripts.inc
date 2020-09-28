@@ -50,10 +50,10 @@ SilentForest_EventScript_BattleSnorlax::
 	
 	// set battle
 	msgbox SilentForest_Text_SnorlaxAttackedInAGrumpyRage, MSGBOX_DEFAULT
-	waitse
-	playmoncry SPECIES_SNORLAX, 2
 	closemessage
+	playmoncry SPECIES_SNORLAX, 2
 	delay 40
+	waitmoncry
 	setwildbattle SPECIES_SNORLAX, 30, ITEM_LEFTOVERS
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	
