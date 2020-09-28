@@ -153,9 +153,9 @@ if args["mode"] == "insert":
 
 # clean up after porymap changes parameters
 map_parameters = {}
-map_parameters["allow_bike="] = "allow_cycling="
-map_parameters["allow_escape_rope="] = "allow_escaping="
-map_parameters["allow_run="] = "allow_running="
+#map_parameters["allow_bike="] = "allow_cycling="
+#map_parameters["allow_escape_rope="] = "allow_escaping="
+#map_parameters["allow_run="] = "allow_running="
 
 # compare all files against base battle_engine_v2
 # and mod folder (pokeemerald_mod)
