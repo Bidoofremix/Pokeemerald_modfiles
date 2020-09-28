@@ -102,7 +102,8 @@ SilentForest_Text_PlayedThePokeFlute:
 	.string "{PLAYER} played the {STR_VAR_2}.$"
 	
 SilentForest_Text_SnorlaxAttackedInAGrumpyRage:
-	.string "{STR_VAR_1} attacked in a grumpy rage!$"
+	.string "{STR_VAR_1} attacked in a\n"
+	.string "grumpy rage!$"
 	
 SilentForest_EventScript_ItemLeafStone::
 	finditem ITEM_LEAF_STONE
