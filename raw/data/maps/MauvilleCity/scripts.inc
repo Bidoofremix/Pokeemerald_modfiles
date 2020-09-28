@@ -14,9 +14,9 @@ MauvilleCity_EventScript_DefeatedWally:: @ 81DF593
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLY
 	clearflag FLAG_HIDE_VERDANTURF_TOWN_WANDAS_HOUSE_WALLYS_UNCLE
 	setflag FLAG_DEFEATED_WALLY_MAUVILLE
-	// custom: don't enable wally call until route 111
-	//setvar VAR_WALLY_CALL_STEP_COUNTER, 0
-	//setflag FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL
+	@custom: don't enable wally call until route 111
+	@setvar VAR_WALLY_CALL_STEP_COUNTER, 0
+	@setflag FLAG_ENABLE_FIRST_WALLY_POKENAV_CALL
 	compare VAR_FACING, DIR_NORTH
 	call_if_eq MauvilleCity_EventScript_ScottApproachPlayerNorth
 	compare VAR_FACING, DIR_EAST
