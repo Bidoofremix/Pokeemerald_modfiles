@@ -16,6 +16,9 @@
 	case SPECIES_GYARADOS:
 		CreateBattleStartTask(B_TRANSITION_WAVE, MUS_RG_VS_TORE);
         break;
+	case SPECIES_SNORLAX:
+		CreateBattleStartTask(B_TRANSITION_WHITEFADE, MUS_RG_VS_TORE);
+        break;
     case SPECIES_MEW:
 // >
 

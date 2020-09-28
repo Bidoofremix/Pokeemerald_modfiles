@@ -72,7 +72,7 @@ Route111_Text_WallyWhatThereAreMagmaGrunts:
 	.string "awaken it with a flute.\p"
 	.string "… I'm too scared to go there, so\n"
 	.string "{PLAYER}, maybe you can use this.$"
-	
+
 Route111_Text_WallyThisIsThePokeFlute:
 	.string "WALLY: This is a {STR_VAR_1}.\n"
 	.string "I found it with Kirlia when we\l"
