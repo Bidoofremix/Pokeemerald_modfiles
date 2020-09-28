@@ -1,5 +1,4 @@
-< //
-
+< // START
 .set LOCALID_SNORLAX, 1
 
 SilentForest_MapScripts::
@@ -21,21 +20,38 @@ SilentForest_Mapscript_CtrlObj::
 SilentForest_OnTransition::
 	call_if_unset FLAG_DEFEATED_SNORLAX, SilentForest_ShowSnorlax
 	end
-
-SilentForest_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, SilentForest_OnTransition
-	.byte 0
-
+	
 SilentForest_ShowSnorlax::
 	clearflag FLAG_HIDE_SNORLAX
 	return
 
 SilentForest_EventScript_Snorlax::
 	lock
+	bufferspeciesname 0, SPECIES_SNORLAX
+	checkitem ITEM_POKE_FLUTE, 1
+	compare VAR_RESULT, TRUE
+	goto_if_eq SilentForest_EventScript_BattleSnorlax
+	msgbox SilentForest_Text_SnorlaxIsSleeping, MSGBOX_DEFAULT	
+	release
+	end
+	
+SilentForest_EventScript_BattleSnorlax::
+
+	bufferitemname 1, ITEM_POKE_FLUTE
+	msgbox SilentForest_Text_SnorlaxIsSleepingUseThePokeFlute, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq SilentForest_EventScript_CancelBattle
+	
+	message SilentForest_Text_PlayedThePokeFlute
+	playfanfare MUS_RG_POKEFUE
+	waitfanfare
+	waitmessage	
+	delay 40
 	
 	// set battle
+	msgbox SilentForest_Text_SnorlaxAttackedInAGrumpyRage, MSGBOX_DEFAULT
+	waitse
 	playmoncry SPECIES_SNORLAX, 2
-	msgbox BrineBeach_Text_Gyarados, MSGBOX_DEFAULT
 	closemessage
 	delay 40
 	setwildbattle SPECIES_SNORLAX, 30, ITEM_LEFTOVERS
@@ -61,24 +77,34 @@ SilentForest_EventScript_Snorlax::
 	release
 	end
 	
+SilentForest_EventScript_CancelBattle::
+	release
+	end
+	
 SilentForest_EventScript_DefeatedSnorlax::
-	// remove gyarados sprite
-	setvar VAR_SILENT_FOREST_STATE, 1
+	// remove snorlax sprite
 	fadescreenswapbuffers 1
-	//fadescreen 1
 	removeobject LOCALID_SNORLAX
-	//fadescreen 0
 	fadescreenswapbuffers 0
 	setflag FLAG_DEFEATED_SNORLAX
 	
-	releaseall
-	end	
+	release
+	end		
 	
+SilentForest_Text_SnorlaxIsSleeping:
+	.string "A {STR_VAR_1} is sleeping…$"
+
+SilentForest_Text_SnorlaxIsSleepingUseThePokeFlute:
+	.string "A {STR_VAR_1} is sleeping…\n"
+	.string "Use the {STR_VAR_2}?$"
+	
+SilentForest_Text_PlayedThePokeFlute:
+	.string "{PLAYER} played the {STR_VAR_2}.$"
+	
+SilentForest_Text_SnorlaxAttackedInAGrumpyRage:
+	.string "{STR_VAR_1} attacked in a grumpy rage!$"
 	
 SilentForest_EventScript_ItemLeafStone::
 	finditem ITEM_LEAF_STONE
-	end	
-	
-SilentForest_OnTransition:
 	end
-// >
+// > END
