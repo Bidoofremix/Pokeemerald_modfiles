@@ -4273,12 +4273,12 @@
         {
             "blockdata_filepath": "data/layouts/NavelRock_Exterior/map.bin",
             "border_filepath": "data/layouts/NavelRock_Exterior/border.bin",
-            "height": 24,
+            "height": 50,
             "id": "LAYOUT_NAVEL_ROCK_EXTERIOR",
             "name": "NavelRock_Exterior_Layout",
             "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Dewford",
-            "width": 21
+            "secondary_tileset": "gTileset_Rustboro",
+            "width": 60
         },
         {
             "blockdata_filepath": "data/layouts/NavelRock_Entrance/map.bin",

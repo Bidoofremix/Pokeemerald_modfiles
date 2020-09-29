@@ -56,9 +56,9 @@
             "y": 24
         }
     ],
-    "region_map_section": "MAPSEC_BRINE_BEACH",
+    "region_map_section": "MAPSEC_MYSTERY_SPRINGS",
     "requires_flash": false,
-    "show_map_name": false,
+    "show_map_name": true,
     "warp_events": [
         {
             "dest_map": "MAP_BRINE_BEACH",
