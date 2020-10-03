@@ -27,7 +27,7 @@ extern const u8 gText_50CoinsAndPrice[];
 // >
 
 < //
-extern const u8 gText_Beauty3[];
+extern const u8 gText_234Players[];
 
 ////side quests
 //names

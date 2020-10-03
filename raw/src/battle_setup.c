@@ -11,13 +11,13 @@
 < //
     case SPECIES_LUGIA:
     case SPECIES_HO_OH:
-        CreateBattleStartTask(B_TRANSITION_BLUR, MUS_RG_VS_DEN);
+        CreateBattleStartTask(B_TRANSITION_WHITEFADE, MUS_VS_KYOGRE_GROUDON);
         break;
 	case SPECIES_GYARADOS:
-		CreateBattleStartTask(B_TRANSITION_WAVE, MUS_RG_VS_TORE);
+		CreateBattleStartTask(B_TRANSITION_WAVE, MUS_RG_VS_TRAINER);
         break;
 	case SPECIES_SNORLAX:
-		CreateBattleStartTask(B_TRANSITION_WHITEFADE, MUS_RG_VS_TORE);
+		CreateBattleStartTask(B_TRANSITION_WHITEFADE, MUS_RG_VS_TRAINER);
         break;
     case SPECIES_MEW:
 // >

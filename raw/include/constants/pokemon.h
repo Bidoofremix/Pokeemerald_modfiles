@@ -8,7 +8,7 @@
 // >
 
 < //
-#define SPLIT_STATUS    0x2
+#define MAX_STAT_STAGE    12
 
 // Shiny odds
 #define SHINY_ODDS 512 // Actual probability is SHINY_ODDS/65536

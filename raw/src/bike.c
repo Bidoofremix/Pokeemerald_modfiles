@@ -30,7 +30,7 @@ void MovePlayerOnBike(u8 direction, u16 newKeys, u16 heldKeys)
             gPlayerAvatar.flags += PLAYER_AVATAR_FLAG_MACH_BIKE;
 			SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_MACH_BIKE);
         }
-        PlaySE(SE_JITENSYA);
+        PlaySE(SE_BIKE_BELL);
     }
 }
 

@@ -570,36 +570,36 @@
             "secondary_tileset": "gTileset_Pacifidlog",
             "width": 80
         },
-        {
-            "blockdata_filepath": "data/layouts/Underwater2/map.bin",
-            "border_filepath": "data/layouts/Underwater2/border.bin",
-            "height": 80,
-            "id": "LAYOUT_UNDERWATER2",
-            "name": "Underwater2_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Underwater",
-            "width": 80
-        },
-        {
-            "blockdata_filepath": "data/layouts/Underwater3/map.bin",
-            "border_filepath": "data/layouts/Underwater3/border.bin",
-            "height": 80,
-            "id": "LAYOUT_UNDERWATER3",
-            "name": "Underwater3_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Underwater",
-            "width": 80
-        },
-        {
-            "blockdata_filepath": "data/layouts/Underwater4/map.bin",
-            "border_filepath": "data/layouts/Underwater4/border.bin",
-            "height": 40,
-            "id": "LAYOUT_UNDERWATER4",
-            "name": "Underwater4_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Underwater",
-            "width": 120
-        },
+		{
+		  "id": "LAYOUT_UNDERWATER_ROUTE126",
+		  "name": "Underwater_Route126_Layout",
+		  "width": 80,
+		  "height": 80,
+		  "primary_tileset": "gTileset_General",
+		  "secondary_tileset": "gTileset_Underwater",
+		  "border_filepath": "data/layouts/Underwater_Route126/border.bin",
+		  "blockdata_filepath": "data/layouts/Underwater_Route126/map.bin"
+		},
+		{
+		  "id": "LAYOUT_UNDERWATER_ROUTE127",
+		  "name": "Underwater_Route127_Layout",
+		  "width": 80,
+		  "height": 80,
+		  "primary_tileset": "gTileset_General",
+		  "secondary_tileset": "gTileset_Underwater",
+		  "border_filepath": "data/layouts/Underwater_Route127/border.bin",
+		  "blockdata_filepath": "data/layouts/Underwater_Route127/map.bin"
+		},
+		{
+		  "id": "LAYOUT_UNDERWATER_ROUTE128",
+		  "name": "Underwater_Route128_Layout",
+		  "width": 120,
+		  "height": 40,
+		  "primary_tileset": "gTileset_General",
+		  "secondary_tileset": "gTileset_Underwater",
+		  "border_filepath": "data/layouts/Underwater_Route128/border.bin",
+		  "blockdata_filepath": "data/layouts/Underwater_Route128/map.bin"
+		},
         {
             "blockdata_filepath": "data/layouts/LittlerootTown_BrendansHouse_1F/map.bin",
             "border_filepath": "data/layouts/LittlerootTown_BrendansHouse_1F/border.bin",
@@ -2800,16 +2800,16 @@
             "secondary_tileset": "gTileset_BattleFrontier",
             "width": 5
         },
-        {
-            "blockdata_filepath": "data/layouts/Underwater1/map.bin",
-            "border_filepath": "data/layouts/Underwater1/border.bin",
-            "height": 80,
-            "id": "LAYOUT_UNDERWATER1",
-            "name": "Underwater1_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Underwater",
-            "width": 80
-        },
+		{
+		  "id": "LAYOUT_UNDERWATER_ROUTE124",
+		  "name": "Underwater_Route124_Layout",
+		  "width": 80,
+		  "height": 80,
+		  "primary_tileset": "gTileset_General",
+		  "secondary_tileset": "gTileset_Underwater",
+		  "border_filepath": "data/layouts/Underwater_Route124/border.bin",
+		  "blockdata_filepath": "data/layouts/Underwater_Route124/map.bin"
+		},
         {
             "blockdata_filepath": "data/layouts/MossdeepCity_SpaceCenter_1F/map.bin",
             "border_filepath": "data/layouts/MossdeepCity_SpaceCenter_1F/border.bin",
@@ -2880,16 +2880,16 @@
             "secondary_tileset": "gTileset_Cave",
             "width": 17
         },
-        {
-            "blockdata_filepath": "data/layouts/Underwater_Route134/map.bin",
-            "border_filepath": "data/layouts/Underwater_Route134/border.bin",
-            "height": 10,
-            "id": "LAYOUT_UNDERWATER_ROUTE134",
-            "name": "Underwater_Route134_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Underwater",
-            "width": 18
-        },
+		{
+		  "id": "LAYOUT_UNDERWATER_ROUTE134",
+		  "name": "Underwater_Route134_Layout",
+		  "width": 18,
+		  "height": 10,
+		  "primary_tileset": "gTileset_General",
+		  "secondary_tileset": "gTileset_Underwater",
+		  "border_filepath": "data/layouts/Underwater_Route134/border.bin",
+		  "blockdata_filepath": "data/layouts/Underwater_Route134/map.bin"
+		},
         {
             "blockdata_filepath": "data/layouts/Underwater_SealedChamber/map.bin",
             "border_filepath": "data/layouts/Underwater_SealedChamber/border.bin",
@@ -4159,37 +4159,37 @@
             "primary_tileset": "gTileset_General",
             "secondary_tileset": "gTileset_Cave",
             "width": 27
-        },
-        {
-            "blockdata_filepath": "data/layouts/Underwater6/map.bin",
-            "border_filepath": "data/layouts/Underwater6/border.bin",
-            "height": 80,
-            "id": "LAYOUT_UNDERWATER6",
-            "name": "Underwater6_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Underwater",
-            "width": 40
-        },
-        {
-            "blockdata_filepath": "data/layouts/Underwater7/map.bin",
-            "border_filepath": "data/layouts/Underwater7/border.bin",
-            "height": 40,
-            "id": "LAYOUT_UNDERWATER7",
-            "name": "Underwater7_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Underwater",
-            "width": 80
-        },
-        {
-            "blockdata_filepath": "data/layouts/Underwater5/map.bin",
-            "border_filepath": "data/layouts/Underwater5/border.bin",
-            "height": 40,
-            "id": "LAYOUT_UNDERWATER5",
-            "name": "Underwater5_Layout",
-            "primary_tileset": "gTileset_General",
-            "secondary_tileset": "gTileset_Underwater",
-            "width": 80
-        },
+		},
+		{
+		  "id": "LAYOUT_UNDERWATER_ROUTE105",
+		  "name": "Underwater_Route105_Layout",
+		  "width": 40,
+		  "height": 80,
+		  "primary_tileset": "gTileset_General",
+		  "secondary_tileset": "gTileset_Underwater",
+		  "border_filepath": "data/layouts/Underwater_Route105/border.bin",
+		  "blockdata_filepath": "data/layouts/Underwater_Route105/map.bin"
+		},
+		{
+		  "id": "LAYOUT_UNDERWATER_ROUTE125",
+		  "name": "Underwater_Route125_Layout",
+		  "width": 80,
+		  "height": 40,
+		  "primary_tileset": "gTileset_General",
+		  "secondary_tileset": "gTileset_Underwater",
+		  "border_filepath": "data/layouts/Underwater_Route125/border.bin",
+		  "blockdata_filepath": "data/layouts/Underwater_Route125/map.bin"
+		},
+		{
+		  "id": "LAYOUT_UNDERWATER_ROUTE129",
+		  "name": "Underwater_Route129_Layout",
+		  "width": 80,
+		  "height": 40,
+		  "primary_tileset": "gTileset_General",
+		  "secondary_tileset": "gTileset_Underwater",
+		  "border_filepath": "data/layouts/Underwater_Route129/border.bin",
+		  "blockdata_filepath": "data/layouts/Underwater_Route129/map.bin"
+		},
         {
             "blockdata_filepath": "data/layouts/MarineCave_End/map.bin",
             "border_filepath": "data/layouts/MarineCave_End/border.bin",
