@@ -1,0 +1,5 @@
+< //
+	.include "src/rayquaza_scene.o"
+	.include "src/quests.o"
+
+// > END
