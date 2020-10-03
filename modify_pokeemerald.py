@@ -815,6 +815,21 @@ os.system(os_cmd)
 		
 print("done")	
 
+########## fix newlines
+
+print("\nfix newlines")
+
+files = ["{0}/{1}".format(pokeemerald_dir,f) for f in ["sym_ewram.txt"]]
+
+for file in files:
+	with open(file, "rb") as f:
+		content = f.read()
+		content = content.replace(b'\r\n',b'\n')
+	with open(file, "wb") as f:
+		f.write(content)
+		
+print("done")
+
 ########## heal locations
 
 print("\nfix heal_locations.h")
