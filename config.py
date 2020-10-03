@@ -15,9 +15,11 @@ elif "\\" in dirname:
 base_dir = dirname.rsplit(slash,1)[0]
 #pokeemerald_dir = "{0}{1}pokeemerald_mod".format(base_dir,slash)
 #vanilla_dir = "{0}{1}pokeemerald".format(base_dir,slash)
+#pokeemerald_dir = "{0}{1}pokeemerald_expanded_mod_030820".format(base_dir,slash)
+#vanilla_dir = "{0}{1}pokeemerald_expanded_030820".format(base_dir,slash)
 
-pokeemerald_dir = "{0}{1}pokeemerald_expanded_mod_030820".format(base_dir,slash)
-vanilla_dir = "{0}{1}pokeemerald_expanded_030820".format(base_dir,slash)
+pokeemerald_dir = "{0}{1}pokeemerald_expanded_mod_031020".format(base_dir,slash)
+vanilla_dir = "{0}{1}pokeemerald_expanded_031020".format(base_dir,slash)
 
 raw_dir = "{0}{1}raw".format(os.getcwd(),slash)
 
