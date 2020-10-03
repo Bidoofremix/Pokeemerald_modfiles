@@ -17,5 +17,16 @@
 	.2byte \slot
 	.endm
 
+	.macro questmenu case:req, questId:req
+    .byte 0xe5
+    .byte \case
+    .byte \questId
+    .endm
+    
+    .macro openquestmenu
+    questmenu 0 0
+    .endm
+
+	
 @ Supplementary
 // >

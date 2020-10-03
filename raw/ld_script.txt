@@ -1,0 +1,11 @@
+< //
+        src/international_string_util.o(.text);
+        src/quests.o(.text);
+    } =0
+// >
+
+< //
+        data/sound_data.o(.rodata);
+		src/quests.o(.rodata);
+    } =0
+// >

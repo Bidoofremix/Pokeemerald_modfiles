@@ -20,6 +20,8 @@ modfile_dir = normalize_path(os.getcwd() + "\\raw")
 backup_dir = normalize_path(os.getcwd() + "\\raw_maps")
 graphics_dir = normalize_path("{0}/graphics".format(backup_dir))
 sound_dir = normalize_path("{0}/sound".format(backup_dir))
+include_dir = normalize_path("{0}/include".format(backup_dir))
+src_dir = normalize_path("{0}/src".format(backup_dir))
 
 ########## functions
 
@@ -102,7 +104,7 @@ for folder in [map_dir,layout_dir,constants_dir]:
 
 custom_files = []
 
-for dir, subdirs, files in os.walk(backup_dir,sound_dir,graphics_dir):
+for dir, subdirs, files in os.walk(backup_dir,sound_dir,graphics_dir,include_dir,src_dir):
 
 		for fname in files:
 		

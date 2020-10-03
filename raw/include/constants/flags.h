@@ -68,7 +68,7 @@
 #define FLAG_HIDE_ROUTE_111_WALLY              0x37 // Unused Flag
 #define FLAG_HIDE_SNORLAX                      0x38 // Unused Flag
 #define FLAG_DEFEATED_SNORLAX                  0x39 // Unused Flag
-#define FLAG_UNUSED_0x1DE                    0x3A // Unused Flag
+#define FLAG_QUEST_MENU_ACTIVE                 0x3A // Unused Flag
 #define FLAG_UNUSED_0x1DF                    0x3B // Unused Flag
 #define FLAG_UNUSED_0x1E0                    0x3C // Unused Flag
 #define FLAG_UNUSED_0x1E1                    0x3D // Unused Flag

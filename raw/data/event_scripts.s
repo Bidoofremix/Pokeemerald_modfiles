@@ -12,3 +12,9 @@
 
 	.include "data/scripts/std_msgbox.inc"
 // >
+
+< //
+#include "constants/weather.h"
+#include "constants/quests.h"
+	.include "asm/macros.inc"
+// >
