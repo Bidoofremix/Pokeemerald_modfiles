@@ -104,18 +104,18 @@ for folder in [map_dir,layout_dir,constants_dir]:
 
 custom_files = []
 
-for folder in [backup_dir,sound_dir,graphics_dir,include_dir,src_dir]:
-	for dir, subdirs, files in os.walk(folder):
+for dir, subdirs, files in os.walk(backup_dir):
 
-			for fname in files:
+	for fname in files:
+
+		absolute_path = normalize_path("{0}/{1}".format(dir,fname))
+		mod_path = backup_to_mod(absolute_path)
+
+		if not fname.endswith((".aif",".png", ".pal", ".c")) and not os.path.isfile(mod_path):
+			custom_files.append(absolute_path)
+		elif fname.endswith((".aif",".png", ".pal", ".c")):
+			custom_files.append(absolute_path)
 			
-				absolute_path = normalize_path("{0}/{1}".format(dir,fname))
-				mod_path = backup_to_mod(absolute_path)
-				if not fname.endswith((".aif",".png", ".pal")) and not os.path.isfile(mod_path):
-					custom_files.append(absolute_path)
-				elif fname.endswith((".aif",".png", "pal")):
-					custom_files.append(absolute_path)
-
 ########## insert files before porymap
 
 if args["mode"] == "insert":

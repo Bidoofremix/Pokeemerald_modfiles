@@ -674,6 +674,17 @@ static bool8 QuestMenu_InitBgs(void)
     return TRUE;
 }
 
+// CUSTOM ADDITION
+static const struct CompressedSpriteSheet gUnknown_0859F514 =
+{
+    gBagSwapLineGfx, 0x100, 109
+};
+
+static const struct CompressedSpritePalette gUnknown_0859F51C =
+{
+    gBagSwapLinePal, 109
+};
+
 static bool8 QuestMenu_LoadGraphics(void)
 {
     switch (sStateDataPtr->data[0])
@@ -695,11 +706,13 @@ static bool8 QuestMenu_LoadGraphics(void)
         sStateDataPtr->data[0]++;
         break;
     case 3:
-        LoadCompressedSpriteSheet(&gBagSwapSpriteSheet);
+        /*LoadCompressedSpriteSheet(&gBagSwapSpriteSheet);*/
+        LoadCompressedSpriteSheet(&gUnknown_0859F514);
         sStateDataPtr->data[0]++;
         break;
     default:
-        LoadCompressedSpritePalette(&gBagSwapSpritePalette);
+        /*LoadCompressedSpritePalette(&gBagSwapSpritePalette);*/
+        LoadCompressedSpritePalette(&gUnknown_0859F51C);
         sStateDataPtr->data[0] = 0;
         return TRUE;
     }

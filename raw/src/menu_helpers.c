@@ -7,13 +7,13 @@ static const union AnimCmd *const sSpriteAnimTable_859F508[] =
 };
 
 static const struct CompressedSpriteSheet gUnknown_0859F514 =
-//static const struct CompressedSpriteSheet gBagSwapSpriteSheet =
+/*static const struct CompressedSpriteSheet gBagSwapSpriteSheet =*/
 {
     gBagSwapLineGfx, 0x100, 109
 };
 
 static const struct CompressedSpritePalette gUnknown_0859F51C =
-//static const struct CompressedSpritePalette gBagSwapSpritePalette =
+/*static const struct CompressedSpritePalette gBagSwapSpritePalette =*/
 {
     gBagSwapLinePal, 109
 };
@@ -59,8 +59,8 @@ void LoadListMenuArrowsGfx(void)
 {
     LoadCompressedSpriteSheet(&gUnknown_0859F514);
     LoadCompressedSpritePalette(&gUnknown_0859F51C);
-	//LoadCompressedSpriteSheet(&gBagSwapSpriteSheet);
-    //LoadCompressedSpritePalette(&gBagSwapSpritePalette);
+	/*LoadCompressedSpriteSheet(&gBagSwapSpriteSheet);
+    LoadCompressedSpritePalette(&gBagSwapSpritePalette);*/
 }
 
 void sub_8122344(u8 *spriteIds, u8 count)

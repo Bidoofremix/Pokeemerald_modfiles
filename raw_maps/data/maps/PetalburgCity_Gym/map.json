@@ -268,7 +268,7 @@
         },
         {
             "elevation": 3,
-            "flag": "FLAG_HIDE_PETALBURG_GYM_WALLYS_UNCLE",
+            "flag": "FLAG_HIDE_PETALBURG_GYM_WALLYS_DAD",
             "graphics_id": "OBJ_EVENT_GFX_POKEFAN_M",
             "movement_range_x": 1,
             "movement_range_y": 1,
