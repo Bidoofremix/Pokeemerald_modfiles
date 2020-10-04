@@ -1,15 +1,101 @@
-Version: 3.0.1
-Date: March 4, 2020
+Version: 4.3.1
+Date: July 17th, 2020
 
-This version of porymap is guaranteed to work with pokeruby and pokeemerald as of the following commit hashes:
-* pokeemerald: 204c431993dad29661a9ff47326787cd0cf381e6
-* pokeruby: b4f4d2c0f03462dcdf3492aad27890294600eb2e
-
-Please report any issues on GitHub: [https://github.com/huderlem/porymap/issues](https://github.com/huderlem/porymap/issues)
+This version of porymap works with pokeruby and pokeemerald as of the following commit hashes:
+* pokeemerald: cb5b8da77b9ba6837fcc8c5163bedc5008b12c2c
+* pokefirered: ece62fa4ba8e385809deff330c7d7a0b348c10ae
+* pokeruby: f302fcc134bf354c3655e3423be68fd7a99cb396
 
 Official Porymap documentation: https://huderlem.github.io/porymap/
 
+Please report any issues on GitHub: [https://github.com/huderlem/porymap/issues](https://github.com/huderlem/porymap/issues)
+
 -------------------------
+
+## [4.3.1] - 2020-07-17
+### Added
+- Add keyboard shortcut `Ctrl + D` for duplicating map events.
+- Add keyboard shortcut `Ctrl + Shift + Z` for "redo" in the tileset editor.
+- Add scripting api to reorder metatile layers and draw them with opacity.
+
+### Changed
+- The tileset editor now syncs its metatile selection with the map's metatile selector.
+- The number of object events per map is now limited to OBJECT_EVENT_TEMPLATES_COUNT
+- The tileset editor can now flip selections that were taken from an existing metatile.
+
+### Fixed
+- Fix bug where editing a metatile layer would have no effect.
+- Fix a crash that occured when creating a new tileset using triple layer mode.
+- Fix crash when reducing number of metatiles past current selection.
+- Fix various methods of selecting invalid metatiles.
+- Fix sprite transparency not updating when changing object event graphics.
+- Fix dropdown menu item selection when using the arrow keys.
+
+## [4.3.0] - 2020-06-27
+### Added
+- Add triple-layer metatiles support.
+
+### Changed
+- The "Open Scripts" button will fall back to `scripts.inc` if `scripts.pory` doesn't exist. 
+
+### Fixed
+- Fix bug where exported tileset images could be horizontally or vertically flipped.
+- Fix bug where the map list wasn't filtered properly after switching filter types.
+- Don't zoom in map when mouse middle button is pressed.
+
+## [4.2.0] - 2020-06-06
+### Added
+- Add more project-specific configs to better support porting features from different projects.
+- Add metatile label names to the status bar when hovering over metatiles in the map editor tab.
+- Add mouse coordinates to the status bar when hovering in the events tab.
+
+### Changed
+- `metatile_labels.h` is now watched for changes.
+
+### Fixed
+- Reduce time it takes to load maps and save in the tileset editor.
+- Fix crash that could occur when parsing unknown symbols when evaluating `define` expressions.
+
+## [4.1.0] - 2020-05-18
+### Added
+- Add scripting capabilities, which allows the user to add custom behavior to Porymap using JavaScript scripts.
+- Add ability to import FRLG tileset .bvd files from Advance Map 1.92.
+
+### Changed
+- Edit modes are no longer shared between the Map and Events tabs. Pencil is default for Map tab, and Pointer is default for Events tab.
+
+### Fixed
+- Disallow drawing new heal locations in the events tab.
+- Fix issue where the metatile selection window was not resizable.
+- Show warning when closing project with unsaved wild Pokémon changes.
+- Fix bug where negative object event coordinates were saved as "0".
+- Fix maximum map dimension limits.
+- Fix crash when using the Pencil tool to create an event on a map with no existing events.
+
+## [4.0.0] - 2020-04-28
+### Breaking Changes
+- If you are using pokeemerald or pokeruby, there were changes made in [pokeemerald/#1010](https://github.com/pret/pokeemerald/pull/1010) and [pokeruby/#776](https://github.com/pret/pokeruby/pull/776) that you will need to integrate in order to use this version of porymap.
+
+### Added
+- Support for [pokefirered](https://github.com/pret/pokefirered). Kanto fans rejoice! At long last porymap supports the FRLG decompilation project.
+- Add ability to export map stitches with `File -> Export Map Stitch Image...`.
+- Add new project config option `use_custom_border_size`.
+- Add ability to toggle project settings in `Options` menu.
+- Add file monitoring, so Porymap will prompt the user to reload the project if certain project files are modified outside of Porymap.
+- Add ability to reload project.
+- Add `Pencil`, `Move`, and `Map Shift` tools to the Events tab.
+
+### Changed
+- Porymap now saves map and encounter json data in an order consistent with the upstream repos. This will provide more comprehensible diffs when files are saved.
+- Update Porymap icon.
+- The "Map" and "Events" tabs now render using the same view, so jumping between them is smooth.
+- Extend connection min and max offsets to player's view boundary, rather than the map's boundary.
+
+### Fixed
+- Fix bug where pressing TAB key did not navigate through widgets in the wild encounter tables.
+- Fix bug that allowed selecting an invalid metatile in the metatile selector.
+- Don't allow `.` or `-` characters in new tileset names.
+- Fix regression that prevented selecting empty region map squares
 
 ## [3.0.1] - 2020-03-04
 ### Fixed
@@ -148,15 +234,3 @@ Official Porymap documentation: https://huderlem.github.io/porymap/
 - Write `MAP_GROUPS_COUNT` define to `maps.h`.
 - Fix bug where opening multiple projects and saving would cause junk to be written to `layouts_table.inc`.
 - Fix porymap icon on macOS.
-
-## [1.0.0] - 2018-10-26
-This was the initial release.
-
-[3.0.1]: https://github.com/huderlem/porymap/compare/3.0.0...3.0.1
-[3.0.0]: https://github.com/huderlem/porymap/compare/2.0.0...3.0.0
-[2.0.0]: https://github.com/huderlem/porymap/compare/1.2.2...2.0.0
-[1.2.2]: https://github.com/huderlem/porymap/compare/1.2.1...1.2.2
-[1.2.1]: https://github.com/huderlem/porymap/compare/1.2.0...1.2.1
-[1.2.0]: https://github.com/huderlem/porymap/compare/1.1.0...1.2.0
-[1.1.0]: https://github.com/huderlem/porymap/compare/1.0.0...1.1.0
-[1.0.0]: https://github.com/huderlem/porymap/tree/1.0.0

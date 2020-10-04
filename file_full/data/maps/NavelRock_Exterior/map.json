@@ -1,40 +1,43 @@
 {
-    "allow_bike": true,
-    "allow_cycling": "",
-    "allow_escape_rope": false,
-    "allow_escaping": "",
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-    ],
-    "connections": null,
-    "coord_events": [
-    ],
-    "id": "MAP_NAVEL_ROCK_EXTERIOR",
-    "layout": "LAYOUT_NAVEL_ROCK_EXTERIOR",
-    "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_SEALED_CHAMBER",
-    "name": "NavelRock_Exterior",
-    "object_events": [
-    ],
-    "region_map_section": "MAPSEC_NEW_ISLAND",
-    "requires_flash": false,
-    "show_map_name": true,
-    "warp_events": [
-        {
-            "dest_map": "MAP_NAVEL_ROCK_HARBOR",
-            "dest_warp_id": 0,
-            "elevation": 0,
-            "x": 10,
-            "y": 18
-        },
-        {
-            "dest_map": "MAP_NAVEL_ROCK_ENTRANCE",
-            "dest_warp_id": 1,
-            "elevation": 0,
-            "x": 10,
-            "y": 10
-        }
-    ],
-    "weather": "WEATHER_SUNNY_CLOUDS"
+  "id": "MAP_NAVEL_ROCK_EXTERIOR",
+  "name": "NavelRock_Exterior",
+  "layout": "LAYOUT_NAVEL_ROCK_EXTERIOR",
+  "music": "MUS_SEALED_CHAMBER",
+  "region_map_section": "MAPSEC_NEW_ISLAND",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY_CLOUDS",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 10,
+      "y": 18,
+      "elevation": 0,
+      "dest_map": "MAP_NAVEL_ROCK_HARBOR",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 10,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_NAVEL_ROCK_ENTRANCE",
+      "dest_warp_id": 1
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ],
+  "allow_bike": "",
+  "allow_escape_rope": ""
 }
