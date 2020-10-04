@@ -11,7 +11,7 @@ EventScript_RepelWoreOff:: @ 82A4B2A
 	copyvar VAR_REPEL_STEP_COUNT, VAR_RESULT
 	bufferitemname 1, VAR_REPEL_LAST_USED
 	removeitem VAR_REPEL_LAST_USED, 1
-	playse SE_TU_SAA
+	playse SE_REPEL
 	msgbox gText_PlayerUsedVar2, MSGBOX_SIGN
 	goto EventScript_RepelWoreOff_End
 	

@@ -77,7 +77,7 @@
     "id": "MAP_DEWFORD_TOWN",
     "layout": "LAYOUT_DEWFORD_TOWN",
     "map_type": "MAP_TYPE_TOWN",
-    "music": "MUS_HIGHTOWN",
+    "music": "MUS_DEWFORD",
     "name": "DewfordTown",
     "object_events": [
         {

@@ -50,7 +50,7 @@
     "id": "MAP_ROUTE103",
     "layout": "LAYOUT_ROUTE103",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_DOORO1",
+    "music": "MUS_ROUTE101",
     "name": "Route103",
     "object_events": [
         {

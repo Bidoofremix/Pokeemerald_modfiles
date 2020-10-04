@@ -13,7 +13,7 @@
     "id": "MAP_DEWFORD_TOWN_HOUSE1",
     "layout": "LAYOUT_HOUSE3",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_HIGHTOWN",
+    "music": "MUS_DEWFORD",
     "name": "DewfordTown_House1",
     "object_events": [
         {

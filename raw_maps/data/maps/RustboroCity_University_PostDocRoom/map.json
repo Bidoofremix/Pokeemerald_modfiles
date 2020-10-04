@@ -13,7 +13,7 @@
     "id": "MAP_RUSTBORO_CITY_UNIVERSITY_POST_DOC_ROOM",
     "layout": "LAYOUT_RUSTBORO_CITY_UNIVERSITY_POST_DOC_ROOM",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_GOTOWN",
+    "music": "MUS_RUSTBORO",
     "name": "RustboroCity_University_PostDocRoom",
     "object_events": [
         {

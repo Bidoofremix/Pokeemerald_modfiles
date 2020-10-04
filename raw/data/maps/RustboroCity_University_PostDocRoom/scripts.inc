@@ -93,7 +93,7 @@ RustboroCity_University_EventScript_PostDoc_ChooseMonAndMoveToTeach::
 	msgbox RustboroCity_University_PostDoc_ThatWillBe500, MSGBOX_DEFAULT
 	showmoneybox 0, 0, 0
 	delay 40
-	playse SE_REGI
+	playse SE_SHOP
 	removemoney 500, 0
 	updatemoneybox 0, 0
 	delay 40

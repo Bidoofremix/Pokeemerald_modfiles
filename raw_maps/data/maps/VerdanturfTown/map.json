@@ -88,7 +88,7 @@
     "id": "MAP_VERDANTURF_TOWN",
     "layout": "LAYOUT_VERDANTURF_TOWN",
     "map_type": "MAP_TYPE_TOWN",
-    "music": "MUS_GOMACHI0",
+    "music": "MUS_VERDANTURF",
     "name": "VerdanturfTown",
     "object_events": [
         {

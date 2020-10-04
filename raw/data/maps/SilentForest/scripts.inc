@@ -43,7 +43,7 @@ SilentForest_EventScript_BattleSnorlax::
 	goto_if_eq SilentForest_EventScript_CancelBattle
 	
 	message SilentForest_Text_PlayedThePokeFlute
-	playfanfare MUS_RG_POKEFUE
+	playfanfare MUS_RG_POKE_FLUTE
 	waitfanfare
 	waitmessage	
 	delay 40

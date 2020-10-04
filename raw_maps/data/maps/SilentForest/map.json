@@ -13,7 +13,7 @@
     "id": "MAP_SILENT_FOREST",
     "layout": "LAYOUT_SILENT_FOREST",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_DAN02",
+    "music": "MUS_ABANDONED_SHIP",
     "name": "SilentForest",
     "object_events": [
         {

@@ -13,7 +13,7 @@
     "id": "MAP_SURFERS_HUT",
     "layout": "LAYOUT_SURFERS_HUT",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_HIGHTOWN",
+    "music": "MUS_DEWFORD",
     "name": "SurfersHut",
     "object_events": [
         {

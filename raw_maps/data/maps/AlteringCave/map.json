@@ -21,7 +21,7 @@
     "id": "MAP_ALTERING_CAVE",
     "layout": "LAYOUT_ALTERING_CAVE",
     "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_M_DUNGON",
+    "music": "MUS_MT_PYRE",
     "name": "AlteringCave",
     "object_events": [
         {

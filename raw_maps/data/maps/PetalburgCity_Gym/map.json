@@ -133,7 +133,7 @@
     "id": "MAP_PETALBURG_CITY_GYM",
     "layout": "LAYOUT_PETALBURG_CITY_GYM",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_GIM",
+    "music": "MUS_GYM",
     "name": "PetalburgCity_Gym",
     "object_events": [
         {

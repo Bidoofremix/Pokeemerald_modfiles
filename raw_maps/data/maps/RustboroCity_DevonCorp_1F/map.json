@@ -29,7 +29,7 @@
     "id": "MAP_RUSTBORO_CITY_DEVON_CORP_1F",
     "layout": "LAYOUT_RUSTBORO_CITY_DEVON_CORP_1F",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_GOTOWN",
+    "music": "MUS_RUSTBORO",
     "name": "RustboroCity_DevonCorp_1F",
     "object_events": [
         {

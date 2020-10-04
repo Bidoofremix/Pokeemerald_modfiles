@@ -101,17 +101,17 @@ BrineBeach_EventScript_Gyarados::
 	delay 40
 	
 	// sounds, shake
-	playse SE_W070
+	playse SE_M_STRENGTH
 	special DoSealedChamberShakingEffect2
 	waitstate
 	delay 20
-	playse SE_W070
+	playse SE_M_STRENGTH
 	special DoSealedChamberShakingEffect2
 	waitstate
 	special DoSealedChamberShakingEffect2
 	waitstate
 	delay 30
-	playse SE_W291
+	playse SE_M_DIVE
 	waitse
 	
 	// set battle
@@ -174,7 +174,7 @@ BrineBeach_EventScript_DefeatedGyarados::
 
 BrineBeach_EventScript_Shelly::
 	lockall
-	playbgm MUS_AQA_0, 0
+	playbgm MUS_ENCOUNTER_AQUA, 0
 	
 	// shelly to brawly
 	msgbox BrineBeach_Text_Shelly_ThatllShowYouNotToMeddle, MSGBOX_DEFAULT
@@ -200,7 +200,7 @@ BrineBeach_EventScript_Shelly::
 
 BrineBeach_EventScript_ShellyRematch::
 	lockall
-	playbgm MUS_AQA_0, 0
+	playbgm MUS_ENCOUNTER_AQUA, 0
 	faceplayer
 	msgbox BrineBeach_Text_Shelly_YouWantToGetToThatGyarados, MSGBOX_DEFAULT
 	trainerbattle_no_intro TRAINER_SHELLY_BRINE_BEACH, BrineBeach_Text_Shelly_Lose
@@ -249,7 +249,7 @@ BrineBeach_EventScript_WonShelly::
 	closemessage
 	
 	// gyarados shouts again, shaking
-	playse SE_W070
+	playse SE_M_STRENGTH
 	special DoSealedChamberShakingEffect2
 	waitstate
 	delay 20

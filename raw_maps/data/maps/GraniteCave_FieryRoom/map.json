@@ -13,7 +13,7 @@
     "id": "MAP_GRANITE_CAVE_FIERY_ROOM",
     "layout": "LAYOUT_GRANITE_CAVE_FIERY_ROOM",
     "map_type": "MAP_TYPE_UNDERGROUND",
-    "music": "MUS_DAN01",
+    "music": "MUS_PETALBURG_WOODS",
     "name": "GraniteCave_FieryRoom",
     "object_events": [
         {

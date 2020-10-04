@@ -13,7 +13,7 @@
     "id": "MAP_MYSTERY_SPRINGS",
     "layout": "LAYOUT_MYSTERY_SPRINGS",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_DAN03",
+    "music": "MUS_CAVE_OF_ORIGIN",
     "name": "MysterySprings",
     "object_events": [
         {

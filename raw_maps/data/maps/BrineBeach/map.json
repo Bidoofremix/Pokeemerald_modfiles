@@ -63,7 +63,7 @@
     "id": "MAP_BRINE_BEACH",
     "layout": "LAYOUT_BRINE_BEACH",
     "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_RG_NANASHIMA",
+    "music": "MUS_RG_SEVII_ROUTE",
     "name": "BrineBeach",
     "object_events": [
         {

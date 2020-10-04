@@ -79,12 +79,12 @@ PetalburgWoods_EventScript_VenusaurLady::
 	closemessage
 	playmoncry SPECIES_VENUSAUR, 2
 	waitmoncry
-	playse SE_W070
+	playse SE_M_STRENGTH
 	special DoSealedChamberShakingEffect2
 	waitstate
 	delay 40
-	playse SE_TRACK_MOVE
-	playse SE_W070
+	playse SE_TRUCK_MOVE
+	playse SE_M_STRENGTH
 	special DoSealedChamberShakingEffect2
 	waitstate
 	delay 40

@@ -29,7 +29,7 @@
     "id": "MAP_VERDANTURF_TOWN_BREEDERS_CLUB",
     "layout": "LAYOUT_VERDANTURF_TOWN_BREEDERS_CLUB",
     "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_FUNE_KAN",
+    "music": "MUS_OCEANIC_MUSEUM",
     "name": "VerdanturfTown_BreedersClub",
     "object_events": [
         {

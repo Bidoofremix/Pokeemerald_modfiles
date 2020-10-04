@@ -25,7 +25,7 @@ VerdanturfTown_BreedersHouse_EventScript_GiveEgg::
 	getpartysize
 	compare VAR_RESULT, 6
 	goto_if_eq LavaridgeTown_EventScript_NoRoomForEgg
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	message LavaridgeTown_Text_ReceivedTheEgg
 	waitfanfare
 	giveegg SPECIES_MEOWSY
@@ -41,7 +41,7 @@ VerdanturfTown_BreedersHouse_EventScript_TryGiveMeowsyEgg: @ 8674D4C
 	compare VAR_EVENT_MEOWSY_SLOT, PARTY_SIZE
 	goto_if_eq LavaridgeTown_EventScript_NoRoomForEgg
 	call VerdanturfTown_BreedersHouse_EventScript_GiveMeowsyEgg
-	playfanfare MUS_FANFA4
+	playfanfare MUS_OBTAIN_ITEM
 	message LavaridgeTown_Text_ReceivedTheEgg
 	waitfanfare
 	setflag FLAG_RECEIVED_VERDANTURF_EGG
