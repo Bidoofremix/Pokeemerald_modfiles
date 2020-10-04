@@ -1,4 +1,12 @@
 < //
+#include "constants/songs.h"
+#include "quests.h"
+
+static void ItemUseOnFieldCB_QuestLog(u8 taskId);
+static void SetUpItemUseCallback(u8 taskId);
+// >
+
+< //
 static void Task_UseRepel(u8 taskId)
 {
     if (!IsSEPlaying())
@@ -24,13 +32,19 @@ void ItemUseOutOfBattle_Itemfinder(u8 var)
     SetUpItemUseOnFieldCallback(var);
 }
 
-void ItemUseOutOfBattle_QuestLog(void)
+void ItemUseOutOfBattle_QuestLog(u8 taskId)
+{
+	sItemUseOnFieldCB = ItemUseOnFieldCB_QuestLog;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
+static void ItemUseOnFieldCB_QuestLog(u8 taskId)
 {
 	SetQuestMenuActive();
-	BeginNormalPaletteFade(0xFFFFFFFF, 2, 16, 0, 0);
-	QuestMenu_Init(0, CB2_ReturnToFieldContinueScriptPlayMapMusic);
-	ScriptContext1_Stop();
-	break;
+    BeginNormalPaletteFade(0xFFFFFFFF, 2, 16, 0, 0);
+    QuestMenu_Init(0, CB2_ReturnToFieldContinueScriptPlayMapMusic);
+    ScriptContext1_Stop();
+	DestroyTask(taskId);
 }
 
 static void ItemUseOnFieldCB_Itemfinder(u8 taskId)
