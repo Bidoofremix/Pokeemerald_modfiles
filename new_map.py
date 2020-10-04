@@ -4,8 +4,8 @@ import os,xlrd,argparse,re,shutil
 from config import vanilla_dir
 from misc import normalize_path
 
-raw_folder = normalize_path(os.getcwd() + "\\raw")
-raw_map_folder = normalize_path(os.getcwd() + "\\raw_maps")
+snippet_folder = normalize_path(os.getcwd() + "\\snippet_folder")
+full_folder = normalize_path(os.getcwd() + "\\full_folder")
 
 ########## argparse
 
@@ -32,7 +32,7 @@ layout_name = "LAYOUT_{0}".format(upper_underscore_name)
 
 ########## layouts.h
 
-layouts_file = normalize_path("{0}/include/constants/layouts.h".format(raw_map_folder))
+layouts_file = normalize_path("{0}/include/constants/layouts.h".format(full_folder))
 if not os.path.isfile(layouts_file):
 	print("did not find layouts.h in raw folder, copied from base battle_engine_v2")
 	vanilla_layouts_file = normalize_path("{0}/include/constants/layouts.h".format(vanilla_dir))
@@ -61,7 +61,7 @@ with open(layouts_file, "w") as f:
 		
 ########## map groups file
 
-mapgroups_file = normalize_path("{0}/data/maps/map_groups.json".format(raw_map_folder))
+mapgroups_file = normalize_path("{0}/data/maps/map_groups.json".format(full_folder))
 if not os.path.isfile(mapgroups_file):
 	shutil.copy(normalize_path("{0}/data/maps/map_groups.json".format(vanilla_dir)),\
 		mapgroups_file)
@@ -95,7 +95,7 @@ with open(mapgroups_file, "w") as f:
 		
 ########## layouts.json
 
-layouts_json_file = normalize_path("{0}/data/layouts/layouts.json".format(raw_map_folder))
+layouts_json_file = normalize_path("{0}/data/layouts/layouts.json".format(full_folder))
 if not os.path.isfile(layouts_json_file):
 	shutil.copy(normalize_path("{0}/data/layouts/layouts.json".format(vanilla_dir)),\
 		layouts_json_file)
@@ -133,14 +133,14 @@ with open(layouts_json_file, "w") as f:
 		
 ########## copy dummy bin files
 
-new_layout_dir = "{0}/data/layouts/{1}".format(raw_map_folder,args["name"])
+new_layout_dir = "{0}/data/layouts/{1}".format(full_folder,args["name"])
 if not os.path.isdir(new_layout_dir):
 	os.mkdir(new_layout_dir)
 for file in ["map.bin","border.bin"]:
 	shutil.copy(normalize_path("{0}/data/layouts/House1/{1}".format(\
 		vanilla_dir,file)),"{0}/{1}".format(new_layout_dir,file))
 		
-new_map_dir = "{0}/data/maps/{1}".format(raw_map_folder,args["name"])
+new_map_dir = "{0}/data/maps/{1}".format(full_folder,args["name"])
 if not os.path.isdir(new_map_dir):
 	os.mkdir(new_map_dir)
 new_map_json_file = normalize_path("{0}/map.json".format(new_map_dir,args["name"]))
@@ -181,7 +181,7 @@ with open(new_scripts_file, "w") as f:
 	
 ########## event_scripts.s	
 
-event_scripts_file = normalize_path("{0}/data/event_scripts.s".format(raw_folder))
+event_scripts_file = normalize_path("{0}/data/event_scripts.s".format(snippet_folder))
 if not os.path.isfile(event_scripts_file):
 	with open(event_scripts_file, "w") as f:
 		f.write("< //\n")

@@ -41,16 +41,16 @@ os.chdir(wrk_dir)
 
 print("\nread files in raw folder")
 
-raw_folder = "raw"
+snippet_folder = "file_snippet"
 
 encoding = "ISO-8859-15"
 
-for dir, subdirs, files in os.walk(raw_folder):
+for dir, subdirs, files in os.walk(snippet_folder):
 	for fname in files:
 	
 		mod_path = normalize_path("{0}\{1}".format(dir,fname))
 
-		pokeemerald_path = normalize_path(pokeemerald_dir + mod_path[len(raw_folder):])
+		pokeemerald_path = normalize_path(pokeemerald_dir + mod_path[len(snippet_folder):])
 
 		print(pokeemerald_path)
 		

@@ -16,20 +16,20 @@ map_dir = normalize_path("{0}\data\maps".format(pokeemerald_dir))
 layout_dir = normalize_path("{0}\data\layouts".format(pokeemerald_dir))
 constants_dir = normalize_path("{0}\include\constants".format(pokeemerald_dir))
 
-modfile_dir = normalize_path(os.getcwd() + "\\raw")
-backup_dir = normalize_path(os.getcwd() + "\\raw_maps")
-graphics_dir = normalize_path("{0}/graphics".format(backup_dir))
-sound_dir = normalize_path("{0}/sound".format(backup_dir))
-include_dir = normalize_path("{0}/include".format(backup_dir))
-src_dir = normalize_path("{0}/src".format(backup_dir))
+snippet_folder = normalize_path(os.getcwd() + "\\file_snippet")
+full_folder = normalize_path(os.getcwd() + "\\file_full")
+graphics_dir = normalize_path("{0}/graphics".format(full_folder))
+sound_dir = normalize_path("{0}/sound".format(full_folder))
+include_dir = normalize_path("{0}/include".format(full_folder))
+src_dir = normalize_path("{0}/src".format(full_folder))
 
 ########## functions
 
 def mod_to_backup(mod_path):
-	return mod_path.replace(pokeemerald_dir,backup_dir)
+	return mod_path.replace(pokeemerald_dir,full_folder)
 
 def backup_to_mod(backup_path):
-	return backup_path.replace(backup_dir,pokeemerald_dir)
+	return backup_path.replace(full_folder,pokeemerald_dir)
 
 def countdown():
 	print("")
@@ -69,8 +69,8 @@ for folder in [map_dir,layout_dir,constants_dir]:
 					
 					mod_path = normalize_path("{0}{1}".format(pokeemerald_dir,relative_path))
 					vanilla_path = normalize_path("{0}{1}".format(vanilla_dir,relative_path))
-					backup_path = normalize_path("{0}{1}".format(backup_dir,relative_path))
-					mod_pieces_path = normalize_path("{0}{1}".format(modfile_dir, relative_path))
+					backup_path = normalize_path("{0}{1}".format(full_folder,relative_path))
+					mod_pieces_path = normalize_path("{0}{1}".format(snippet_folder, relative_path))
 					
 					file_meta[relative_path] = {}
 					file_meta[relative_path]["mod"] = {}
@@ -104,7 +104,7 @@ for folder in [map_dir,layout_dir,constants_dir]:
 
 custom_files = []
 
-for dir, subdirs, files in os.walk(backup_dir):
+for dir, subdirs, files in os.walk(full_folder):
 
 	for fname in files:
 
