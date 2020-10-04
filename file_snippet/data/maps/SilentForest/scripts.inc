@@ -54,7 +54,7 @@ SilentForest_EventScript_BattleSnorlax::
 	playmoncry SPECIES_SNORLAX, 2
 	delay 40
 	waitmoncry
-	setwildbattle SPECIES_SNORLAX, 30, ITEM_LEFTOVERS
+	setwildbattle SPECIES_SNORLAX, 30, ITEM_NONE
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	
 	//dowildbattle
@@ -104,8 +104,17 @@ SilentForest_Text_PlayedThePokeFlute:
 SilentForest_Text_SnorlaxAttackedInAGrumpyRage:
 	.string "{STR_VAR_1} attacked in a\n"
 	.string "grumpy rage!$"
-	
-SilentForest_EventScript_ItemLeafStone::
-	finditem ITEM_LEAF_STONE
+
+SilentForest_EventScript_ItemSuperPotion::
+	finditem ITEM_SUPER_POTION
 	end
+	
+SilentForest_EventScript_ItemBigRoot::
+	finditem ITEM_BIG_ROOT
+	end
+	
+SilentForest_EventScript_ItemLeftovers::
+	finditem ITEM_LEFTOVERS
+	end	
+	
 // > END

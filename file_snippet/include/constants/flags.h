@@ -52,7 +52,7 @@
 #define FLAG_ITEM_ALTERING_CAVE_HEAVY_BALL     0x27 // Unused Flag
 #define FLAG_ITEM_ALTERING_CAVE_POTION         0x28 // Unused Flag
 #define FLAG_ROUTE_103_EAST_ACCESSIBLE         0x29 // Unused Flag
-#define FLAG_ITEM_SILENT_FOREST_LEAF_STONE     0x2A // Unused Flag
+#define FLAG_ITEM_SILENT_FOREST_BIG_ROOT       0x2A // Unused Flag
 #define FLAG_UNIVERSITY_RECEIVED_DREAM_BALL    0x2B // Unused Flag
 #define FLAG_UNIVERSITY_RECEIVED_AMULET_COIN   0x2C // Unused Flag
 #define FLAG_INTRODUCED_MOVE_POSTDOC           0x2D // Unused Flag
@@ -69,8 +69,8 @@
 #define FLAG_HIDE_SNORLAX                      0x38 // Unused Flag
 #define FLAG_DEFEATED_SNORLAX                  0x39 // Unused Flag
 #define FLAG_QUEST_MENU_ACTIVE                 0x3A // Unused Flag
-#define FLAG_UNUSED_0x1DF                    0x3B // Unused Flag
-#define FLAG_UNUSED_0x1E0                    0x3C // Unused Flag
+#define FLAG_ITEM_SILENT_FOREST_LEFTOVERS      0x3B // Unused Flag
+#define FLAG_ITEM_SILENT_FOREST_SUPER_POTION   0x3C // Unused Flag
 #define FLAG_UNUSED_0x1E1                    0x3D // Unused Flag
 #define FLAG_UNUSED_0x1E2                    0x3E // Unused Flag
 #define FLAG_UNUSED_0x1E3                    0x3F // Unused Flag
@@ -761,8 +761,8 @@
 #define FLAG_HIDDEN_ITEM_ROUTE_123_RARE_CANDY                (FLAG_HIDDEN_ITEMS_START + 0x6E)
 #define FLAG_HIDDEN_ITEM_ROUTE_105_BIG_PEARL                 (FLAG_HIDDEN_ITEMS_START + 0x6F)
 #define FLAG_HIDDEN_ITEM_ALTERING_CAVE_THICK_CLUB            (FLAG_HIDDEN_ITEMS_START + 0x70) // Unused Flag
-#define FLAG_UNUSED_0x02B                                    (FLAG_HIDDEN_ITEMS_START + 0x71) // Unused Flag
-#define FLAG_UNUSED_0x02C                                    (FLAG_HIDDEN_ITEMS_START + 0x72) // Unused Flag
+#define FLAG_HIDDEN_ITEM_SILENT_FOREST_TINYMUSHROOM          (FLAG_HIDDEN_ITEMS_START + 0x71) // Unused Flag
+#define FLAG_HIDDEN_ITEM_SILENT_FOREST_BIG_MUSHROOM          (FLAG_HIDDEN_ITEMS_START + 0x72) // Unused Flag
 #define FLAG_UNUSED_0x02D                                    (FLAG_HIDDEN_ITEMS_START + 0x73) // Unused Flag
 #define FLAG_UNUSED_0x02E                                    (FLAG_HIDDEN_ITEMS_START + 0x74) // Unused Flag
 #define FLAG_UNUSED_0x02F                                    (FLAG_HIDDEN_ITEMS_START + 0x75) // Unused Flag
