@@ -11,7 +11,7 @@ RustboroCity_EventScript_ScientistAddMatchCall:: @ 81E0715
 RustboroCity_EventScript_StolenGoodsScene:: @ 81E09CD
 	msgbox RustboroCity_Text_OutOfTheWay, MSGBOX_DEFAULT
 	closemessage
-	playbgm MUS_MGM0, 0
+	playbgm MUS_ENCOUNTER_MAGMA, 0
 	addobject LOCALID_GRUNT
 // >
 

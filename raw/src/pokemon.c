@@ -6,47 +6,6 @@ struct SpeciesItem
 // >
 
 < //
-u16 GetBattleBGM(void)
-{
-    if (gBattleTypeFlags & BATTLE_TYPE_KYOGRE_GROUDON)
-        return MUS_BATTLE34;
-    else if (gBattleTypeFlags & BATTLE_TYPE_REGI)
-        return MUS_BATTLE36;
-    else if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_x2000000))
-        return MUS_BATTLE20;
-    else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
-    {
-        u8 trainerClass;
-
-        if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
-            trainerClass = GetFrontierOpponentClass(gTrainerBattleOpponent_A);
-        else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
-            trainerClass = TRAINER_CLASS_EXPERT;
-        else
-            trainerClass = gTrainers[gTrainerBattleOpponent_A].trainerClass;
-
-        switch (trainerClass)
-        {
-        case TRAINER_CLASS_AQUA_LEADER:
-        case TRAINER_CLASS_MAGMA_LEADER:
-            return MUS_BATTLE30;
-        case TRAINER_CLASS_TEAM_AQUA:
-        case TRAINER_CLASS_TEAM_MAGMA:
-        case TRAINER_CLASS_AQUA_ADMIN:
-        case TRAINER_CLASS_MAGMA_ADMIN:
-            return MUS_BATTLE31;
-        case TRAINER_CLASS_LEADER:
-            return MUS_BATTLE32;
-        case TRAINER_CLASS_CHAMPION:
-            return MUS_BATTLE33;
-        case TRAINER_CLASS_PKMN_TRAINER_3:
-            if (gBattleTypeFlags & BATTLE_TYPE_FRONTIER)
-                return MUS_BATTLE35;
-            if (!StringCompare(gTrainers[gTrainerBattleOpponent_A].trainerName, gText_BattleWallyName))
-                return MUS_BATTLE20;
-            return MUS_BATTLE35;
-        case TRAINER_CLASS_ELITE_FOUR:
-            return MUS_BATTLE38;
         case TRAINER_CLASS_SALON_MAIDEN:
         case TRAINER_CLASS_DOME_ACE:
         case TRAINER_CLASS_PALACE_MAVEN:
@@ -54,18 +13,11 @@ u16 GetBattleBGM(void)
         case TRAINER_CLASS_FACTORY_HEAD:
         case TRAINER_CLASS_PIKE_QUEEN:
         case TRAINER_CLASS_PYRAMID_KING:
-            return MUS_VS_FRONT;
+            return MUS_VS_FRONTIER_BRAIN;
 		case TRAINER_CLASS_MEWTWO:
-			return MUS_RG_VS_LAST;
+			return MUS_RG_VS_CHAMPION;
         default:
-            return MUS_BATTLE20;
-        }
-    }
-    else
-        return MUS_BATTLE27;
-}
-
-void PlayBattleBGM(void)
+            return MUS_VS_TRAINER;
 // >
 
 < //

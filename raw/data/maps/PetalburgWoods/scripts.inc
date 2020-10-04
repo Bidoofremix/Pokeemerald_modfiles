@@ -6,7 +6,7 @@ PetalburgWoods_EventScript_DevonResearcherLeft:: @ 822DFD7
 	waitmovement 0
 	msgbox PetalburgWoods_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT
 	closemessage
-	playbgm MUS_MGM0, 0
+	playbgm MUS_ENCOUNTER_MAGMA, 0
 	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaEntrance
 // >
 
@@ -20,7 +20,7 @@ PetalburgWoods_EventScript_DevonResearcherRight:: @ 822E079
 	waitmovement 0
 	msgbox PetalburgWoods_Text_HaveYouSeenShroomish, MSGBOX_DEFAULT
 	closemessage
-	playbgm MUS_MGM0, 0
+	playbgm MUS_ENCOUNTER_MAGMA, 0
 	applymovement LOCALID_GRUNT, PetalburgWoods_Movement_AquaEntrance
 // >
 

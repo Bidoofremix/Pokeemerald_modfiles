@@ -145,7 +145,7 @@ MauvilleCity_GameCorner_EventScript_ConfirmDollPrize:: @ 820FD91
 	removecoins STONE_COINS
 	additem VAR_0x8004
 	updatecoinsbox 1, 1
-	playse SE_REGI
+	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
 	goto MauvilleCity_GameCorner_EventScript_ReturnToChooseDollPrize
 	end
@@ -168,7 +168,7 @@ MauvilleCity_GameCorner_EventScript_ConfirmTMPrize:: @ 820FF8A
 	removecoins STONE_COINS
 	additem VAR_0x8004
 	updatecoinsbox 1, 1
-	playse SE_REGI
+	playse SE_SHOP
 	msgbox MauvilleCity_GameCorner_Text_HereYouGo, MSGBOX_DEFAULT
 	goto MauvilleCity_GameCorner_EventScript_ReturnToChooseTMPrize
 	end
