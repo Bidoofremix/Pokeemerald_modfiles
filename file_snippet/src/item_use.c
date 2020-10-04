@@ -15,3 +15,23 @@ static void Task_UseRepel(u8 taskId)
 
 static void Task_UsedBlackWhiteFlute(u8 taskId)
 // >
+
+< //
+void ItemUseOutOfBattle_Itemfinder(u8 var)
+{
+    IncrementGameStat(GAME_STAT_USED_ITEMFINDER);
+    sItemUseOnFieldCB = ItemUseOnFieldCB_Itemfinder;
+    SetUpItemUseOnFieldCallback(var);
+}
+
+void ItemUseOutOfBattle_QuestLog(void)
+{
+	SetQuestMenuActive();
+	BeginNormalPaletteFade(0xFFFFFFFF, 2, 16, 0, 0);
+	QuestMenu_Init(0, CB2_ReturnToFieldContinueScriptPlayMapMusic);
+	ScriptContext1_Stop();
+	break;
+}
+
+static void ItemUseOnFieldCB_Itemfinder(u8 taskId)
+// >

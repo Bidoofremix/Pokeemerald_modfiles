@@ -33,3 +33,16 @@ static const u8 sDreamBallDesc[] = _(
 
 static const u8 sBeastBallDesc[] = _(
 // >
+
+< //
+static const u8 sShinyCharmDesc[] = _(
+	"A charm that will\n"
+    "raise the chance\n"
+    "of Shiny Pokémon.");
+	
+static const u8 sQuestLogDesc[] = _(
+    "A gadget that can\n"
+    "be used to check\n"
+    "quests.");
+	
+// > END

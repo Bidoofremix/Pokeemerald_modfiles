@@ -720,3 +720,32 @@
 
     [ITEM_HM01_CUT] =
 // >
+
+< //
+    [ITEM_SHINY_CHARM] =
+    {
+        .name = _("Shiny Charm"),
+        .itemId = ITEM_SHINY_CHARM,
+        .price = 0,
+        .description = sShinyCharmDesc,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = 4,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .secondaryId = 0,
+    },
+	
+	[ITEM_QUEST_LOG] =
+    {
+        .name = _("Quest Log"),
+        .itemId = ITEM_QUEST_LOG,
+        .price = 0,
+        .description = sQuestLogDesc,
+        .importance = 1,
+        .unk19 = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = 2,
+        .fieldUseFunc = ItemUseOutOfBattle_QuestLog,
+        .secondaryId = 0
+    },
+};
+// >
