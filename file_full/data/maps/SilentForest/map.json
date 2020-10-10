@@ -1,108 +1,123 @@
 {
-    "allow_bike": true,
-    "allow_cycling": "",
-    "allow_escape_rope": false,
-    "allow_escaping": "",
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDDEN_ITEM_SILENT_FOREST_TINYMUSHROOM",
-            "item": "ITEM_TINY_MUSHROOM",
-            "type": "hidden_item",
-            "x": 24,
-            "y": 27
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDDEN_ITEM_SILENT_FOREST_BIG_MUSHROOM",
-            "item": "ITEM_BIG_MUSHROOM",
-            "type": "hidden_item",
-            "x": 4,
-            "y": 20
-        }
-    ],
-    "connections": null,
-    "coord_events": [
-    ],
-    "id": "MAP_SILENT_FOREST",
-    "layout": "LAYOUT_SILENT_FOREST",
-    "map_type": "MAP_TYPE_ROUTE",
-    "music": "MUS_ABANDONED_SHIP",
-    "name": "SilentForest",
-    "object_events": [
-        {
-            "elevation": 3,
-            "flag": "FLAG_HIDE_SNORLAX",
-            "graphics_id": "OBJ_EVENT_GFX_BIG_SNORLAX_DOLL",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_UP",
-            "script": "SilentForest_EventScript_Snorlax",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 9,
-            "y": 13
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_ITEM_SILENT_FOREST_LEFTOVERS",
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_NONE",
-            "script": "SilentForest_EventScript_ItemLeftovers",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 25,
-            "y": 20
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_ITEM_SILENT_FOREST_BIG_ROOT",
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_NONE",
-            "script": "SilentForest_EventScript_ItemBigRoot",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 22,
-            "y": 49
-        },
-        {
-            "elevation": 3,
-            "flag": "FLAG_ITEM_SILENT_FOREST_SUPER_POTION",
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_NONE",
-            "script": "SilentForest_EventScript_ItemSuperPotion",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 0,
-            "y": 5
-        }
-    ],
-    "region_map_section": "MAPSEC_SILENT_FOREST",
-    "requires_flash": false,
-    "show_map_name": true,
-    "warp_events": [
-        {
-            "dest_map": "MAP_ROUTE116",
-            "dest_warp_id": 5,
-            "elevation": 0,
-            "x": 4,
-            "y": 44
-        },
-        {
-            "dest_map": "MAP_ROUTE116",
-            "dest_warp_id": 6,
-            "elevation": 0,
-            "x": 5,
-            "y": 44
-        }
-    ],
-    "weather": "WEATHER_NONE"
+  "id": "MAP_SILENT_FOREST",
+  "name": "SilentForest",
+  "layout": "LAYOUT_SILENT_FOREST",
+  "music": "MUS_ABANDONED_SHIP",
+  "region_map_section": "MAPSEC_SILENT_FOREST",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BIG_SNORLAX_DOLL",
+      "x": 9,
+      "y": 13,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SilentForest_EventScript_Snorlax",
+      "flag": "FLAG_HIDE_SNORLAX"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 25,
+      "y": 20,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SilentForest_EventScript_ItemLeftovers",
+      "flag": "FLAG_ITEM_SILENT_FOREST_LEFTOVERS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 22,
+      "y": 49,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SilentForest_EventScript_ItemBigRoot",
+      "flag": "FLAG_ITEM_SILENT_FOREST_BIG_ROOT"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 0,
+      "y": 5,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SilentForest_EventScript_ItemSuperPotion",
+      "flag": "FLAG_ITEM_SILENT_FOREST_SUPER_POTION"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 4,
+      "y": 44,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE116",
+      "dest_warp_id": 5
+    },
+    {
+      "x": 5,
+      "y": 44,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE116",
+      "dest_warp_id": 6
+    },
+    {
+      "x": 12,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_NAVEL_ROCK_B1F",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 13,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_NAVEL_ROCK_B1F",
+      "dest_warp_id": 1
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 24,
+      "y": 27,
+      "elevation": 3,
+      "item": "ITEM_TINY_MUSHROOM",
+      "flag": "FLAG_HIDDEN_ITEM_SILENT_FOREST_TINYMUSHROOM"
+    },
+    {
+      "type": "hidden_item",
+      "x": 4,
+      "y": 20,
+      "elevation": 3,
+      "item": "ITEM_BIG_MUSHROOM",
+      "flag": "FLAG_HIDDEN_ITEM_SILENT_FOREST_BIG_MUSHROOM"
+    }
+  ],
+  "allow_bike": "",
+  "allow_escape_rope": ""
 }

@@ -83,9 +83,9 @@ SilentForest_EventScript_CancelBattle::
 	
 SilentForest_EventScript_DefeatedSnorlax::
 	// remove snorlax sprite
-	fadescreenswapbuffers 1
-	removeobject LOCALID_SNORLAX
-	fadescreenswapbuffers 0
+	//fadescreenswapbuffers 1
+	//removeobject LOCALID_SNORLAX
+	//fadescreenswapbuffers 0
 	setflag FLAG_DEFEATED_SNORLAX
 	
 	release
