@@ -4345,7 +4345,7 @@
       "id": "LAYOUT_NAVEL_ROCK_FORK",
       "name": "NavelRock_Fork_Layout",
       "width": 65,
-      "height": 50,
+      "height": 60,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Fallarbor",
       "border_filepath": "data/layouts/NavelRock_Fork/border.bin",
