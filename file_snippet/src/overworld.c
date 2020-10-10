@@ -1,5 +1,13 @@
+< //
+#include "constants/weather.h"
+// custom
+#include "constants/rgb.h"
+
+#define PLAYER_TRADING_STATE_IDLE 0x80
+// >
+
 < //    
-	ChooseAmbientCrySpecies();
+    ChooseAmbientCrySpecies();
     SetTimeBasedHue();
     SetDefaultFlashLevel();
 // >
@@ -24,6 +32,8 @@ bool32 Overworld_IsBikingAllowed(void)
 
 void SetTimeBasedHue(void)
 {
+	// put here something that tints the palette
+	// how???
 }
 
 void SetDefaultFlashLevel(void)
