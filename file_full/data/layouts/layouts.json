@@ -4344,7 +4344,7 @@
     {
       "id": "LAYOUT_NAVEL_ROCK_FORK",
       "name": "NavelRock_Fork_Layout",
-      "width": 50,
+      "width": 65,
       "height": 50,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Fallarbor",
