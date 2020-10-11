@@ -30,7 +30,7 @@
     },
     {
       "direction": "down",
-      "offset": 10,
+      "offset": -10,
       "map": "MAP_NAVEL_ROCK_FORK"
     }
   ],
