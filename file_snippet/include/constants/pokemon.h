@@ -1,4 +1,13 @@
 < //
+#define FLAG_HIT_IN_AIR             0x800000 // dmg is normal, always hits target on air
+#define FLAG_SOARING_WINGS_BOOST    0x1000000
+
+// Split defines.
+#define SPLIT_PHYSICAL  0x0
+// >
+
+
+< //
 #define OT_ID_PLAYER_ID       0
 #define OT_ID_PRESET          1
 #define OT_ID_RANDOM_NO_SHINY 2
