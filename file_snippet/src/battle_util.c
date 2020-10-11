@@ -21,8 +21,8 @@
 		if (gBattleMoves[move].flags & FLAG_SOUND)
 			MulModifier(&modifier, UQ_4_12(1.3));
 		break;
-	case ABILITY_SOARING_WINGS:
-		if (gBattleMoves[move].flags & FLAG_SOARING_WINGS_BOOST)
+	case ABILITY_HIGH_WINDS:
+		if (gBattleMoves[move].flags & FLAG_HIGH_WINDS_BOOST)
 			MulModifier(&modifier, UQ_4_12(1.3));
 		break;
     case ABILITY_MEGA_LAUNCHER:
