@@ -5,9 +5,8 @@
 #define MAPSEC_MYSTERY_SPRINGS              0xD7
 #define MAPSEC_NEW_ISLAND                   0xD8
 #define MAPSEC_NEW_ISLAND2                  0xD9
-#define MAPSEC_NEW_ISLAND2                  0xDA
-#define MAPSEC_RHYOLITE_CANYON              0xDB
-#define MAPSEC_NONE                         0xDC
+#define MAPSEC_RHYOLITE_CANYON              0xDA
+#define MAPSEC_NONE                         0xDB
 
 #define METLOC_BREEDERSCLUB_EGG             0xFC
 #define METLOC_SPECIAL_EGG                  0xFD
