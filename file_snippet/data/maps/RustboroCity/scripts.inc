@@ -2,8 +2,13 @@
 RustboroCity_OnFrame: @ 81E070B
 	// disable match call tutorial
 	//map_script_2 VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_ScientistAddMatchCall
+	map_script_2 VAR_RUSTBORO_CITY_STATE, 6, RustboroCity_EventScript_UpdateRoute104State
 	.2byte 0
 
+RustboroCity_EventScript_UpdateRoute104State::
+	setvar VAR_ROUTE104_STATE, 1
+	end
+	
 RustboroCity_EventScript_ScientistAddMatchCall:: @ 81E0715
 // >
 

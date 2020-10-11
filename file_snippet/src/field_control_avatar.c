@@ -16,3 +16,17 @@ static const u8 *GetInteractedWaterScript(struct MapPosition *unused1, u8 metati
 
 static bool32 TrySetupDiveDownScript(void)
 // >
+
+< //
+        if (ShouldDoWallyCall() == TRUE)
+        {
+            ScriptContext1_SetupScript(MauvilleCity_EventScript_RegisterWallyCall);
+            return TRUE;
+        }
+        if (ShouldDoProfStoneCall() == TRUE)
+        {
+            ScriptContext1_SetupScript(MauvilleCity_EventScript_ProfStoneCall);
+            return TRUE;
+        }
+        if (ShouldDoScottFortreeCall() == TRUE)
+// >

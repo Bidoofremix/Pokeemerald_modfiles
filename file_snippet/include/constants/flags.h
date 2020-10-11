@@ -71,7 +71,7 @@
 #define FLAG_QUEST_MENU_ACTIVE                 0x3A // Unused Flag
 #define FLAG_ITEM_SILENT_FOREST_LEFTOVERS      0x3B // Unused Flag
 #define FLAG_ITEM_SILENT_FOREST_SUPER_POTION   0x3C // Unused Flag
-#define FLAG_UNUSED_0x1E1                    0x3D // Unused Flag
+#define FLAG_ENABLE_PROF_STONE_POKENAV_CALL    0x3D // Unused Flag
 #define FLAG_UNUSED_0x1E2                    0x3E // Unused Flag
 #define FLAG_UNUSED_0x1E3                    0x3F // Unused Flag
 #define FLAG_UNUSED_0x264  0x40 // Unused Flag
