@@ -1,6 +1,6 @@
 < //
 #define FLAG_HIT_IN_AIR             0x800000 // dmg is normal, always hits target on air
-#define FLAG_SOARING_WINGS_BOOST    0x1000000
+#define FLAG_HIGH_WINDS_BOOST    0x1000000
 
 // Split defines.
 #define SPLIT_PHYSICAL  0x0

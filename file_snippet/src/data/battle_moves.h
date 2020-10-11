@@ -137,3 +137,20 @@
 
     [MOVE_HEAD_CHARGE] =
 // >
+
+< //
+
+    [MOVE_HEAT_WAVE] =
+    {
+        .effect = EFFECT_BURN_HIT,
+        .power = 95,
+        .type = TYPE_FIRE,
+        .accuracy = 90,
+        .pp = 10,
+        .secondaryEffectChance = 10,
+        .target = MOVE_TARGET_BOTH,
+        .priority = 0,
+        .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_HIGH_WINDS_BOOST,
+        .split = SPLIT_SPECIAL,
+    },
+// >
