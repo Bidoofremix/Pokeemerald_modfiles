@@ -107,5 +107,75 @@ static const struct TrainerMonNoItemDefaultMoves sParty_Chevis[] = {
     }
 };
 
+static const struct TrainerMonNoItemDefaultMoves sParty_GruntRhyoliteCanyon1[] = {
+	{
+    .iv = 0,
+    .lvl = 33,
+    .species = SPECIES_NUMEL,
+    },
+    {
+    .iv = 0,
+    .lvl = 33,
+    .species = SPECIES_SEVIPER,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_GruntRhyoliteCanyon2[] = {
+	{
+    .iv = 0,
+    .lvl = 33,
+    .species = SPECIES_GLIGAR,
+    },
+    {
+    .iv = 0,
+    .lvl = 33,
+    .species = SPECIES_GROWLITHE,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_GruntRhyoliteCanyon3[] = {
+	{
+    .iv = 0,
+    .lvl = 32,
+    .species = SPECIES_HOUNDOUR,
+    },
+    {
+    .iv = 0,
+    .lvl = 34,
+    .species = SPECIES_ARBOK,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_GruntRhyoliteCanyon4[] = {
+	{
+    .iv = 0,
+    .lvl = 35,
+    .species = SPECIES_CHARMELEON,
+    },
+    {
+    .iv = 0,
+    .lvl = 34,
+    .species = SPECIES_MIGHTYENA,
+    }
+};
+
+static const struct TrainerMonNoItemDefaultMoves sParty_TabithaRhyoliteCanyon[] = {
+	{
+    .iv = 0,
+    .lvl = 34,
+    .species = SPECIES_MIGHTYENA,
+    },
+	{
+    .iv = 0,
+    .lvl = 35,
+    .species = SPECIES_SKARMORY,
+    },
+    {
+    .iv = 0,
+    .lvl = 36,
+    .species = SPECIES_MAGMAR,
+    }
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_GruntAquaHideout1[] = {
 // >

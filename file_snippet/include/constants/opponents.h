@@ -13,8 +13,13 @@
 #define TRAINER_CADEN                       861
 #define TRAINER_CHEVIS                      862
 #define TRAINER_SHELLY_BRINE_BEACH          863
+#define TRAINER_GRUNT_RHYOLITE_CANYON_1     864
+#define TRAINER_GRUNT_RHYOLITE_CANYON_2     865
+#define TRAINER_GRUNT_RHYOLITE_CANYON_3     866
+#define TRAINER_GRUNT_RHYOLITE_CANYON_4     867
+#define TRAINER_TABITHA_RHYOLITE_CANYON     868
 
-#define TRAINERS_COUNT                      864
+#define TRAINERS_COUNT                      869
 #define MAX_TRAINERS_COUNT                  1000
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

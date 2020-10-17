@@ -139,5 +139,75 @@
         .party = {.NoItemDefaultMoves = sParty_ShellyBrineBeach},
     },
 	
+    [TRAINER_GRUNT_RHYOLITE_CANYON_1] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_TEAM_MAGMA,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MAGMA,
+        .trainerPic = TRAINER_PIC_MAGMA_GRUNT_M,
+        .trainerName = _("GRUNT"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = ARRAY_COUNT(sParty_GruntRhyoliteCanyon1),
+        .party = {.NoItemDefaultMoves = sParty_GruntRhyoliteCanyon1},
+    },
+	
+    [TRAINER_GRUNT_RHYOLITE_CANYON_2] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_TEAM_MAGMA,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_MAGMA,
+        .trainerPic = TRAINER_PIC_MAGMA_GRUNT_F,
+        .trainerName = _("GRUNT"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = ARRAY_COUNT(sParty_GruntRhyoliteCanyon2),
+        .party = {.NoItemDefaultMoves = sParty_GruntRhyoliteCanyon2},
+    },
+	
+    [TRAINER_GRUNT_RHYOLITE_CANYON_3] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_TEAM_MAGMA,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MAGMA,
+        .trainerPic = TRAINER_PIC_MAGMA_GRUNT_M,
+        .trainerName = _("GRUNT"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = ARRAY_COUNT(sParty_GruntRhyoliteCanyon3),
+        .party = {.NoItemDefaultMoves = sParty_GruntRhyoliteCanyon3},
+    },
+	
+    [TRAINER_GRUNT_RHYOLITE_CANYON_4] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_TEAM_MAGMA,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_MAGMA,
+        .trainerPic = TRAINER_PIC_MAGMA_GRUNT_F,
+        .trainerName = _("GRUNT"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = ARRAY_COUNT(sParty_GruntRhyoliteCanyon4),
+        .party = {.NoItemDefaultMoves = sParty_GruntRhyoliteCanyon4},
+    },
+	
+	[TRAINER_TABITHA_RHYOLITE_CANYON] =
+    {
+        .partyFlags = 0,
+        .trainerClass = TRAINER_CLASS_MAGMA_ADMIN,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MAGMA,
+        .trainerPic = TRAINER_PIC_MAGMA_ADMIN,
+        .trainerName = _("TABITHA"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = ARRAY_COUNT(sParty_TabithaRhyoliteCanyon),
+        .party = {.NoItemDefaultMoves = sParty_TabithaRhyoliteCanyon},
+    },	
+	
     [TRAINER_SAWYER_1] =
 // >
