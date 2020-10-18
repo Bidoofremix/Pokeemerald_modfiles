@@ -25,7 +25,7 @@ static bool32 TrySetupDiveDownScript(void)
         }
         if (ShouldDoProfStoneCall() == TRUE)
         {
-            ScriptContext1_SetupScript(MauvilleCity_EventScript_ProfStoneCall);
+            ScriptContext1_SetupScript(GraniteCave_EventScript_ProfStoneCall);
             return TRUE;
         }
         if (ShouldDoScottFortreeCall() == TRUE)
