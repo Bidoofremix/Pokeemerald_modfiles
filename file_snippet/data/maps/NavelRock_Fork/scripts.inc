@@ -1,4 +1,14 @@
-< //
+< // START
+
+// Rhyolite Canyon states
+// 0: have not engaged Tabitha
+
+.set LOCALID_GRUNT1, 1
+.set LOCALID_GRUNT2, 2
+.set LOCALID_GRUNT3, 3
+.set LOCALID_GRUNT4, 4
+.set LOCALID_TABITHA, 5
+
 NavelRock_Fork_MapScripts:: @ 826910E
 	map_script MAP_SCRIPT_ON_RESUME, RhyoliteCanyon_OnResume
 	.byte 0
@@ -27,6 +37,61 @@ RhyoliteCanyon_EventScript_Grunt4::
 	msgbox RhyoliteCanyon_Text_Grunt4PostBattle, MSGBOX_AUTOCLOSE
 	end
 
+RhyoliteCanyon_EventScript_Tabitha::
+	lock
+	applymovement LOCALID_TABITHA, Common_Movement_WalkInPlaceFastestUp
+	waitmovement 0
+	delay 20
+	msgbox RhyoliteCanyon_Text_TabithaCall_TheMeteoriteIsntHere, MSGBOX_DEFAULT
+	waitmessage
+	playse SE_POKENAV_HANG_UP
+	delay 20
+	closemessage
+	delay 60
+	applymovement LOCALID_TABITHA, Common_Movement_FaceDown
+	applymovement LOCALID_TABITHA, Common_Movement_WalkInPlaceDown
+	playbgm MUS_ENCOUNTER_MAGMA, 0
+	delay 20
+	msgbox RhyoliteCanyon_Text_YouThinkYouCanMarchInHere, MSGBOX_DEFAULT
+	closemessage
+	delay 20
+	applymovement LOCALID_TABITHA, RhyoliteCanyon_Movement_WalkDown3
+	waitmovement 0
+	trainerbattle_no_intro TRAINER_TABITHA_RHYOLITE_CANYON, RhyoliteCanyon_Text_TabithaLose
+	release
+	end
+	
+RhyoliteCanyon_Text_TabithaCall_TheMeteoriteIsntHere:
+	.string "… … … … … …\n"
+	.string "… … … … … …\p"
+	.string "… Yes, we have searched through\n"
+	.string "the entire canyon. It isn't here.\p"
+	.string "… METEOR FALLS? Roger.\n"
+	.string "We will proceed immediately. Hehehe!\p"
+	.string "TABITHA out.\p"
+	.string "… … … … … …\n"
+	.string "… … … … … Click!$"
+	
+RhyoliteCanyon_Text_YouThinkYouCanMarchInHere:
+	.string "Hehehe! So, you think you can just\n"
+	.string "march in here and interrupt our\l"
+	.string "mission?\p"
+	.string "After all the trouble we went to\n"
+	.string "get rid of eyewitnesses?\p"
+	.string "Hehehe! You need to learn a\n"
+	.string "lesson here.\p"
+	.string "This'll teach you not to stick your\n"
+	.string "nose into other people's business!$"
+	
+RhyoliteCanyon_Text_TabithaLose:
+	.string "Hehe… He?$"
+	
+RhyoliteCanyon_Movement_WalkDown3:
+	walk_down
+	walk_down
+	walk_down
+	step_end
+	
 RhyoliteCanyon_Text_Grunt1Intro:
 	.string "What? Where'd you come from?$"
 	
@@ -55,7 +120,7 @@ RhyoliteCanyon_Text_Grunt3Intro:
 	.string "So, get lost!$"
 	
 RhyoliteCanyon_Text_Grunt3Defeated:
-	.string "You're not a regular kid, are you?$"
+	.string "You're supposed to be a kid?$"
 	
 RhyoliteCanyon_Text_Grunt3PostBattle:
 	.string "We're apparently looking for some\n"
@@ -65,17 +130,17 @@ RhyoliteCanyon_Text_Grunt3PostBattle:
 RhyoliteCanyon_Text_Grunt4Intro:
 	.string "You!\p"
 	.string "First you humiliated me in PETALBURG\n"
-	.string "WOODS, then RUSTURF TUNNEL, and\l"
-	.string "now here.\p"
+	.string "WOODS, then RUSTURF TUNNEL, and now\l"
+	.string "you're here?\p"
 	.string "Is there no limit to your meddling?\n"
 	.string "I'm gonna make you pay!$"
 	
 RhyoliteCanyon_Text_Grunt4Defeated:
-	.string "Completely wiped out, again…"
+	.string "Completely wiped out, again…$"
 	
 RhyoliteCanyon_Text_Grunt4PostBattle:
-	.string "You know what?\n"
-	.string	"Just stop bothering me. Do whatever\l"
+	.string "You know what?\p"
+	.string	"Just stop bothering me. Do whatever\n"
 	.string "you want, I don't care.\p"
 	.string "The ADMIN will destroy you anyway.$"
 	
