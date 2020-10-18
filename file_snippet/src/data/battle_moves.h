@@ -139,7 +139,6 @@
 // >
 
 < //
-
     [MOVE_HEAT_WAVE] =
     {
         .effect = EFFECT_BURN_HIT,
@@ -153,4 +152,6 @@
         .flags = FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_HIGH_WINDS_BOOST,
         .split = SPLIT_SPECIAL,
     },
+
+    [MOVE_HAIL] =
 // >
