@@ -36,7 +36,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "RhyoliteCanyon_EventScript_Grunt1",
-      "flag": "0"
+      "flag": "FLAG_HIDE_RHYOLITE_CANYON_TEAM_MAGMA"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
@@ -49,7 +49,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "5",
       "script": "RhyoliteCanyon_EventScript_Grunt2",
-      "flag": "0"
+      "flag": "FLAG_HIDE_RHYOLITE_CANYON_TEAM_MAGMA"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_F",
@@ -62,7 +62,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "5",
       "script": "RhyoliteCanyon_EventScript_Grunt3",
-      "flag": "0"
+      "flag": "FLAG_HIDE_RHYOLITE_CANYON_TEAM_MAGMA"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_F",
@@ -75,7 +75,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "RhyoliteCanyon_EventScript_Grunt4",
-      "flag": "0"
+      "flag": "FLAG_HIDE_RHYOLITE_CANYON_TEAM_MAGMA"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
@@ -83,6 +83,45 @@
       "y": 26,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "FLAG_HIDE_RHYOLITE_CANYON_TEAM_MAGMA"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 1,
+      "y": 38,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 18,
+      "y": 38,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "NULL",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 54,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -108,7 +147,7 @@
       "elevation": 0,
       "var": "VAR_RHYOLITE_CANYON_STATE",
       "var_value": "1",
-      "script": "NULL"
+      "script": "BrineBeach_EventScript_TabithaRematch"
     },
     {
       "type": "trigger",
@@ -121,7 +160,14 @@
     }
   ],
   "bg_events": [
-
+    {
+      "type": "hidden_item",
+      "x": 46,
+      "y": 50,
+      "elevation": 3,
+      "item": "ITEM_HEAT_ROCK",
+      "flag": "FLAG_HIDDEN_ITEM_RHYOLITE_CANYON_HEAT_ROCK"
+    }
   ],
   "allow_bike": "",
   "allow_escape_rope": ""
