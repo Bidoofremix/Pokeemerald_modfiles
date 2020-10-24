@@ -74,7 +74,7 @@
 #define FLAG_ENABLE_PROF_STONE_POKENAV_CALL    0x3D // Unused Flag
 #define FLAG_HIDE_RHYOLITE_CANYON_TEAM_MAGMA   0x3E // Unused Flag
 #define FLAG_ITEM_RHYOLITE_CANYON_HYPER_POTION 0x3F // Unused Flag
-#define FLAG_UNUSED_0x264  0x40 // Unused Flag
+#define FLAG_ITEM_RHYOLITE_CANYON_IGNIS_BALL   0x40 // Unused Flag
 #define FLAG_UNUSED_0x265  0x41 // Unused Flag
 #define FLAG_UNUSED_0x266  0x42 // Unused Flag
 #define FLAG_UNUSED_0x267  0x43 // Unused Flag

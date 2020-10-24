@@ -9,7 +9,7 @@ static const u32 sNewParticlesGfx[] = INCBIN_U32("graphics/interface/ball/partic
 
 < //
     [BALL_BEAST]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_BEASTBALL},
-    [BALL_IGNIS]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_IGNISBALL}},
+    [BALL_IGNIS]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_IGNISBALL},
 };
 
 static const struct CompressedSpritePalette sBallParticlePalettes[] =
@@ -32,7 +32,8 @@ static const TaskFunc sBallParticleAnimationFuncs[] =
 // >
 
 < //
-    [BALL_BEAST] = UltraBallOpenParticleAnimation
+    [BALL_DREAM] = UltraBallOpenParticleAnimation,
+    [BALL_BEAST] = UltraBallOpenParticleAnimation,
     [BALL_IGNIS] = GreatBallOpenParticleAnimation
 };
 // >
@@ -63,7 +64,7 @@ const u16 gBallOpenFadeColors[] =
 
 < //
     [BALL_BEAST] = RGB(31, 31, 15),
-    [BALL_BEAST] = RGB(31, 1, 1),
+    [BALL_IGNIS] = RGB(31, 1, 1),
 };
 
 const struct SpriteTemplate gPokeblockSpriteTemplate =

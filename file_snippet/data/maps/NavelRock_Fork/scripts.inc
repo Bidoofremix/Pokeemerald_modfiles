@@ -211,6 +211,10 @@ RhyoliteCanyon_Text_Grunt4PostBattle:
 	
 RhyoliteCanyon_EventScript_HyperPotion::
 	finditem ITEM_HYPER_POTION
+	end
+
+RhyoliteCanyon_EventScript_IgnisBall::
+	finditem ITEM_IGNIS_BALL
 	end	
 	
 // > END
