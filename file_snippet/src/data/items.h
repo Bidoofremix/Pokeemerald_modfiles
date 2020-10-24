@@ -747,5 +747,21 @@
         .fieldUseFunc = ItemUseOutOfBattle_QuestLog,
         .secondaryId = 0
     },
+
+    [ITEM_IGNIS_BALL] =
+    {
+        .name = _("Ignis Ball"),
+        .itemId = ITEM_IGNIS_BALL,
+        .price = 2000,
+        .description = sIgnisBallDesc,
+        .pocket = POCKET_POKE_BALLS,
+        .type = 11,
+        .fieldUseFunc = NULL,
+        .battleUsage = 2,
+        .battleUseFunc = ItemUseInBattle_PokeBall,
+        .secondaryId = 27,
+    },
+	
+	
 };
 // >
