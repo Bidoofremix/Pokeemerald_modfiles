@@ -12,6 +12,19 @@
         .battleUseFunc = ItemUseInBattle_PokeBall,
         .secondaryId = 26, // To Do
     },
+	
+    [ITEM_IGNIS_BALL] =
+    {
+        .name = _("Ignis Ball"),
+        .itemId = ITEM_IGNIS_BALL,
+        .price = 1000,
+        .description = sIgnisBallDesc,
+        .pocket = POCKET_POKE_BALLS,
+        .type = 6,
+        .battleUsage = 2,
+        .battleUseFunc = ItemUseInBattle_PokeBall,
+        .secondaryId = 6,
+    },
 
 // Medicine
 

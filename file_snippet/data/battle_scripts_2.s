@@ -27,6 +27,7 @@ gBattlescriptsForBallThrow:: @ 82DBD08
 	.4byte BattleScript_BallThrow @ ITEM_PARK_BALL
 	.4byte BattleScript_BallThrow @ ITEM_DREAM_BALL
 	.4byte BattleScript_BallThrow @ ITEM_BEAST_BALL
+	.4byte BattleScript_BallThrow @ ITEM_IGNIS_BALL
 	.4byte BattleScript_BallThrow @ ITEM_PREMIER_BALL
 
 	.align 2

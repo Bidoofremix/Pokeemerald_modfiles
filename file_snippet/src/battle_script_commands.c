@@ -142,9 +142,17 @@ static const u8 sTerrainToType[] =
                 if (gBattleResults.battleTurnCounter == 0)
                     ballMultiplier = 40;
                 break;
+		    case ITEM_IGNIS_BALL:
+                if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_FIRE) || IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_DRAGON))
+                    ballMultiplier = 30;
+                else
+                    ballMultiplier = 10;
+                break;
 			case ITEM_DREAM_BALL:
 				if (gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP))
                     ballMultiplier = 40;
+				else
+					ballMultiplier = 10;
                 break;
             case ITEM_DUSK_BALL:
 // >

@@ -1,0 +1,37 @@
+< //
+enum
+{
+    BALL_POKE,
+    BALL_GREAT,
+    BALL_SAFARI,
+    BALL_ULTRA,
+    BALL_MASTER,
+    BALL_NET,
+    BALL_DIVE,
+    BALL_NEST,
+    BALL_REPEAT,
+    BALL_TIMER,
+    BALL_LUXURY,
+    BALL_PREMIER,
+    BALL_LEVEL,
+    BALL_LURE,
+    BALL_MOON,
+    BALL_FRIEND,
+    BALL_LOVE,
+    BALL_HEAVY,
+    BALL_FAST,
+    BALL_SPORT,
+    BALL_DUSK,
+    BALL_QUICK,
+    BALL_HEAL,
+    BALL_CHERISH,
+    BALL_PARK,
+    BALL_DREAM,
+    BALL_BEAST,
+	BALL_IGNIS,
+    POKEBALL_COUNT
+};
+
+enum {
+    BALL_AFFINE_ANIM_0,
+// >

@@ -179,7 +179,7 @@ for dir, subdirs, files in os.walk(snippet_folder):
 
 			if need_new_chunk:
 				chunk = new_chunk
-
+				
 			original_lines[first_index:last_index+1] = chunk
 		
 		with open(pokeemerald_path, "w", encoding=encoding) as f:

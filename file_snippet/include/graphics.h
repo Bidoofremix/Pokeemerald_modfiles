@@ -3397,3 +3397,21 @@ extern const u32 gTrainerPalette_Hiker[];
 extern const u32 gTrainerPalette_Mewtwo[];
 extern const u32 gTrainerPalette_AquaGruntM[];
 // >
+
+< //
+extern const u32 gInterfacePal_NetBall[];
+extern const u32 gInterfaceGfx_DiveBall[];
+extern const u32 gInterfacePal_DiveBall[];
+extern const u32 gInterfaceGfx_IgnisBall[];
+extern const u32 gInterfacePal_IgnisBall[];
+extern const u32 gInterfaceGfx_NestBall[];
+// >
+
+< //
+extern const u32 gItemIconPalette_NetBall[];
+extern const u32 gItemIcon_DiveBall[];
+extern const u32 gItemIconPalette_DiveBall[];
+extern const u32 gItemIcon_IgnisBall[];
+extern const u32 gItemIconPalette_IgnisBall[];
+extern const u32 gItemIcon_NestBall[];
+// >

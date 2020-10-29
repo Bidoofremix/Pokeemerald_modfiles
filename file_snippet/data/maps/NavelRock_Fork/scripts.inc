@@ -214,7 +214,7 @@ RhyoliteCanyon_EventScript_HyperPotion::
 	end
 
 RhyoliteCanyon_EventScript_IgnisBall::
-	finditem ITEM_HEAVY_BALL
+	finditem ITEM_IGNIS_BALL
 	end	
 	
 // > END
