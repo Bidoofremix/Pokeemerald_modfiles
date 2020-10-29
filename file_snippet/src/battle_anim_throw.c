@@ -7,7 +7,7 @@ static const u32 sNewParticlesGfx[] = INCBIN_U32("graphics/interface/ball/partic
 
 < //
     [BALL_BEAST]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_BEASTBALL},
-    [BALL_IGNIS]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_IGNISBALL},
+    [BALL_IGNIS]    = {sNewParticlesGfx,                    0x100, TAG_PARTICLES_IGNISBALL},
 };
 
 static const struct CompressedSpritePalette sBallParticlePalettes[] =
@@ -15,7 +15,7 @@ static const struct CompressedSpritePalette sBallParticlePalettes[] =
 
 < //
     [BALL_BEAST]    = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_BEASTBALL},
-    [BALL_IGNIS]    = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_IGNISBALL},
+    [BALL_IGNIS]    = {sNewParticlesPal,                    TAG_PARTICLES_IGNISBALL},
 };
 
 static const union AnimCmd sAnim_RegularBall[] =
