@@ -86,7 +86,7 @@ static const TaskFunc sBallParticleAnimationFuncs[] =
     [BALL_PARK] = UltraBallOpenParticleAnimation,
     [BALL_DREAM] = UltraBallOpenParticleAnimation,
     [BALL_BEAST] = UltraBallOpenParticleAnimation,
-    [BALL_IGNIS] = UltraBallOpenParticleAnimation
+    [BALL_IGNIS] = GreatBallOpenParticleAnimation
 };
 
 static const struct SpriteTemplate sBallParticleSpriteTemplates[POKEBALL_COUNT] =
@@ -143,7 +143,7 @@ const u16 gBallOpenFadeColors[] =
     [BALL_PARK] = RGB(31, 31, 15),
     [BALL_DREAM] = RGB(31, 31, 15),
     [BALL_BEAST] = RGB(31, 31, 15),
-    [BALL_IGNIS] = RGB(31, 31, 15),
+    [BALL_IGNIS] = RGB(31, 13, 1),
 };
 
 const struct SpriteTemplate gPokeblockSpriteTemplate =
