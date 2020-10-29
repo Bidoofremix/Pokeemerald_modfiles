@@ -31,9 +31,8 @@
 #define ITEM_DREAM_BALL 25
 #define ITEM_BEAST_BALL 26
 #define ITEM_PREMIER_BALL 27
-#define ITEM_IGNIS_BALL 28
 
-#define LAST_BALL ITEM_IGNIS_BALL
+#define LAST_BALL ITEM_PREMIER_BALL
   
 // Pokemon // Pokemon Items
 #define ITEM_POTION 30

@@ -44,10 +44,5 @@ static const u8 sQuestLogDesc[] = _(
     "A gadget that can\n"
     "be used to check\n"
     "quests.");
-	
-static const u8 sIgnisBallDesc[] = _(
-    "A BALL that works\n"
-    "well on FIRE and\n"
-    "DRAGON POKéMON.");
-	
+
 // > END

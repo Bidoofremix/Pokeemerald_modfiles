@@ -3397,18 +3397,3 @@ extern const u32 gTrainerPalette_Hiker[];
 extern const u32 gTrainerPalette_Mewtwo[];
 extern const u32 gTrainerPalette_AquaGruntM[];
 // >
-
-< //
-extern const u32 gInterfacePal_BeastBall[];
-extern const u32 gInterfaceGfx_IgnisBall[];
-extern const u32 gInterfacePal_IgnisBall[];
-extern const u32 gOpenPokeballGfx[];
-// >
-
-< //
-extern const u32 gItemIconPalette_BeastBall[];
-extern const u32 gItemIcon_IgnisBall[];
-extern const u32 gItemIconPalette_IgnisBall[];
-// Medicine
-extern const u32 gItemIcon_Potion[];
-// >

@@ -146,10 +146,6 @@ static const u8 sTerrainToType[] =
 				if (gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP))
                     ballMultiplier = 40;
                 break;
-			case ITEM_IGNIS_BALL:
-                if (IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_FIRE) || IS_BATTLER_OF_TYPE(gBattlerTarget, TYPE_DRAGON))
-                    ballMultiplier = 30;
-                break;
             case ITEM_DUSK_BALL:
 // >
 
