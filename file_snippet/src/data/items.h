@@ -13,7 +13,7 @@
         .secondaryId = 26, // To Do
     },
 
-	[ITEM_IGNIS_BALL] =
+    [ITEM_IGNIS_BALL] =
     {
         .name = _("Ignis Ball"),
         .itemId = ITEM_IGNIS_BALL,

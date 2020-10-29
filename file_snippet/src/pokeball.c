@@ -7,7 +7,7 @@ const struct CompressedSpriteSheet gBallSpriteSheets[POKEBALL_COUNT] =
 
 < //
     {gInterfaceGfx_BeastBall,   384, GFX_TAG_BEASTBALL},
-    {gInterfaceGfx_IgnisBall,   384, GFX_TAG_IGNISBALL},
+    {gInterfaceGfx_IgnisBall,   384, GFX_TAG_CHERISHBALL},
 };
 
 const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
@@ -15,7 +15,7 @@ const struct CompressedSpritePalette gBallSpritePalettes[POKEBALL_COUNT] =
 
 < //
     {gInterfacePal_BeastBall,   GFX_TAG_BEASTBALL},
-    {gInterfacePal_IgnisBall,   GFX_TAG_IGNISBALL},
+    {gInterfacePal_IgnisBall,   GFX_TAG_CHERISHBALL},
 };
 
 static const struct OamData sBallOamData =
@@ -31,7 +31,7 @@ static const struct OamData sBallOamData =
         .callback = SpriteCB_TestBallThrow,
     },
 	{
-		.tileTag = GFX_TAG_IGNISBALL,
+        .tileTag = GFX_TAG_IGNISBALL,
         .paletteTag = GFX_TAG_IGNISBALL,
         .oam = &sBallOamData,
         .anims = sBallAnimSequences,
