@@ -20,10 +20,10 @@
         .price = 1000,
         .description = sIgnisBallDesc,
         .pocket = POCKET_POKE_BALLS,
-        .type = 6,
+        .type = 11,
         .battleUsage = 2,
         .battleUseFunc = ItemUseInBattle_PokeBall,
-        .secondaryId = 6,
+        .secondaryId = 27,
     },
 
 // Medicine
