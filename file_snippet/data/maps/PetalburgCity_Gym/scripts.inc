@@ -146,6 +146,15 @@ PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial:: @ 82049A4
 	//msgbox PetalburgCity_Gym_Text_DadGoCollectBadges, MSGBOX_DEFAULT
 	setflag FLAG_ROUTE_103_EAST_ACCESSIBLE
 	msgbox PetalburgCity_Gym_Text_DadGoHelpBreeder, MSGBOX_DEFAULT
+	giveitem ITEM_QUEST_LOG
+	PetalburgCity_Gym_Text_DadThisIsTheQuestLog, MSGBOX_DEFAULT
+	delay 40
+	bufferitemname ITEM_QUEST_LOG
+	setflag FLAG_QUEST_MENU_ACTIVE
+	QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_1
+	QUEST_MENU_SET_ACTIVE SIDE_QUEST_1
+	call NoteNewQuestSingle
+	msgbox PetalBurgCity_Gym_Text_DadOffYouGoThen, MSGBOX_DEFAULT
 	setvar VAR_PETALBURG_GYM_STATE, 2
 	releaseall
 	end
@@ -164,6 +173,27 @@ PetalburgCity_Gym_EventScript_NormanOneBadge:: @ 8204D54
 // >
 
 < //
+
+NoteNewQuestSingle::
+	playse MUS_REGISTER_MATCH_CALL
+	msgbox Text_NewQuestWasUnlocked MSGBOX_DEFAULT
+	closemessage
+	delay 20
+	return
+	
+NoteNewQuestSeveral::
+	playse MUS_REGISTER_MATCH_CALL
+	msgbox Text_NewQuestsWereUnlocked, MSGBOX_DEFAULT
+	closemessage
+	delay 20
+	return
+	
+Text_NewQuestWasUnlocked:
+	.string "A new quest was unlocked!$"
+
+Text_NewQuestsWereUnlocked:
+	.string "New quests were unlocked!$"
+	
 PetalburgCity_Gym_Text_NormanGoToRustboro: @ 8205DB4
 	.string "DAD: Hm? Aren't you going to the\n"
 	.string "POKéMON GYM in RUSTBORO CITY?\p"
@@ -184,6 +214,24 @@ PetalburgCity_Gym_Text_DadGoHelpBreeder: @ 8205C40
 	.string "BREEDER's CLUB that needs help.\p"
 	.string "After that, we can have an official\n"
 	.string "battle here at the GYM.\p"
+	.string "To help you keep track of your\n"
+	.string "adventures, here's something\l"
+	.string "for you.$"
+	
+PetalburgCity_Gym_Text_DadThisIsTheQuestLog:
+	.string "DAD: This is the {STR_VAR_1}.\n"
+	.string "You will find people who need\l"
+	.string "help, or others who want to\l"
+	.string "challenge you in battle or\l"
+	.string "otherwise.\p"
+	.string "Use this gadget to record those\n"
+	.string "and find new quests to complete!\p"
+	.string "Here, I'll unlock the first\n"
+	.string "quest for you.$"
+
+PetalBurgCity_Gym_Text_DadOffYouGoThen:
+	.string "DAD: With that, you're ready\n"
+	.string "to set for VERDANTURF TOWN.\p"
 	.string "So, off you go, then!$"
 
 PetalburgCity_Gym_Text_NormanGoToVerdanturf: @ 8205DB4
