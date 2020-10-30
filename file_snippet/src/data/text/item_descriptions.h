@@ -26,6 +26,15 @@ static const u8 sBlackSludgeDesc[] = _(
 // >
 
 < //
+static const u8 sDreamBallDesc[] = _(
+    "A BALL that works\n"
+    "well on a sleeping\n"
+    "POKéMON.");
+
+static const u8 sBeastBallDesc[] = _(
+// >
+
+< //
 static const u8 sDiveBallDesc[] = _(
     "A BALL that works\n"
     "better on POKéMON\n"
