@@ -1,6 +1,6 @@
 < // START
 
-.set LOCALID_DRYSTAN, 5	
+.set LOCALID_DRYSTAN, 5
 
 FallarborTown_MapScripts:: @ 81EB1FA
 	map_script MAP_SCRIPT_ON_TRANSITION, FallarborTown_OnTransition
@@ -15,6 +15,9 @@ FallarborTown_OnTransition: @ 81EB200
 
 FallarborTown_EventScript_Drystan::
 	lockall
+	
+	setvar VAR_MEWTWO_QUESTLINE_STATE, 1
+	
 	playse SE_DOOR
 	opendoor 8, 6
 	waitdooranim
@@ -35,8 +38,7 @@ FallarborTown_EventScript_Drystan::
 	// if Y = 8, Drystan does not walk down
 	// also, player faces up
 	compare VAR_TEMP_1, 8
-	call_if_eq FallarborTown_EventScript_PlayerFaceUp
-	
+	call_if_eq FallarborTown_EventScript_PlayerFaceUp	
 	// else Drystan walks to player
 	call_if_ne FallarborTown_EventScript_DrystanWalkToPlayer	
 	
@@ -45,20 +47,27 @@ FallarborTown_EventScript_Drystan::
 	
 	delay 40
 	
+	// Drystan goes back to house
 	compare VAR_TEMP_1, 8
-
-	call_if_eq FallarborTown_EventScript_DrystanTurnBackToHouse
-	call_if_ne FallarborTown_EventScript_DrystanWalkBackToHouse
+	call_if_eq FallarborTown_EventScript_DrystanBackToHouseShort
+	call_if_ne FallarborTown_EventScript_DrystanBackToHouseLong
 
 	playse SE_DOOR
 	closedoor 8, 6
 	waitdooranim
+	delay 20
 	
+	// player goes to house
+	compare VAR_TEMP_1, 8
+	call_if_eq FallarborTown_EventScript_PlayerToHouseShort
+	call_if_ne FallarborTown_EventScript_PlayerToHouseLong
+	
+	warpdoor MAP_NAVEL_ROCK_UP1, 255, 3, 8
+
 	releaseall
 	end	
 	
 FallarborTown_EventScript_DrystanWalkToPlayer::
-	
 	// if Y > 8, Drystan walks down 2
 	// also, player faces right
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceRight
@@ -81,13 +90,13 @@ FallarborTown_EventScript_DrystanWalkToPlayer::
 
 	return
 	
-FallarborTown_EventScript_DrystanTurnBackToHouse::	
+FallarborTown_EventScript_DrystanBackToHouseShort::	
 	applymovement LOCALID_DRYSTAN, Route111_Movement_WinstrateEnterHouse
 	waitmovement 0
 	removeobject LOCALID_DRYSTAN 
 	return
 
-FallarborTown_EventScript_DrystanWalkBackToHouse::
+FallarborTown_EventScript_DrystanBackToHouseLong::
 	applymovement LOCALID_DRYSTAN, FallarborTown_Movement_Right1
 	waitmovement 0
 	
@@ -105,6 +114,31 @@ FallarborTown_EventScript_DrystanWalkBackToHouse::
 	removeobject LOCALID_DRYSTAN
 	return
 	
+FallarborTown_EventScript_PlayerToHouseShort::
+	applymovement OBJ_EVENT_ID_PLAYER, FallarborTown_Movement_Up1
+	waitmovement 0
+	return
+	
+FallarborTown_EventScript_PlayerToHouseLong::
+
+	applymovement OBJ_EVENT_ID_PLAYER, FallarborTown_Movement_Right1
+	waitmovement 0
+	applymovement OBJ_EVENT_ID_PLAYER, FallarborTown_Movement_Right1
+	waitmovement 0
+	
+	// if Y = 11, walk up 2 more
+	compare VAR_TEMP_1, 11
+	call_if_eq FallarborTown_EventScript_PlayerWalkUp2
+
+	// if Y = 10, walk up 1 more
+	compare VAR_TEMP_1, 10
+	call_if_eq FallarborTown_EventScript_PlayerWalkUp1
+		
+	// walk up 1
+	call FallarborTown_EventScript_PlayerWalkUp2
+	
+	return
+	
 FallarborTown_EventScript_PlayerFaceUp::	
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
 	waitmovement 0
@@ -117,6 +151,16 @@ FallarborTown_EventScript_DrystanWalkUp2::
 	
 FallarborTown_EventScript_DrystanWalkUp1::
 	applymovement LOCALID_DRYSTAN, FallarborTown_Movement_Up1
+	waitmovement 0
+	return	
+	
+FallarborTown_EventScript_PlayerWalkUp2::
+	applymovement OBJ_EVENT_ID_PLAYER, FallarborTown_Movement_Up2
+	waitmovement 0
+	return
+	
+FallarborTown_EventScript_PlayerWalkUp1::
+	applymovement OBJ_EVENT_ID_PLAYER, FallarborTown_Movement_Up1
 	waitmovement 0
 	return
 	
