@@ -147,7 +147,7 @@ PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial:: @ 82049A4
 	setflag FLAG_ROUTE_103_EAST_ACCESSIBLE
 	msgbox PetalburgCity_Gym_Text_DadGoHelpBreeder, MSGBOX_DEFAULT
 	giveitem ITEM_QUEST_LOG
-	PetalburgCity_Gym_Text_DadThisIsTheQuestLog, MSGBOX_DEFAULT
+	msgbox PetalburgCity_Gym_Text_DadThisIsTheQuestLog, MSGBOX_DEFAULT
 	delay 40
 	bufferitemname ITEM_QUEST_LOG
 	setflag FLAG_QUEST_MENU_ACTIVE
@@ -158,21 +158,6 @@ PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial:: @ 82049A4
 	setvar VAR_PETALBURG_GYM_STATE, 2
 	releaseall
 	end
-
-PetalburgCity_Gym_Movement_WallyExitGym: @ 82049EC
-// >
-
-< //
-PetalburgCity_Gym_EventScript_NormanNoBadges:: @ 8204D4A
-	//msgbox PetalburgCity_Gym_Text_NormanGoToRustboro, MSGBOX_DEFAULT
-	msgbox PetalburgCity_Gym_Text_NormanGoToVerdanturf, MSGBOX_DEFAULT
-	release
-	end
-
-PetalburgCity_Gym_EventScript_NormanOneBadge:: @ 8204D54
-// >
-
-< //
 
 NoteNewQuestSingle::
 	playse MUS_REGISTER_MATCH_CALL
@@ -192,8 +177,22 @@ Text_NewQuestWasUnlocked:
 	.string "A new quest was unlocked!$"
 
 Text_NewQuestsWereUnlocked:
-	.string "New quests were unlocked!$"
+	.string "New quests were unlocked!$"	
 	
+PetalburgCity_Gym_Movement_WallyExitGym: @ 82049EC
+// >
+
+< //
+PetalburgCity_Gym_EventScript_NormanNoBadges:: @ 8204D4A
+	//msgbox PetalburgCity_Gym_Text_NormanGoToRustboro, MSGBOX_DEFAULT
+	msgbox PetalburgCity_Gym_Text_NormanGoToVerdanturf, MSGBOX_DEFAULT
+	release
+	end
+
+PetalburgCity_Gym_EventScript_NormanOneBadge:: @ 8204D54
+// >
+
+< //	
 PetalburgCity_Gym_Text_NormanGoToRustboro: @ 8205DB4
 	.string "DAD: Hm? Aren't you going to the\n"
 	.string "POKéMON GYM in RUSTBORO CITY?\p"
