@@ -47,8 +47,8 @@ FallarborTown_EventScript_Drystan::
 	
 	compare VAR_TEMP_1, 8
 
-	call_if_eq FallarborTown_EventScript_DrystanTurnAndGoBackToHouse
-	call_if_ne FallarborTown_EventScript_DrystanAndPlayerToHouse
+	call_if_eq FallarborTown_EventScript_DrystanTurnBackToHouse
+	call_if_ne FallarborTown_EventScript_DrystanWalkBackToHouse
 
 	playse SE_DOOR
 	closedoor 8, 6
@@ -81,20 +81,43 @@ FallarborTown_EventScript_DrystanWalkToPlayer::
 
 	return
 	
-FallarborTown_EventScript_DrystanTurnAndGoBackToHouse::	
+FallarborTown_EventScript_DrystanTurnBackToHouse::	
 	applymovement LOCALID_DRYSTAN, Route111_Movement_WinstrateEnterHouse
 	waitmovement 0
-	removeobject LOCALID_DRYSTAN
+	removeobject LOCALID_DRYSTAN 
 	return
 
-FallarborTown_EventScript_DrystanAndPlayerToHouse::
-	applymovement LOCALID_DRYSTAN, Route111_Movement_WinstrateEnterHouse
+FallarborTown_EventScript_DrystanWalkBackToHouse::
+	applymovement LOCALID_DRYSTAN, FallarborTown_Movement_Right1
 	waitmovement 0
+	
+	// walk up 2
+	call FallarborTown_EventScript_DrystanWalkUp2
+	
+	// if Y = 11, Drystan walks up 2 more
+	compare VAR_TEMP_1, 11
+	call_if_eq FallarborTown_EventScript_DrystanWalkUp2
+
+	// if Y = 10, Drystan walks up 1 more
+	compare VAR_TEMP_1, 10
+	call_if_eq FallarborTown_EventScript_DrystanWalkUp1
+	
 	removeobject LOCALID_DRYSTAN
 	return
 	
 FallarborTown_EventScript_PlayerFaceUp::	
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_FaceUp
+	waitmovement 0
+	return
+	
+FallarborTown_EventScript_DrystanWalkUp2::
+	applymovement LOCALID_DRYSTAN, FallarborTown_Movement_Up2
+	waitmovement 0
+	return
+	
+FallarborTown_EventScript_DrystanWalkUp1::
+	applymovement LOCALID_DRYSTAN, FallarborTown_Movement_Up1
+	waitmovement 0
 	return
 	
 FallarborTown_EventScript_DrystanWalkDown1::
@@ -107,6 +130,15 @@ FallarborTown_EventScript_DrystanWalkDown2::
 	waitmovement 0
 	return
 
+FallarborTown_Movement_Up2::
+	walk_up
+	walk_up
+	step_end
+	
+FallarborTown_Movement_Up1::
+	walk_up
+	step_end
+	
 FallarborTown_Movement_Down1::
 	walk_down
 	step_end
@@ -118,6 +150,10 @@ FallarborTown_Movement_Down2::
 	
 FallarborTown_Movement_Left1::
 	walk_left
+	step_end
+	
+FallarborTown_Movement_Right1::
+	walk_right
 	step_end
 	
 FallarborTown_Text_HeyYouThere:
