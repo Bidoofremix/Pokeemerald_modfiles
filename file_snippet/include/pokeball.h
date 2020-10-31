@@ -25,7 +25,7 @@ enum
     BALL_QUICK,
     BALL_HEAL,
     BALL_CHERISH,
-    BALL_PARK,
+    BALL_CLONE,
     BALL_DREAM,
     BALL_BEAST,
 	BALL_IGNIS,

@@ -148,6 +148,9 @@ static const u8 sTerrainToType[] =
                 else
                     ballMultiplier = 10;
                 break;
+			case ITEM_CLONE_BALL:
+                ballMultiplier = 10;
+                break;
 			case ITEM_DREAM_BALL:
 				if (gBattleMons[gBattlerTarget].status1 & (STATUS1_SLEEP))
                     ballMultiplier = 40;

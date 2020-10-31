@@ -26,6 +26,16 @@ static const u8 sBlackSludgeDesc[] = _(
 // >
 
 < //
+static const u8 sSportBallDesc[] = _(
+    "A special Ball used\n"
+    "in the Bug-Catching\n"
+    "Contest.");
+
+static const u8 sCloneBallDesc[] = _(
+    "A mysterious BALL\n"
+    "created by Mewtwo\n"
+	"for CLONE POKéMON.");
+
 static const u8 sDreamBallDesc[] = _(
     "A BALL that works\n"
     "well on a sleeping\n"

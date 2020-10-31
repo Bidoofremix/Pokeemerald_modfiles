@@ -1,4 +1,36 @@
 < //
+    [ITEM_SPORT_BALL] =
+    {
+        .name = _("Sport Ball"),
+        .itemId = ITEM_SPORT_BALL,
+        .price = 10,
+        .description = sSportBallDesc,
+        .pocket = POCKET_POKE_BALLS,
+        .type = 11,
+        .fieldUseFunc = NULL,
+        .battleUsage = 2,
+        .battleUseFunc = ItemUseInBattle_PokeBall,
+        .secondaryId = 23, // To Do
+    },
+
+    [ITEM_CLONE_BALL] =
+    {
+        .name = _("Clone Ball"),
+        .itemId = ITEM_CLONE_BALL,
+        .price = 10,
+        .description = sCloneBallDesc,
+        .pocket = POCKET_POKE_BALLS,
+        .type = 11,
+        .fieldUseFunc = NULL,
+        .battleUsage = 2,
+        .battleUseFunc = ItemUseInBattle_PokeBall,
+        .secondaryId = 24, // To Do
+    },
+
+    [ITEM_DREAM_BALL] =
+// >
+
+< //
     [ITEM_BEAST_BALL] =
     {
         .name = _("Beast Ball"),

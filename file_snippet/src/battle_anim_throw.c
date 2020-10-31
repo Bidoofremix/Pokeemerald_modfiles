@@ -1,4 +1,7 @@
 < //
+#define TAG_PARTICLES_CHERISHBALL 65053
+#define TAG_PARTICLES_CLONEBALL   65054
+#define TAG_PARTICLES_DREAMBALL   65055
 #define TAG_PARTICLES_BEASTBALL   65056
 #define TAG_PARTICLES_IGNISBALL   65057
 
@@ -6,6 +9,9 @@ static const u32 sNewParticlesGfx[] = INCBIN_U32("graphics/interface/ball/partic
 // >
 
 < //
+    [BALL_CHERISH]  = {sNewParticlesGfx,                    0x100, TAG_PARTICLES_CHERISHBALL},
+    [BALL_CLONE]    = {sNewParticlesGfx,                    0x100, TAG_PARTICLES_CLONEBALL},
+    [BALL_DREAM]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_DREAMBALL},
     [BALL_BEAST]    = {gBattleAnimSpriteGfx_Particles,      0x100, TAG_PARTICLES_BEASTBALL},
     [BALL_IGNIS]    = {sNewParticlesGfx,                    0x100, TAG_PARTICLES_IGNISBALL},
 };
@@ -14,6 +20,9 @@ static const struct CompressedSpritePalette sBallParticlePalettes[] =
 // >
 
 < //
+    [BALL_CHERISH]  = {sNewParticlesPal,                    TAG_PARTICLES_CHERISHBALL},
+    [BALL_CLONE]    = {sNewParticlesPal,                    TAG_PARTICLES_CLONEBALL},
+    [BALL_DREAM]    = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_DREAMBALL},
     [BALL_BEAST]    = {gBattleAnimSpritePal_CircleImpact,   TAG_PARTICLES_BEASTBALL},
     [BALL_IGNIS]    = {sNewParticlesPal,                    TAG_PARTICLES_IGNISBALL},
 };
@@ -49,10 +58,10 @@ static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
     [BALL_QUICK] = 4,
     [BALL_HEAL] = 0,
     [BALL_CHERISH] = 0,
-    [BALL_PARK] = 5,
+    [BALL_CLONE] = 2,
     [BALL_DREAM] = 5,
     [BALL_BEAST] = 5,
-    [BALL_IGNIS] = 5,
+    [BALL_IGNIS] = 3,
 };
 
 static const TaskFunc sBallParticleAnimationFuncs[] =
@@ -83,7 +92,7 @@ static const TaskFunc sBallParticleAnimationFuncs[] =
     [BALL_QUICK] = UltraBallOpenParticleAnimation,
     [BALL_HEAL] = PokeBallOpenParticleAnimation,
     [BALL_CHERISH] = MasterBallOpenParticleAnimation,
-    [BALL_PARK] = UltraBallOpenParticleAnimation,
+    [BALL_CLONE] = RepeatBallOpenParticleAnimation,
     [BALL_DREAM] = UltraBallOpenParticleAnimation,
     [BALL_BEAST] = UltraBallOpenParticleAnimation,
     [BALL_IGNIS] = GreatBallOpenParticleAnimation
@@ -93,6 +102,33 @@ static const struct SpriteTemplate sBallParticleSpriteTemplates[POKEBALL_COUNT] 
 // >
 
 < //
+        .tileTag = TAG_PARTICLES_CHERISHBALL,
+        .paletteTag = TAG_PARTICLES_CHERISHBALL,
+        .oam = &gOamData_AffineOff_ObjNormal_8x8,
+        .anims = sAnims_BallParticles,
+        .images = NULL,
+        .affineAnims = gDummySpriteAffineAnimTable,
+        .callback = SpriteCallbackDummy,
+    },
+    {
+        .tileTag = TAG_PARTICLES_CLONEBALL,
+        .paletteTag = TAG_PARTICLES_CLONEBALL,
+        .oam = &gOamData_AffineOff_ObjNormal_8x8,
+        .anims = sAnims_BallParticles,
+        .images = NULL,
+        .affineAnims = gDummySpriteAffineAnimTable,
+        .callback = SpriteCallbackDummy,
+    },
+    {
+        .tileTag = TAG_PARTICLES_DREAMBALL,
+        .paletteTag = TAG_PARTICLES_DREAMBALL,
+        .oam = &gOamData_AffineOff_ObjNormal_8x8,
+        .anims = sAnims_BallParticles,
+        .images = NULL,
+        .affineAnims = gDummySpriteAffineAnimTable,
+        .callback = SpriteCallbackDummy,
+    },
+    {
         .tileTag = TAG_PARTICLES_BEASTBALL,
         .paletteTag = TAG_PARTICLES_BEASTBALL,
         .oam = &gOamData_AffineOff_ObjNormal_8x8,
@@ -140,7 +176,7 @@ const u16 gBallOpenFadeColors[] =
     [BALL_QUICK] = RGB(16, 25, 30),
     [BALL_HEAL] = RGB(31, 23, 27),
     [BALL_CHERISH] = RGB(25, 4, 3),
-    [BALL_PARK] = RGB(31, 31, 15),
+    [BALL_CLONE] = RGB(31, 31, 15),
     [BALL_DREAM] = RGB(31, 31, 15),
     [BALL_BEAST] = RGB(31, 31, 15),
     [BALL_IGNIS] = RGB(31, 13, 1),
@@ -202,8 +238,8 @@ u8 ItemIdToBallId(u16 ballItem)
         return BALL_HEAL;
     case ITEM_CHERISH_BALL:
         return BALL_CHERISH;
-    case ITEM_PARK_BALL:
-        return BALL_PARK;
+    case ITEM_CLONE_BALL:
+        return BALL_CLONE;
     case ITEM_DREAM_BALL:
         return BALL_DREAM;
     case ITEM_BEAST_BALL:

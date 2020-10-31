@@ -639,7 +639,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route111_EventScript_MagmaGrunt4",
-      "flag": "FLAG_VISITED_FALLARBOR_TOWN"
+      "flag": "FLAG_HIDE_RHYOLITE_CANYON_TEAM_MAGMA"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
@@ -652,7 +652,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route111_EventScript_MagmaGrunt2",
-      "flag": "FLAG_VISITED_FALLARBOR_TOWN"
+      "flag": "FLAG_HIDE_RHYOLITE_CANYON_TEAM_MAGMA"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_F",
@@ -665,7 +665,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route111_EventScript_MagmaGrunt1",
-      "flag": "FLAG_VISITED_FALLARBOR_TOWN"
+      "flag": "FLAG_HIDE_RHYOLITE_CANYON_TEAM_MAGMA"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAGMA_MEMBER_M",
@@ -678,7 +678,7 @@
       "trainer_type": "0",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route111_EventScript_MagmaGrunt3",
-      "flag": "FLAG_VISITED_FALLARBOR_TOWN"
+      "flag": "FLAG_HIDE_RHYOLITE_CANYON_TEAM_MAGMA"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WALLY",

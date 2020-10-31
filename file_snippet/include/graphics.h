@@ -3399,6 +3399,20 @@ extern const u32 gTrainerPalette_AquaGruntM[];
 // >
 
 < //
+extern const u32 gInterfacePal_CherishBall[];
+extern const u32 gInterfaceGfx_CloneBall[];
+extern const u32 gInterfacePal_CloneBall[];
+extern const u32 gInterfaceGfx_DreamBall[];
+// >
+
+< //
+extern const u32 gItemIconPalette_CherishBall[];
+extern const u32 gItemIcon_CloneBall[];
+extern const u32 gItemIconPalette_CloneBall[];
+extern const u32 gItemIcon_DreamBall[];
+// >
+
+< //
 extern const u32 gInterfacePal_NetBall[];
 extern const u32 gInterfaceGfx_DiveBall[];
 extern const u32 gInterfacePal_DiveBall[];
