@@ -48,6 +48,8 @@ VerdanturfTown_BreedersHouse_EventScript_TryGiveMeowsyEgg: @ 8674D4C
 	setvar VAR_PETALBURG_GYM_STATE, 6
 	clearflag FLAG_HIDE_PETALBURG_GYM_GREETER
 	msgbox VerdanturfTown_BreedersHouse_Text_PleaseGiveNormanMyGreetings, MSGBOX_DEFAULT
+	questmenu QUEST_MENU_COMPLETE_QUEST SIDE_QUEST_1
+	call CompleteQuestFanfare
 	release
 	end
 	

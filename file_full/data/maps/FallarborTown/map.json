@@ -189,7 +189,7 @@
       "y": 7,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "FallarborTown_EventScript_BattleTentSign"
+      "script": "FallarborTown_EventScript_DrystansHouseSign"
     },
     {
       "type": "sign",

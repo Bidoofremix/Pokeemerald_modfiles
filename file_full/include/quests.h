@@ -49,5 +49,6 @@ void QuestMenu_Init(u8 a0, MainCallback callback);
 void SetQuestMenuActive(void);
 void ResetActiveQuest(void);
 void CopyQuestName(u8 *dst, u8 questId);
+u8 GetQuestDifficulty(u8 questId);
 
 #endif // GUARD_QUESTS_H

@@ -211,5 +211,18 @@ FallarborTown_Text_IHeardThereIsAStrongTrainer:
 	.string "I'm in dire need of help. Please,\n"
 	.string "follow me.$"
 
+FallarborTown_EventScript_DrystansHouseSign:: @ 81EB250
+	giveitem ITEM_QUEST_LOG
+	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_2
+	msgbox FallarborTown_Text_DrystansHouseSign, MSGBOX_SIGN
+	end
+	
+tmp::
+	playse SE_PIN
+	end
+	
+FallarborTown_Text_DrystansHouseSign:
+	.string "DRYSTAN'S HOUSE$"
+
 FallarborTown_EventScript_ExpertM:: @ 81EB20C
 // >

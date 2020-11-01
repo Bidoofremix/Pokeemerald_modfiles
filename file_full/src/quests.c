@@ -1501,6 +1501,11 @@ void CopyQuestName(u8 *dst, u8 questId)
     StringCopy(dst, sSideQuests[questId].name);
 }
 
+u8 GetQuestDifficulty(u8 questId)
+{
+	return sSideQuestDifficulties[questId];
+}
+
 #undef tBldYBak
 #undef tBldCntBak
 #undef tWin0Bottom

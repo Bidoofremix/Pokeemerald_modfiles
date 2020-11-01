@@ -53,6 +53,8 @@ bool8 ScrCmd_questmenu(struct ScriptContext *ctx)
         break;
     case QUEST_MENU_COMPLETE_QUEST:
         GetSetQuestFlag(questId, FLAG_SET_COMPLETED);
+		gSpecialVar_0x800A = GetQuestDifficulty(u8 questId);
+		CopyQuestName(gStringVar1, questId)
         break;
     case QUEST_MENU_SET_ACTIVE:
         SetActiveQuest(questId);

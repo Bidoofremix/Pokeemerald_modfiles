@@ -63,7 +63,7 @@ const u8 gText_SideQuestName_29[] = _("Mewtwo's Wrath 3");
 const u8 gText_SideQuestName_30[] = _("Mewtwo's Wrath 4");
 //descriptions
 const u8 gText_SideQuestDesc_1[] = _(
-    "Talk to a Breeder at the"
+    "Talk to a Breeder at the\n"
     "BREEDER'S CLUB.");
 const u8 gText_SideQuestDesc_2[] = _("Description 2");
 const u8 gText_SideQuestDesc_3[] = _("Description 3");
@@ -91,7 +91,7 @@ const u8 gText_SideQuestDesc_24[] = _("Description 24");
 const u8 gText_SideQuestDesc_25[] = _("Description 25");
 const u8 gText_SideQuestDesc_26[] = _("Description 26");
 const u8 gText_SideQuestDesc_27[] = _(
-	"Investigate NEW ISLAND"
+	"Investigate NEW ISLAND\n"
 	"with DRYSTAN.");
 const u8 gText_SideQuestDesc_28[] = _("Description 28");
 const u8 gText_SideQuestDesc_29[] = _("Description 29");

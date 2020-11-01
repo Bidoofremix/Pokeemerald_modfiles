@@ -113,7 +113,7 @@ for dir, subdirs, files in os.walk(full_folder):
 
 		if not fname.endswith((".aif",".png", ".pal", ".c")) and not os.path.isfile(mod_path):
 			custom_files.append(absolute_path)
-		elif fname.endswith((".aif",".png", ".pal", ".c")):
+		elif fname.endswith((".aif",".png", ".pal", ".c")) or "quests.h" in fname:
 			custom_files.append(absolute_path)
 			
 ########## insert files before porymap

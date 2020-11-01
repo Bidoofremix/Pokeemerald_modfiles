@@ -4,7 +4,7 @@
 //questmenu scripting command params
 #define QUEST_MENU_OPEN                 0   //opens the quest menu (questId = 0)
 #define QUEST_MENU_UNLOCK_QUEST         1   //questId = SIDE_QUEST_X (0-indexed)
-#define QUEST_MENU_COMPLETE_QUEST       2   //questId = SIDE_QUEST_X (0-indexed)
+#define QUEST_MENU_COMPLETE_QUEST       2   //questId = SIDE_QUEST_X (0-indexed), CUSTOM: stores difficulty in 0x800A and name in str_var_1
 #define QUEST_MENU_SET_ACTIVE           3   //questId = SIDE_QUEST_X (0-indexed)
 #define QUEST_MENU_RESET_ACTIVE         4   //remove current quest from being 'active'
 #define QUEST_MENU_BUFFER_QUEST_NAME    5   //buffers a quest name to gStringVar1

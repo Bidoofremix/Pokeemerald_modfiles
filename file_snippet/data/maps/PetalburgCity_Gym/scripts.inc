@@ -160,14 +160,14 @@ PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial:: @ 82049A4
 	end
 
 NoteNewQuestSingle::
-	playse MUS_REGISTER_MATCH_CALL
+	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox Text_NewQuestWasUnlocked MSGBOX_DEFAULT
 	closemessage
 	delay 20
 	return
 	
 NoteNewQuestSeveral::
-	playse MUS_REGISTER_MATCH_CALL
+	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox Text_NewQuestsWereUnlocked, MSGBOX_DEFAULT
 	closemessage
 	delay 20
@@ -178,6 +178,39 @@ Text_NewQuestWasUnlocked:
 
 Text_NewQuestsWereUnlocked:
 	.string "New quests were unlocked!$"	
+	
+CompleteQuestFanfare::
+	delay 20
+	compare VAR_0x800A, 0
+	call_if_eq QuestFanfareEasy
+	compare VAR_0x800A, 1
+	call_if_eq QuestFanfareMedium
+	compare VAR_0x800A, 2
+	call_if_eq QuestFanfareHard
+	compare VAR_0x800A, 3
+	call_if_eq QuestFanfareExtreme
+	msgbox Text_QuestWasComplete, MSGBOX_DEFAULT
+	return
+	
+QuestFanfareEasy::
+	playfanfare MUS_OBTAIN_ITEM
+	return
+	
+QuestFanfareMedium::
+	playfanfare MUS_SLOTS_WIN
+	return
+	
+QuestFanfareHard::
+	playfanfare MUS_SLOTS_JACKPOT
+	return
+	
+QuestFanfareExtreme::
+	playfanfare MUS_OBTAIN_SYMBOL
+	return
+	
+Text_QuestWasComplete::
+	.string "The quest “{STR_VAR_1}”\n"
+	.string "was complete!$"
 	
 PetalburgCity_Gym_Movement_WallyExitGym: @ 82049EC
 // >
