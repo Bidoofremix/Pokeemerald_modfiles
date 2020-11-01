@@ -57,10 +57,10 @@ const u8 gText_SideQuestName_23[] = _("Side Quest 23");
 const u8 gText_SideQuestName_24[] = _("Side Quest 24");
 const u8 gText_SideQuestName_25[] = _("Side Quest 25");
 const u8 gText_SideQuestName_26[] = _("Side Quest 26");
-const u8 gText_SideQuestName_27[] = _("Side Quest 27");
-const u8 gText_SideQuestName_28[] = _("Side Quest 28");
-const u8 gText_SideQuestName_29[] = _("Side Quest 29");
-const u8 gText_SideQuestName_30[] = _("Side Quest 30");
+const u8 gText_SideQuestName_27[] = _("Mewtwo's Wrath 1");
+const u8 gText_SideQuestName_28[] = _("Mewtwo's Wrath 2");
+const u8 gText_SideQuestName_29[] = _("Mewtwo's Wrath 3");
+const u8 gText_SideQuestName_30[] = _("Mewtwo's Wrath 4");
 //descriptions
 const u8 gText_SideQuestDesc_1[] = _(
     "Talk to a Breeder at the"
@@ -90,7 +90,9 @@ const u8 gText_SideQuestDesc_23[] = _("Description 23");
 const u8 gText_SideQuestDesc_24[] = _("Description 24");
 const u8 gText_SideQuestDesc_25[] = _("Description 25");
 const u8 gText_SideQuestDesc_26[] = _("Description 26");
-const u8 gText_SideQuestDesc_27[] = _("Description 27");
+const u8 gText_SideQuestDesc_27[] = _(
+	"Investigate NEW ISLAND"
+	"with DRYSTAN.");
 const u8 gText_SideQuestDesc_28[] = _("Description 28");
 const u8 gText_SideQuestDesc_29[] = _("Description 29");
 const u8 gText_SideQuestDesc_30[] = _("Description 30");
@@ -121,10 +123,10 @@ const u8 gText_SideQuestPOC_23[] = _("POC 23");
 const u8 gText_SideQuestPOC_24[] = _("POC 24");
 const u8 gText_SideQuestPOC_25[] = _("POC 25");
 const u8 gText_SideQuestPOC_26[] = _("POC 26");
-const u8 gText_SideQuestPOC_27[] = _("POC 27");
-const u8 gText_SideQuestPOC_28[] = _("POC 28");
-const u8 gText_SideQuestPOC_29[] = _("POC 29");
-const u8 gText_SideQuestPOC_30[] = _("POC 30");
+const u8 gText_SideQuestPOC_27[] = _("DRYSTAN");
+const u8 gText_SideQuestPOC_28[] = _("DRYSTAN");
+const u8 gText_SideQuestPOC_29[] = _("DRYSTAN");
+const u8 gText_SideQuestPOC_30[] = _("DRYSTAN");
 //map
 const u8 gText_SideQuestMap_1[] = _("VERDANTURF TOWN");
 const u8 gText_SideQuestMap_2[] = _("Map 2");
@@ -152,10 +154,10 @@ const u8 gText_SideQuestMap_23[] = _("Map 23");
 const u8 gText_SideQuestMap_24[] = _("Map 24");
 const u8 gText_SideQuestMap_25[] = _("Map 25");
 const u8 gText_SideQuestMap_26[] = _("Map 26");
-const u8 gText_SideQuestMap_27[] = _("Map 27");
-const u8 gText_SideQuestMap_28[] = _("Map 28");
-const u8 gText_SideQuestMap_29[] = _("Map 29");
-const u8 gText_SideQuestMap_30[] = _("Map 30");
+const u8 gText_SideQuestMap_27[] = _("FALLARBOR TOWN");
+const u8 gText_SideQuestMap_28[] = _("FALLARBOR TOWN");
+const u8 gText_SideQuestMap_29[] = _("FALLARBOR TOWN");
+const u8 gText_SideQuestMap_30[] = _("FALLARBOR TOWN");
 //rewards
 const u8 gText_SideQuestReward_1[] = _("???");
 const u8 gText_SideQuestReward_2[] = _("Reward 2");
@@ -183,7 +185,7 @@ const u8 gText_SideQuestReward_23[] = _("Reward 23");
 const u8 gText_SideQuestReward_24[] = _("Reward 24");
 const u8 gText_SideQuestReward_25[] = _("Reward 25");
 const u8 gText_SideQuestReward_26[] = _("Reward 26");
-const u8 gText_SideQuestReward_27[] = _("Reward 27");
+const u8 gText_SideQuestReward_27[] = _("???");
 const u8 gText_SideQuestReward_28[] = _("Reward 28");
 const u8 gText_SideQuestReward_29[] = _("Reward 29");
 const u8 gText_SideQuestReward_30[] = _("Reward 30");

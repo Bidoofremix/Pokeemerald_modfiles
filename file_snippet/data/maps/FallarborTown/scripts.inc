@@ -62,7 +62,7 @@ FallarborTown_EventScript_Drystan::
 	call_if_eq FallarborTown_EventScript_PlayerToHouseShort
 	call_if_ne FallarborTown_EventScript_PlayerToHouseLong
 	
-	warpdoor MAP_NAVEL_ROCK_UP1, 255, 3, 8
+	warpdoor MAP_NAVEL_ROCK_UP1, 255, 4, 8
 
 	releaseall
 	end	
