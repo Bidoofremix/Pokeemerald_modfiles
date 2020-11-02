@@ -152,7 +152,6 @@ PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial:: @ 82049A4
 	bufferitemname 0, ITEM_QUEST_LOG
 	setflag FLAG_QUEST_MENU_ACTIVE
 	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_1
-	questmenu QUEST_MENU_SET_ACTIVE SIDE_QUEST_1
 	call NoteNewQuestSingle
 	msgbox PetalBurgCity_Gym_Text_DadOffYouGoThen, MSGBOX_DEFAULT
 	setvar VAR_PETALBURG_GYM_STATE, 2

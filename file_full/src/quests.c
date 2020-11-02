@@ -104,6 +104,7 @@ static void Task_QuestMenuSubmenuInit(u8 taskId);
 static void Task_QuestMenuSubmenuRun(u8 taskId);
 static void Task_QuestMenuDetails(u8 taskId);
 static void Task_QuestMenuReward(u8 taskId);
+static void Task_QuestMenuRewardDummy(u8 taskId);
 static void Task_QuestMenuBeginQuest(u8 taskId);
 static void Task_QuestMenuEndQuest(u8 taskId);
 static void QuestMenu_DisplaySubMenuMessage(u8 taskId);
@@ -145,6 +146,7 @@ static const u8 sText_QuestMenu_Exit[] = _("Exit the Quest Menu");
 static const u8 sText_QuestMenu_SelectedQuest[] = _("Do what with\nthis quest?");
 static const u8 sText_QuestMenu_DisplayDetails[] = _("POC: {STR_VAR_1}\nMap: {STR_VAR_2}");
 static const u8 sText_QuestMenu_DisplayReward[] = _("Reward:\n{STR_VAR_1}");
+static const u8 sText_QuestMenu_DisplayRewardDummy[] = _("Reward:\n???");
 static const u8 sText_QuestMenu_BeginQuest[] = _("Initiating Quest:\n{STR_VAR_1}");
 static const u8 sText_QuestMenu_EndQuest[] = _("Cancelling Quest:\n{STR_VAR_1}");
 
@@ -226,9 +228,11 @@ static const u8 sSideQuestDifficulties[SIDE_QUEST_COUNT] =
 };
 
 // Selected an incomplete quest
+// CUSTOM: the line below used to be the first row of sQuestSubmenuOptions
+    /*{sText_QuestMenu_Begin,             {.void_u8 = Task_QuestMenuBeginQuest}},*/
 static const struct MenuAction sQuestSubmenuOptions[] =
 {
-    {sText_QuestMenu_Begin,             {.void_u8 = Task_QuestMenuBeginQuest}},
+    {sText_QuestMenu_Reward,            {.void_u8 = Task_QuestMenuRewardDummy}},
     {sText_QuestMenu_Details,           {.void_u8 = Task_QuestMenuDetails}},
     {gText_Cancel,                      {.void_u8 = Task_QuestMenuCancel}},
 };
@@ -1264,6 +1268,16 @@ static void Task_QuestMenuDetails(u8 taskId)
     StringExpandPlaceholders(gStringVar4, sText_QuestMenu_DisplayDetails);
     QuestMenu_DisplaySubMenuMessage(taskId);
 }
+
+static void Task_QuestMenuRewardDummy(u8 taskId)
+{
+    u8 questIndex = QuestMenu_GetCursorPosition();
+    
+    QuestMenuSubmenuSelectionMessage(taskId);
+    StringExpandPlaceholders(gStringVar4, sText_QuestMenu_DisplayRewardDummy);
+    QuestMenu_DisplaySubMenuMessage(taskId);
+}
+
 
 static void Task_QuestMenuReward(u8 taskId)
 {

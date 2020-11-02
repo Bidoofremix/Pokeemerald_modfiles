@@ -32,7 +32,7 @@ const u8 gText_Berries[] = _("BERRIES");
 //// side quest data
 //names
 const u8 gText_SideQuestName_1[] = _("A Helping Hand");
-const u8 gText_SideQuestName_2[] = _("Side Quest 2");
+const u8 gText_SideQuestName_2[] = _("Mysterious Prints");
 const u8 gText_SideQuestName_3[] = _("Side Quest 3");
 const u8 gText_SideQuestName_4[] = _("Side Quest 4");
 const u8 gText_SideQuestName_5[] = _("Side Quest 5");
@@ -65,7 +65,9 @@ const u8 gText_SideQuestName_30[] = _("Mewtwo's Wrath 4");
 const u8 gText_SideQuestDesc_1[] = _(
     "Talk to a Breeder at the\n"
     "BREEDER'S CLUB.");
-const u8 gText_SideQuestDesc_2[] = _("Description 2");
+const u8 gText_SideQuestDesc_2[] = _(
+	"Find out which POKéMON left\n"
+	"the mysterious footprints.");
 const u8 gText_SideQuestDesc_3[] = _("Description 3");
 const u8 gText_SideQuestDesc_4[] = _("Description 4");
 const u8 gText_SideQuestDesc_5[] = _("Description 5");
@@ -91,14 +93,15 @@ const u8 gText_SideQuestDesc_24[] = _("Description 24");
 const u8 gText_SideQuestDesc_25[] = _("Description 25");
 const u8 gText_SideQuestDesc_26[] = _("Description 26");
 const u8 gText_SideQuestDesc_27[] = _(
-	"Investigate NEW ISLAND\n"
-	"with DRYSTAN.");
+	"Investigate NEW ISLAND with DRYSTAN\n"
+	"to find out if Mewtwo has returned\n"
+	"to its place of creation.");
 const u8 gText_SideQuestDesc_28[] = _("Description 28");
 const u8 gText_SideQuestDesc_29[] = _("Description 29");
 const u8 gText_SideQuestDesc_30[] = _("Description 30");
 //point of contact
-const u8 gText_SideQuestPOC_1[] = _("Breeder");
-const u8 gText_SideQuestPOC_2[] = _("POC 2");
+const u8 gText_SideQuestPOC_1[] = _("BREEDER");
+const u8 gText_SideQuestPOC_2[] = _("FOOTPRINTS MAN");
 const u8 gText_SideQuestPOC_3[] = _("POC 3");
 const u8 gText_SideQuestPOC_4[] = _("POC 4");
 const u8 gText_SideQuestPOC_5[] = _("POC 5");
@@ -129,7 +132,7 @@ const u8 gText_SideQuestPOC_29[] = _("DRYSTAN");
 const u8 gText_SideQuestPOC_30[] = _("DRYSTAN");
 //map
 const u8 gText_SideQuestMap_1[] = _("VERDANTURF TOWN");
-const u8 gText_SideQuestMap_2[] = _("Map 2");
+const u8 gText_SideQuestMap_2[] = _("OLDALE TOWN");
 const u8 gText_SideQuestMap_3[] = _("Map 3");
 const u8 gText_SideQuestMap_4[] = _("Map 4");
 const u8 gText_SideQuestMap_5[] = _("Map 5");
@@ -159,8 +162,8 @@ const u8 gText_SideQuestMap_28[] = _("FALLARBOR TOWN");
 const u8 gText_SideQuestMap_29[] = _("FALLARBOR TOWN");
 const u8 gText_SideQuestMap_30[] = _("FALLARBOR TOWN");
 //rewards
-const u8 gText_SideQuestReward_1[] = _("???");
-const u8 gText_SideQuestReward_2[] = _("Reward 2");
+const u8 gText_SideQuestReward_1[] = _("Egg");
+const u8 gText_SideQuestReward_2[] = _("Revive");
 const u8 gText_SideQuestReward_3[] = _("Reward 3");
 const u8 gText_SideQuestReward_4[] = _("Reward 4");
 const u8 gText_SideQuestReward_5[] = _("Reward 5");
@@ -185,8 +188,8 @@ const u8 gText_SideQuestReward_23[] = _("Reward 23");
 const u8 gText_SideQuestReward_24[] = _("Reward 24");
 const u8 gText_SideQuestReward_25[] = _("Reward 25");
 const u8 gText_SideQuestReward_26[] = _("Reward 26");
-const u8 gText_SideQuestReward_27[] = _("???");
-const u8 gText_SideQuestReward_28[] = _("Reward 28");
-const u8 gText_SideQuestReward_29[] = _("Reward 29");
-const u8 gText_SideQuestReward_30[] = _("Reward 30");
+const u8 gText_SideQuestReward_27[] = _("Clone Charmander");
+const u8 gText_SideQuestReward_28[] = _("Clone Bulbasaur");
+const u8 gText_SideQuestReward_29[] = _("Clone Squirtle");
+const u8 gText_SideQuestReward_30[] = _("Mewtwo");
 // > END
