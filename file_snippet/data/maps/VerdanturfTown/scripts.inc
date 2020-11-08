@@ -7,6 +7,8 @@ VerdanturfTown_Text_MakeBattleTentDebut: @ 81EB7E2
 
 VerdanturfTown_EventScript_BugTypeTrainer::
 	faceplayer
+	// temp
+	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_10
 	msgbox VerdanturfTown_Text_IAmBugTypeMasterTrainer
 	questmenu QUEST_MENU_CHECK_UNLOCKED SIDE_QUEST_10
 	compare VAR_RESULT, TRUE
@@ -47,7 +49,7 @@ VerdanturfTown_Text_IAmBugTypeMasterTrainer:
 	.string "I am a MASTER TRAINER of\n"
 	.string "BUG TYPE POKéMON.\p"
 	.string "That means I only battle with\n"
-	.string "strong TRAINERS that use\p"
+	.string "strong TRAINERS that use\l"
 	.string "BUG TYPE POKéMON as well.$"
 	
 VerdanturfTown_Text_YouLookLikeAStrongTrainer:

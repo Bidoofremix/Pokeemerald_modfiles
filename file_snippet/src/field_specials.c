@@ -198,11 +198,12 @@ void SetLeadMonAbility(void)
 	SetMonData(&gPlayerParty[0], MON_DATA_ABILITY_NUM, &gSpecialVar_0x8005);
 }
 
-
 void CheckPartyType(void)
 { 
-	u8 monType = gSpecialVar_0x800A;
-    
+    u8 monType = gSpecialVar_0x800A;
+    u8 i;
+    u16 species;
+	
 	struct Pokemon *pokemon;
     for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -219,8 +220,6 @@ void CheckPartyType(void)
     }
     gSpecialVar_Result = TRUE;
 }
-	
-
 	
 static void CB2_FieldShowRegionMap(void)
 // >

@@ -1,3 +1,7 @@
+@
+@ DO NOT MODIFY THIS FILE! It is auto-generated from data/maps/map_groups.json
+@
+
 	.include "data/maps/PetalburgCity/connections.inc"
 	.include "data/maps/SlateportCity/connections.inc"
 	.include "data/maps/MauvilleCity/connections.inc"
@@ -48,13 +52,13 @@
 	.include "data/maps/Route132/connections.inc"
 	.include "data/maps/Route133/connections.inc"
 	.include "data/maps/Route134/connections.inc"
-	.include "data/maps/Underwater1/connections.inc"
-	.include "data/maps/Underwater2/connections.inc"
-	.include "data/maps/Underwater3/connections.inc"
-	.include "data/maps/Underwater4/connections.inc"
-	.include "data/maps/Underwater5/connections.inc"
-	.include "data/maps/Underwater6/connections.inc"
-	.include "data/maps/Underwater7/connections.inc"
+	.include "data/maps/Underwater_Route124/connections.inc"
+	.include "data/maps/Underwater_Route126/connections.inc"
+	.include "data/maps/Underwater_Route127/connections.inc"
+	.include "data/maps/Underwater_Route128/connections.inc"
+	.include "data/maps/Underwater_Route129/connections.inc"
+	.include "data/maps/Underwater_Route105/connections.inc"
+	.include "data/maps/Underwater_Route125/connections.inc"
 	.include "data/maps/LittlerootTown_BrendansHouse_1F/connections.inc"
 	.include "data/maps/LittlerootTown_BrendansHouse_2F/connections.inc"
 	.include "data/maps/LittlerootTown_MaysHouse_1F/connections.inc"
@@ -351,6 +355,7 @@
 	.include "data/maps/AlteringCave/connections.inc"
 	.include "data/maps/MeteorFalls_StevensCave/connections.inc"
 	.include "data/maps/SilentForest/connections.inc"
+	.include "data/maps/GraniteCave_FieryRoom/connections.inc"
 	.include "data/maps/SecretBase_RedCave1/connections.inc"
 	.include "data/maps/SecretBase_BrownCave1/connections.inc"
 	.include "data/maps/SecretBase_BlueCave1/connections.inc"
