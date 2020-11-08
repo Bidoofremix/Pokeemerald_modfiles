@@ -1,13 +1,19 @@
 < //
 OldaleTown_EventScript_NotBlockingPath:: @ 81E9066
-	questmenu QUEST_MENU_CHECK_COMPLETE SIDE_QUEST_2
-	compare VAR_RESULT, TRUE
-	goto_if_eq OldaleTown_EventScript_FootprintsMan_QuestComplete
-	questmenu QUEST_MENU_CHECK_COMPLETE SIDE_QUEST_2
-	compare VAR_RESULT, TRUE
-	goto_if_eq OldaleTown_EventScript_FootprintsMan_QuestUnlocked
+	faceplayer
+	setflag FLAG_SYS_QUEST_MENU_GET
+	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_1
 	msgbox OldaleTown_Text_FinishedSketchingFootprints, MSGBOX_DEFAULT
 	release
+	
+	//questmenu QUEST_MENU_CHECK_COMPLETE SIDE_QUEST_2
+	//compare VAR_RESULT, TRUE
+	//goto_if_eq OldaleTown_EventScript_FootprintsMan_QuestComplete
+	//questmenu QUEST_MENU_CHECK_COMPLETE SIDE_QUEST_2
+	//compare VAR_RESULT, TRUE
+	//goto_if_eq OldaleTown_EventScript_FootprintsMan_QuestUnlocked
+	//msgbox OldaleTown_Text_FinishedSketchingFootprints, MSGBOX_DEFAULT
+	//release
 	end
 	
 OldaleTown_EventScript_FootprintsMan_QuestUnlocked::
@@ -39,12 +45,17 @@ OldaleTown_EventScript_FootprintsMan_ThatsThePokemon::
 	closemessage
 	questmenu QUEST_MENU_COMPLETE_QUEST SIDE_QUEST_2
 	call CompleteQuestFanfare
+	msgbox OldaleTown_Text_ThanksForShowingPleaseTakeThis, MSGBOX_DEFAULT
 	giveitem ITEM_REVIVE
 	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_ShowBagIsFull
+	call_if_eq OldaleTown_EventScript_FootprintsMan_BagIsFull
 	setflag FLAG_REVEIVED_FOOTPRINTS_MAN_REVIVE
 	release
 	end
+	
+OldaleTown_EventScript_FootprintsMan_BagIsFull::
+	msgbox gText_TheBagIsFull, MSGBOX_DEFAULT
+	return
 	
 OldaleTown_EventScript_FootprintsMan_ThatsNotThePokemon::
 	msgbox OldaleTown_Text_ThatsThePokemon, MSGBOX_DEFAULT
@@ -58,7 +69,7 @@ OldaleTown_EventScript_FootprintsMan_Cancel::
 	
 OldaleTown_EventScript_FootprintsMan_QuestComplete::
 	goto_if_unset FLAG_REVEIVED_FOOTPRINTS_MAN_REVIVE, OldaleTown_EventScript_FootprintsMan_GiveRevive
-	msgbox OldaleTown_Text_FootprintsMan_ThanksForShowingZigzagoon, MSGBOX_DEFAULT
+	msgbox OldaleTown_Text_ThanksForShowingZigzagoon, MSGBOX_DEFAULT
 	release
 	end
 
@@ -66,7 +77,7 @@ OldaleTown_EventScript_FootprintsMan_GiveRevive::
 	msgbox OldaleTown_Text_ThanksForShowingPleaseTakeThis, MSGBOX_DEFAULT
 	giveitem ITEM_REVIVE
 	compare VAR_RESULT, FALSE
-	goto_if_eq Common_EventScript_ShowBagIsFull
+	call_if_eq OldaleTown_EventScript_FootprintsMan_BagIsFull
 	release
 	end
 	
@@ -75,18 +86,15 @@ OldaleTown_Text_FoundMoreInterestingFootprints::
 	.string "I almost saw the POKéMON that\l"
 	.string "left them.\p"
 	.string "It was brown and beige in color, or\n"
-	.string "it could have been black and white\l"
-	.string "as well.\p"
+	.string "maybe it was black and white.\p"
 	.string "Do you know that kind of POKéMON?\n"
 	.string "Can you show it to me?$"
 	
 OldaleTown_Text_ThatsThePokemon:
-	.string "Huh? That's the POKéMON!\n"
-	.string "Zigzagoon!\p"
-	.string "I'm so happy, I could hug you!\n"
-	.string "Or, let me give you this instead!$"
+	.string "Huh? That's the POKéMON I'm looking\n"
+	.string "for!$"
 
-OldaleTown_Text_ThatsThePokemon::
+OldaleTown_Text_ThatsNotThePokemon::
 	.string "Hmm… That's not the POKéMON I'm\n"
 	.string "looking for.$"
 	
@@ -96,7 +104,7 @@ OldaleTown_Text_WellIfYouFindThatPokemon:
 	
 OldaleTown_Text_ThanksForShowingPleaseTakeThis:
 	.string "Thank you for showing me a Zigzagoon!\n"
-	.string "Please, take this for a thank you!$"
+	.string "Please, take this as a thank you!$"
 	
 OldaleTown_Text_ThanksForShowingZigzagoon:
 	.string "Thank you for showing me a Zigzagoon!\n"

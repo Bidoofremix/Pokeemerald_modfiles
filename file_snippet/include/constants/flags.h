@@ -1290,9 +1290,10 @@
 
 #define SYSTEM_FLAGS                                   (TRAINER_FLAGS_END + 1) // 0x860
 
-#define FLAG_SYS_POKEMON_GET                         (SYSTEM_FLAGS + 0x1) // FLAG_0x860
-#define FLAG_SYS_POKEDEX_GET                         (SYSTEM_FLAGS + 0x2)
-#define FLAG_SYS_POKENAV_GET                         (SYSTEM_FLAGS + 0x3)
+#define FLAG_SYS_POKEMON_GET                         (SYSTEM_FLAGS + 0x0) // FLAG_0x860
+#define FLAG_SYS_POKEDEX_GET                         (SYSTEM_FLAGS + 0x1)
+#define FLAG_SYS_POKENAV_GET                         (SYSTEM_FLAGS + 0x2)
+#define FLAG_SYS_QUEST_MENU_GET                      (SYSTEM_FLAGS + 0x3) // quest menu: adds quest menu to start menu
 #define FLAG_SYS_GAME_CLEAR                          (SYSTEM_FLAGS + 0x4)
 #define FLAG_SYS_CHAT_USED                           (SYSTEM_FLAGS + 0x5)
 #define FLAG_SYS_HIPSTER_MEET                        (SYSTEM_FLAGS + 0x6)

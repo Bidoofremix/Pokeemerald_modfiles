@@ -146,12 +146,12 @@ PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial:: @ 82049A4
 	//msgbox PetalburgCity_Gym_Text_DadGoCollectBadges, MSGBOX_DEFAULT
 	setflag FLAG_ROUTE_103_EAST_ACCESSIBLE
 	msgbox PetalburgCity_Gym_Text_DadGoHelpBreeder, MSGBOX_DEFAULT
+	bufferitemname 0, ITEM_QUEST_LOG
 	giveitem ITEM_QUEST_LOG
 	msgbox PetalburgCity_Gym_Text_DadThisIsTheQuestLog, MSGBOX_DEFAULT
-	delay 40
-	bufferitemname 0, ITEM_QUEST_LOG
-	setflag FLAG_QUEST_MENU_ACTIVE
-	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_1
+	closemessage
+	//setflag FLAG_QUEST_MENU_ACTIVE
+	//questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_1
 	call NoteNewQuestSingle
 	msgbox PetalBurgCity_Gym_Text_DadOffYouGoThen, MSGBOX_DEFAULT
 	setvar VAR_PETALBURG_GYM_STATE, 2
@@ -159,6 +159,7 @@ PetalburgCity_Gym_EventScript_ReturnFromWallyTutorial:: @ 82049A4
 	end
 
 NoteNewQuestSingle::
+	delay 20
 	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox Text_NewQuestWasUnlocked MSGBOX_DEFAULT
 	closemessage
@@ -166,6 +167,7 @@ NoteNewQuestSingle::
 	return
 	
 NoteNewQuestSeveral::
+	delay 20
 	playfanfare MUS_REGISTER_MATCH_CALL
 	msgbox Text_NewQuestsWereUnlocked, MSGBOX_DEFAULT
 	closemessage
@@ -246,19 +248,17 @@ PetalburgCity_Gym_Text_DadGoHelpBreeder: @ 8205C40
 	.string "After that, we can have an official\n"
 	.string "battle here at the GYM.\p"
 	.string "To help you keep track of your\n"
-	.string "adventures, here's something\l"
-	.string "for you.$"
+	.string "adventures, here's something for you.$"
 	
 PetalburgCity_Gym_Text_DadThisIsTheQuestLog:
 	.string "DAD: This is the {STR_VAR_1}.\n"
-	.string "You will find people who need\l"
-	.string "help, or others who want to\l"
-	.string "challenge you in battle or\l"
-	.string "otherwise.\p"
-	.string "Use this gadget to record those\n"
-	.string "and find new quests to complete!\p"
-	.string "Here, I'll unlock the first\n"
-	.string "quest for you.$"
+	.string "You will find people who need help,\l"
+	.string "or others who want to challenge you\l"
+	.string "in battle or otherwise.\p"
+	.string "Use this gadget to record quests\n"
+	.string "and find new ones to complete!\p"
+	.string "Here, I'll unlock the first quest\n"
+	.string "for you.$"
 
 PetalBurgCity_Gym_Text_DadOffYouGoThen:
 	.string "DAD: With that, you're ready\n"

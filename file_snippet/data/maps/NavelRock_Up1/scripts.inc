@@ -44,7 +44,7 @@ FallarborTown_DrystansHouse_EventScript_StartQuest::
 	msgbox FallarborTown_DrystansHouse_Text_ImSorryThisIsDifficultForMe, MSGBOX_DEFAULT
 	closemessage
 	delay 40
-	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_27
+	//questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_27
 	call NoteNewQuestSingle
 	releaseall
 	end
