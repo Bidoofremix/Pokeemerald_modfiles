@@ -4,7 +4,7 @@ OldaleTown_EventScript_NotBlockingPath:: @ 81E9066
 	questmenu QUEST_MENU_CHECK_COMPLETE SIDE_QUEST_2
 	compare VAR_RESULT, TRUE
 	goto_if_eq OldaleTown_EventScript_FootprintsMan_QuestComplete
-	questmenu QUEST_MENU_CHECK_COMPLETE SIDE_QUEST_2
+	questmenu QUEST_MENU_CHECK_UNLOCKED SIDE_QUEST_2
 	compare VAR_RESULT, TRUE
 	goto_if_eq OldaleTown_EventScript_FootprintsMan_QuestUnlocked
 	msgbox OldaleTown_Text_FinishedSketchingFootprints, MSGBOX_DEFAULT
@@ -27,10 +27,14 @@ OldaleTown_EventScript_FootprintsMan_TryShowZigzagoon::
 	goto_if_eq OldaleTown_EventScript_FootprintsMan_Cancel
 	// selected mon
 	specialvar VAR_RESULT, ScriptGetPartyMonSpecies
+	
+	// showed either zigzagoon
 	compare VAR_RESULT, SPECIES_ZIGZAGOON
 	goto_if_eq OldaleTown_EventScript_FootprintsMan_ThatsThePokemon
 	compare VAR_RESULT, SPECIES_GALARIAN_ZIGZAGOON
 	goto_if_eq OldaleTown_EventScript_FootprintsMan_ThatsThePokemon
+	
+	// was not either zigzagoon
 	goto OldaleTown_EventScript_FootprintsMan_ThatsNotThePokemon
 	release
 	end
@@ -53,7 +57,7 @@ OldaleTown_EventScript_FootprintsMan_BagIsFull::
 	return
 	
 OldaleTown_EventScript_FootprintsMan_ThatsNotThePokemon::
-	msgbox OldaleTown_Text_ThatsThePokemon, MSGBOX_DEFAULT
+	msgbox OldaleTown_Text_ThatsNotThePokemon, MSGBOX_DEFAULT
 	release
 	end
 	
@@ -86,8 +90,8 @@ OldaleTown_Text_FoundMoreInterestingFootprints::
 	.string "Can you show it to me?$"
 	
 OldaleTown_Text_ThatsThePokemon:
-	.string "Huh? That's the POKéMON I'm looking\n"
-	.string "for!$"
+	.string "Huh? That is indeed the POKéMON I'm\n"
+	.string "looking for!$"
 
 OldaleTown_Text_ThatsNotThePokemon::
 	.string "Hmm… That's not the POKéMON I'm\n"

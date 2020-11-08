@@ -50,6 +50,10 @@ VerdanturfTown_BreedersHouse_EventScript_TryGiveMeowsyEgg: @ 8674D4C
 	msgbox VerdanturfTown_BreedersHouse_Text_PleaseGiveNormanMyGreetings, MSGBOX_DEFAULT
 	questmenu QUEST_MENU_COMPLETE_QUEST SIDE_QUEST_1
 	call CompleteQuestFanfare
+	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_2
+	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_5
+	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_10
+	call NoteNewQuestSeveral
 	release
 	end
 	

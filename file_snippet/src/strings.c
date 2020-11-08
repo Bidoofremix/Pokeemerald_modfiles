@@ -40,12 +40,12 @@ const u8 gText_SideQuestName_6[] = _("Side Quest 6");
 const u8 gText_SideQuestName_7[] = _("Side Quest 7");
 const u8 gText_SideQuestName_8[] = _("Side Quest 8");
 const u8 gText_SideQuestName_9[] = _("Side Quest 9");
-const u8 gText_SideQuestName_10[] = _("Side Quest 10");
-const u8 gText_SideQuestName_11[] = _("Side Quest 11");
-const u8 gText_SideQuestName_12[] = _("Side Quest 12");
-const u8 gText_SideQuestName_13[] = _("Side Quest 13");
-const u8 gText_SideQuestName_14[] = _("Side Quest 14");
-const u8 gText_SideQuestName_15[] = _("Side Quest 15");
+const u8 gText_SideQuestName_10[] = _("Master Trainers 1");
+const u8 gText_SideQuestName_11[] = _("Master Trainers 2");
+const u8 gText_SideQuestName_12[] = _("Master Trainers 3");
+const u8 gText_SideQuestName_13[] = _("Master Trainers 4");
+const u8 gText_SideQuestName_14[] = _("Master Trainers 5");
+const u8 gText_SideQuestName_15[] = _("Master Trainers 6");
 const u8 gText_SideQuestName_16[] = _("Side Quest 16");
 const u8 gText_SideQuestName_17[] = _("Side Quest 17");
 const u8 gText_SideQuestName_18[] = _("Side Quest 18");
@@ -75,12 +75,30 @@ const u8 gText_SideQuestDesc_6[] = _("Description 6");
 const u8 gText_SideQuestDesc_7[] = _("Description 7");
 const u8 gText_SideQuestDesc_8[] = _("Description 8");
 const u8 gText_SideQuestDesc_9[] = _("Description 9");
-const u8 gText_SideQuestDesc_10[] = _("Description 10");
-const u8 gText_SideQuestDesc_11[] = _("Description 11");
-const u8 gText_SideQuestDesc_12[] = _("Description 12");
-const u8 gText_SideQuestDesc_13[] = _("Description 13");
-const u8 gText_SideQuestDesc_14[] = _("Description 14");
-const u8 gText_SideQuestDesc_15[] = _("Description 15");
+const u8 gText_SideQuestDesc_10[] = _(
+	"Win against MASTER TRAINERS\n"
+	"of BUG, POISON and GRASS\n"
+	"types.");
+const u8 gText_SideQuestDesc_11[] = _(
+	"Win against MASTER TRAINERS\n"
+	"of STEEL, GROUND and ROCK\n"
+	"types.");
+const u8 gText_SideQuestDesc_12[] = _(
+	"Win against MASTER TRAINERS\n"
+	"of DARK, GHOST and PSYCHIC\n"
+	"types.\n");
+const u8 gText_SideQuestDesc_13[] = _(
+	"Win against MASTER TRAINERS\n"
+	"of NORMAL and FIGHTING\n"
+	"types.");
+const u8 gText_SideQuestDesc_14[] = _(
+	"Win against MASTER TRAINERS\n"
+	"of WATER, ICE and FIRE\n"
+	"types.");
+const u8 gText_SideQuestDesc_15[] = _(
+	"Win against MASTER TRAINERS\n"
+	"of FLYING, ELECTRIC and\n"
+	"DRAGON types.");
 const u8 gText_SideQuestDesc_16[] = _("Description 16");
 const u8 gText_SideQuestDesc_17[] = _("Description 17");
 const u8 gText_SideQuestDesc_18[] = _("Description 18");
@@ -109,12 +127,12 @@ const u8 gText_SideQuestPOC_6[] = _("POC 6");
 const u8 gText_SideQuestPOC_7[] = _("POC 7");
 const u8 gText_SideQuestPOC_8[] = _("POC 8");
 const u8 gText_SideQuestPOC_9[] = _("POC 9");
-const u8 gText_SideQuestPOC_10[] = _("POC 10");
-const u8 gText_SideQuestPOC_11[] = _("POC 11");
-const u8 gText_SideQuestPOC_12[] = _("POC 12");
-const u8 gText_SideQuestPOC_13[] = _("POC 13");
-const u8 gText_SideQuestPOC_14[] = _("POC 14");
-const u8 gText_SideQuestPOC_15[] = _("POC 15");
+const u8 gText_SideQuestPOC_10[] = _("???");
+const u8 gText_SideQuestPOC_11[] = _("???");
+const u8 gText_SideQuestPOC_12[] = _("???");
+const u8 gText_SideQuestPOC_13[] = _("???");
+const u8 gText_SideQuestPOC_14[] = _("???");
+const u8 gText_SideQuestPOC_15[] = _("???");
 const u8 gText_SideQuestPOC_16[] = _("POC 16");
 const u8 gText_SideQuestPOC_17[] = _("POC 17");
 const u8 gText_SideQuestPOC_18[] = _("POC 18");
@@ -140,12 +158,12 @@ const u8 gText_SideQuestMap_6[] = _("Map 6");
 const u8 gText_SideQuestMap_7[] = _("Map 7");
 const u8 gText_SideQuestMap_8[] = _("Map 8");
 const u8 gText_SideQuestMap_9[] = _("Map 9");
-const u8 gText_SideQuestMap_10[] = _("Map 10");
-const u8 gText_SideQuestMap_11[] = _("Map 11");
-const u8 gText_SideQuestMap_12[] = _("Map 12");
-const u8 gText_SideQuestMap_13[] = _("Map 13");
-const u8 gText_SideQuestMap_14[] = _("Map 14");
-const u8 gText_SideQuestMap_15[] = _("Map 15");
+const u8 gText_SideQuestMap_10[] = _("???");
+const u8 gText_SideQuestMap_11[] = _("???");
+const u8 gText_SideQuestMap_12[] = _("???");
+const u8 gText_SideQuestMap_13[] = _("???");
+const u8 gText_SideQuestMap_14[] = _("???");
+const u8 gText_SideQuestMap_15[] = _("???");
 const u8 gText_SideQuestMap_16[] = _("Map 16");
 const u8 gText_SideQuestMap_17[] = _("Map 17");
 const u8 gText_SideQuestMap_18[] = _("Map 18");

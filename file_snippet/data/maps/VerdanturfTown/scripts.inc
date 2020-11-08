@@ -5,6 +5,12 @@ VerdanturfTown_Text_MakeBattleTentDebut: @ 81EB7E2
 	.string "You should visit it if you are\n"
 	.string "interested in raising POKéMON.$"
 
+VerdanturfTown_EventScript_BugTypeTrainer::
+	faceplayer
+	questmenu QUEST_MENU_CHECK_UNLOCKED SIDE_QUEST_10
+	release
+	end
+	
 VerdanturfTown_Text_GuyTryingToBustThroughCave: @ 81EB854
 // >
 
