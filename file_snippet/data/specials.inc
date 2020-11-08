@@ -6,5 +6,6 @@
 	def_special GetLeadMonPotentialAbility
 	def_special SetLeadMonAbility
 	def_special SetMoveForPostDocTutor
+	def_special CheckPartyType
 	def_special TrySetBattleTowerLinkType
 // >
