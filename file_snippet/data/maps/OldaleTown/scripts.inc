@@ -1,19 +1,14 @@
 < //
 OldaleTown_EventScript_NotBlockingPath:: @ 81E9066
 	faceplayer
-	setflag FLAG_SYS_QUEST_MENU_GET
-	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_1
+	questmenu QUEST_MENU_CHECK_COMPLETE SIDE_QUEST_2
+	compare VAR_RESULT, TRUE
+	goto_if_eq OldaleTown_EventScript_FootprintsMan_QuestComplete
+	questmenu QUEST_MENU_CHECK_COMPLETE SIDE_QUEST_2
+	compare VAR_RESULT, TRUE
+	goto_if_eq OldaleTown_EventScript_FootprintsMan_QuestUnlocked
 	msgbox OldaleTown_Text_FinishedSketchingFootprints, MSGBOX_DEFAULT
 	release
-	
-	//questmenu QUEST_MENU_CHECK_COMPLETE SIDE_QUEST_2
-	//compare VAR_RESULT, TRUE
-	//goto_if_eq OldaleTown_EventScript_FootprintsMan_QuestComplete
-	//questmenu QUEST_MENU_CHECK_COMPLETE SIDE_QUEST_2
-	//compare VAR_RESULT, TRUE
-	//goto_if_eq OldaleTown_EventScript_FootprintsMan_QuestUnlocked
-	//msgbox OldaleTown_Text_FinishedSketchingFootprints, MSGBOX_DEFAULT
-	//release
 	end
 	
 OldaleTown_EventScript_FootprintsMan_QuestUnlocked::
