@@ -177,5 +177,35 @@ static const struct TrainerMonNoItemDefaultMoves sParty_TabithaRhyoliteCanyon[] 
     }
 };
 
+static const struct TrainerMonItemCustomMovesAbilityShiny sParty_MasterBug[] = {
+    {
+    .iv = 0,
+    .lvl = 15,
+	.moves = {MOVE_REVENGE, MOVE_BULK_UP, MOVE_BUG_BITE, MOVE_NONE},
+    .heldItem = ITEM_NONE,
+    .abilityNum = 1,
+    .shiny = 0,
+    .species = SPECIES_PINSIR,
+    },
+    {
+    .iv = 0,
+    .lvl = 15,
+	.moves = {MOVE_AERIAL_ACE, MOVE_QUICK_ATTACK, MOVE_ROCK_SMASH, MOVE_SILVER_WIND},
+    .heldItem = ITEM_NONE,
+    .abilityNum = 1,
+    .shiny = 0,
+    .species = SPECIES_SCYTHER,
+    },
+    {
+    .iv = 0,
+    .lvl = 15,
+	.moves = {MOVE_CONFUSION, MOVE_GIGA_DRAIN, MOVE_STRUGGLE_BUG, MOVE_GUST},
+    .heldItem = ITEM_NONE,
+    .abilityNum = 2,
+    .shiny = 0,
+    .species = SPECIES_DUSTOX,
+    },
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_GruntAquaHideout1[] = {
 // >

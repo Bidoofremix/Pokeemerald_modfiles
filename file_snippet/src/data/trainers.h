@@ -207,7 +207,21 @@
         .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
         .partySize = ARRAY_COUNT(sParty_TabithaRhyoliteCanyon),
         .party = {.NoItemDefaultMoves = sParty_TabithaRhyoliteCanyon},
-    },	
+    },
+	
+	[TRAINER_MASTER_BUG] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_ABILITY,
+        .trainerClass = TRAINER_CLASS_BUG_CATCHER,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_MALE,
+        .trainerPic = TRAINER_PIC_BUG_CATCHER,
+        .trainerName = _("EILIR"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = ARRAY_COUNT(sParty_MasterBug),
+        .party = {.ItemCustomMovesAbilityShiny = sParty_MasterBug},
+    },
 	
     [TRAINER_SAWYER_1] =
 // >

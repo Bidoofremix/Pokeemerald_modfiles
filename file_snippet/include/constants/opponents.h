@@ -18,8 +18,9 @@
 #define TRAINER_GRUNT_RHYOLITE_CANYON_3     866
 #define TRAINER_GRUNT_RHYOLITE_CANYON_4     867
 #define TRAINER_TABITHA_RHYOLITE_CANYON     868
+#define TRAINER_MASTER_BUG                  869
 
-#define TRAINERS_COUNT                      869
+#define TRAINERS_COUNT                      870
 #define MAX_TRAINERS_COUNT                  1000
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

@@ -30,6 +30,8 @@ VerdanturfTown_EventScript_AskToBattle::
 	call_if_eq VerdanturfTown_EventScript_NotBugType
 	
 	// do battle
+	trainerbattle_no_intro TRAINER_MASTER_BUG, VerdanturfTown_Text_BugTypeTrainer_Lose
+		
 	release	
 	end
 	
@@ -78,6 +80,10 @@ VerdanturfTown_Text_IfYouWantToBattle:
 	.string "If you want to battle the strongest\n"
 	.string "BUG TYPE TRAINER, you know where\l"
 	.string "to find me.$"
+	
+VerdanturfTown_Text_BugTypeTrainer_Lose:
+	.string "Woah, you've got some serious\n"
+	.string "POKéMON!$"
 	
 VerdanturfTown_Text_GuyTryingToBustThroughCave: @ 81EB854
 // >
