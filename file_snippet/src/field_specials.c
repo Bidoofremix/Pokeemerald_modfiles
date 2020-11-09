@@ -201,24 +201,34 @@ void SetLeadMonAbility(void)
 void CheckPartyType(void)
 { 
     u8 monType = gSpecialVar_0x800A;
-    u8 i;
+    u8 i,j;
     u16 species;
 	
 	struct Pokemon *pokemon;
-    for (i = 0; i < PARTY_SIZE; i++)
+	j = 1;
+	
+	for (i = 0; i < PARTY_SIZE; i++)
     {
         pokemon = &gPlayerParty[i];
         if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(pokemon, MON_DATA_IS_EGG))
         {
             species = GetMonData(pokemon, MON_DATA_SPECIES);
-            if (!gBaseStats[species].type1 == monType || !gBaseStats[species].type2 == monType)
+            if (!gBaseStats[species].type1 == monType && !gBaseStats[species].type2 == monType)
             {
-                gSpecialVar_Result = FALSE;
-                return;
+                j = 0;
             }
         }
     }
-    gSpecialVar_Result = TRUE;
+	
+	if (j==1)
+	{
+		gSpecialVar_Result = TRUE;
+	}
+	else
+	{
+		gSpecialVar_Result = FALSE;
+	}
+	
 }
 	
 static void CB2_FieldShowRegionMap(void)
