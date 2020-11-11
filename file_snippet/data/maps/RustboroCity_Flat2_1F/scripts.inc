@@ -8,7 +8,9 @@ RustboroCity_Flat2_1F_EventScript_OldWoman:: @ 8215F77
 
 RustboroCity_Flat2_1F_EventScript_StartQuest::
 	bufferspeciesname 0, SPECIES_SKITTY
-	msgbox 
+	msgbox RustboroCity_Flat2_1F_Text_MySkittyHasBeenSad, MSGBOX_DEFAULT
+	release
+	end
 	
 RustboroCity_Flat2_1F_EventScript_Skitty:: @ 8215F80
 	lock
