@@ -8,9 +8,10 @@ VerdanturfTown_Text_MakeBattleTentDebut: @ 81EB7E2
 VerdanturfTown_EventScript_BugTypeTrainer::
 	faceplayer
 
-	// temp
-	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_10
+	// check if battle has been complete
+	goto_if_defeated TRAINER_MASTER_BUG, VerdanturfTown_EventScript_QuestComplete
 	
+	// check if quest unlocked
 	msgbox VerdanturfTown_Text_IAmBugTypeMasterTrainer
 	questmenu QUEST_MENU_CHECK_UNLOCKED SIDE_QUEST_10
 	compare VAR_RESULT, TRUE
@@ -21,6 +22,8 @@ VerdanturfTown_EventScript_BugTypeTrainer::
 VerdanturfTown_EventScript_AskToBattle::
 	msgbox VerdanturfTown_Text_YouLookLikeAStrongTrainer, MSGBOX_YESNO
 	compare VAR_RESULT, TRUE
+	
+	// don't battle
 	goto_if_ne VerdanturfTown_EventScript_CancelBattle
 	
 	// check party type
@@ -31,7 +34,12 @@ VerdanturfTown_EventScript_AskToBattle::
 	
 	// do battle
 	trainerbattle_no_intro TRAINER_MASTER_BUG, VerdanturfTown_Text_BugTypeTrainer_Lose
-		
+
+	// defeated
+	msgbox VerdanturfTown_Text_ThatWasAwesome, MSGBOX_DEFAULT
+	// reward
+	// giveitem
+	msgbox VerdanturfTown_Text_LookForOtherMasterTrainers, MSGBOX_DEFAULT	
 	release	
 	end
 	
@@ -54,7 +62,27 @@ Common_EventScript_CheckPartyType::
 	special CheckPartyType
 	return
 
-VerdanturfTown_Text_YoureNotStrongEnough::
+VerdanturfTown_EventScript_QuestComplete::
+	msgbox VerdanturfTown_Text_YoureEvenBetterThanMe, MSGBOX_DEFAULT
+	release
+	end
+	
+VerdanturfTown_Text_YoureEvenBetterThanMe:
+	.string "Our battle was epic! You're even\n"
+	.string "better than me with BUG POKéMON!$" 
+	
+VerdanturfTown_Text_ThatWasAwesome:
+	.string "That was awesome! You totally and\n"
+	.string "completely smashed me!\p"
+	.string "As a reward for an exciting\n"
+	.string "battle, please take this!$"
+	
+VerdanturfTown_Text_LookForOtherMasterTrainers:
+	.string "Be sure to look for other MASTER\n"
+	.string "TRAINERS if you want more\l"
+	.string "challenges on your journey!$"
+	
+VerdanturfTown_Text_YoureNotStrongEnough:
 	.string "I can see that you're a\n"
 	.string "rookie through and through.\p"
 	.string "Toughen up a bit first, then\n"
