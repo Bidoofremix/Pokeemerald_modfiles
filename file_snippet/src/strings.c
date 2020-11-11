@@ -35,7 +35,7 @@ const u8 gText_SideQuestName_1[] = _("A Helping Hand");
 const u8 gText_SideQuestName_2[] = _("Mysterious Prints");
 const u8 gText_SideQuestName_3[] = _("Side Quest 3");
 const u8 gText_SideQuestName_4[] = _("Side Quest 4");
-const u8 gText_SideQuestName_5[] = _("Side Quest 5");
+const u8 gText_SideQuestName_5[] = _("A Purrfect Friend");
 const u8 gText_SideQuestName_6[] = _("Side Quest 6");
 const u8 gText_SideQuestName_7[] = _("Side Quest 7");
 const u8 gText_SideQuestName_8[] = _("Side Quest 8");
@@ -70,7 +70,9 @@ const u8 gText_SideQuestDesc_2[] = _(
 	"the mysterious footprints.");
 const u8 gText_SideQuestDesc_3[] = _("Description 3");
 const u8 gText_SideQuestDesc_4[] = _("Description 4");
-const u8 gText_SideQuestDesc_5[] = _("Description 5");
+const u8 gText_SideQuestDesc_5[] = _(
+	"Find out why the OLD LADY's"
+	"SKITTY is sad.");
 const u8 gText_SideQuestDesc_6[] = _("Description 6");
 const u8 gText_SideQuestDesc_7[] = _("Description 7");
 const u8 gText_SideQuestDesc_8[] = _("Description 8");
@@ -122,7 +124,7 @@ const u8 gText_SideQuestPOC_1[] = _("BREEDER");
 const u8 gText_SideQuestPOC_2[] = _("FOOTPRINTS MAN");
 const u8 gText_SideQuestPOC_3[] = _("POC 3");
 const u8 gText_SideQuestPOC_4[] = _("POC 4");
-const u8 gText_SideQuestPOC_5[] = _("POC 5");
+const u8 gText_SideQuestPOC_5[] = _("OLD LADY");
 const u8 gText_SideQuestPOC_6[] = _("POC 6");
 const u8 gText_SideQuestPOC_7[] = _("POC 7");
 const u8 gText_SideQuestPOC_8[] = _("POC 8");
@@ -153,7 +155,7 @@ const u8 gText_SideQuestMap_1[] = _("VERDANTURF TOWN");
 const u8 gText_SideQuestMap_2[] = _("OLDALE TOWN");
 const u8 gText_SideQuestMap_3[] = _("Map 3");
 const u8 gText_SideQuestMap_4[] = _("Map 4");
-const u8 gText_SideQuestMap_5[] = _("Map 5");
+const u8 gText_SideQuestMap_5[] = _("RUSTBORO CITY");
 const u8 gText_SideQuestMap_6[] = _("Map 6");
 const u8 gText_SideQuestMap_7[] = _("Map 7");
 const u8 gText_SideQuestMap_8[] = _("Map 8");
