@@ -201,11 +201,10 @@ void SetLeadMonAbility(void)
 void CheckPartyType(void)
 { 
     u8 monType = gSpecialVar_0x800A;
-    u8 i,j;
+    u8 i;
     u16 species;
 	
 	struct Pokemon *pokemon;
-	j = 1;
 	
 	for (i = 0; i < PARTY_SIZE; i++)
     {
@@ -213,21 +212,16 @@ void CheckPartyType(void)
         if (GetMonData(pokemon, MON_DATA_SANITY_HAS_SPECIES) && !GetMonData(pokemon, MON_DATA_IS_EGG))
         {
             species = GetMonData(pokemon, MON_DATA_SPECIES);
-            if (!gBaseStats[species].type1 == monType && !gBaseStats[species].type2 == monType)
+            //if (!gBaseStats[species].type1 == monType && !gBaseStats[species].type2 == monType)
+            if (gBaseStats[species].type1 != monType && gBaseStats[species].type2 != monType)
             {
-                j = 0;
+                gSpecialVar_Result = FALSE;
+                return;
             }
         }
     }
 	
-	if (j==1)
-	{
-		gSpecialVar_Result = TRUE;
-	}
-	else
-	{
-		gSpecialVar_Result = FALSE;
-	}
+    gSpecialVar_Result = TRUE;
 	
 }
 	
