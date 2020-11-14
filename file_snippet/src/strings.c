@@ -71,7 +71,7 @@ const u8 gText_SideQuestDesc_2[] = _(
 const u8 gText_SideQuestDesc_3[] = _("Description 3");
 const u8 gText_SideQuestDesc_4[] = _("Description 4");
 const u8 gText_SideQuestDesc_5[] = _(
-	"Find out why the OLD LADY's"
+	"Find out why the OLD LADY's\n"
 	"SKITTY is sad.");
 const u8 gText_SideQuestDesc_6[] = _("Description 6");
 const u8 gText_SideQuestDesc_7[] = _("Description 7");
