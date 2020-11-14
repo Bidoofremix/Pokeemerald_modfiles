@@ -77,7 +77,7 @@
 #define FLAG_ITEM_RHYOLITE_CANYON_IGNIS_BALL   0x40 // Unused Flag
 #define FLAG_HIDE_FALLARBOR_TOWN_DRYSTAN       0x41 // Unused Flag
 #define FLAG_REVEIVED_FOOTPRINTS_MAN_REVIVE    0x42 // Unused Flag
-#define FLAG_UNUSED_0x267  0x43 // Unused Flag
+#define FLAG_HIDE_ROUTE115_SKITTY              0x43 // Unused Flag
 #define FLAG_UNUSED_0x268  0x44 // Unused Flag
 #define FLAG_UNUSED_0x269  0x45 // Unused Flag
 #define FLAG_UNUSED_0x26A  0x46 // Unused Flag

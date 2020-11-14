@@ -1,12 +1,16 @@
 < //
 RustboroCity_Flat2_1F_EventScript_OldWoman:: @ 8215F77
+	lock
+	faceplayer
 	questmenu QUEST_MENU_CHECK_UNLOCKED SIDE_QUEST_5
 	compare VAR_RESULT, TRUE
 	goto_if_eq RustboroCity_Flat2_1F_EventScript_StartQuest
-	msgbox RustboroCity_Flat2_1F_Text_DevonWorkersLiveHere, MSGBOX_NPC
+	msgbox RustboroCity_Flat2_1F_Text_DevonWorkersLiveHere, MSGBOX_DEFAULT
+	release
 	end
 
 RustboroCity_Flat2_1F_EventScript_StartQuest::
+	setvar VAR_ROUTE115_STATE, 1
 	bufferspeciesname 0, SPECIES_SKITTY
 	msgbox RustboroCity_Flat2_1F_Text_MySkittyHasBeenSad, MSGBOX_DEFAULT
 	release
@@ -27,7 +31,7 @@ RustboroCity_Flat2_1F_EventScript_Skitty:: @ 8215F80
 	
 RustboroCity_Flat2_1F_EventScript_SkittySad::
 	waitse
-	playmoncry SPECIES_SKITTY, 1
+	playmoncry SPECIES_SKITTY, 5
 	msgbox RustboroCity_Flat2_1F_Text_SkittySad, MSGBOX_DEFAULT
 	waitmoncry
 	release
