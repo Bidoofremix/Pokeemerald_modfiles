@@ -61,7 +61,7 @@ static const u8 sBallParticleAnimNums[POKEBALL_COUNT] =
     [BALL_CLONE] = 2,
     [BALL_DREAM] = 5,
     [BALL_BEAST] = 5,
-    [BALL_IGNIS] = 3,
+    [BALL_IGNIS] = 4,
 };
 
 static const TaskFunc sBallParticleAnimationFuncs[] =
