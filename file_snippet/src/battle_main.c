@@ -72,7 +72,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 	
 	u8 level;
 	u8 handicap;
-	if (standardLevel) < 50:
+	if (playerHighestLevel) < 50:
 	{
 		handicap = 3;
 	}
