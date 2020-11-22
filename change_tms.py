@@ -1,21 +1,12 @@
 #!/usr/bin/python3
 
-import sys,os,shutil,argparse,textwrap
-from pathlib import Path
-from config import pokeemerald_dir,vanilla_dir,slash
-from misc import normalize_path,yesno
-from pokemon_tools import *	
-
-map_dir = normalize_path("{0}\data\maps".format(pokeemerald_dir))
-layout_dir = normalize_path("{0}\data\layouts".format(pokeemerald_dir))
-constants_dir = normalize_path("{0}\include\constants".format(pokeemerald_dir))
+import sys,os,shutil,argparse,textwrap,xlrd,xlsxwriter
+from config import pokeemerald_dir
+from misc import *
+from pokemon_tools import *
 
 snippet_folder = normalize_path(os.getcwd() + "\\file_snippet")
 full_folder = normalize_path(os.getcwd() + "\\file_full")
-graphics_dir = normalize_path("{0}/graphics".format(full_folder))
-sound_dir = normalize_path("{0}/sound".format(full_folder))
-include_dir = normalize_path("{0}/include".format(full_folder))
-src_dir = normalize_path("{0}/src".format(full_folder))
 
 ########## argparse
 
@@ -35,8 +26,6 @@ args = vars(parser.parse_args())
 # include/constants/items.h
 item_file = normalize_path("{0}/include/constants/items.h".format(\
 	snippet_folder))
-	
-print(item_file)
 
 tm_items = []
 with open(item_file, "r", encoding="utf-8") as f:
@@ -89,3 +78,43 @@ with open(args["species"], "r") as f:
 		learn_species.add(species)
 		
 print("found %s species" % len(learn_species))
+
+########## modify excel files
+
+pokemon_excels = [i for i in os.listdir("pokemon") if i.startswith("pokemon_") and i.endswith(".xlsx")]
+
+print("\nmodifying TM learnsets")
+
+for file in pokemon_excels:
+
+	print(file)
+
+	file = "pokemon/{0}".format(file)
+	read_workbook = xlrd.open_workbook(file)
+	
+	write_workbook = xlsxwriter.Workbook(file + ".tmp")
+	cell_format = write_workbook.add_format({'align': "left"})	
+	
+	for n,i in enumerate(read_workbook.sheet_names()):
+		read_sheet = read_workbook.sheet_by_index(n)
+		write_sheet = write_workbook.add_worksheet(i)
+		write_sheet.set_column(0,0,20,cell_format)
+		write_sheet.set_column(1,1,35,cell_format)
+		write_sheet.set_column(2,2,None,cell_format)
+		
+		tmp_species = "SPECIES_%s" % i
+		if tmp_species in learn_species:
+			species = i
+			
+		bst = 0		
+			
+		for i in range(0,read_sheet.nrows):
+			row = [clean_num(cell.value) for cell in read_sheet.row(i)]
+			if row[0].startswith(".base"):
+				bst += row[1]
+			for j,cell in enumerate(row):
+				write_sheet.write(i, j, cell)
+				
+		write_sheet.write_formula("C2","=SUM(B2:B7)", value=bst)		
+				
+	write_workbook.close()
