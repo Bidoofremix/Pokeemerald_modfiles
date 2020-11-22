@@ -12,8 +12,8 @@ def yesno():
 
 ##########
 
-def write_lines(file,line_list):
-	with open(file, "w", encoding="utf-8") as f:
+def write_lines(file,line_list, encoding="utf-8"):
+	with open(file, "w", encoding=encoding) as f:
 		for line in line_list:
 			f.write(line)
 	print("wrote to: %s" % file)

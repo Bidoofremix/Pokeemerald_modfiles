@@ -254,7 +254,7 @@ else:
 		tmp_lines.append("// >\n")
 		lines.extend(tmp_lines)
 		
-		write_lines(item_descr_file,lines)
+		write_lines(item_descr_file,lines,encoding="iso-8859-15")
 	else:
 		print("\nWARNING: cannot modify description for TM01")
 		print("add description manually to this file:")
