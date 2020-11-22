@@ -161,9 +161,11 @@ for file in pokemon_excels:
 			write_sheet.write(i+1,1,clean_move(move))
 				
 		write_sheet.write_formula("C2","=SUM(B2:B7)", value=bst)		
-				
+	
 	write_workbook.close()
 	
+	os.replace(file + ".tmp", file)
+	os.remove(file + ".tmp")
 
 ########## modify other files
 
@@ -175,7 +177,9 @@ with open(item_file, "r", encoding="utf-8") as f:
 			line = "#define ITEM_TM{0}_{1} ITEM_TM{0}\n".format(\
 				args["number"],simple_move)
 		lines.append(line)
-
+		
+write_lines(item_file, lines)		
+		
 # src/data/party_menu.h
 lines = []
 with open(party_menu_file, "r", encoding="utf-8") as f:
@@ -191,6 +195,8 @@ with open(party_menu_file, "r", encoding="utf-8") as f:
 			if line.startswith("}"):
 				move = 0
 
+write_lines(party_menu_file, lines)				
+				
 # src/data/item_icon_table.h
 lines = []
 item_icon_file = normalize_path("{0}/src/data/item_icon_table.h".format(\
@@ -202,6 +208,8 @@ with open(item_icon_file, "r", encoding="utf-8") as f:
 				modified_tm,simple_type)
 		lines.append(line)
 
+write_lines(item_icon_file, lines)		
+		
 # src/data/items.h
 lines = []
 src_item_file = normalize_path("{0}/src/data/items.h".format(\
@@ -212,6 +220,8 @@ with open(src_item_file, "r") as f:
 			line = line.replace(long_old_tm,long_new_tm)
 		lines.append(line)
 
+write_lines(src_item_file,lines)		
+		
 # src/data/text/item_descriptions.h
 lines = []
 descr_exists = False
@@ -221,7 +231,7 @@ with open(item_descr_file, "r") as f:
 	for line in f:
 		lines.append(line)
 		if modified_tm in line:
-			descr_exists = True
+			descr_exists = True			
 			
 if descr_exists:
 	print("\nWARNING: item description exists in file:")
@@ -241,6 +251,8 @@ else:
 			str(args["number"]+1).zfill(2)))
 		tmp_lines.append("// >\n")
 		lines.append(tmp_lines)
+		
+		write_lines(item_descr_file,lines)
 	else:
 		print("\nWARNING: cannot modify description for TM01")
 		print("add description manually to this file:")
