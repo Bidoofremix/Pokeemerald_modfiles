@@ -2,6 +2,16 @@
 
 from config import pokeemerald_dir
 
+
+def yesno():
+	answer = input(">> ")
+	while not answer.lower() in ["y","yes","n","no"]:
+		answer = input(">> ")
+	if answer.lower() in ["n","no"]:
+		exit(0)
+
+##########
+
 def write_lines(file,line_list):
 	with open(file, "w", encoding="utf-8") as f:
 		for line in line_list:

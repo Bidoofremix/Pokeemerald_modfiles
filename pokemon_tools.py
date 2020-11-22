@@ -17,6 +17,19 @@ with open(move_file, "r") as f:
 		if line.startswith("#define MOVE_"):
 			defined_moves.append(line.split(" ")[1])
 
+# move types
+battle_move_file = normalize_path("{0}/src/data/battle_moves.h".format(\
+	pokeemerald_dir))
+	
+move_types = {}
+with open(battle_move_file, "r") as f:
+	for line in f:
+		if line.startswith("    ["):
+			current_move = line.split("[")[1].split("]")[0]
+		elif ".type" in line:
+			tmp_type = line.split("=")[1].strip(" ").replace(",","").replace("\n","")
+			move_types[current_move] = tmp_type
+			
 item_file = normalize_path("{0}/include/constants/items.h".format(\
 	pokeemerald_dir))
 
@@ -44,8 +57,18 @@ with open(ability_file, "r") as f:
 			ability = line.split(" ")[1]
 			defined_abilities.add(ability)
 			
+# species
+species_file = normalize_path("{0}/include/constants/species.h".format(\
+	pokeemerald_dir))
+defined_species = set([])
+with open(species_file, "r") as f:
+	for line in f:
+		if line.startswith("#define SPECIES") and line.count("SPECIES") < 2:
+			species = line.split(" ")[1]
+			defined_species.add(species)
+
 unowns = [chr(i+64) for i in range(1,27)]
-unowns += ["EMARK","QMARK"]			
+unowns += ["EMARK","QMARK"]
 			
 ########## functions
 
@@ -70,6 +93,9 @@ def check_move(move):
 		print("\nerror: did not recognize move '%s'" % move)
 		exit(0)
 	return tmp_move
+
+def move_type(move):
+	return move_types[move]
 	
 def check_tmmove(move):
 	if move.lower() == "solarbeam":
@@ -86,6 +112,15 @@ def check_ability(ability):
 		print("\nerror: did not recognize ability '%s'" % ability)
 		exit(0)
 	return ability
+	
+def check_species(species):
+	tmp_species = underscore_upper(species)
+	if not tmp_species.startswith("SPECIES_"):
+		tmp_species = "SPECIES_%s" % tmp_species
+	if not tmp_species in defined_species:
+		print("\nerror: did not recognize species '%s'" % species)
+		exit(0)
+	return tmp_species
 	
 def generate_capsjoined(mons):
 	mons = [i.replace("SPECIES_","") for i in mons]
