@@ -212,7 +212,10 @@ new_move_data = {}
 
 pokemon_excels = excel_files(new_mon_order)
 
+print("\nmodify pokemon stat and move data")
+
 for file in pokemon_excels:
+	print(file)
 	xl_workbook = xlrd.open_workbook(file)
 	
 	for n in range(0,len(xl_workbook.sheet_names())):
