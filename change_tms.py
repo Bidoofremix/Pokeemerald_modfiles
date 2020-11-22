@@ -250,7 +250,7 @@ else:
 		tmp_lines.append("static const u8 sTM{0}Desc[] = _(\n".format(\
 			str(args["number"]+1).zfill(2)))
 		tmp_lines.append("// >\n")
-		lines.append(tmp_lines)
+		lines.extend(tmp_lines)
 		
 		write_lines(item_descr_file,lines)
 	else:
