@@ -164,7 +164,6 @@ for file in pokemon_excels:
 	write_workbook.close()
 	
 	os.replace("%s.tmp" % file, file)
-	os.remove("%s.tmp" % file)
 
 ########## modify other files
 
