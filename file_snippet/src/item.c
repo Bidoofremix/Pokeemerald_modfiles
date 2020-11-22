@@ -15,6 +15,13 @@ static void SetBagItemQuantity(u16 *quantity, u16 newValue)
 // >
 
 < //
+void CopyItemName(u16 itemId, u8 *dst)
+{
+    StringCopy(dst, ItemId_GetName(itemId));
+}
+
+static const u8 sText_s[] = _("s");
+
 void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
 {
     StringCopy(dst, ItemId_GetName(itemId));
@@ -26,8 +33,6 @@ void CopyItemNameHandlePlural(u16 itemId, u8 *dst, u32 quantity)
             StringAppend(dst, sText_s);
     }
 }
-
-static const u8 sText_s[] = _("s");
 
 void GetBerryCountString(u8 *dst, const u8 *berryName, u32 quantity)
 // >
