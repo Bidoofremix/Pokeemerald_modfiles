@@ -38,8 +38,10 @@ Route115_EventScript_Skitty::
 	waitmovement 0
 	delay 20
 	applymovement LOCALID_OLDLADY, Route115_Movement_Up3
+	applymovement OBJ_EVENT_ID_PLAYER, Route115_Movement_Left1FaceRight
 	waitmovement 0
 	bufferspeciesname 0, SPECIES_SKITTY
+	delay 40
 	msgbox Route115_Text_MyGoodnesIRememberYou, MSGBOX_DEFAULT
 	applymovement LOCALID_OLDLADY, Common_Movement_FaceLeft
 	msgbox Route115_Text_ThankYouForFinding, MSGBOX_DEFAULT
@@ -52,6 +54,11 @@ Route115_Movement_Up3::
 	walk_up
 	walk_up
 	walk_up
+	step_end
+	
+Route115_Movement_Left1FaceRight::
+	walk_left
+	face_right
 	step_end
 	
 Route115_Text_Skitty::
