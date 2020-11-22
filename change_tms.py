@@ -123,9 +123,8 @@ print("\nmodifying TM learnsets")
 for file in pokemon_excels:
 
 	print(file)
-	continue
-
 	file = "pokemon/{0}".format(file)
+	
 	read_workbook = xlrd.open_workbook(file)
 	
 	write_workbook = xlsxwriter.Workbook(file + ".tmp")
