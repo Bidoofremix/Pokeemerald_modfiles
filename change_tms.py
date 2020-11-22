@@ -61,7 +61,8 @@ if not (0 < args["number"] <= 50):
 	exit(0)
 
 move = check_move(args["move"])
-print("\nreplacing {0} with move {1}".format(tm_moves_list[args["number"]-1],move))
+deleted_move = tm_moves_list[args["number"]-1]
+print("\nreplacing {0} with move {1}".format(deleted_move,move))
 
 print("ok? (y/n)")
 #yesno()
@@ -88,6 +89,7 @@ print("\nmodifying TM learnsets")
 for file in pokemon_excels:
 
 	print(file)
+	continue
 
 	file = "pokemon/{0}".format(file)
 	read_workbook = xlrd.open_workbook(file)
@@ -102,19 +104,71 @@ for file in pokemon_excels:
 		write_sheet.set_column(1,1,35,cell_format)
 		write_sheet.set_column(2,2,None,cell_format)
 		
+		write = True	
 		tmp_species = "SPECIES_%s" % i
-		if tmp_species in learn_species:
-			species = i
-			
 		bst = 0		
 			
 		for i in range(0,read_sheet.nrows):
 			row = [clean_num(cell.value) for cell in read_sheet.row(i)]
 			if row[0].startswith(".base"):
 				bst += row[1]
-			for j,cell in enumerate(row):
-				write_sheet.write(i, j, cell)
+			if row[0] == "TM_MOVE":
+				tmp_move = check_tmmove(row[1])
+				tmp_move = "MOVE_%s" % tmp_move.split("_",1)[1]
+				if tmp_move == deleted_move:
+					write = False
+			
+			if write:
+				for j,cell in enumerate(row):
+					write_sheet.write(i, j, cell)
+					
+		if tmp_species in learn_species:
+			write_sheet.write(i+1,0,"TM_MOVE")
+			write_sheet.write(i+1,1,clean_move(move))
 				
 		write_sheet.write_formula("C2","=SUM(B2:B7)", value=bst)		
 				
 	write_workbook.close()
+	
+
+########## modify other files
+
+modified_tm = "TM{0}".format(str(args["number"]).zfill(2))
+simple_move = move.replace("MOVE_","")
+simple_type = move_type(move).replace("TYPE_","").capitalize()
+
+# include/constants/items.h
+lines = []
+with open(item_file, "r", encoding="utf-8") as f:
+	for line in f:
+		if line.count("ITEM_TM") > 1 and modified_tm in line:
+			line = "#define ITEM_TM{0}_{1} ITEM_TM{0}\n".format(\
+				args["number"],simple_move)
+		lines.append(line)
+
+# src/data/party_menu.h
+lines = []
+with open(party_menu_file, "r", encoding="utf-8") as f:
+	for line in f:
+		if not move:
+			if line.startswith("static const u16 sTMHMMoves"):
+				move = 1
+		else:
+			if deleted_move in line:
+				lines.append("    %s,\n" % move)
+			else:
+				lines.append(line)			
+			if line.startswith("}"):
+				move = 0
+
+# src/data/item_icon_table.h
+lines = []
+item_icon_file = normalize_path("{0}/src/data/item_icon_table.h".format(\
+	snippet_folder))
+with open(item_icon_file, "r", encoding="utf-8") as f:
+	for line in f:
+		if "ITEM_{0}".format(modified_tm) in line:
+			lines.append("    [ITEM_{0}] = {{gItemIcon_TM, gItemIconPalette_{1}TMHM}},\n".format(\
+				modified_tm,simple_type))
+		else:
+			lines.append(line)
