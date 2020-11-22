@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import sys,os,shutil,argparse,textwrap,xlrd,xlsxwriter
+import sys,os,shutil,argparse,textwrap,xlrd,xlsxwriter,copy
 from config import pokeemerald_dir
 from misc import *
 from pokemon_tools import *
@@ -66,6 +66,40 @@ print("\nreplacing {0} with move {1}".format(deleted_move,move))
 
 print("ok? (y/n)")
 #yesno()
+
+########## move description
+
+
+modified_tm = "TM{0}".format(str(args["number"]).zfill(2))
+simple_move = move.replace("MOVE_","")
+long_new_tm = "ITEM_TM{0}_{1}".format(str(args["number"]).zfill(2),simple_move)
+long_old_tm = "ITEM_TM{0}_{1}".format(str(args["number"]).zfill(2),deleted_move.replace("MOVE_",""))
+simple_type = move_type(move).replace("TYPE_","").capitalize()
+
+move_descr_file = normalize_path("{0}/src/data/text/move_descriptions.h".format(\
+			pokeemerald_dir))
+
+move_descr = []
+text = 0
+with open(move_descr_file, "r", encoding="utf-8") as f:
+	for line in f:
+		if clean_move(move).replace(" ","") in line and move_descr == []:
+			text = 1
+		elif text:
+			line_copy = copy.deepcopy(line)
+			line = line.rstrip("\n").rstrip("\r").strip().replace("\\n","").replace('");','').strip('"')
+			if not ";" in line_copy:
+				move_descr.append(line)
+			else:
+				move_descr.append(line)
+				text = 0
+				
+move_descr = " ".join(move_descr)
+move_descr = textwrap.wrap(move_descr,18)
+
+if not len(move_descr) == 3:
+	print("\nerror: cannot use default description for %s" % replace_move)
+	exit(0)
 
 ########## read species
 
@@ -133,10 +167,6 @@ for file in pokemon_excels:
 
 ########## modify other files
 
-modified_tm = "TM{0}".format(str(args["number"]).zfill(2))
-simple_move = move.replace("MOVE_","")
-simple_type = move_type(move).replace("TYPE_","").capitalize()
-
 # include/constants/items.h
 lines = []
 with open(item_file, "r", encoding="utf-8") as f:
@@ -168,7 +198,52 @@ item_icon_file = normalize_path("{0}/src/data/item_icon_table.h".format(\
 with open(item_icon_file, "r", encoding="utf-8") as f:
 	for line in f:
 		if "ITEM_{0}".format(modified_tm) in line:
-			lines.append("    [ITEM_{0}] = {{gItemIcon_TM, gItemIconPalette_{1}TMHM}},\n".format(\
-				modified_tm,simple_type))
-		else:
-			lines.append(line)
+			line = "    [ITEM_{0}] = {{gItemIcon_TM, gItemIconPalette_{1}TMHM}},\n".format(\
+				modified_tm,simple_type)
+		lines.append(line)
+
+# src/data/items.h
+lines = []
+src_item_file = normalize_path("{0}/src/data/items.h".format(\
+	snippet_folder))
+with open(src_item_file, "r") as f:
+	for line in f:
+		if long_old_tm in line:
+			line = line.replace(long_old_tm,long_new_tm)
+		lines.append(line)
+
+# src/data/text/item_descriptions.h
+lines = []
+descr_exists = False
+item_descr_file = normalize_path("{0}/src/data/text/item_descriptions.h".format(\
+	snippet_folder))
+with open(item_descr_file, "r") as f:
+	for line in f:
+		lines.append(line)
+		if modified_tm in line:
+			descr_exists = True
+			
+if descr_exists:
+	print("\nWARNING: item description exists in file:")
+	print(item_descr_file)
+	print("modify file manually")	
+	
+else:
+	if args["number"] != 1:
+		tmp_lines = []
+		tmp_lines.append("\n< //\n")
+		tmp_lines.append("static const u8 s{0}Desc[] = _(\n".format(modified_tm))
+		for line in move_descr[:-1]:
+			tmp_lines.append('    "{0}\\n"\n'.format(line))
+		tmp_lines.append('    "{0}");\n'.format(move_descr[-1]))
+		tmp_lines.append("")
+		tmp_lines.append("static const u8 sTM{0}Desc[] = _(\n".format(\
+			str(args["number"]+1).zfill(2)))
+		tmp_lines.append("// >\n")
+		lines.append(tmp_lines)
+	else:
+		print("\nWARNING: cannot modify description for TM01")
+		print("add description manually to this file:")
+		print(item_descr_file)
+		print("")
+		[print(l) for l in move_descr]
