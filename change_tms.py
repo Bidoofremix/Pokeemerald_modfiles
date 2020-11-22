@@ -169,6 +169,8 @@ for file in pokemon_excels:
 
 ########## modify other files
 
+print("")
+
 # include/constants/items.h
 lines = []
 with open(item_file, "r", encoding="utf-8") as f:
@@ -246,7 +248,7 @@ else:
 		for line in move_descr[:-1]:
 			tmp_lines.append('    "{0}\\n"\n'.format(line))
 		tmp_lines.append('    "{0}");\n'.format(move_descr[-1]))
-		tmp_lines.append("")
+		tmp_lines.append("\n")
 		tmp_lines.append("static const u8 sTM{0}Desc[] = _(\n".format(\
 			str(args["number"]+1).zfill(2)))
 		tmp_lines.append("// >\n")
