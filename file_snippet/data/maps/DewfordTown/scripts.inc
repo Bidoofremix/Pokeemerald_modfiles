@@ -57,6 +57,109 @@ DewfordTown_Text_MarineShopSign::
 	.string "MARINE SHOP\n"
 	.string "“All things ocean!”$"
 	
+DewfordTown_EventScript_NormalTypeTrainer::
+	faceplayer
+
+	// check if battle has been complete
+	goto_if_defeated TRAINER_MASTER_NORMAL, DewfordTown_EventScript_QuestComplete
+	
+	// check if quest unlocked
+	msgbox DewfordTown_Text_IAmNormalTypeMasterTrainer
+	questmenu QUEST_MENU_CHECK_UNLOCKED SIDE_QUEST_11
+	compare VAR_RESULT, TRUE
+	goto_if_eq DewfordTown_EventScript_AskToBattle
+	goto_if_ne DewfordTown_EventScript_QuestNotUnlocked
+	end
+	
+DewfordTown_EventScript_AskToBattle::
+	msgbox DewfordTown_Text_YouLookLikeAStrongTrainer, MSGBOX_YESNO
+	compare VAR_RESULT, TRUE
+	
+	// don't battle
+	goto_if_ne DewfordTown_EventScript_CancelBattle
+	
+	// check party type
+	setvar VAR_0x800A, TYPE_NORMAL
+	call_if_eq Common_EventScript_CheckPartyType
+	compare VAR_RESULT, FALSE
+	call_if_eq DewfordTown_EventScript_NotNormalType
+	
+	// do battle
+	trainerbattle_no_intro TRAINER_MASTER_BUG, DewfordTown_Text_NormalTypeTrainer_Lose
+
+	// defeated
+	msgbox DewfordTown_Text_IWasntExpecting, MSGBOX_DEFAULT
+	// reward
+	//giveitem ITEM_TM49
+	msgbox DewfordTown_Text_LookForOtherMasterTrainers, MSGBOX_DEFAULT	
+	release	
+	end
+	
+DewfordTown_EventScript_QuestNotUnlocked::
+	msgbox DewfordTown_Text_YoureNotStrongEnough, MSGBOX_DEFAULT
+	release
+	end
+	
+DewfordTown_EventScript_NotNormalType::
+	msgbox DewfordTown_Text_NotAllNormalType, MSGBOX_DEFAULT
+	goto DewfordTown_EventScript_CancelBattle
+	end
+	
+DewfordTown_EventScript_CancelBattle::
+	msgbox DewfordTown_Text_IfYouWantToBattle, MSGBOX_DEFAULT
+	release
+	end
+
+DewfordTown_EventScript_QuestComplete::
+	msgbox DewfordTown_Text_YouAreExceptionallyStrong, MSGBOX_DEFAULT
+	release
+	end
+	
+DewfordTown_Text_YouAreExceptionallyStrong:
+	.string "I have to admit that you are\n"
+	.string "exceptionally strong.\p"
+	.string "Please enjoy your battles with\n"
+	.string "other MASTER TRAINERS as well.$"
+	
+DewfordTown_Text_IWasntExpecting:
+	.string "I wasn't expecting you to dominate\n"
+	.string "my POKéMON so completely.\p"
+	.string "As your rightful reward for\n"
+	.string "defeating me, please take this.$"
+	
+DewfordTown_Text_LookForOtherMasterTrainers:
+	.string "If you meet other MASTER TRAINERS,\n"
+	.string "please give my regards to them.$"
+	
+DewfordTown_Text_YoureNotStrongEnough:
+	.string "Aren't you a cute rookie TRAINER,\n"
+	.string "honey.\p"
+	.string "You may challenge me to a battle\n"
+	.string "when you are more experienced.$"
+	
+DewfordTown_Text_IAmNormalTypeMasterTrainer:
+	.string "I am a MASTER TRAINER of\n"
+	.string "NORMAL TYPE POKéMON.\p"
+	.string "Should you wish to battle me,\n"
+	.string "you must agree to use only\l"
+	.string "NORMAL TYPE POKéMON.$"
+	
+DewfordTown_Text_YouLookLikeAStrongTrainer:
+	.string "You look like a strong TRAINER.\n"
+	.string "Do you accept my challenge?$"
+	
+DewfordTown_Text_NotAllNormalType:
+	.string "Please, you're not fooling anyone.\n"
+	.string "Rid your party of other than NORMAL\l"
+	.string "TYPES, and I may reconsider.$"
+	
+DewfordTown_Text_IfYouWantToBattle:
+	.string "I'll be waiting for you, honey,\n"
+	.string "if you change your mind.$"
+	
+DewfordTown_Text_NormalTypeTrainer_Lose:
+	.string "What…?"
+	
 DewfordTown_EventScript_Briney:: @ 81E9511
 // >
 
@@ -95,7 +198,7 @@ DewfordTown_EventScript_Fished20Mons::
 	msgbox DewfordTown_Text_ExperienceWithWaterPokemon, MSGBOX_DEFAULT
 	giveitem ITEM_WATER_STONE
 	compare VAR_RESULT, 0
-	goto_if_eq VerdanturfTown_BreedersClub_Text_OldLady_BagIsFull
+	goto_if_eq DewfordTown_BreedersClub_Text_OldLady_BagIsFull
 	setflag FLAG_RECEIVED_FISHERMAN_WATER_STONE
 	release
 	end
@@ -109,7 +212,7 @@ DewfordTown_EventScript_TryGiveReward::
 	msgbox DewfordTown_Text_ExperienceWithWaterPokemon, MSGBOX_DEFAULT
 	giveitem ITEM_WATER_STONE
 	compare VAR_RESULT, 0
-	goto_if_eq VerdanturfTown_BreedersClub_Text_OldLady_BagIsFull
+	goto_if_eq DewfordTown_BreedersClub_Text_OldLady_BagIsFull
 	setflag FLAG_RECEIVED_FISHERMAN_WATER_STONE
 	release
 	end

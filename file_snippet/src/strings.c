@@ -40,7 +40,9 @@ const u8 gText_SideQuestName_6[] = _("Side Quest 6");
 const u8 gText_SideQuestName_7[] = _("Side Quest 7");
 const u8 gText_SideQuestName_8[] = _("Side Quest 8");
 const u8 gText_SideQuestName_9[] = _("Side Quest 9");
+// bug, grass, poison
 const u8 gText_SideQuestName_10[] = _("Master Trainers 1");
+// normal, fighting
 const u8 gText_SideQuestName_11[] = _("Master Trainers 2");
 const u8 gText_SideQuestName_12[] = _("Master Trainers 3");
 const u8 gText_SideQuestName_13[] = _("Master Trainers 4");

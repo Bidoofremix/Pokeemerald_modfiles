@@ -223,5 +223,19 @@
         .party = {.ItemCustomMovesAbilityShiny = sParty_MasterBug},
     },
 	
+	[TRAINER_MASTER_NORMAL] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_ABILITY,
+        .trainerClass = TRAINER_CLASS_BEAUTY,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_FEMALE,
+        .trainerPic = TRAINER_PIC_BEAUTY,
+        .trainerName = _("ROSALBA"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE,
+        .partySize = ARRAY_COUNT(sParty_MasterNormal),
+        .party = {.ItemCustomMovesAbilityShiny = sParty_MasterNormal},
+    },
+	
     [TRAINER_SAWYER_1] =
 // >

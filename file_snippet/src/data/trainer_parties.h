@@ -207,5 +207,35 @@ static const struct TrainerMonItemCustomMovesAbilityShiny sParty_MasterBug[] = {
     },
 };
 
+static const struct TrainerMonItemCustomMovesAbilityShiny sParty_MasterNormal[] = {
+    {
+    .iv = 100,
+    .lvl = 30,
+	.moves = {MOVE_SPORE, MOVE_FOCUS_PUNCH, MOVE_BUG_BITE, MOVE_NONE},
+    .heldItem = ITEM_BRIGHTPOWDER,
+    .abilityNum = 0,
+    .shiny = 0,
+    .species = SPECIES_SMEARGLE,
+    },
+    {
+    .iv = 100,
+    .lvl = 30,
+	.moves = {MOVE_STOMP, MOVE_ATTRACT, MOVE_ROLLOUT, MOVE_MILK_DRINK},
+    .heldItem = ITEM_KINGS_ROCK,
+    .abilityNum = 0,
+    .shiny = 0,
+    .species = SPECIES_MILTANK,
+    },
+    {
+    .iv = 100,
+    .lvl = 30,
+	.moves = {MOVE_DRILL_PECK, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .heldItem = ITEM_CHOICE_BAND,
+    .abilityNum = 2,
+    .shiny = 1,
+    .species = SPECIES_FEAROW,
+    },
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_GruntAquaHideout1[] = {
 // >
