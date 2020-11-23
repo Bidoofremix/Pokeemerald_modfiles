@@ -80,7 +80,7 @@
 #define FLAG_HIDE_ROUTE115_SKITTY              0x43 // Unused Flag
 #define FLAG_HIDE_ROUTE115_OLDLADY             0x44 // Unused Flag
 #define FLAG_RECEIVED_OLD_LADY_MOON_BALLS      0x45 // Unused Flag
-#define FLAG_UNUSED_0x26A  0x46 // Unused Flag
+#define FLAG_RECEIVED_FISHERMAN_WATER_STONE    0x46 // Unused Flag
 #define FLAG_UNUSED_0x26B  0x47 // Unused Flag
 #define FLAG_UNUSED_0x26C  0x48 // Unused Flag
 #define FLAG_UNUSED_0x26D  0x49 // Unused Flag

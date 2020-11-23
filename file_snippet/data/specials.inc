@@ -7,5 +7,6 @@
 	def_special SetLeadMonAbility
 	def_special SetMoveForPostDocTutor
 	def_special CheckPartyType
+	def_special CheckIfFished20Mons
 	def_special TrySetBattleTowerLinkType
 // >

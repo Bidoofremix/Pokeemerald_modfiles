@@ -224,6 +224,18 @@ void CheckPartyType(void)
     gSpecialVar_Result = TRUE;
 	
 }
+
+void CheckIfFished20Mons(void)
+{
+	if (GetGameStat(GAME_STAT_FISHING_CAPTURES) >= 20)
+	{
+		gSpecialVar_Result = TRUE;
+	}
+	else
+	{
+		gSpecialVar_Result = FALSE;
+	}
+}	
 	
 static void CB2_FieldShowRegionMap(void)
 // >
