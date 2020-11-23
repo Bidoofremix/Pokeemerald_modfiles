@@ -70,3 +70,11 @@ static const u8 sQuestLogDesc[] = _(
     "quests.");
 
 // > END
+< //
+static const u8 sTM49Desc[] = _(
+    "A powdery attack\n"
+    "that may raise\n"
+    "abilities.");
+
+static const u8 sTM50Desc[] = _(
+// >

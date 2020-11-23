@@ -757,10 +757,10 @@
         .secondaryId = 0,
     },
 
-    [ITEM_TM49_SNATCH] =
+    [ITEM_TM49_SILVER_WIND] =
     {
         .name = _("TM49"),
-        .itemId = ITEM_TM49_SNATCH,
+        .itemId = ITEM_TM49_SILVER_WIND,
         .price = 3000,
         .description = sTM49Desc,
 		.importance = 1,

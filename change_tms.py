@@ -193,8 +193,8 @@ with open(party_menu_file, "r", encoding="utf-8") as f:
 			else:
 				lines.append(line)			
 			if line.startswith("}"):
-				move = 0
-
+				move = 0		
+				
 write_lines(party_menu_file, lines)				
 				
 # src/data/item_icon_table.h

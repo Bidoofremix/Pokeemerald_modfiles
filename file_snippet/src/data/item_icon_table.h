@@ -62,7 +62,7 @@
     [ITEM_TM46] = {gItemIcon_TM, gItemIconPalette_DarkTMHM},
     [ITEM_TM47] = {gItemIcon_TM, gItemIconPalette_SteelTMHM},
     [ITEM_TM48] = {gItemIcon_TM, gItemIconPalette_PsychicTMHM},
-    [ITEM_TM49] = {gItemIcon_TM, gItemIconPalette_DarkTMHM},
+    [ITEM_TM49] = {gItemIcon_TM, gItemIconPalette_BugTMHM},
     [ITEM_TM50] = {gItemIcon_TM, gItemIconPalette_FireTMHM},
     [ITEM_HM01] = {gItemIcon_HM, gItemIconPalette_NormalTMHM},
 // >

@@ -38,7 +38,7 @@ VerdanturfTown_EventScript_AskToBattle::
 	// defeated
 	msgbox VerdanturfTown_Text_ThatWasAwesome, MSGBOX_DEFAULT
 	// reward
-	// giveitem
+	giveitem ITEM_TM49
 	msgbox VerdanturfTown_Text_LookForOtherMasterTrainers, MSGBOX_DEFAULT	
 	release	
 	end
