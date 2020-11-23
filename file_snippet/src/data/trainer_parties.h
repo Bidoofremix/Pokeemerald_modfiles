@@ -211,8 +211,8 @@ static const struct TrainerMonItemCustomMovesAbilityShiny sParty_MasterNormal[] 
     {
     .iv = 100,
     .lvl = 30,
-	.moves = {MOVE_SPORE, MOVE_FOCUS_PUNCH, MOVE_BUG_BITE, MOVE_NONE},
-    .heldItem = ITEM_BRIGHTPOWDER,
+	.moves = {MOVE_SPORE, MOVE_FOCUS_PUNCH, MOVE_NONE, MOVE_NONE},
+    .heldItem = ITEM_BRIGHT_POWDER,
     .abilityNum = 0,
     .shiny = 0,
     .species = SPECIES_SMEARGLE,

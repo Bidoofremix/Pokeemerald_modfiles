@@ -58,6 +58,7 @@ DewfordTown_Text_MarineShopSign::
 	.string "“All things ocean!”$"
 	
 DewfordTown_EventScript_NormalTypeTrainer::
+	lock
 	faceplayer
 
 	// check if battle has been complete
@@ -65,7 +66,7 @@ DewfordTown_EventScript_NormalTypeTrainer::
 	
 	// check if quest unlocked
 	msgbox DewfordTown_Text_IAmNormalTypeMasterTrainer
-	questmenu QUEST_MENU_CHECK_UNLOCKED SIDE_QUEST_11
+	questmenu QUEST_MENU_CHECK_UNLOCKED SIDE_QUEST_13
 	compare VAR_RESULT, TRUE
 	goto_if_eq DewfordTown_EventScript_AskToBattle
 	goto_if_ne DewfordTown_EventScript_QuestNotUnlocked

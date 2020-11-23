@@ -1,4 +1,20 @@
 < //
+RustboroCity_Gym_EventScript_GiveRockTomb:: @ 8212FA4
+	giveitem ITEM_TM39
+	compare VAR_RESULT, FALSE
+	goto_if_eq Common_EventScript_ShowBagIsFull
+	setflag FLAG_RECEIVED_TM39
+	msgbox RustboroCity_Gym_Text_ExplainRockTomb, MSGBOX_DEFAULT
+	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_13
+	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_16
+	call NoteNewQuestSeveral
+	release
+	end
+
+RustboroCity_Gym_EventScript_RoxanneRematch:: @ 8212FC8
+// >
+
+< //
 RustboroCity_Gym_Text_GymGuideAdvice: @ 821309D
 	.string "Yo, how's it going?\p"
 	.string "Listen, my friend!\n"
