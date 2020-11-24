@@ -7,6 +7,7 @@ RustboroCity_OnFrame: @ 81E070B
 
 RustboroCity_EventScript_UpdateRoute104State::
 	setvar VAR_ROUTE104_STATE, 1
+	setvar VAR_RUSTBORO_CITY_STATE, 7
 	end
 	
 RustboroCity_EventScript_ScientistAddMatchCall:: @ 81E0715
