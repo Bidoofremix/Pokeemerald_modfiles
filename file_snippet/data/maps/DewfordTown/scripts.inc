@@ -89,6 +89,7 @@ DewfordTown_EventScript_AskToBattle::
 	trainerbattle_no_intro TRAINER_MASTER_NORMAL, DewfordTown_Text_NormalTypeTrainer_Lose
 
 	// defeated
+	delay 40
 	msgbox DewfordTown_Text_IWasntExpecting, MSGBOX_DEFAULT
 	// reward
 	//giveitem ITEM_TM49
