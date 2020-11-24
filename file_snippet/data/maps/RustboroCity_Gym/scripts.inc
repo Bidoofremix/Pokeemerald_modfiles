@@ -29,3 +29,13 @@ RustboroCity_Gym_Text_GymGuidePostVictory: @ 82132E2
 
 RustboroCity_Gym_Text_JoshIntro: @ 82133E9
 // >
+
+< //
+RustboroCity_Gym_Text_ExplainRockTomb: @ 82138B1
+	.string "That TECHNICAL MACHINE, TM39,\n"
+	.string "contains ROCK TOMB.\p"
+	.string "It not only inflicts damage by dropping\n"
+	.string "rocks, it also lowers SPEED.$"
+
+RustboroCity_Gym_Text_RoxannePostBattle: @ 82139A7
+// >
