@@ -115,7 +115,7 @@ VerdanturfTown_BreedersClub_EventScript_OldLady_YesILikeBreeding::
 	msgbox VerdanturfTown_BreedersClub_Text_OldLady_Good, MSGBOX_DEFAULT
 	giveitem ITEM_CHARCOAL
 	compare VAR_RESULT, 0
-	goto_if_eq VerdanturfTown_BreedersClub_Text_OldLady_BagIsFull
+	goto_if_eq VerdanturfTown_BreedersClub_EventScript_OldLady_BagIsFull
 	setflag FLAG_RECEIVED_CHARCOAL_BREEDERSCLUB
 	msgbox VerdanturfTown_BreedersClub_Text_OldLady_Charcoal, MSGBOX_DEFAULT
 	release
