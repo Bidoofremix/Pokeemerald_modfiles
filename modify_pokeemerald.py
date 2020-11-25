@@ -332,8 +332,8 @@ tutormove_file = normalize_path("{0}/src/data/pokemon/tutor_learnsets.h".format(
 with open(tutormove_file, "w") as f:
 	f.write("const u16 gTutorMoves[] =\n")
 	f.write("{\n")
-	for move in tutor_moves:
-		f.write("    [TUTOR_{0}] = {0},\n".format(check_move(move)))
+	for move in sorted(tutor_moves):
+		f.write("    [TUTOR_{0}] = {0},\n".format(move))
 	f.write("};\n")
 	f.write("\n")
 	f.write("#define TUTOR_LEARNSET(moves) ((u32)(moves))\n")

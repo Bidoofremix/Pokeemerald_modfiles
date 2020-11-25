@@ -5,6 +5,8 @@ import re
 from config import pokeemerald_dir
 from misc import normalize_path
 
+snippet_folder = "file_snippet"
+
 ########## resources
 
 # moves
@@ -29,11 +31,11 @@ with open(battle_move_file, "r") as f:
 		elif ".type" in line:
 			tmp_type = line.split("=")[1].strip(" ").replace(",","").replace("\n","")
 			move_types[current_move] = tmp_type
-			
+
+#TM moves			
 item_file = normalize_path("{0}/include/constants/items.h".format(\
 	pokeemerald_dir))
 
-#TM moves
 tm_pattern = r'#define ITEM_([T|H]M\d{2}_(.+)) '	
 attack2tm = {}
 with open(item_file, "r") as f:
@@ -46,6 +48,27 @@ with open(item_file, "r") as f:
 			if move == "SOLARBEAM":
 				move = "SOLAR_BEAM"
 			attack2tm[move] = tm_move
+			
+# tutor moves
+# src/data/pokemon/tutor_learnsets.h
+tutor_file = normalize_path("{0}/src/data/pokemon/tutor_learnsets.h".format(\
+	snippet_folder))
+
+tutor = 0
+tutor_moves = set([])
+with open(tutor_file, "r", encoding="utf-8") as f:
+	for line in f:
+		if not tutor:
+			if line.startswith("const u16 gTutorMoves"):
+				tutor = 1
+		else:
+			if line.startswith("{"):
+				pass
+			elif line.startswith(" "):
+				tmp_move = line.rstrip("\n").rstrip("\n").split("=")[1].strip().replace(",","")
+				tutor_moves.add(tmp_move)
+			elif line.startswith("}"):
+				tutor = 0			
 			
 # abilities
 ability_file = normalize_path("{0}/include/constants/abilities.h".format(\
@@ -145,13 +168,3 @@ def generate_capsjoined(mons):
 	joined2caps = {caps2joined[i]:i for i in caps2joined}
 	
 	return caps2joined,joined2caps
-	
-##########
-
-tutor_moves = ["Mega Punch", "Swords Dance", "Mega Kick", "Body Slam",\
-	"Double Edge", "Counter", "Seismic Toss", "Mimic", "Metronome",\
-	"Soft Boiled", "Dream Eater", "Thunder Wave", "Explosion",\
-	"Rock Slide", "Substitute", "Dynamic Punch", "Rollout", "Psych Up",\
-	"Snore", "Icy Wind", "Endure", "Mud Slap","Ice Punch", "Swagger",\
-	"Sleep Talk", "Swift", "Defense Curl", "Thunder Punch", "Fire Punch",\
-	"Fury Cutter"]
