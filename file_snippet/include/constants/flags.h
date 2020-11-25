@@ -764,11 +764,11 @@
 #define FLAG_HIDDEN_ITEM_SILENT_FOREST_TINYMUSHROOM          (FLAG_HIDDEN_ITEMS_START + 0x71) // Unused Flag
 #define FLAG_HIDDEN_ITEM_SILENT_FOREST_BIG_MUSHROOM          (FLAG_HIDDEN_ITEMS_START + 0x72) // Unused Flag
 #define FLAG_HIDDEN_ITEM_RHYOLITE_CANYON_HEAT_ROCK           (FLAG_HIDDEN_ITEMS_START + 0x73) // Unused Flag
-#define FLAG_UNUSED_0x02E                                    (FLAG_HIDDEN_ITEMS_START + 0x74) // Unused Flag
-#define FLAG_UNUSED_0x02F                                    (FLAG_HIDDEN_ITEMS_START + 0x75) // Unused Flag
-#define FLAG_UNUSED_0x030                                    (FLAG_HIDDEN_ITEMS_START + 0x76) // Unused Flag
-#define FLAG_UNUSED_0x031                                    (FLAG_HIDDEN_ITEMS_START + 0x77) // Unused Flag
-#define FLAG_UNUSED_0x032                                    (FLAG_HIDDEN_ITEMS_START + 0x78) // Unused Flag
+#define FLAG_HIDDEN_ITEM_ROUTE_109_TWISTED_SPOON             (FLAG_HIDDEN_ITEMS_START + 0x74) // Unused Flag
+#define FLAG_HIDDEN_ITEM_ROUTE_109_SUPER_REPEL               (FLAG_HIDDEN_ITEMS_START + 0x75) // Unused Flag
+#define FLAG_HIDDEN_ITEM_ROUTE_109_LEMONADE                  (FLAG_HIDDEN_ITEMS_START + 0x76) // Unused Flag
+#define FLAG_HIDDEN_ITEM_ROUTE_109_BURN_HEAL                 (FLAG_HIDDEN_ITEMS_START + 0x77) // Unused Flag
+#define FLAG_HIDDEN_ITEM_ROUTE_109_WISE_GLASS                (FLAG_HIDDEN_ITEMS_START + 0x78) // Unused Flag
 #define FLAG_UNUSED_0x033                                    (FLAG_HIDDEN_ITEMS_START + 0x79) // Unused Flag
 #define FLAG_UNUSED_0x034                                    (FLAG_HIDDEN_ITEMS_START + 0x7A) // Unused Flag
 #define FLAG_UNUSED_0x035                                    (FLAG_HIDDEN_ITEMS_START + 0x7B) // Unused Flag

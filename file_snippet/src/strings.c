@@ -53,7 +53,7 @@ const u8 gText_SideQuestName_17[] = _("Side Quest 17");
 const u8 gText_SideQuestName_18[] = _("Side Quest 18");
 const u8 gText_SideQuestName_19[] = _("Side Quest 19");
 const u8 gText_SideQuestName_20[] = _("Side Quest 20");
-const u8 gText_SideQuestName_21[] = _("Side Quest 21");
+const u8 gText_SideQuestName_21[] = _("Cleaning Crew");
 const u8 gText_SideQuestName_22[] = _("Side Quest 22");
 const u8 gText_SideQuestName_23[] = _("Side Quest 23");
 const u8 gText_SideQuestName_24[] = _("Side Quest 24");
@@ -105,13 +105,16 @@ const u8 gText_SideQuestDesc_15[] = _(
 	"DRAGON types.");
 const u8 gText_SideQuestDesc_16[] = _(
 	"Prove that you are a great\n"
-	"angler by hooking lots of"
+	"angler by hooking lots of\n"
 	"POKéMON.");
 const u8 gText_SideQuestDesc_17[] = _("Description 17");
 const u8 gText_SideQuestDesc_18[] = _("Description 18");
 const u8 gText_SideQuestDesc_19[] = _("Description 19");
 const u8 gText_SideQuestDesc_20[] = _("Description 20");
-const u8 gText_SideQuestDesc_21[] = _("Description 21");
+const u8 gText_SideQuestDesc_21[] = _(
+	"Pick up the trash that\n"
+	"other TRAINERS have left on\n"
+	"SLATEPORT CITY's south beach.");
 const u8 gText_SideQuestDesc_22[] = _("Description 22");
 const u8 gText_SideQuestDesc_23[] = _("Description 23");
 const u8 gText_SideQuestDesc_24[] = _("Description 24");
@@ -144,7 +147,7 @@ const u8 gText_SideQuestPOC_16[] = _("FISHERMAN");
 const u8 gText_SideQuestPOC_17[] = _("POC 17");
 const u8 gText_SideQuestPOC_18[] = _("POC 18");
 const u8 gText_SideQuestPOC_19[] = _("POC 19");
-const u8 gText_SideQuestPOC_20[] = _("POC 20");
+const u8 gText_SideQuestPOC_20[] = _("OLD MAN");
 const u8 gText_SideQuestPOC_21[] = _("POC 21");
 const u8 gText_SideQuestPOC_22[] = _("POC 22");
 const u8 gText_SideQuestPOC_23[] = _("POC 23");
@@ -175,7 +178,7 @@ const u8 gText_SideQuestMap_16[] = _("DEWFORD TOWN");
 const u8 gText_SideQuestMap_17[] = _("Map 17");
 const u8 gText_SideQuestMap_18[] = _("Map 18");
 const u8 gText_SideQuestMap_19[] = _("Map 19");
-const u8 gText_SideQuestMap_20[] = _("Map 20");
+const u8 gText_SideQuestMap_20[] = _("ROUTE 109");
 const u8 gText_SideQuestMap_21[] = _("Map 21");
 const u8 gText_SideQuestMap_22[] = _("Map 22");
 const u8 gText_SideQuestMap_23[] = _("Map 23");
