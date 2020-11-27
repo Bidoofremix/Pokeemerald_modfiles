@@ -256,11 +256,10 @@ if args["mode"] == "tm":
 					move = 1
 			else:
 				if deleted_move in line:
-					lines.append("    %s,\n" % move)
-				else:
-					lines.append(line)			
+					line = "    %s,\n" % move	
 				if line.startswith("}"):
-					move = 0		
+					move = 0
+			lines.append(line)
 					
 	write_lines(party_menu_file, lines)				
 					

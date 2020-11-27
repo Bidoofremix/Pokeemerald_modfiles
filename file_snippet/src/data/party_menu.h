@@ -60,3 +60,4 @@ static const u16 sTMHMMoves[] =
     MOVE_WATERFALL,
     MOVE_DIVE,
 };
+// > END
