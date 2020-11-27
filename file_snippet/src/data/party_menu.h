@@ -20,7 +20,7 @@ static const u16 sTMHMMoves[] =
     MOVE_PROTECT,
     MOVE_RAIN_DANCE,
     MOVE_GIGA_DRAIN,
-    MOVE_SAFEGUARD,
+    MOVE_SWIFT,
     MOVE_FRUSTRATION,
     MOVE_SOLAR_BEAM,
     MOVE_IRON_TAIL,
@@ -60,4 +60,3 @@ static const u16 sTMHMMoves[] =
     MOVE_WATERFALL,
     MOVE_DIVE,
 };
-// > END

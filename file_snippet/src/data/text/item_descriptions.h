@@ -78,3 +78,12 @@ static const u8 sTM49Desc[] = _(
 
 static const u8 sTM50Desc[] = _(
 // >
+
+< //
+static const u8 sTM20Desc[] = _(
+    "Sprays star-shaped\n"
+    "rays that never\n"
+    "miss.");
+
+static const u8 sTM21Desc[] = _(
+// >

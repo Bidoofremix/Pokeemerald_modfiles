@@ -380,10 +380,10 @@
         .secondaryId = 0,
     },
 
-    [ITEM_TM20_SAFEGUARD] =
+    [ITEM_TM20_SWIFT] =
     {
         .name = _("TM20"),
-        .itemId = ITEM_TM20_SAFEGUARD,
+        .itemId = ITEM_TM20_SWIFT,
         .price = 3000,
         .description = sTM20Desc,
 		.importance = 1,
