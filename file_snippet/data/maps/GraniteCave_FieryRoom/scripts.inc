@@ -7,8 +7,8 @@ GraniteCave_FieryRoom_EventScript_ItemFlameOrb::
 	finditem ITEM_FLAME_ORB
 	end	
 	
-GraniteCave_FieryRoom_EventScript_ItemDuskBall::
-	finditem ITEM_DUSK_BALL
+GraniteCave_FieryRoom_EventScript_ItemIgnisBall::
+	finditem ITEM_IGNIS_BALL
 	end	
 	
 GraniteCave_FieryRoom_OnTransition:
