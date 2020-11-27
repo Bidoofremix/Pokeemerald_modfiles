@@ -119,7 +119,7 @@ BrineBeach_EventScript_Gyarados::
 	msgbox BrineBeach_Text_Gyarados, MSGBOX_DEFAULT
 	closemessage
 	delay 40
-	setwildbattle SPECIES_GYARADOS, 25, ITEM_NONE
+	setwildbattle SPECIES_GYARADOS, 20, ITEM_NONE
 	setflag FLAG_SYS_CTRL_OBJ_DELETE
 	
 	//dowildbattle
@@ -467,7 +467,7 @@ BrineBeach_Text_Brawly_GyaradosIsStillMad:
 	.string "My POKéMON are totally knocked out…$"
 	
 BrineBeach_Text_Brawly_CouldYouTameTheGyarados:
-	.string "{PLAYER}, could you calm down\n"
+	.string "{PLAYER}, could you calm down that\n"
 	.string "Gyarados?\p"
 	.string "The safety of the people of DEWFORD\n"
 	.string "depends on you!$"
