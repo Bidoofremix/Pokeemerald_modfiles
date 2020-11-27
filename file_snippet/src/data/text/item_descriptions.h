@@ -87,3 +87,12 @@ static const u8 sTM20Desc[] = _(
 
 static const u8 sTM21Desc[] = _(
 // >
+
+< //
+static const u8 sTM42Desc[] = _(
+    "A ramming attack\n"
+    "that may cause\n"
+    "flinching.");
+
+static const u8 sTM43Desc[] = _(
+// >

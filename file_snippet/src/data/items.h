@@ -666,10 +666,10 @@
         .secondaryId = 0,
     },
 
-    [ITEM_TM42_FACADE] =
+    [ITEM_TM42_HEADBUTT] =
     {
         .name = _("TM42"),
-        .itemId = ITEM_TM42_FACADE,
+        .itemId = ITEM_TM42_HEADBUTT,
         .price = 3000,
         .description = sTM42Desc,
 		.importance = 1,
