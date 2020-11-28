@@ -199,7 +199,7 @@ DewfordTown_EventScript_Fished20Mons::
 	msgbox DewfordTown_Text_WowYouHaveHauledInLoads, MSGBOX_DEFAULT
 	questmenu QUEST_MENU_COMPLETE_QUEST SIDE_QUEST_16
 	call CompleteQuestFanfare
-	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_20
+	questmenu QUEST_MENU_UNLOCK_QUEST SIDE_QUEST_21
 	call NoteNewQuestSingle
 	msgbox DewfordTown_Text_ExperienceWithWaterPokemon, MSGBOX_DEFAULT
 	giveitem ITEM_WATER_STONE
