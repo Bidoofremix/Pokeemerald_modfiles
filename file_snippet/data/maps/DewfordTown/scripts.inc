@@ -92,7 +92,7 @@ DewfordTown_EventScript_AskToBattle::
 	delay 40
 	msgbox DewfordTown_Text_IWasntExpecting, MSGBOX_DEFAULT
 	// reward
-	//giveitem ITEM_TM49
+	giveitem ITEM_TM20
 	msgbox DewfordTown_Text_LookForOtherMasterTrainers, MSGBOX_DEFAULT	
 	release	
 	end
