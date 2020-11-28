@@ -367,3 +367,15 @@ PetalburgCity_Gym_Text_JodyPostBattle: @ 82070FB
 
 PetalburgCity_Gym_Text_JodyPostBadge: @ 8207170
 // >
+
+< //
+PetalburgCity_Gym_Text_ExplainFacade: @ 8206254
+	.string "DAD: TM42 contains Headbutt.\p"
+	.string "It's a good basic attack that\n"
+	.string "may cause flinching if you\l"
+	.string "move before your foe.\p"
+	.string "It might be able to turn the\n"
+	.string "tables in only a few turns.$"
+
+PetalburgCity_Gym_Text_DadHappyAndSad: @ 82062FB
+// >
