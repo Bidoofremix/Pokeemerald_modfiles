@@ -5199,10 +5199,11 @@ static const union AnimCmd *const sAnims_LINOONE[] =
 
 static const union AnimCmd sAnim_OBSTAGOON_1[] =
 {
-    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(0, 11),
+    ANIMCMD_FRAME(1, 22),
+    ANIMCMD_FRAME(0, 22),
     ANIMCMD_FRAME(1, 20),
-    ANIMCMD_FRAME(0, 20),
-    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(0, 10),
     ANIMCMD_END,
 };
 static const union AnimCmd *const sAnims_OBSTAGOON[] =
@@ -5226,10 +5227,9 @@ static const union AnimCmd *const sAnims_GALARIAN_ZIGZAGOON[] =
 
 static const union AnimCmd sAnim_GALARIAN_LINOONE_1[] =
 {
-    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(0, 10),
     ANIMCMD_FRAME(1, 20),
-    ANIMCMD_FRAME(0, 20),
-    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(0, 10),
     ANIMCMD_END,
 };
 static const union AnimCmd *const sAnims_GALARIAN_LINOONE[] =
@@ -5240,10 +5240,11 @@ static const union AnimCmd *const sAnims_GALARIAN_LINOONE[] =
 
 static const union AnimCmd sAnim_GALARIAN_OBSTAGOON_1[] =
 {
-    ANIMCMD_FRAME(0, 20),
+    ANIMCMD_FRAME(0, 11),
+    ANIMCMD_FRAME(1, 22),
+    ANIMCMD_FRAME(0, 22),
     ANIMCMD_FRAME(1, 20),
-    ANIMCMD_FRAME(0, 20),
-    ANIMCMD_FRAME(1, 20),
+    ANIMCMD_FRAME(0, 10),
     ANIMCMD_END,
 };
 static const union AnimCmd *const sAnims_GALARIAN_OBSTAGOON[] =

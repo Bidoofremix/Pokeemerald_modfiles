@@ -1633,8 +1633,8 @@ const struct MonCoords gMonFrontPicCoords[] =
     },
     [SPECIES_OBSTAGOON] =
     {
-        .size = 0x7,
-        .y_offset = 0x7,
+        .size = 0x78,
+        .y_offset = 0x0,
     },
     [SPECIES_GALARIAN_ZIGZAGOON] =
     {
@@ -1648,8 +1648,8 @@ const struct MonCoords gMonFrontPicCoords[] =
     },
     [SPECIES_GALARIAN_OBSTAGOON] =
     {
-        .size = 0x7,
-        .y_offset = 0x7,
+        .size = 0x78,
+        .y_offset = 0x0,
     },
     [SPECIES_WURMPLE] =
     {
