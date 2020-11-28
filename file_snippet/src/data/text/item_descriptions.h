@@ -82,8 +82,8 @@ static const u8 sTM50Desc[] = _(
 < //
 static const u8 sTM20Desc[] = _(
     "Sprays star-shaped\n"
-    "rays that never\n"
-    "miss.");
+    "rays that always\n"
+    "strike first.");
 
 static const u8 sTM21Desc[] = _(
 // >
