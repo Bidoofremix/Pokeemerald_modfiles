@@ -6,7 +6,7 @@ RustboroCity_University_PostDocRoom_MapScripts::
 RustboroCity_University_EventScript_Kirlia::
 	lock
 	faceplayer
-	playmoncry SPECIES_KIRLIA
+	playmoncry SPECIES_KIRLIA, 0
 	msgbox RustboroCity_University_Text_Kirlia, MSGBOX_DEFAULT
 	release
 	end
