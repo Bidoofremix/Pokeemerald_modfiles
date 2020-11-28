@@ -1,59 +1,61 @@
 {
-    "allow_bike": false,
-    "allow_cycling": "",
-    "allow_escape_rope": false,
-    "allow_escaping": "",
-    "allow_running": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "bg_events": [
-    ],
-    "connections": null,
-    "coord_events": [
-    ],
-    "id": "MAP_RUSTBORO_CITY_UNIVERSITY_POST_DOC_ROOM",
-    "layout": "LAYOUT_RUSTBORO_CITY_UNIVERSITY_POST_DOC_ROOM",
-    "map_type": "MAP_TYPE_INDOOR",
-    "music": "MUS_RUSTBORO",
-    "name": "RustboroCity_University_PostDocRoom",
-    "object_events": [
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "RustboroCity_University_EventScript_PostDoc",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 4,
-            "y": 6
-        },
-        {
-            "elevation": 3,
-            "flag": "0",
-            "graphics_id": "OBJ_EVENT_GFX_KIRLIA",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "script": "NULL",
-            "trainer_sight_or_berry_tree_id": "0",
-            "trainer_type": "0",
-            "x": 3,
-            "y": 6
-        }
-    ],
-    "region_map_section": "MAPSEC_RUSTBORO_CITY",
-    "requires_flash": false,
-    "show_map_name": false,
-    "warp_events": [
-        {
-            "dest_map": "MAP_RUSTBORO_CITY_DEVON_CORP_1F",
-            "dest_warp_id": 6,
-            "elevation": 0,
-            "x": 9,
-            "y": 1
-        }
-    ],
-    "weather": "WEATHER_NONE"
+  "id": "MAP_RUSTBORO_CITY_UNIVERSITY_POST_DOC_ROOM",
+  "name": "RustboroCity_University_PostDocRoom",
+  "layout": "LAYOUT_RUSTBORO_CITY_UNIVERSITY_POST_DOC_ROOM",
+  "music": "MUS_RUSTBORO",
+  "region_map_section": "MAPSEC_RUSTBORO_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": 0,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BEAUTY",
+      "x": 4,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RustboroCity_University_EventScript_PostDoc",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_KIRLIA",
+      "x": 3,
+      "y": 6,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "0",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "RustboroCity_University_EventScript_Kirlia",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 9,
+      "y": 1,
+      "elevation": 0,
+      "dest_map": "MAP_RUSTBORO_CITY_DEVON_CORP_1F",
+      "dest_warp_id": 6
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ],
+  "allow_bike": "",
+  "allow_escape_rope": ""
 }

@@ -3,6 +3,17 @@ RustboroCity_University_PostDocRoom_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, RustboroCity_University_PostDocRoom_OnTransition
 	.byte 0
 
+RustboroCity_University_EventScript_Kirlia::
+	lock
+	faceplayer
+	playmoncry SPECIES_KIRLIA
+	msgbox RustboroCity_University_Text_Kirlia, MSGBOX_DEFAULT
+	release
+	end
+	
+RustboroCity_University_Text_Kirlia:
+	.string "Kiih!$"
+	
 RustboroCity_University_EventScript_PostDoc::
 	lock
 	faceplayer
