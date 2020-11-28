@@ -351,6 +351,11 @@ BrineBeach_EventScript_Wingull3::
 	release
 	end
 	
+BrineBeach_EventScript_ItemSmoothRock::
+	finditem ITEM_SMOOTH_ROCK
+	end	
+		
+	
 BrineBeach_Movement_Brawly1:
 	face_right
 	step_end
