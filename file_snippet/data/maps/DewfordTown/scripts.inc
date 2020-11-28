@@ -16,7 +16,7 @@ DewfordTown_OnTransition: @ 81E950D
 	end
 
 DewfordTown_EventScript_SetCooltrainer::
-	setobjectxyperm LOCALID_COOLTRAINER, 8, 18
+	setobjectxyperm LOCALID_COOLTRAINER, 3, 13
 	setobjectmovementtype LOCALID_COOLTRAINER, MOVEMENT_TYPE_FACE_DOWN
 	end
 	
