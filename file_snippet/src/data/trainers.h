@@ -236,6 +236,20 @@
         .partySize = ARRAY_COUNT(sParty_MasterNormal),
         .party = {.ItemCustomMovesAbilityShiny = sParty_MasterNormal},
     },
+
+	[TRAINER_SLATEPORT_SOUND] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_ABILITY,
+        .trainerClass = TRAINER_CLASS_GUITARIST,
+        .encounterMusic_gender = TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_GUITARIST,
+        .trainerName = _("GANDIV"),
+        .items = {},
+        .doubleBattle = TRUE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = ARRAY_COUNT(sParty_Gandiv),
+        .party = {.ItemCustomMovesAbilityShiny = sParty_Gandiv},
+    },
 	
     [TRAINER_SAWYER_1] =
 // >

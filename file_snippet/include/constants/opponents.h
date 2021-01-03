@@ -20,8 +20,9 @@
 #define TRAINER_TABITHA_RHYOLITE_CANYON     868
 #define TRAINER_MASTER_BUG                  869
 #define TRAINER_MASTER_NORMAL               870
+#define TRAINER_SLATEPORT_SOUND             871
 
-#define TRAINERS_COUNT                      871
+#define TRAINERS_COUNT                      872
 #define MAX_TRAINERS_COUNT                  1000
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_H

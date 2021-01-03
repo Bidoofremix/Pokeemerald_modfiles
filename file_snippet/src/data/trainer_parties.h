@@ -237,5 +237,44 @@ static const struct TrainerMonItemCustomMovesAbilityShiny sParty_MasterNormal[] 
     },
 };
 
+static const struct TrainerMonItemCustomMovesAbilityShiny sParty_Gandiv[] = {
+    {
+    .iv = 255,
+    .lvl = 30,
+	.moves = {MOVE_BOOMBURST, MOVE_NONE, MOVE_NONE, MOVE_NONE},
+    .heldItem = ITEM_CHOICE_SCARF,
+    .abilityNum = 2,
+    .shiny = 0,
+    .species = SPECIES_EXPLOUD,
+    },
+    {
+    .iv = 255,
+    .lvl = 30,
+	.moves = {MOVE_DAZZLING_GLEAM, MOVE_LIGHT_SCREEN, MOVE_REFLECT, MOVE_NONE},
+    .heldItem = ITEM_LIGHT_CLAY,
+    .abilityNum = 2,
+    .shiny = 0,
+    .species = SPECIES_GARDEVOIR,
+    },
+    {
+    .iv = 255,
+    .lvl = 30,
+	.moves = {MOVE_BOOMBURST, MOVE_THUNDERBOLT, MOVE_NONE, MOVE_NONE},
+    .heldItem = ITEM_LIFE_ORB,
+    .abilityNum = 0,
+    .shiny = 0,
+    .species = SPECIES_ELECTRODE,
+    }, 
+	{
+    .iv = 255,
+    .lvl = 30,
+	.moves = {MOVE_FORESIGHT, MOVE_SHADOW_BALL, MOVE_FOCUS_BLAST, MOVE_NONE},
+    .heldItem = ITEM_LEFTOVERS,
+    .abilityNum = 0,
+    .shiny = 0,
+    .species = SPECIES_DUSKNOIR,
+    },
+};
+
 static const struct TrainerMonNoItemDefaultMoves sParty_GruntAquaHideout1[] = {
 // >
