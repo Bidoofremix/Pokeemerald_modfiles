@@ -4,8 +4,10 @@ Route109_EventScript_OldMan:: @ 81EEA0F
 	faceplayer
 	bufferspeciesname 0, SPECIES_ZIGZAGOON
 	questmenu QUEST_MENU_CHECK_COMPLETE SIDE_QUEST_21
+	compare VAR_RESULT, TRUE
 	goto_if_eq Route109_EventScript_ShoreUpTutor
 	questmenu QUEST_MENU_CHECK_UNLOCKED SIDE_QUEST_21
+	compare VAR_RESULT, TRUE
 	goto_if_ne Route109_EventScript_OldMan_QuestNotUnlocked
 	compare VAR_ROUTE109_STATE, 0
 	goto_if_eq Route109_EventScript_OldMan_QuestStart
@@ -60,7 +62,7 @@ Route109_EventScript_ShoreUpTutor::
 	msgbox Route109_Text_ICanTeachYourMon, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq Route109_EventScript_ShoreUpDeclined
-	msgbox Rute109_Text_ShoreUpWhichMon, MSGBOX_DEFAULT
+	msgbox Route109_Text_ShoreUpWhichMon, MSGBOX_DEFAULT
 	setvar VAR_0x8005, TUTOR_MOVE_SHORE_UP
 	call MoveTutor_EventScript_OpenPartyMenu
 	compare VAR_RESULT, 0
@@ -103,12 +105,12 @@ Route109_Text_ICanTeachYourMon:
 	.string "I can teach your POKéMON the move\n"
 	.string "Shore Up. Would you like that?$"
 
-Rute109_Text_ShoreUpWhichMon:
+Route109_Text_ShoreUpWhichMon:
 	.string "Which POKéMON should I teach?$"
 	
 Route109_Text_SomeWaterPokemonEnjoyRest:
-	.string "Some WATER POKéMON enjoy resting\n"
-	.string "at a shore between long sea journeys.\p"
+	.string "Some POKéMON enjoy resting at a shore\n"
+	.string "between long sea journeys.\p"
 	.string "That's why they can recover health\n"
 	.string "using Shore Up.$"
 	
@@ -159,4 +161,10 @@ Route109_Text_BrineyDeliverDevonGoods: @ 81EED5E
 	.string "the FLASHDRIVE. I'll be waiting.$"
 
 DewfordTown_Text_BrineyLandedInSlateport: @ 81EEDA7
+// >
+
+< //
+	clearflag FLAG_HIDE_MR_BRINEY_BOAT_DEWFORD_TOWN
+	setobjectxyperm LOCALID_BRINEY_DEWFORD, 13, 8
+	addobject LOCALID_BRINEY_DEWFORD
 // >
