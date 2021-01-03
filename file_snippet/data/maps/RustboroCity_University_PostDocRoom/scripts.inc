@@ -6,7 +6,7 @@ RustboroCity_University_PostDocRoom_MapScripts::
 RustboroCity_University_EventScript_Kirlia::
 	lock
 	faceplayer
-	bufferspeciesname SPECIES_KIRLIA, 0
+	bufferspeciesname 0, SPECIES_KIRLIA
 	playmoncry SPECIES_KIRLIA, 0
 	msgbox RustboroCity_University_Text_Kirlia_ShouldTeach, MSGBOX_YESNO
 	compare VAR_RESULT, NO
@@ -20,7 +20,7 @@ RustboroCity_University_EventScript_Kirlia::
 	end	
 	
 RustboroCity_University_EventScript_Kirlia_DeclinedOrTaught::
-	bufferspeciesname SPECIES_KIRLIA, 0
+	bufferspeciesname 0, SPECIES_KIRLIA
 	playmoncry SPECIES_KIRLIA, 0
 	msgbox RustboroCity_University_Text_Kirlia_Declined, MSGBOX_DEFAULT
 	release
