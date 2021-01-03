@@ -39,6 +39,6 @@
 #define TUTOR_MOVE_DEFENSE_CURL    26
 #define TUTOR_MOVE_THUNDER_PUNCH   27
 #define TUTOR_MOVE_FIRE_PUNCH      28
-#define TUTOR_MOVE_FURY_CUTTER     29
+#define TUTOR_MOVE_SAFEGUARD     29
 #define TUTOR_MOVE_COUNT           30
 // >
