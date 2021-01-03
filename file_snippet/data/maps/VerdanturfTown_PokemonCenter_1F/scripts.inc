@@ -7,15 +7,15 @@ VerdanturfTown_PokemonCenter_1F_Text_VisitForBattleTent: @ 820280B
 	.string "Or is there somebody here that you\n"
 	.string "came to see?$"
 
-VerdanturfTown_PokemonCenter_1F_SmallBoy:
+VerdanturfTown_PokemonCenter_1F_EventScript_SmallBoy::
 	lock
 	faceplayer
-	goto_if_defeated TRAINER_MASTER_BUG, VerdanturfTown_PokemonCenter_1F_DefeatedBugMasterTrainer
+	goto_if_defeated TRAINER_MASTER_BUG, VerdanturfTown_PokemonCenter_1F_EventScript_DefeatedBugMasterTrainer
 	msgbox VerdanturfTown_PokemonCenter_1F_TheresAReallyStrongTrainer, MSGBOX_DEFAULT
 	release
 	end
 	
-VerdanturfTown_PokemonCenter_1F_DefeatedBugMasterTrainer:
+VerdanturfTown_PokemonCenter_1F_EventScript_DefeatedBugMasterTrainer::
 	msgbox VerdanturfTown_PokemonCenter_1F_WhatYouDefeatedTheStrongTrainer, MSGBOX_DEFAULT
 	release
 	end
