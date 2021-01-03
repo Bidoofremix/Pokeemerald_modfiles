@@ -6,13 +6,36 @@ RustboroCity_University_PostDocRoom_MapScripts::
 RustboroCity_University_EventScript_Kirlia::
 	lock
 	faceplayer
+	bufferspeciesname SPECIES_KIRLIA, 0
 	playmoncry SPECIES_KIRLIA, 0
-	msgbox RustboroCity_University_Text_Kirlia, MSGBOX_DEFAULT
+	msgbox RustboroCity_University_Text_Kirlia_ShouldTeach, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq RustboroCity_University_EventScript_Kirlia_DeclinedOrTaught
+	msgbox RustboroCity_University_Text_Kirlia_WhichMon, MSGBOX_DEFAULT
+	setvar VAR_0x8005, TUTOR_MOVE_SAFEGUARD
+	call MoveTutor_EventScript_OpenPartyMenu
+	compare VAR_RESULT, 0
+	goto_if_eq RustboroCity_University_EventScript_Kirlia_DeclinedOrTaught
+	goto RustboroCity_University_EventScript_Kirlia_DeclinedOrTaught
+	end	
+	
+RustboroCity_University_EventScript_Kirlia_DeclinedOrTaught::
+	bufferspeciesname SPECIES_KIRLIA, 0
+	playmoncry SPECIES_KIRLIA, 0
+	msgbox RustboroCity_University_Text_Kirlia_Declined, MSGBOX_DEFAULT
 	release
 	end
 	
-RustboroCity_University_Text_Kirlia:
-	.string "Kiih!$"
+RustboroCity_University_Text_Kirlia_ShouldTeach:
+	.string "{STR_VAR_1}: Kiih!\p"
+	.string "{STR_VAR_1} will teach your\n"
+	.string "POKéMON Safeguard. Is that OK?$"
+	
+RustboroCity_University_Text_Kirlia_WhichMon:
+	.string "Which POKéMON should be taught?$"	
+	
+RustboroCity_University_Text_Kirlia_Declined:
+	.string "{STR_VAR_1}: Kii-ih!$"
 	
 RustboroCity_University_EventScript_PostDoc::
 	lock
