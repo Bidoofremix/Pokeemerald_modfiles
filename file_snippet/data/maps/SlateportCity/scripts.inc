@@ -48,9 +48,9 @@ SlateportCity_EventScript_IntroduceBattleTent::
 	applymovement LOCALID_GENTLEMAN, SlateportCity_Movement_Down2
 	waitmovement 0
 	compare VAR_TEMP_0, 19
-	call_if_eq SlateportCity_EventScript_WalkGentlemanLeft
+	call_if_eq SlateportCity_EventScript_WalkGentlemanLeft2
 	compare VAR_TEMP_0, 18
-	call_if_ge SlateportCity_EventScript_WalkGentlemanLeft
+	call_if_eq SlateportCity_EventScript_WalkGentlemanLeft
 	applymovement LOCALID_GENTLEMAN, SlateportCity_Movement_Left5
 	waitmovement 0
 	applymovement LOCALID_GENTLEMAN, Common_Movement_FaceRight
@@ -62,10 +62,10 @@ SlateportCity_EventScript_IntroduceBattleTent::
 	
 	// walk player left
 	compare VAR_TEMP_0, 19
-	call_if_eq SlateportCity_EventScript_WalkPlayerLeft
+	call_if_eq SlateportCity_EventScript_WalkPlayerLeft2
 	compare VAR_TEMP_0, 18
 	call_if_eq SlateportCity_EventScript_WalkPlayerLeft
-	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_Left5
+	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_Left4
 	waitmovement 0
 	
 	delay 10
@@ -85,9 +85,23 @@ SlateportCity_EventScript_WalkRight::
 SlateportCity_EventScript_WalkGentlemanLeft::
 	applymovement LOCALID_GENTLEMAN, SlateportCity_Movement_Left1
 	waitmovement 0
+	return	
+	
+SlateportCity_EventScript_WalkGentlemanLeft2::
+	applymovement LOCALID_GENTLEMAN, SlateportCity_Movement_Left1
+	waitmovement 0
+	applymovement LOCALID_GENTLEMAN, SlateportCity_Movement_Left1
+	waitmovement 0
 	return
 	
 SlateportCity_EventScript_WalkPlayerLeft::
+	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_Left1
+	waitmovement 0
+	return		
+	
+SlateportCity_EventScript_WalkPlayerLeft2::
+	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_Left1
+	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, SlateportCity_Movement_Left1
 	waitmovement 0
 	return	
@@ -106,6 +120,13 @@ SlateportCity_Movement_Right1:
 	
 SlateportCity_Movement_Left5:
 	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+	
+SlateportCity_Movement_Left4:
 	walk_left
 	walk_left
 	walk_left
@@ -136,11 +157,11 @@ SlateportCity_Text_YouMustBeATrainer:
 SlateportCity_Text_ThisIsTheBattleTent:
 	.string "This is the renewed BATTLE TENT.\p"
 	.string "You may have visited here before,\n"
-	.string "but the BATTLE CHALLENGE here has\l"
+	.string "but the BATTLE CHALLENGE has\l"
 	.string "been completely redesigned.\p"
 	.string "No one has conquered all of the\n"
-	.string "challenges yet. Maybe you will be\l"
-	.string "the first one!$"
+	.string "challenges yet.\l"
+	.string "Maybe you will be the first one!$"
 	
 SlateportCity_EventScript_MovePeopleForSternInterview:: @ 81DCC99
 // >

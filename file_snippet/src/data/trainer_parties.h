@@ -275,6 +275,35 @@ static const struct TrainerMonItemCustomMovesAbilityShiny sParty_Gandiv[] = {
     .species = SPECIES_DUSKNOIR,
     },
 };
+static const struct TrainerMonItemCustomMovesAbilityShiny sParty_Renee[] = {
+    {
+    .iv = 255,
+    .lvl = 30,
+	.moves = {MOVE_FLARE_BLITZ, MOVE_HIGH_JUMP_KICK, MOVE_NONE, MOVE_NONE},
+    .heldItem = ITEM_FOCUS_SASH,
+    .abilityNum = 2,
+    .shiny = 0,
+    .species = SPECIES_BLAZIKEN,
+    },
+    {
+    .iv = 255,
+    .lvl = 30,
+	.moves = {MOVE_DRAGON_DANCE, MOVE_WATERFALL, MOVE_EARTHQUAKE, MOVE_NONE},
+    .heldItem = ITEM_LIFE_ORB,
+    .abilityNum = 0,
+    .shiny = 1,
+    .species = SPECIES_GYARADOS,
+    },
+    {
+    .iv = 255,
+    .lvl = 30,
+	.moves = {MOVE_SHELL_SMASH, MOVE_ICICLE_SPEAR, MOVE_ROCK_BLAST, MOVE_ICE_SHARD},
+    .heldItem = ITEM_KINGS_ROCK,
+    .abilityNum = 2,
+    .shiny = 0,
+    .species = SPECIES_CLOYSTER,
+    },
+};
 
 static const struct TrainerMonNoItemDefaultMoves sParty_GruntAquaHideout1[] = {
 // >

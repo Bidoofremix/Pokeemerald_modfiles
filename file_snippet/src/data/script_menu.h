@@ -29,6 +29,21 @@ static const struct MenuAction MultichoiceList_GameCornerStones2[] =
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_SingleDouble[] =
+{
+	{gText_Single},
+	{gText_Double},
+	{gText_Exit},
+};
+
+static const struct MenuAction MultichoiceList_SingleChallenges[] = 
+{
+	{gText_TheWorst},
+	{gText_Spicy2},
+	{gText_SpacePoints2},
+	{gText_Exit},
+};
+
 static const struct MenuAction MultichoiceList_GameCornerCoins[] =
 // >
 
@@ -37,5 +52,7 @@ static const struct MenuAction MultichoiceList_GameCornerCoins[] =
     [MULTI_GAME_CORNER_TMS]            = MULTICHOICE(MultichoiceList_GameCornerTMs),
     [MULTI_GAME_CORNER_STONES_1]       = MULTICHOICE(MultichoiceList_GameCornerStones1),
     [MULTI_GAME_CORNER_STONES_2]       = MULTICHOICE(MultichoiceList_GameCornerStones2),
+	[MULTI_SINGLE_DOUBLE]              = MULTICHOICE(MultichoiceList_SingleDouble),
+	[MULTI_SINGLE_CHALLENGES]          = MULTICHOICE(MultichoiceList_SingleChallenges),
     [MULTI_SSTIDAL_SLATEPORT_NO_BF]    = MULTICHOICE(MultichoiceList_SSTidalSlateportNoBF),
 // >

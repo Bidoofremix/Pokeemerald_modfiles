@@ -251,5 +251,19 @@
         .party = {.ItemCustomMovesAbilityShiny = sParty_Gandiv},
     },
 	
+	[TRAINER_SLATEPORT_BOOST] =
+    {
+        .partyFlags = F_TRAINER_PARTY_HELD_ITEM | F_TRAINER_PARTY_CUSTOM_MOVESET | F_TRAINER_PARTY_ABILITY,
+        .trainerClass = TRAINER_CLASS_BATTLE_GIRL,
+        .encounterMusic_gender = F_TRAINER_FEMALE | TRAINER_ENCOUNTER_MUSIC_INTENSE,
+        .trainerPic = TRAINER_PIC_BATTLE_GIRL,
+        .trainerName = _("RENEE"),
+        .items = {},
+        .doubleBattle = FALSE,
+        .aiFlags = AI_SCRIPT_CHECK_BAD_MOVE | AI_SCRIPT_TRY_TO_FAINT | AI_SCRIPT_CHECK_VIABILITY,
+        .partySize = ARRAY_COUNT(sParty_Renee),
+        .party = {.ItemCustomMovesAbilityShiny = sParty_Renee},
+    },
+	
     [TRAINER_SAWYER_1] =
 // >

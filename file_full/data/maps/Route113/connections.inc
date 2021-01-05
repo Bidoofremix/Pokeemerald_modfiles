@@ -6,7 +6,7 @@ Route113_MapConnectionsList:
 	connection down, 60, MAP_ROUTE112
 	connection left, 0, MAP_FALLARBOR_TOWN
 	connection right, 0, MAP_ROUTE111
-	connection down, 10, MAP_NAVEL_ROCK_FORK
+	connection down, -10, MAP_NAVEL_ROCK_FORK
 
 Route113_MapConnections:
 	.4byte 4

@@ -23,6 +23,11 @@ const u8 gText_ShinyStoneAndPrice[] = _("Shiny Stone{CLEAR_TO 0x48}2,000 COINS")
 const u8 gText_DuskStoneAndPrice[] = _("Dusk Stone{CLEAR_TO 0x48}2,000 COINS");
 const u8 gText_DawnStoneAndPrice[] = _("Dawn Stone{CLEAR_TO 0x48}2,000 COINS");
 const u8 gText_IceStoneAndPrice[] = _("Ice Stone{CLEAR_TO 0x48}2,000 COINS");
+
+const u8 gText_SoundBattleTent[] = _("Sound");
+const u8 gText_ElectricBattleTent[] = _("Electric");
+const u8 gText_Boost[] = _("Boost");
+
 const u8 gText_Cool[] = _("COOL");
 // >
 

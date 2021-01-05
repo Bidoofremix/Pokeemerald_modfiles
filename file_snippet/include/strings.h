@@ -23,6 +23,11 @@ extern const u8 gText_ShinyStoneAndPrice[];
 extern const u8 gText_DuskStoneAndPrice[];
 extern const u8 gText_DawnStoneAndPrice[];
 extern const u8 gText_IceStoneAndPrice[];
+
+extern const u8 gText_SoundBattleTent[];
+extern const u8 gText_ElectricBattleTent[];
+extern const u8 gText_BoostBattleTent[];
+
 extern const u8 gText_50CoinsAndPrice[];
 // >
 
