@@ -38,9 +38,7 @@ static const struct MenuAction MultichoiceList_SingleDouble[] =
 
 static const struct MenuAction MultichoiceList_SingleChallenges[] = 
 {
-	{gText_TheWorst},
-	{gText_Spicy2},
-	{gText_SpacePoints2},
+	{gText_BoostBattleTent},
 	{gText_Exit},
 };
 

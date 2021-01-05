@@ -279,7 +279,7 @@ static const struct TrainerMonItemCustomMovesAbilityShiny sParty_Renee[] = {
     {
     .iv = 255,
     .lvl = 30,
-	.moves = {MOVE_FLARE_BLITZ, MOVE_HIGH_JUMP_KICK, MOVE_NONE, MOVE_NONE},
+	.moves = {MOVE_FLARE_BLITZ, MOVE_HI_JUMP_KICK, MOVE_NONE, MOVE_NONE},
     .heldItem = ITEM_FOCUS_SASH,
     .abilityNum = 2,
     .shiny = 0,

@@ -24,10 +24,22 @@ SlateportCity_BattleTentLobby_EventScript_InitiateChallenge::
 	end
 	
 SlateportCity_BattleTentLobby_EventScript_SingleBattleChallenge::
-	msgbox single_test, MSGBOX_DEFAULT
+	msgbox SlateportCity_BattleTentLobby_Text_WhichTheme, MSGBOX_DEFAULT
 	waitmessage
 	multichoice 0, 0, MULTI_SINGLE_CHALLENGES, 0
 	switch VAR_RESULT
+	case 0, SlateportCity_BattleTentLobby_EventScript_BoostTrainer
+	case 1, SlateportCity_BattleTentLobby_EventScript_CancelBattleChallenge
+	goto SlateportCity_BattleTentLobby_EventScript_CancelBattleChallenge
+	release
+	end
+
+SlateportCity_BattleTentLobby_EventScript_BoostTrainer::
+	trainerbattle_no_intro TRAINER_SLATEPORT_BOOST, Route103_Text_MayDefeated
+	goto SlateportCity_BattleTentLobby_EventScript_CompletedSingleBattle
+	end
+	
+SlateportCity_BattleTentLobby_EventScript_CompletedSingleBattle::
 	release
 	end
 	
@@ -40,8 +52,8 @@ SlateportCity_BattleTentLobby_EventScript_CancelBattleChallenge::
 	release
 	end
 	
-single_test:
-	.string "Single battle$"
+SlateportCity_BattleTentLobby_Text_WhichTheme:
+	.string "Which CHALLENGE theme?$"
 	
 double_test:
 	.string "Double battle$"
